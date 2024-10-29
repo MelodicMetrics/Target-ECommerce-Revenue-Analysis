@@ -15,6 +15,6 @@ A repository that contains documentation of my various analysis steps for this p
     - **product_id**: A Unique ID given to each product available on the site
     - **seller_id**: Unique ID of the seller registered in Target
 ## Data Preparation and Cleaning
- - **Steps**: Imported seven CSV files into Google BigQuery and connected via DirectQuery to Power BI.
+ - **Steps**: Imported seven CSV files into Google BigQuery and connected via DirectQuery and Import to Power BI.
  - **Cleaning**: Conducted quality checks, removed irrelevant columns, and ensured data consistency
  - **Standardization**: Renamed columns to follow consistent naming conventions (e.g., changed `product category` to `product_category`) for easier querying and readability
