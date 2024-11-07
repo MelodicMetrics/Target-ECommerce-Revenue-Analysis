@@ -32,13 +32,13 @@ To ensure accuracy and consistency, detailed cleaning processes were conducted f
      - Identified and resolved missing `order_ids` by analyzing ‘canceled’ and ‘unavailable’ statuses.
      - Merged `Canceled Orders Missing Items`, `Unavailable Orders Missing Items`, and `Orders with Unknown Status Details` tables to create a unified dataset.
      - Validated total revenue calculations by excluding orders from the compiled table.
-  - **Documentation**: See [`order-item-cleaning`](data-cleaning/order-item-cleaning) for more details
+  - **Documentation**: See [`order-item-cleaning`](./data-cleaning/order-item-cleaning) for more details
   ### Standardization
   - **Folder**: `data-preparation/standardization`
   - **Objective**: Standize column names and data formats for consistent querying
   - **Steps**:
     - Renamed columns to follow consistent naming conventions (e.g., changed `product category` to `product_category`) for easier querying and readability
-    - Documented mappings and name changes for reference in [`standardization`](.data-preparation/standardization).
+    - Documented mappings and name changes for reference in [`standardization`](./data-preparation/standardization).
 
  - **Steps**: Imported seven CSV files into Google BigQuery and connected via DirectQuery and Import to Power BI.
  - **Cleaning**: Conducted quality checks, removed irrelevant columns, and ensured data consistency
