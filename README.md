@@ -32,7 +32,7 @@ To ensure accuracy and consistency, detailed cleaning processes were conducted f
      - Identified and resolved missing `order_ids` by analyzing ‘canceled’ and ‘unavailable’ statuses.
      - Merged `Canceled Orders Missing Items`, `Unavailable Orders Missing Items`, and `Orders with Unknown Status Details` tables to create a unified dataset.
      - Validated total revenue calculations by excluding orders from the compiled table.
-  - **Documentation**: See [`order-item-cleaning`](.data-cleaning/order-item-cleaning) for more details
+  - **Documentation**: See [`order-item-cleaning`](data-cleaning/order-item-cleaning) for more details
   ### Standardization
   - **Folder**: `data-preparation/standardization`
   - **Objective**: Standize column names and data formats for consistent querying
