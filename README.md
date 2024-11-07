@@ -16,7 +16,7 @@ A repository that contains documentation of my various analysis steps for this p
     - **seller_id**: Unique ID of the seller registered in Target
 ## Data Preparation and Cleaning
 To ensure accuracy and consistency, detailed cleaning processes were conducted for each dataset. Each process is documented in separate folders for easy navigation.
-###Cleaning Processes
+### Cleaning Processes
 - **Geolocation Cleaning**
   - Folder: `data-cleaning/geolocation-cleaning`
   - **Objective**: Resolve ambiguous city-state entries and filter down to the four most populated states
