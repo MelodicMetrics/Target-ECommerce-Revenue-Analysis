@@ -2,6 +2,9 @@
 
 **Objective:** To identify and resolve discrepancies in the total revenue calculations between the Orders and Order Items tables due to missing order_ids, ensuring data integrity for accurate reporting.
 
+## Overview:
+During the data cleaning process, I identified **577** `order_ids` *where the calculated revenue* (``price`` + ``freight_value`` in `Order Items`) did not align with the expected `total_payment_value` in the `Payments` table. These discrepancies were minor, with a net difference of **2,726.93**, and appeared to be due to minor inconsistencies such as floating-point precision or missing data entries. However, only **276 of these** `order_ids` were present in the Order Items table. Earlier, I identified the discrepant `order_ids` between the `Orders` and `Order Items` tables, which was most likely responsible for the difference in counts, as the remaining `order_ids` had discrepancies recorded only in `Orders` or `Payments`. Given the complexities of the dataset and the limitations of my tools as an independent analyst, I did not have sufficient context or capacity to uncover the source of these discrepancies. Therefore, I ultimately decided to remove the `order_id`'s from my analysis.
+
 ## Recap of Steps Taken in Identifying Missing order_ids:
 - Discovered that there were **775 missing order_ids** in the Order Items table.
 - Adjusted the total revenue function to **ignore these missing order_ids** in revenue calculations.
@@ -16,8 +19,8 @@
 - Filtered the dataset to display only **non-zero values**, identifying **577 entries** with discrepancies.
 
 ## Calculation of Total Discrepancy:
-- Developed functions, **'Total_Discrepant_Revenue_Order_Items'** and **'Total_Discrepant_Revenue_Payments'**, to quantify the total discrepancy across all identified order_ids.
-- Noted that the total discrepancy was **$2,726.93**, which was relatively minor, justifying the decision to exclude these problematic order_ids from analysis.
+- Developed functions, **`Total_Discrepant_Revenue_Order_Items`** and **`Total_Discrepant_Revenue_Payments`**, to quantify the total discrepancy across all identified order_ids.
+- Noted that the total discrepancy was **$2,726.93**, which was relatively minor, justifying the decision to exclude these problematic `order_ids` from analysis.
 
 ## Final Adjustments:
 - Created three new functions for revenue analysis focused on:
