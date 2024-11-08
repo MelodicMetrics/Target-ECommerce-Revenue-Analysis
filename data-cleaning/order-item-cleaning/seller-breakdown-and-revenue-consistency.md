@@ -1,4 +1,4 @@
-# Summary of Steps Taken: Addressing Missing order_ids and Revenue Discrepancies
+# Summary of Steps Taken: Resolving Missing order_ids and Ensuring Revenue Consistency in Orders and Order Items Tables
 
 **Objective:** To identify and resolve discrepancies in the total revenue calculations between the Orders and Order Items tables due to missing order_ids, ensuring data integrity for accurate reporting.
 
