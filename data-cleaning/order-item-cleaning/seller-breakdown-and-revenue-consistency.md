@@ -1,0 +1,33 @@
+# Summary of Steps Taken: Addressing Missing order_ids and Revenue Discrepancies
+
+**Objective:** To identify and resolve discrepancies in the total revenue calculations between the Orders and Order Items tables due to missing order_ids, ensuring data integrity for accurate reporting.
+
+## Recap of Steps Taken in Identifying Missing order_ids:
+- Discovered that there were **775 missing order_ids** in the Order Items table.
+- Adjusted the total revenue function to **ignore these missing order_ids** in revenue calculations.
+
+## Analysis of Revenue Discrepancies:
+- Noted discrepancies in total revenue calculations: fewer order_ids resulted in a **higher revenue calculation** than expected.
+- Created a comparison table, **Order Revenue Comparison**, to evaluate total revenue per order_id by summing the **price** and **freight_value** for each entry.
+- Compared the calculated revenue against the actual **expected_payment_value** to identify discrepancies.
+
+## Identification of Discrepant order_ids:
+- Implemented a calculated column named **'difference_flag'** to capture discrepancy amounts for each order_id.
+- Filtered the dataset to display only **non-zero values**, identifying **577 entries** with discrepancies.
+
+## Calculation of Total Discrepancy:
+- Developed functions, **'Total_Discrepant_Revenue_Order_Items'** and **'Total_Discrepant_Revenue_Payments'**, to quantify the total discrepancy across all identified order_ids.
+- Noted that the total discrepancy was **$2,726.93**, which was relatively minor, justifying the decision to exclude these problematic order_ids from analysis.
+
+## Final Adjustments:
+- Created three new functions for revenue analysis focused on:
+  - **Customer_ids**
+  - **Product Categories**
+  - **Sellers**
+- Enhanced existing measures to include filter logic that excludes the identified problematic order_ids to ensure accurate revenue calculations moving forward.
+
+## Impact of Findings:
+The identification of these discrepancies underscores the importance of rigorous data cleaning and validation processes, directly influencing the reliability of the revenue analysis. Ultimately, the final revenue calculation that matched across all tables was **$2,750,971.13**.
+
+## Future Recommendations:
+Considerations for future analyses may include implementing more robust methodologies for data entry verification and continuous monitoring of data integrity to prevent similar discrepancies.
