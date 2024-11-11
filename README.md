@@ -6,6 +6,7 @@ A repository that contains documentation of my various analysis steps for this p
 - **Guiding Questions**: There are three questions guiding my analysis
   - **1.** Which product categories contribute the most to overall revenue, and how does profitability vary across standardized categories?
   - **2.** How does the average order value and profitability vary by standardized product category and seller for orders placed by customers in the four most populated states over time?
+      - *Note: Sellers included in the analysis are those associated with orders from customers in the four most populated states (SP, RJ, MG, BA), regardless of the seller's own location.* 
   - **3.** How does average sales revenue vary across the four most populated states, and are there any notable regional patterns or correlations?
 - **Dataset Information**: The dataset was pulled from Kaggle and includes a time range from 2016-2018. There are seven related tables in the dataset with key attributes including the following
     - **customer_id**: ID of the consumer who made the purchase
@@ -37,7 +38,8 @@ To ensure accuracy and consistency, detailed cleaning processes were conducted f
   - **Folder**: `data-preparation/standardization`
   - **Objective**: Standize column names and data formats for consistent querying
   - **Steps**:
-    - Renamed columns to follow consistent naming conventions (e.g., changed `product category` to `product_category`) for easier querying and readability
+    - Renamed columns to follow consistent naming conventions (e.g., changed `product category` to `product_category`) for easier querying and readability.
+    - Removed filters for validated city-state combinations in the `Sellers` table to include all sellers with orders from customers in the target states, regardless of the seller’s own location.
     - Documented mappings and name changes for reference in [`standardization`](./data-preparation/standardization).
 
  - **Steps**: Imported seven CSV files into Google BigQuery and connected via DirectQuery and Import to Power BI.
