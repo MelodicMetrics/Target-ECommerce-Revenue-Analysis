@@ -5,7 +5,7 @@ A repository that contains documentation of my various analysis steps for this p
 - **Objective**: The goal of this project is to explore Revenue trends in E-commerce sales data from Target in Brazil.
 - **Guiding Questions**: There are three questions guiding my analysis
   - **1.** Which product categories contribute the most to overall revenue, and how does profitability vary across standardized categories?
-  - **2.** How does the average order value and profitability vary by standardized product category, verified seller locations, and the four most populated states over time?
+  - **2.** How does the average order value and profitability vary by standardized product category and the four most populated states over time?
   - **3.** How does average sales revenue vary across the four most populated states, and are there any notable regional patterns or correlations?
 - **Dataset Information**: The dataset was pulled from Kaggle and includes a time range from 2016-2018. There are seven related tables in the dataset with key attributes including the following
     - **customer_id**: ID of the consumer who made the purchase
