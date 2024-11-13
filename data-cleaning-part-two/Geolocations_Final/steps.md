@@ -44,21 +44,71 @@
   - After creating the output table, I made sure to remove all unneccesary columns that were loaded as well as removing StateCodes that appeared as *"0"*.
   - This gave me a cleaned table and so I copied the "StateCode" and "Unaccented City" columns to a final sheet entitled *"IBGE Brazil City States"*. This table I saved as a .csv file entitled **"IBGE Brazil City States"** which I imported into Google BigQuery as **`IBGE_City_State_Source_of_Truth`**.
 ### 3. Geolocations_Final Creation
-#### After creating the table in BigQuery, I needed to filter the `Geolocations` table to only display cities and states that were marked as valid by my `IBGE_City_State_Source_of_Truth` table
-- I wrote the following query in order to accomplish this:
+#### After creating the table in BigQuery, I needed to filter the `Geolocations` table to only display cities and states that were marked as valid by my `IBGE_City_State_Source_of_Truth` table. But before, I could do this, I needed to make sure that none of the cities in the original `Geolocation` table contained accents due to data entry errors. 
+- I wrote the following query in order to create a new table of geolocations that ensured all cities were unaccented:
   - ```sql
-    /* This query originally created a new Geolocation table based on a city_state_source_of_truth table from the GeoNames API to correct
+    /*
+    This query creates a new table called Gelocation_Unaccented where all the cities from the original table are unaccented.
+    LOWER(...) converts all the city names to lowercase for consistent comparison. REGEXP_REPLACE(...) replaces all the accented characters with their unaccented versions.
+    The original geolocation_city column is retained as well for reference.
+    */
+    CREATE OR REPLACE TABLE `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Geolocation_Unaccented` AS
+    SELECT
+    geolocation_state,
+    LOWER(
+        REGEXP_REPLACE(
+                    REGEXP_REPLACE(
+                        REGEXP_REPLACE(
+                            REGEXP_REPLACE(
+                                REGEXP_REPLACE(
+                                    REGEXP_REPLACE(
+                                        REGEXP_REPLACE(
+                                            REGEXP_REPLACE(
+                                                REGEXP_REPLACE(
+                                                    REGEXP_REPLACE(
+                                                        REGEXP_REPLACE(
+                                                            REGEXP_REPLACE(
+                                                                REGEXP_REPLACE(
+                                                                    REGEXP_REPLACE(
+                                                                        geolocation_city,
+                                                                        r"[ÁÀÂÄÃ]", "A"),
+                                                                    r"[áàâäã]", "a"),
+                                                                r"[ÉÈÊË]", "E"),
+                                                            r"[éèêë]", "e"),
+                                                        r"[ÍÌÎÏ]", "I"),
+                                                    r"[íìîï]", "i"),
+                                                r"[ÓÒÔÖÕ]", "O"),
+                                            r"[óòôöõ]", "o"),
+                                        r"[ÚÙÛÜ]", "U"),
+                                    r"[úùûü]", "u"),
+                                r"Ñ", "N"),
+                            r"ñ", "n"),
+                        r"Ç", "C"),
+                    r"ç", "c")
+            )
+     AS geolocation_city_unaccented,
+    geolocation_city AS original_geolocation_city  -- Retain the original column for reference
+    FROM
+    `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Geolocation`
+- After this, I created the `Geolocation_Final` table by using an `INNER JOIN` function with my new `Geolocation_Unaccented` table.
+  
+  - ```sql
+    /*
+    This query originally created a new Geolocation table based on a city_state_source_of_truth table from the GeoNames API to correct
     incorrect city-state combinations and city entry errors in the dataset.
 
     However, after obtaining a more robust list from the IBGE database, the join is now based on a new table, IBGE_City_State_Source_of_Truth.
     This update yields a higher number of valid combinations, resulting in a more comprehensive analysis.
+
+    The table joined in this query is the Geolocation_Unaccented table, using geo.geolocation_city_unaccented to ensure
+    that the combinations include city names with accents removed from the original dataset for more accurate matching.
     */
     CREATE TABLE `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Geolocation_Final` AS
     SELECT DISTINCT
       truth.City AS City,
       truth.StateCode AS Statecode
     FROM
-      `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Geolocation_Cleaned_Final` AS geo
+      `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Geolocation_Unaccented` AS geo
     INNER JOIN
       `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.IBGE_City_State_Source_of_Truth` AS truth
     ON
