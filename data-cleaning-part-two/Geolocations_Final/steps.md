@@ -1,4 +1,4 @@
-## Geolocations_Final Table Creation Steps
+## Geolocation_Final Table Creation Steps
 
 ### 1. Dataset Download
  - After downloading the dataset from the IBGE, I translated each column title to English in order to determine which columns were most likely to contain the information I was looking for *(cities and states)*.
@@ -43,8 +43,8 @@
     - This long line of code basically just replaces all accents with their unaccented counterparts one by one while also ensuring any uppercase variants become lowercase as well.
   - After creating the output table, I made sure to remove all unneccesary columns that were loaded as well as removing StateCodes that appeared as *"0"*.
   - This gave me a cleaned table and so I copied the "StateCode" and "Unaccented City" columns to a final sheet entitled *"IBGE Brazil City States"*. This table I saved as a .csv file entitled **"IBGE Brazil City States"** which I imported into Google BigQuery as **`IBGE_City_State_Source_of_Truth`**.
-### 3. Geolocations_Final Creation
-#### After creating the table in BigQuery, I needed to filter the `Geolocations` table to only display cities and states that were marked as valid by my `IBGE_City_State_Source_of_Truth` table. But before, I could do this, I needed to make sure that none of the cities in the original `Geolocation` table contained accents due to data entry errors. 
+### 3. Geolocation_Final Creation
+#### After creating the table in BigQuery, I needed to filter the `Geolocation` table to only display cities and states that were marked as valid by my `IBGE_City_State_Source_of_Truth` table. But before, I could do this, I needed to make sure that none of the cities in the original `Geolocation` table contained accents due to data entry errors. 
 - I wrote the following query in order to create a new table of geolocations that ensured all cities were unaccented:
   - ```sql
     /*
