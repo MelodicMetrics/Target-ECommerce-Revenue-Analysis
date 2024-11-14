@@ -146,7 +146,9 @@ After creating the table in BigQuery, I needed to filter the `Geolocation` table
          `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.IBGE_City_State_Source_of_Truth` AS truth
        ON
          geo.geolocation_city = truth.city AND geo.geolocation_state = truth.StateCode
-With these two versions of Geolocation tables, I could compare my customer tables to investigate why `INNER JOIN` was leading to fewer IDs. This comparison used two additional tables: (This information will be found in the Customers_Final steps.md file later.)
+With these two versions of Geolocation tables, I could compare my customer tables to investigate why `INNER JOIN` was leading to fewer IDs. Click here to read the steps taken to find which `customer_id`s were being removed due to the `INNER JOIN` and why.
+With these two versions of Geolocation tables, I could compare my customer tables to investigate why `INNER JOIN` was leading to fewer IDs. [Click here to read the steps taken to find which `customer_id`s were being removed due to the `INNER JOIN` and why.](Target-ECommerce-Revenue-Analysis/data-cleaning-part-two/Customers_Final/steps.md)
+
 
 **1.** **`Customers_Comparison` Table**
  - This table was made based on an `INNER JOIN` between the original Customers table and my `Geolocation_Comparison` table. This ensured the only filters on this table were based on the `RIGHT JOIN` from the Geolocation_Comparison table. 
