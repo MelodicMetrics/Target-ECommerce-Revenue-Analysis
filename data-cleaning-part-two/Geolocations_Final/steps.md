@@ -163,9 +163,10 @@ With these two versions of Geolocation tables, I could compare my customer table
       ON
          customer.customer_city = truth.City AND customer.customer_state = truth.StateCode
 
-**2. `Customers_Final` Table** 
+**2. `Customers_Final_Original` Table** 
 
- - This table was based on `Geolocations_Final` and `Customers`. To recap, `Geolocation_Final` was created with an `INNER JOIN` rather than a `RIGHT JOIN`.
+ - This table was based on `Geolocations_Final_Original` and `Customers`. To recap, `Geolocation_Final_Original` was created with an `INNER JOIN` rather than a `RIGHT JOIN`.
+ - *Note*: The purpose of the "_Original" in the geolocation and customers table is to display the logic that lead to the actual Final tables. The Original final table for customers contained 98,709 entries. After making the changes the new `Customers_Final` table will contain the intended 98,715 entries. 
        
        ```sql
         CREATE OR REPLACE TABLE iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Customers_Final AS 
@@ -176,12 +177,12 @@ With these two versions of Geolocation tables, I could compare my customer table
         FROM 
           iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Customers AS customer
         INNER JOIN 
-          `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Geolocation_Final` AS truth
+          `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Geolocation_Final_Original` AS truth
         ON
           customer.customer_city = truth.City AND customer.customer_state = truth.StateCode
     
  **3. Comparison of Customer Tables** 
-  - Finally I wrote a Query to compare the 2 tables to identify the `customer_id`s appearing in `Customers_Comparison` but *not* in `Customers_Final`.
+  - Finally I wrote a Query to compare the 2 tables to identify the `customer_id`s appearing in `Customers_Comparison` but *not* in `Customers_Final_Original`.
 
     ```sql
        -- Compares Customers_Comparison (98,715) to the final table (98,709)
@@ -193,7 +194,7 @@ With these two versions of Geolocation tables, I could compare my customer table
        SELECT
          customer_id
        FROM
-         iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Customers_Final
+         iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Customers_Final_Original
   
   - This query identified the 6 `customer_id`s missing due to the `INNER JOIN` between `Geolocation` and `IBGE_City_State_Source_of_Truth`. I investigated one of these IDs (`"e6add8f4805cb6a382c26548daaed9d7"`) and found that the customer was based in `Sambaiba, MA`. Checking this city in both `Geolocation` and `IBGE_City_State_Source_of_Truth` revealed that it was missing in the former, explaining why these customers were dropped in the `INNER JOIN` but retained in the `RIGHT JOIN`.
 
