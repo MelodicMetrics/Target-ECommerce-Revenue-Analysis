@@ -1,9 +1,9 @@
-## Geolocation_Final Table Creation Steps
+# Geolocation_Final Table Creation Steps
 
-### 1. Dataset Download
+## 1. Dataset Download
  - After downloading the dataset from the IBGE, I translated each column title to English in order to determine which columns were most likely to contain the information I was looking for *(cities and states)*.
  - After determining which columns I needed (Name of Municipality for Cities and Name of Federative Unit for States), I copied them into a new sheet and created a table (`City_State_Cleaning`).
-### 2. Dataset Cleaning
+## 2. Dataset Cleaning
   - As the original dataset used State Codes rather than the actual State (Federative Unit) names, I had to convert the names into State Codes. In order to do this, I created a separate sheet with every State name and their respective State Code.
   - In my (`City_State_Cleaning`) table, I added a column entitled **"StateCode"** and used the following function to find the proper State Code for each State:
     - ```
@@ -43,11 +43,14 @@
     - This long line of code basically just replaces all accents with their unaccented counterparts one by one while also ensuring any uppercase variants become lowercase as well.
   - After creating the output table, I made sure to remove all unneccesary columns that were loaded as well as removing StateCodes that appeared as *"0"*.
   - This gave me a cleaned table and so I copied the "StateCode" and "Unaccented City" columns to a final sheet entitled *"IBGE Brazil City States"*. This table I saved as a .csv file entitled **"IBGE Brazil City States"** which I imported into Google BigQuery as **`IBGE_City_State_Source_of_Truth`**.
-### 3. Geolocation_Final Creation
-#### After creating the table in BigQuery, I needed to filter the `Geolocation` table to only display cities and states that were marked as valid by my `IBGE_City_State_Source_of_Truth` table. But before, I could do this, I needed to make sure that none of the cities in the original `Geolocation` table contained accents due to data entry errors. 
+---
+## 3. Geolocation_Final Creation
+### Objective
+After creating the table in BigQuery, I needed to filter the `Geolocation` table to only display cities and states that were marked as valid by my `IBGE_City_State_Source_of_Truth` table. But before, I could do this, I needed to make sure that none of the cities in the original `Geolocation` table contained accents due to data entry errors. 
+### Step 1: Creating `Geolocation_Unaccented`
 - I wrote the following query in order to create a new table of geolocations that ensured all cities were unaccented:
-  - ```sql
-    /*
+   ```sql
+   /*
     This query creates a new table called Gelocation_Unaccented where all the cities from the original table are unaccented.
     LOWER(...) converts all the city names to lowercase for consistent comparison. REGEXP_REPLACE(...) replaces all the accented characters with their unaccented versions.
     The original geolocation_city column is retained as well for reference.
@@ -90,30 +93,134 @@
     geolocation_city AS original_geolocation_city  -- Retain the original column for reference
     FROM
     `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Geolocation`
-- After this, I created the `Geolocation_Final` table by using an `INNER JOIN` function with my new `Geolocation_Unaccented` table.
+### Step 2: Creating `Geolocation_Final` with a RIGHT JOIN
+- Once `Geolocation_Unaccented` was created, I proceed to creat the `Geolocation_Final` table using a `RIGHT JOIN` to ensure all city-state combinations from `IBGE_City_State_Source_of_Truth` were included, even if they did not have a match in `Geolocation_Unaccented`.
   
   - ```sql
-    /*
-    This query originally created a new Geolocation table based on a city_state_source_of_truth table from the GeoNames API to correct
-    incorrect city-state combinations and city entry errors in the dataset.
+    /* 
+    1.The COALESCE function is used to select values from Geolocation_Unaccented if it's present or default to values from IBGE_City_State_Source_of_Truth.
+    This approach helps to fill in missing entries from the Geolocation_Unaccented table with data from the source of truth table.
+    2. The RIGHT JOIN is used to include all rows from the IBGE_City_State_Source_of_Truth table, even when there aren't matches in Geolocation_Unaccented.
+    */ 
+    -- Create a comprehensive Geolocations_Final table using RIGHT JOIN to ensure all IBGE entries appear
+     CREATE OR REPLACE TABLE iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Geolocation_Final AS
+     SELECT DISTINCT
+         COALESCE(geo.geolocation_city_unaccented, truth.city) AS city,
+         COALESCE(geo.geolocation_state, truth.StateCode) AS state
+     FROM     
+         iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Geolocation_Unaccented AS geo
+     RIGHT JOIN  
+         iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.IBGE_City_State_Source_of_Truth AS truth
+     ON 
+         truth.city = geo.geolocation_city_unaccented AND truth.StateCode = geo.geolocation_state;
+ 
+ ### **3A. Why RIGHT JOIN?**
+   - I noticed that when using an `INNER JOIN` to create the final table and selecting `DISTINCT` cities that were unaccented, I would get less customer_ids than if I used a `RIGHT JOIN` from the `IBGE_City_State_Source_of_Truth` table. Specifically from **(98,715)** to **(98,709)**, a loss of **6** IDs. 
 
-    However, after obtaining a more robust list from the IBGE database, the join is now based on a new table, IBGE_City_State_Source_of_Truth.
-    This update yields a higher number of valid combinations, resulting in a more comprehensive analysis.
+**1.** **Using `Geolocation_Comparison` to Identify Missing Matches**
+ - To identify the cause of these removed IDs, I created a `Geolocation_Comparison` table using a `RIGHT JOIN` and retained accents to control for any potential changes introduced by removing them. The purpose of the `RIGHT JOIN` was to ensure that all city-state combinations from the source of truth table would appear, regardless of whether there was a matching entry in the Geolocation table.
 
-    The table joined in this query is the Geolocation_Unaccented table, using geo.geolocation_city_unaccented to ensure
-    that the combinations include city names with accents removed from the original dataset for more accurate matching.
-    */
-    CREATE TABLE `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Geolocation_Final` AS
-    SELECT DISTINCT
-      truth.City AS City,
-      truth.StateCode AS Statecode
-    FROM
-      `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Geolocation_Unaccented` AS geo
-    INNER JOIN
-      `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.IBGE_City_State_Source_of_Truth` AS truth
-    ON
-      geo.geolocation_city = truth.city AND geo.geolocation_state = truth.StateCode
+      ```sql
+      CREATE OR REPLACE TABLE iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Geolocation_Comparison AS 
+      SELECT DISTINCT
+        truth.City AS City,
+        truth.StateCode AS Statecode
+      FROM 
+        `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Geolocation` AS geo
+      RIGHT JOIN 
+        `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.IBGE_City_State_Source_of_Truth` AS truth
+      ON
+        geo.geolocation_city = truth.city AND geo.geolocation_state = truth.StateCode
+         -
+**2.** **Direct Comparison with Geolocation_Final** 
+ - This table (`Geolocation_Comparison`) was used to directly compare with a filtered version, specifically `Geolocation_Final_Original`. The `INNER JOIN` in `Geolocations_Final` pulls only cities and states that have a match between the two tables. Additionally, accents were not removed to confirm that any discrepancies were due solely to the difference between an `INNER JOIN` and a `RIGHT JOIN`, rather than any potential issues introduced by `Geolocation_Unccented`.  
 
+     ```sql
+       CREATE OR REPLACE TABLE iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Geolocation_Final_Original AS 
+       SELECT DISTINCT
+         truth.City AS City,
+         truth.StateCode AS Statecode
+       FROM 
+         `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Geolocation` AS geo
+       INNER JOIN 
+         `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.IBGE_City_State_Source_of_Truth` AS truth
+       ON
+         geo.geolocation_city = truth.city AND geo.geolocation_state = truth.StateCode
+With these two versions of Geolocation tables, I could compare my customer tables to investigate why `INNER JOIN` was leading to fewer IDs. This comparison used two additional tables: (This information will be found in the Customers_Final steps.md file later.)
+
+**1.** **`Customers_Comparison` Table**
+ - This table was made based on an `INNER JOIN` between the original Customers table and my `Geolocation_Comparison` table. This ensured the only filters on this table were based on the `RIGHT JOIN` from the Geolocation_Comparison table. 
+   ```sql
+      CREATE OR REPLACE TABLE iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Customers_Comparison AS 
+      SELECT
+         customer.customer_id AS customer_id,
+         truth.City AS City,
+         truth.StateCode AS Statecode
+      FROM 
+         `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Customers AS customer
+      INNER JOIN 
+         `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Geolocation_Comparison` AS truth
+      ON
+         customer.customer_city = truth.City AND customer.customer_state = truth.StateCode
+
+**2. `Customers_Final` Table** 
+
+ - This table was based on `Geolocations_Final` and `Customers`. To recap, `Geolocation_Final` was created with an `INNER JOIN` rather than a `RIGHT JOIN`.
+       
+       ```sql
+        CREATE OR REPLACE TABLE iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Customers_Final AS 
+        SELECT
+          customer.customer_id AS customer_id,
+          truth.City AS City,
+          truth.StateCode AS Statecode
+        FROM 
+          iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Customers AS customer
+        INNER JOIN 
+          `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Geolocation_Final` AS truth
+        ON
+          customer.customer_city = truth.City AND customer.customer_state = truth.StateCode
+    
+ **3. Comparison of Customer Tables** 
+  - Finally I wrote a Query to compare the 2 tables to identify the `customer_id`s appearing in `Customers_Comparison` but *not* in `Customers_Final`.
+
+    ```sql
+       -- Compares Customers_Comparison (98,715) to the final table (98,709)
+       SELECT
+         customer_id
+       FROM
+         iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Customers_Comparison
+       EXCEPT DISTINCT
+       SELECT
+         customer_id
+       FROM
+         iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Customers_Final
+  
+  - This query identified the 6 `customer_id`s missing due to the `INNER JOIN` between `Geolocation` and `IBGE_City_State_Source_of_Truth`. I investigated one of these IDs (`"e6add8f4805cb6a382c26548daaed9d7"`) and found that the customer was based in `Sambaiba, MA`. Checking this city in both `Geolocation` and `IBGE_City_State_Source_of_Truth` revealed that it was missing in the former, explaining why these customers were dropped in the `INNER JOIN` but retained in the `RIGHT JOIN`.
+
+    ```sql
+       SELECT *
+       FROM
+         iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Customers
+       WHERE
+         customer_id = "e6add8f4805cb6a382c26548daaed9d7"
+  
+      SELECT *
+      FROM
+        iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.IBGE_City_State_Source_of_Truth
+      WHERE
+        city = "sambaiba";
+      
+      SELECT *
+      FROM
+        iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Geolocation
+      WHERE
+        geolocation_city = "sambaiba"
+ 
+ - The first query returned a result, while the second did not, indicating that the original `Geolocation` table was missing certain cities, which led to the decision to use a `RIGHT JOIN` to include all entries from `IBGE_City_State_Source_of_Truth`.
+
+### **3B. Why COALESCE?**
+ - The purpose of the `COALESCE` function is to select values from `Geolocation_Unaccented` when present, or to default to values from `IBGE_City_State_Source_of_Truth` when they are missing. This approach handles cases like `"Sambaiba, MA"` by filling gaps in `Geolocation_Unaccented` with the authoritative data from the IBGE table.
+---        
 ### Data Source
 The dataset for Brazilian municipalities and federative units was obtained from the **IBGE** *(Brazilian Institute of Geography and Statistics)*. You can access the original dataset [here](https://www.ibge.gov.br/geociencias/organizacao-do-territorio/estrutura-territorial/23701-divisao-territorial-brasileira.html?=&t=downloads).
 
