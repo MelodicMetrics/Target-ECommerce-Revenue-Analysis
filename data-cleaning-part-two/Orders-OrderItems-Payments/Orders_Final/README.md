@@ -1,6 +1,6 @@
 # Orders Changes Overview
 
-As noted in my [Overview README.md](../data-cleaning-part-two/Orders-OrderItems-Payments/README.md), I needed to recalculate the discrepant and missing `order_id`s.
+As noted in my [Overview README.md](./README.md), I needed to recalculate the discrepant and missing `order_id`s.
 
 There were more unique `order_id`s present in `Order_Items_Final` than in `Orders_Final`; therefore, the filter to remove missing IDs needed to be applied to the `Orders_Final` table. After doing so, I was able to ensure that both `Orders_Final` and `Order_Items_Final` were clean and usable for consistent analysis.
 
