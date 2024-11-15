@@ -134,7 +134,7 @@ SELECT
 ![Table of distinct `order_id` counts for each table](https://github.com/user-attachments/assets/9ba44665-2e96-48b8-b58a-aac4d3cef882)
 
   - This confirms the 769 number that was calculated before.
-  - *Note:* The `Orders_Final` and `Order_Items_Final` creation steps can be found in their respective folders.
+  - *Note: The [`Orders_Final`](Orders_Final/steps.md) and `Order_Items_Final` creation steps can be found in their respective folders.*
 
 ### Step 3: Created `Recalculated_Missing_Orders` Table
 
