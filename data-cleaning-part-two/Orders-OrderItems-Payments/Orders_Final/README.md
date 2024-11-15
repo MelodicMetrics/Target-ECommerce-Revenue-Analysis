@@ -7,3 +7,6 @@ There were more unique `order_id`s present in `Order_Items_Final` than in `Order
 Additionally, by removing the `order_id`s found to be discrepant in order value from `Orders_Final`, I ensured consistency between `Orders_Final` and `Payments_Final`.
 
 - *Note: There was one `order_id` that appeared in `Orders_Final` but not in `Payments_Final`; this is described in detail in the Payments_final_steps.md.*
+
+
+[Click here](./steps.md) to read the detailed steps on the creation of `Orders_Final`.
