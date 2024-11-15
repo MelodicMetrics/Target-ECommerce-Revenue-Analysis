@@ -11,3 +11,6 @@ Instead, I opted to use a `JOIN` with `Orders_Final`, which ensured that only `o
 - **Recalculated Discrepant Orders**:  
   These `order_ids` were automatically excluded, as `Order_Items_Final` was created by joining on `order_id` from `Orders_Final`, which had already filtered out discrepant orders.
 
+
+  [Click here](./steps.md) to read the detailed steps on the creation of `Order_Items_Final`.
+
