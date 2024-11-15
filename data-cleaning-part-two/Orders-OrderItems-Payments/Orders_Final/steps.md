@@ -18,7 +18,7 @@ ON
     orders.customer_id = cust.customer_id
 ```
 
-- I referenced this table in [Overview README.md](../data-cleaning-part-two/Orders-OrderItems-Payments/README.md) for creating `Recalculated_Missing_Orders` and `Recalculated_Discrepant_Orders`along with another similar one for `Order_Items_Final`.
+- I referenced this table in [Overview README.md](../README.md) for creating `Recalculated_Missing_Orders` and `Recalculated_Discrepant_Orders`along with another similar one for `Order_Items_Final`.
 
 ## Step 2: Filtered Orders_Final Table with Missing and Discrepant Order IDs Removed
 
