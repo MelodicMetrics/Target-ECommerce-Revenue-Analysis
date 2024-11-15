@@ -1,4 +1,4 @@
-# Steps to Create Orders_Final
+# Steps to Create `Orders_Final`
 
 ## Step 1: Initial `Orders_Final` Table Creation
 
