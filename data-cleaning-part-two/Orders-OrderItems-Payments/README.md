@@ -5,9 +5,12 @@ These three tables are connected via `order_id`s. The `Order_Items_Final` table 
 With the increased number of verified `customer_id`s and validated locations since that initial phase, I decided to recalculate the discrepancy function. Additionally, I removed the `payment_type` column from `Payments_Final`, which had been creating duplicate `order_id`s.
   - *Note: This was likely the cause of discrepancies in my initial calculations, leading to this iterative cleaning process.*
 
+## `Missing_Orders` Table
+In addition to these discrepant order ids, there are also a number of `order_id`s that appear in `Orders` that do not appear in `Order Items`. If left unchecked, this would create discrepancies in analysis between `Orders_Final` and `Order_Items_Final`. I found these in my initial data cleaning and analysis steps. The cause of most of these missing ids was found to be due to certain `order_id`s containing status of either "unavailable" or "canceled" with a few extra containing other statuses. I downloaded the list of these ids as a .CSV file and imported it into Google BigQuery where I could use them to filter `Orders_Final` and `Order_Items_Final` ensuring no missing `order_id`s between the two. [To read a detailed breakdown of how I found these ids and created the list table click here](../../data-cleaning/order-item-cleaning/order-and-order-item-cleaning.md)
+
 ## `Recalculated_Discrepant_Orders` Table
 
-To generate an updated list of `order_id`s with discrepancies between expected total payment values and calculated total order values, I created two temporary tables and joined them. The query I used included `AND ABS(c.calculated_order_value - p.total_payment_value) >= 0.01` to ensure that only `order_id`s with discrepancies of at least a penny were flagged. Using `ROUND(SUM(...), 3)` helped remove some small discrepancies, but minor discrepancies still appeared due to precision limitations.
+To generate an updated list of `order_id`s with discrepancies between expected total payment values and calculated total order values, I created two temporary tables and joined them. The query I used included `AND ABS(c.calculated_order_value - p.total_payment_value) >= 0.01` to ensure that only `order_id`s with discrepancies of at least a penny were flagged. Using `ROUND(SUM(...), 3)` helped remove some small discrepancies, but minor discrepancies still appeared due to precision limitations. 
 
 
   ```sql
