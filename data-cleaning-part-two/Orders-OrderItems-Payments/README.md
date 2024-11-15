@@ -1,5 +1,16 @@
 # Orders_Final, Order_Items_Final, and Payments_Final Overview
 
+## Overviews of Table Changes
+
+**To see an overview of changes made to each table, click the respective link below:** 
+
+- [Orders_Final](./Orders_Final)
+- [Order_Items_Final](./Order_Items_Final)
+- [Payments_Final](./Payments_Final)
+
+---
+
+
 The `Orders_Final`, `Order_Items_Final`, and `Payments_Final` tables are connected through shared `order_id`s. The `Order_Items_Final` table contains `price` and `freight_value` columns, which together should equal the `total_payment_value` in `Payments_Final`. In the initial phase of analysis, I discovered discrepancies in these calculations and removed them to maintain data accuracy.
 
 Since then, the dataset has undergone significant improvements, with an increased number of validated `customer_id`s and verified location data. As a result, I recalculated the discrepancy function to ensure all identified issues were accurately addressed. Additionally, I removed the `payment_type` and `payment_installments` columns from `Payments_Final`, which had been causing duplicate `order_id`s and was likely a primary source of the original discrepancies. This iterative cleaning process not only resolved outstanding issues but also enabled a more precise reconciliation between `Orders_Final` and `Order_Items_Final`.
