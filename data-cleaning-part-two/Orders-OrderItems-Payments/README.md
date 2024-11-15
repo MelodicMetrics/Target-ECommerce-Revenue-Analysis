@@ -2,7 +2,7 @@
 
 The `Orders_Final`, `Order_Items_Final`, and `Payments_Final` tables are connected through shared `order_id`s. The `Order_Items_Final` table contains `price` and `freight_value` columns, which together should equal the `total_payment_value` in `Payments_Final`. In the initial phase of analysis, I discovered discrepancies in these calculations and removed them to maintain data accuracy.
 
-Since then, the dataset has undergone significant improvements, with an increased number of validated `customer_id`s and verified location data. As a result, I recalculated the discrepancy function to ensure all identified issues were accurately addressed. Additionally, I removed the `payment_type` column from `Payments_Final`, which had been causing duplicate `order_id`s and was likely a primary source of the original discrepancies. This iterative cleaning process not only resolved outstanding issues but also enabled a more precise reconciliation between `Orders_Final` and `Order_Items_Final`.
+Since then, the dataset has undergone significant improvements, with an increased number of validated `customer_id`s and verified location data. As a result, I recalculated the discrepancy function to ensure all identified issues were accurately addressed. Additionally, I removed the `payment_type` and `payment_installments` columns from `Payments_Final`, which had been causing duplicate `order_id`s and was likely a primary source of the original discrepancies. This iterative cleaning process not only resolved outstanding issues but also enabled a more precise reconciliation between `Orders_Final` and `Order_Items_Final`.
 
 With these recalculations, the newly created `Recalculated_Missing_Orders` and `Recalculated_Discrepant_Orders` tables now accurately reflect missing and discrepant `order_id`s, strengthening data integrity and providing a solid foundation for revenue analysis. These adjustments will ensure consistent calculations of total revenue and profitability across product categories, seller regions, and customer demographics.
 
@@ -135,7 +135,7 @@ SELECT
 ![Table of distinct `order_id` counts for each table](https://github.com/user-attachments/assets/9ba44665-2e96-48b8-b58a-aac4d3cef882)
 
   - This confirms the 769 number that was calculated before.
-  - *Note: The [`Orders_Final`](Orders_Final/steps.md) and `Order_Items_Final` creation steps can be found in their respective folders.*
+  - *Note: The [`Orders_Final`](Orders_Final/steps.md) and [`Order_Items_Final`](Order_Items_Final/steps.md) creation steps can be found in their respective steps.md files.*
 
 ### Step 3: Created `Recalculated_Missing_Orders` Table
 
@@ -179,14 +179,26 @@ SELECT
 
 - When the query confirmed equal counts for both tables, I knew the cleaning steps had been effective.
 
+*Note: One `order_id` was also missing in the `Payments_Final` table. The steps taken to identify and resolve this discrepancy are detailed in [Payments_Final steps.md](./Payments_Final/steps.md).*
+
+
 
 ## Conclusion
 
-By recalculating missing and discrepant `order_id`s, I was able to refine the consistency between `Orders_Final` and `Order_Items_Final`, ensuring that all relevant `order_id`s were accounted for. Initially, missing `order_id`s posed a risk of creating discrepancies in revenue calculations, especially for orders with "unavailable" or "canceled" statuses. After identifying and excluding these, I recalculated the distinct `order_id` counts, verifying the updated total of 769 missing `order_id`s.
+By recalculating missing and discrepant `order_id`s, I refined the consistency between `Orders_Final`, `Order_Items_Final`, and `Payments_Final`, ensuring that all relevant `order_id`s were accounted for. Initially, missing `order_id`s posed a risk of revenue discrepancies, particularly for orders with "unavailable" or "canceled" statuses. After identifying and excluding these, I verified the updated total of **769 missing `order_id`s**.
 
-In addition to recalculating missing `order_id`s, I addressed discrepancies in payment values between `Order_Items_Final` and `Payments_Final`. This adjustment was necessary because `Payments_Final` had initially contained duplicate `order_id`s due to multiple payment types. By removing payment types, I created a cleaner `Payments_Final` table and recalculated discrepancies by comparing the total payment values in `Payments_Final` with the calculated values from `Order_Items_Final`. I then identified only those `order_id`s with discrepancies of at least a penny, ensuring a more accurate revenue analysis.
+In addition to addressing missing `order_id`s, I resolved discrepancies in payment values between `Order_Items_Final` and `Payments_Final`. These discrepancies arose from mismatches between calculated payment values (`price` + `freight_value`) in `Order_Items_Final` and the entered values in `Payments_Final`. 
 
-This recalculation process—addressing both missing and discrepant `order_id`s—strengthened data integrity and minimized revenue discrepancies, resulting in a more reliable dataset for downstream analysis. These adjustments, documented in the `Recalculated_Missing_Orders` and `Recalculated_Discrepant_Orders` tables, provide a solid foundation for analyzing key metrics such as total revenue and profitability across product categories and customer regions.
+To ensure accurate revenue analysis:
+1. I excluded `order_id`s with discrepancies of at least a penny.
+2. I removed the `payment_type` and `payment_installments` columns from `Payments_Final`, eliminating unnecessary duplicates caused by these fields.
+3. I reinserted a missing `order_id`, as detailed in the steps documented in [Payments_Final steps.md](./Payments_Final/steps.md).
+
+These changes resulted in a cleaner and more consistent `Payments_Final` table that aligns with `Order_Items_Final` and `Orders_Final`.
+
+This recalculation process—addressing both missing and discrepant `order_id`s—strengthened data integrity and minimized revenue discrepancies. The removal of these `order_id`s, as documented in the `Recalculated_Missing_Orders` and `Recalculated_Discrepant_Orders` tables, provides a solid foundation for downstream analysis. Key metrics, such as total revenue and profitability across product categories and customer regions, are now more reliable, ensuring meaningful and accurate insights.
+
+
 
 
 ---
