@@ -32,7 +32,7 @@ The iterative cleaning process ensured `Payments_Final` is consistent with `Orde
 ---
 
 
-
+[Click here](./steps.md) to read the detailed steps on the creation of `Payments_Final`.
 
 
 
