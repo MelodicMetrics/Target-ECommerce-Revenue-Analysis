@@ -63,6 +63,7 @@ CREATE OR REPlACE TABLE iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_20
         AND ABS(c.calculated_order_value - p.total_payment_value) >= 0.01 --Ensures discrepancies are at least a penny
 );
 ```
+This query yielded **363** `order_id`s. 
 
 ---
 
