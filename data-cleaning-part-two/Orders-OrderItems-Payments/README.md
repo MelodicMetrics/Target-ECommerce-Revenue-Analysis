@@ -19,10 +19,15 @@ With these recalculations, the newly created `Recalculated_Missing_Orders` and `
 
 
 ---
-
-## `Recalculated_Discrepant_Orders` Table
-
+## `Recalculated_Discrepant_Orders` Table 
 To generate an updated list of `order_id`s with discrepancies between expected total payment values and calculated total order values, I created two temporary tables and joined them. The query I used included `AND ABS(c.calculated_order_value - p.total_payment_value) >= 0.01` to ensure that only `order_id`s with discrepancies of at least a penny were flagged. Using `ROUND(SUM(...), 3)` helped remove some small discrepancies, but minor discrepancies still appeared due to precision limitations. 
+
+<details>
+<summary>
+Click here to expand details about the `Recalculated_Discrepant_Orders` Table 
+</summary>
+<br>
+
 
 
 ```sql
@@ -77,12 +82,17 @@ CREATE OR REPlACE TABLE iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_20
 This query yielded **363** `order_id`s. 
 
 ---
+</details>
 
 ## `Recalculated_Missing_Orders` Table
 
 In addition to these discrepant `order_id`s, there are also several `order_id`s that appear in `Orders` but do not appear in `Order Items`. If left unaddressed, this would create discrepancies in analysis between `Orders_Final` and `Order_Items_Final`. During my initial data cleaning and analysis, I identified a list of these missing `order_id`s, primarily due to certain `order_id`s having a status of "unavailable" or "canceled," with a few others under different statuses.
 
 I downloaded this list as a .CSV file and imported it into Google BigQuery to filter `Orders_Final` and `Order_Items_Final` and ensure no missing `order_id`s remained. However, after an increase in verified `customer_id`s, I realized I needed to recalculate the missing orders to maintain data consistency.
+
+<details>
+<summary>Click here to expand details about the `Recalculated_Missing_Orders` Table</summary>
+<br>
 
 
 ### Step 1: Calculate Missing `order_id`s by Status
@@ -172,7 +182,6 @@ ON
 WHERE 
   oi.order_id IS NULL;
 ```
----
 
 ### Step 4: Verify Equal Distinct `order_id`s
 
@@ -191,8 +200,9 @@ SELECT
 - When the query confirmed equal counts for both tables, I knew the cleaning steps had been effective.
 
 *Note: One `order_id` was also missing in the `Payments_Final` table. The steps taken to identify and resolve this discrepancy are detailed in [Payments_Final steps.md](./Payments_Final/steps.md).*
+</details>
 
-
+---
 
 ## Conclusion
 
