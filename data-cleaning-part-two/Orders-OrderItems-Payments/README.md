@@ -163,6 +163,23 @@ WHERE
 ```
 ---
 
+### Step 4: Verify Equal Distinct `order_id`s
+
+After creating the final versions of `Orders_Final` and `Order_Items_Final`, I wanted to ensure that all missing or discrepant `order_id`s were properly excluded and that the number of distinct `order_id`s matched between the `Orders_Final` and `Order_Items_Final` tables.
+
+```sql
+SELECT 
+    (SELECT COUNT(DISTINCT order_id) FROM iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Orders_Final) AS distinct_order_ids_orders,
+    (SELECT COUNT(DISTINCT order_id) FROM iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Order_Items_Final) AS distinct_order_ids_order_items;
+```
+
+**Table 3: Equal Distinct `order_id` Counts Between `Orders_Final` and `Order_Items_Final`**
+
+![Table of distinct `order_id` counts for each table](https://github.com/user-attachments/assets/f52e6e7f-264d-406a-9323-aadfb31fd66e)
+
+- When the query confirmed equal counts for both tables, I knew the cleaning steps had been effective.
+
+
 ## Conclusion
 
 By recalculating missing and discrepant `order_id`s, I was able to refine the consistency between `Orders_Final` and `Order_Items_Final`, ensuring that all relevant `order_id`s were accounted for. Initially, missing `order_id`s posed a risk of creating discrepancies in revenue calculations, especially for orders with "unavailable" or "canceled" statuses. After identifying and excluding these, I recalculated the distinct `order_id` counts, verifying the updated total of 769 missing `order_id`s.
