@@ -17,3 +17,7 @@ To address these issues, I created a standardized mapping file (`Product_Categor
    - This ensured every product in `Products_Final` had a valid category.
 
 These changes resulted in a clean and consistent `Products_Final` table, with all `product_category` entries standardized or assigned a default value.
+
+
+[Click here](./steps.md) to read the detailed steps on the creation of `Products_Final`.
+
