@@ -1,4 +1,4 @@
-[Product_Category_mappings.csv](https://github.com/user-attachments/files/17782746/Product_Category_mappings.csv)# Steps to Create Products_Final
+# Steps to Create Products_Final
 
 ### Step 1: Identify Issues with `product_category`
 
@@ -22,7 +22,7 @@ ORDER BY
   - **Example Adjustments**:
       - `"CITTE AND UPHACK FURNITURE"` → `"Miscellaneous Furniture"`
       - `"Electrices 2"` →  `"Electrical Products"`
-- The finalized list of original and standardized names were saved as a `.csv` file and uploaded to Google BigQuery as `Product_Category_Mappings`. The `.csv` file you can [view here]
+- The finalized list of original and standardized names were saved as a `.csv` file and uploaded to Google BigQuery as `Product_Category_Mappings`. The `.csv` file can be [downloaded here](https://github.com/user-attachments/files/17782746/Product_Category_mappings.csv)
 
 
 ### Step 3: Create `Products_Final`
