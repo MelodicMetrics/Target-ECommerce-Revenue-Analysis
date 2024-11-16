@@ -20,7 +20,7 @@
       - `Name of Municipality(City)` refers to the column containing the city names
   - My final step was to make sure that all of the cities did not contain accents due to most entries in the original dataset also not containing them.
   - I first copied all the cells in my **"Lowercase City"** column into another column entitled **"Unaccented City"**. Then I pulled that column into Power Query.
-  - Once in Power Query I added the following step in advanced error so that the m code looked like the following:
+  - Once in Power Query I added the following step in advanced edit so that the m code looked like the following:
     - ```m
       let
         #"Remove Accents" = Table.TransformColumns(
