@@ -54,15 +54,17 @@
 After creating the table in BigQuery, I needed to filter the `Geolocation` table to only display cities and states that were marked as valid by my `IBGE_City_State_Source_of_Truth` table. But before, I could do this, I needed to make sure that none of the cities in the original `Geolocation` table contained accents due to data entry errors. 
 <detail> 
 <summary> Click here to expand details </summary>
+
 ### Step 1: Creating `Geolocation_Unaccented`
 - I wrote the following query in order to create a new table of geolocations that ensured all cities were unaccented:
-   ```sql
+
+```sql
    /*
     This query creates a new table called Gelocation_Unaccented where all the cities from the original table are unaccented.
     LOWER(...) converts all the city names to lowercase for consistent comparison. REGEXP_REPLACE(...) replaces all the accented characters with their unaccented versions.
     The original geolocation_city column is retained as well for reference.
     */
-    CREATE OR REPLACE TABLE `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Geolocation_Unaccented` AS
+     CREATE OR REPLACE TABLE `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Geolocation_Unaccented` AS
     SELECT
     geolocation_state,
     LOWER(
@@ -100,6 +102,7 @@ After creating the table in BigQuery, I needed to filter the `Geolocation` table
     geolocation_city AS original_geolocation_city  -- Retain the original column for reference
     FROM
     `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Geolocation`
+```
 
 ### Step 2: Creating `Geolocation_Final` with a RIGHT JOIN
 
