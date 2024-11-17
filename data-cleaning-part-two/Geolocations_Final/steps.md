@@ -167,6 +167,7 @@ With these two versions of Geolocation tables, I could compare my customer table
 
 ### **3B. Why COALESCE?**
  - The purpose of the `COALESCE` function is to select values from `Geolocation_Unaccented` when present, or to default to values from `IBGE_City_State_Source_of_Truth` when they are missing. This approach handles cases like `"Sambaiba, MA"` by filling gaps in `Geolocation_Unaccented` with the authoritative data from the IBGE table.
+
 </detail>
 ---        
 ### Data Source
