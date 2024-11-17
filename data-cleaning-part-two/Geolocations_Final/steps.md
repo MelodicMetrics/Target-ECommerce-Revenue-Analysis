@@ -1,8 +1,10 @@
 # Geolocation_Final Table Creation Steps
 
 ## Part 1. Dataset Download
+
  - After downloading the dataset from the IBGE, I translated each column title to English in order to determine which columns were most likely to contain the information I was looking for *(cities and states)*.
  - After determining which columns I needed (Name of Municipality for Cities and Name of Federative Unit for States), I copied them into a new sheet and created a table (`City_State_Cleaning`).
+
 ## Part 2. Dataset Cleaning
   - As the original dataset used State Codes rather than the actual State (Federative Unit) names, I had to convert the names into State Codes. In order to do this, I created a separate sheet with every State name and their respective State Code.
   - In my (`City_State_Cleaning`) table, I added a column entitled **"StateCode"** and used the following function to find the proper State Code for each State:
@@ -44,9 +46,14 @@
   - After creating the output table, I made sure to remove all unneccesary columns that were loaded as well as removing StateCodes that appeared as *"0"*.
   - This gave me a cleaned table and so I copied the "StateCode" and "Unaccented City" columns to a final sheet entitled *"IBGE Brazil City States"*. This table I saved as a .csv file entitled **"IBGE Brazil City States"** which I imported into Google BigQuery as **`IBGE_City_State_Source_of_Truth`**.
 ---
+
 ## Part 3. Geolocation_Final Creation
+
 ### Objective
+
 After creating the table in BigQuery, I needed to filter the `Geolocation` table to only display cities and states that were marked as valid by my `IBGE_City_State_Source_of_Truth` table. But before, I could do this, I needed to make sure that none of the cities in the original `Geolocation` table contained accents due to data entry errors. 
+<detail> 
+<summary> Click here to expand details </summary>
 ### Step 1: Creating `Geolocation_Unaccented`
 - I wrote the following query in order to create a new table of geolocations that ensured all cities were unaccented:
    ```sql
@@ -116,7 +123,7 @@ After creating the table in BigQuery, I needed to filter the `Geolocation` table
      ON 
          truth.city = geo.geolocation_city_unaccented AND truth.StateCode = geo.geolocation_state;
  
-  ### **3A. Why RIGHT JOIN?**
+### **3A. Why RIGHT JOIN?**
    - I noticed that when using an `INNER JOIN` to create the final table and selecting `DISTINCT` cities that were unaccented, I would get less customer_ids than if I used a `RIGHT JOIN` from the `IBGE_City_State_Source_of_Truth` table. Specifically from **(98,715)** to **(98,709)**, a loss of **6** IDs. 
 
 **1.** **Using `Geolocation_Comparison` to Identify Missing Matches**
@@ -156,6 +163,7 @@ With these two versions of Geolocation tables, I could compare my customer table
 
 ### **3B. Why COALESCE?**
  - The purpose of the `COALESCE` function is to select values from `Geolocation_Unaccented` when present, or to default to values from `IBGE_City_State_Source_of_Truth` when they are missing. This approach handles cases like `"Sambaiba, MA"` by filling gaps in `Geolocation_Unaccented` with the authoritative data from the IBGE table.
+</detail>
 ---        
 ### Data Source
 The dataset for Brazilian municipalities and federative units was obtained from the **IBGE** *(Brazilian Institute of Geography and Statistics)*. You can access the original dataset [here](https://www.ibge.gov.br/geociencias/organizacao-do-territorio/estrutura-territorial/23701-divisao-territorial-brasileira.html?=&t=downloads).
