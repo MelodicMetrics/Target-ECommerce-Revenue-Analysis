@@ -173,7 +173,9 @@ With these two versions of Geolocation tables, I could compare my customer table
 
 </detail>
 ---        
+
 ### Data Source
+
 The dataset for Brazilian municipalities and federative units was obtained from the **IBGE** *(Brazilian Institute of Geography and Statistics)*. You can access the original dataset [here](https://www.ibge.gov.br/geociencias/organizacao-do-territorio/estrutura-territorial/23701-divisao-territorial-brasileira.html?=&t=downloads).
 
     
