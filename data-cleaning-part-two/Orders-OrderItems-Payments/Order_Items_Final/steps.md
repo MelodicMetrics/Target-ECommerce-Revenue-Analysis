@@ -4,9 +4,12 @@ To ensure that only `seller_ids` attached to verified customer orders appeared i
 
 Beyond this, there weren’t many additional steps required. All filter logic applied to `Orders_Final` was automatically inherited by `Order_Items_Final`, since it was created using a `JOIN` with `Orders_Final`.
 
-### SQL Query with Comments
+### SQL Query
 The following query outlines the creation process for `Order_Items_Final`:
 
+<details>
+<summary>📂<b><i>Query to Create Order_Items_Final</i></b></summary>
+  
 ```sql
 /*
   This query creates the Order_Items_Final table with the following considerations:
@@ -40,6 +43,10 @@ JOIN
 ON 
     order_items.order_id = orders.order_id
 ```
+  
+</details>
+
+
 
 ## Removed Columns from Original Table
 
