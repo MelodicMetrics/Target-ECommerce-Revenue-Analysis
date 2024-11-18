@@ -5,9 +5,8 @@ A repository that contains documentation of my various analysis steps for this p
 - **Objective**: The goal of this project is to explore Revenue trends in E-commerce sales data from Target in Brazil.
 - **Guiding Questions**: There are three questions guiding my analysis
   - **1.** Which product categories contribute the most to overall revenue, and how does profitability vary across standardized categories?
-  - **2.** How does the average order value and profitability vary by standardized product category and seller for orders placed by customers in the four most populated states over time?
-      - *Note: Sellers included in the analysis are those associated with orders from customers in the four most populated states (SP, RJ, MG, BA), regardless of the seller's own location.* 
-  - **3.** How does average sales revenue vary across the four most populated states, and are there any notable regional patterns or correlations?
+  - **2.** How does the average order value and profitability vary by standardized product category and seller over time?
+  - **3.** How does average sales revenue vary across states, and are there any notable regional patterns or correlations?
 - **Dataset Information**: The dataset was pulled from Kaggle and includes a time range from 2016-2018. There are seven related tables in the dataset with key attributes including the following
     - **customer_id**: ID of the consumer who made the purchase
     - **customer_unique_id**: Unique ID of the consumer
@@ -16,7 +15,12 @@ A repository that contains documentation of my various analysis steps for this p
     - **product_id**: A Unique ID given to each product available on the site
     - **seller_id**: Unique ID of the seller registered in Target
 ## Data Preparation and Cleaning
-To ensure accuracy and consistency, detailed cleaning processes were conducted for each dataset. Each process is documented in separate folders for easy navigation.
+To ensure accuracy and consistency, detailed cleaning processes were conducted for each dataset. These processes are documented in two separate folders to reflect the iterative nature of the cleaning efforts:
+1. [Data Cleaning (Part One)](./data-cleaning): This folder documents the initial cleaning steps taken to prepare the dataset for analysis. While this stage identified and addressed many key issues, it also revealed additional complexities in the dataset during subsequent analysis. The insights and challenges from this stage informed the next round of cleaning.
+2. [Data Cleaning (Part Two)](./data-cleaning-part-two): This folder builds on the foundation of Part One and documents the extensive iterative cleaning required to address the newly identified issues. With the inclusion of more cities and states, all prior steps had to be revisited and updated to reflect the expanded scope and refined accuracy of the dataset.
+
+While the first folder provides valuable context for the iterative cleaning process, the second folder contains the finalized, comprehensive cleaning steps that formed the basis for the final analysis.
+
 ### Cleaning Processes
 - **Geolocation Cleaning**
   - Folder: `data-cleaning/geolocation-cleaning`
