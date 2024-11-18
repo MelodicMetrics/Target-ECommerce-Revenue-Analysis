@@ -53,7 +53,7 @@ GROUP BY
 
 - After applying these filters, the resulting `Payments_Final` table had **98,714 entries**, which was one fewer than expected.
 
-### Step 4: Resolve Missing `order_id`
+### Step 4: Discover the Missing `order_id`
 I discovered that a single `order_id` was missing from `Payments_Final` despite being present in `Orders_Final` and `Order_Items_Final` with valid `price` and `freight_value` data.
 
 #### **Queries to Identify and Verify the Missing `order_id`:**
@@ -110,9 +110,10 @@ WHERE
 </details>
 
 
-**Reinserting the Missing `order_id`**
+### Step 5: Resolving the Missing `order_id`
 
-- To address this, I calculated the `total_payment_value` by summing the `price` and `freight_value` of the products associated with the missing `order_id` and inserted it into `Payments_Final`.
+With the missing `order_id` and its accompanying `price` and `freight_values` I could now resolve the issue in `Payments_Final`.
+- In order to do so, I calculated the `total_payment_value`(column in `Payments_Final`) by summing the `price` and `freight_value` of the products associated with the missing `order_id` and inserted it into `Payments_Final`.
 
 <details>
 <summary>📁<b><i>Query to Insert Missing id into Payments_Final</b></i></summary>
