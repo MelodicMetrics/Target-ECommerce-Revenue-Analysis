@@ -77,8 +77,13 @@ let
 
 </details>
 
-    
-- This gave me a cleaned table and so I copied the "StateCode" and "Unaccented City" columns to a final sheet entitled *"IBGE Brazil City States"*. This table I saved as a .csv file entitled **"IBGE Brazil City States"** which I imported into Google BigQuery as **`IBGE_City_State_Source_of_Truth`**.
+---
+
+### Step 4: Remove Duplicate Cities
+
+After cleaning the city names and converting the states into State Codes, I needed to account for any potential duplicated cities. The original dataset was more granular and included detailed disricts and administrative divisions per city. I was able to accomplish this task by highlighting my list of cities and using the `Remove Duplicates` function in Excel. 
+
+- This gave me a cleaned table and so I copied the "StateCode" and "Unaccented City" columns to a final sheet entitled *"IBGE Brazil City States"*. This table I saved as a .csv `IBGE_City_State_Source_of_Truth`, which I imported into Google BigQuery under the same name.
 ---
 
 ## Part 3. Geolocation_Final Creation
