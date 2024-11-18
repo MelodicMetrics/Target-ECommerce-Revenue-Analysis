@@ -11,7 +11,7 @@ As the original dataset used State Codes rather than the actual State (Federativ
   - In my (`City_State_Cleaning`) table, I added a column entitled **"StateCode"** and used the following function to find the proper State Code for each State:
 
 <details>
- <summary>📂<b><i>Expand to view the function</i></b></summary>
+ <summary>📂<b><i>Function to find matching State Code for each Federative Unit</i></b></summary>
 
  ```
  =XLOOKUP([@[Name of the Federative Unit]], StateCodes!A:A, StateCodes!B:B, "Not Found")
@@ -28,7 +28,7 @@ Next I needed to ensure that each city name was in lowercase to standardize with
   - I created a column entitled **"Lowercase City"** and used the following function to make every city name lowercase:
 
 <details>
- <summary>📂<b><i>Expand to view the function</i></b></summary>
+ <summary>📂<b><i>Function to Convert Every City Name to Lowecase</i></b></summary>
  
 ```
 =LOWER([@[Name of Municipality(City)]])
@@ -47,7 +47,7 @@ My final step was to make sure that all of the cities did not contain accents du
   - Once in Power Query I added the following step in advanced edit so that the m code looked like the following:
 
  <details>
- <summary>📂<b><i>Expand to view the M code</i></b></summary>
+ <summary>📂<b><i>M Code to remove Accents from City Names</i></b></summary>
   
  ```m
 /*
@@ -98,7 +98,7 @@ After creating the table in BigQuery, I needed to filter the `Geolocation` table
 - I wrote the following query in order to create a new table of geolocations that ensured all cities were unaccented:
 
  <details>
-   <summary>📂<b><i>Expand to view the query</i></b></summary>
+   <summary>📂<b><i>Query to remove all accents from original Geolocation table</i></b></summary>
 
 ```sql
    /*
@@ -152,7 +152,7 @@ After creating the table in BigQuery, I needed to filter the `Geolocation` table
 - Once `Geolocation_Unaccented` was created, I proceed to create the `Geolocation_Final` table using a `RIGHT JOIN` to ensure all city-state combinations from `IBGE_City_State_Source_of_Truth` were included, even if they did not have a match in `Geolocation_Unaccented`.
 
  <details>
- <summary>📂<b><i>Expand to view the query</b></i></summary>
+ <summary>📂<b><i>Query to Create Geolocation_Final</b></i></summary>
 
 ```sql
     /* 
@@ -183,13 +183,14 @@ After creating the table in BigQuery, I needed to filter the `Geolocation` table
 
 
 ### **3A. Why RIGHT JOIN?**
-   - I noticed that when using an `INNER JOIN` to create the final table and selecting `DISTINCT` cities that were unaccented, I would get less customer_ids than if I used a `RIGHT JOIN` from the `IBGE_City_State_Source_of_Truth` table. Specifically from **(98,715)** to **(98,709)**, a loss of **6** IDs. 
+I noticed that when using an `INNER JOIN` to create the final table and selecting `DISTINCT` cities that were unaccented, I would get less customer_ids than if I used a `RIGHT JOIN` from the `IBGE_City_State_Source_of_Truth` table. Specifically from **(98,715)** to **(98,709)**, a loss of **6** IDs. 
 
 **1.** **Using `Geolocation_Comparison` to Identify Missing Matches**
  - To identify the cause of these removed IDs, I created a `Geolocation_Comparison` table using a `RIGHT JOIN` and retained accents to control for any potential changes introduced by removing them. The purpose of the `RIGHT JOIN` was to ensure that all city-state combinations from the source of truth table would appear, regardless of whether there was a matching entry in the Geolocation table.
 
  <details>
-  <summary>📂<b><i>Expand to view the query</i></b></summary>
+  <summary>📂<b><i>Query to Create Geolocation_Comparison</i></b></summary>
+  
 ```sql
       CREATE OR REPLACE TABLE iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Geolocation_Comparison AS 
       SELECT DISTINCT
@@ -209,7 +210,7 @@ After creating the table in BigQuery, I needed to filter the `Geolocation` table
  - This table (`Geolocation_Comparison`) was used to directly compare with a filtered version, specifically `Geolocation_Final_Original`. The `INNER JOIN` in `Geolocations_Final` pulls only cities and states that have a match between the two tables. Additionally, accents were not removed to confirm that any discrepancies were due solely to the difference between an `INNER JOIN` and a `RIGHT JOIN`, rather than any potential issues introduced by `Geolocation_Unccented`.  
 
  <details>
-  <summary>📂<b><i>Expand to view the query</i></b></summary>
+  <summary>📂<b><i>Query to Create Geolocation_Final_Original</i></b></summary>
   
 ```sql
        CREATE OR REPLACE TABLE iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Geolocation_Final_Original AS 
