@@ -20,11 +20,11 @@ With these recalculations, the newly created `Recalculated_Missing_Orders` and `
 
 ---
 ## `Recalculated_Discrepant_Orders` Table 
-To generate an updated list of `order_id`s with discrepancies between expected total payment values and calculated total order values, I created two temporary tables and joined them. The query I used included `AND ABS(c.calculated_order_value - p.total_payment_value) >= 0.01` to ensure that only `order_id`s with discrepancies of at least a penny were flagged. Using `ROUND(SUM(...), 3)` helped remove some small discrepancies, but minor discrepancies still appeared due to precision limitations. 
+To generate an updated list of `order_id`s with discrepancies between expected total payment values and calculated total order values, I created two temporary tables and joined them. Using `ROUND(SUM(...), 2)` alone would have helped to remove some small discrepancies, but others still would have appeared due to precision limitations. Including `AND ABS(c.calculated_order_value - p.total_payment_value) >= 0.01` ensured that only `order_id`s with discrepancies of at least a penny were flagged accounting for the precision limitations of the `ROUND` function.   
 
 <details>
 <summary>
-Click here to expand details about the `Recalculated_Discrepant_Orders` Table 
+🔍 <b><i>Expand to View Details on the Creation of Recalculated_Discrepant_Orders</i></b>
 </summary>
 <br>
 
@@ -43,7 +43,7 @@ CREATE OR REPlACE TABLE iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_20
     WITH Calculated_Order_Values AS (
     SELECT 
         order_id,
-        ROUND(SUM(price + freight_value),3) AS calculated_order_value
+        ROUND(SUM(price + freight_value),2) AS calculated_order_value
     FROM 
         iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Order_Items_Final
     GROUP BY 
@@ -81,8 +81,9 @@ CREATE OR REPlACE TABLE iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_20
 ```
 This query yielded **363** `order_id`s. 
 
----
 </details>
+
+---
 
 ## `Recalculated_Missing_Orders` Table
 
@@ -90,14 +91,16 @@ In addition to these discrepant `order_id`s, there are also several `order_id`s 
 
 I downloaded this list as a .CSV file and imported it into Google BigQuery to filter `Orders_Final` and `Order_Items_Final` and ensure no missing `order_id`s remained. However, after an increase in verified `customer_id`s, I realized I needed to recalculate the missing orders to maintain data consistency.
 
-<details>
-<summary>Click here to expand details about the `Recalculated_Missing_Orders` Table</summary>
-<br>
 
+<details>
+<summary>🔍 <b><i>Expand to View Details on the Creation of Recalculated_Missing_Orders</i></b></summary>
 
 ### Step 1: Calculate Missing `order_id`s by Status
 
 First, I needed to find out how many missing `order_id`s there were along with a breakdown per status.
+
+<details>
+<summary>📂<b><i>Query to Find Missing order_ids by their status</b></i></summary>
 
 ```sql
   /*
@@ -130,16 +133,30 @@ First, I needed to find out how many missing `order_id`s there were along with a
   FROM 
     MissingOrderIDs;
   ```
-**Table 1: Missing `order_id`s by Status**
+    
+</details>
+
+**Supporting Table:**
+
+<details>
+<summary>📋 <b>Table 1: Missing `order_id`s by Status</b></summary>
+    
+
     
   ![Table of `order_status` and accompanying `total_missing_order_ids`](https://github.com/user-attachments/assets/0b60c65c-0087-45a2-85ef-ddd7babb03d4)
 
   - As you can see, there are 769 total missing `order_id`s now, the majority of which contain the status `unavailable`.
+    
+</details>
+
 
 ### Step 2: Verify Total Missing `order_id`s
 
 To confirm that this total was accurate, I compared the distinct order_id counts between `Orders_Final` and `Order_Items_Final`:
 
+<details>
+<summary>📂<b><i>Query to Verify Number of Missing ids</i></b></summary>
+    
 ```sql
 /* 
   This query finds the distinct number of order_ids from Orders_Final and Order_Items_Final to confirm the number of 
@@ -151,16 +168,30 @@ SELECT
     (SELECT COUNT(DISTINCT order_id) FROM iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Order_Items_Final) AS distinct_order_ids_order_items;
 
 ```
-**Table 2: Distinct `order_id` Counts in `Orders_Final` and `Order_Items_Final`**
+    
+</details>
+
+
+<details>
+<summary>📋<b><i>Table 2: Distinct order_id Counts in Orders_Final and Order_Items_Final</i></b></summary>    
 
 ![Table of distinct `order_id` counts for each table](https://github.com/user-attachments/assets/9ba44665-2e96-48b8-b58a-aac4d3cef882)
 
-  - This confirms the 769 number that was calculated before.
-  - *Note: The [`Orders_Final`](Orders_Final/steps.md) and [`Order_Items_Final`](Order_Items_Final/steps.md) creation steps can be found in their respective steps.md files.*
+  - Subtracting the two totals confirms the 769 number that was calculated before.
+ 
+
+</details>
+
+- *Note: The [`Orders_Final`](Orders_Final/steps.md) and [`Order_Items_Final`](Order_Items_Final/steps.md) creation steps can be found in their respective steps.md files.*
+
+
 
 ### Step 3: Created `Recalculated_Missing_Orders` Table
 
 To isolate the actual missing order_ids, I created a table called `Recalculated_Missing_Orders`:
+
+<details>
+<summary>📂<b><i>Query to create Recalculated_Missing_Orders</i></b></summary>
 
 ```sql
 /*
@@ -182,24 +213,40 @@ ON
 WHERE 
   oi.order_id IS NULL;
 ```
+    
+</details>
+
+
 
 ### Step 4: Verify Equal Distinct `order_id`s
 
 After creating the final versions of `Orders_Final` and `Order_Items_Final`, I wanted to ensure that all missing or discrepant `order_id`s were properly excluded and that the number of distinct `order_id`s matched between the `Orders_Final` and `Order_Items_Final` tables.
 
+<details>
+<summary>📂<b><i>Query to Verify Successful Removal of Missing ids</b></i></summary>
+    
 ```sql
 SELECT 
     (SELECT COUNT(DISTINCT order_id) FROM iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Orders_Final) AS distinct_order_ids_orders,
     (SELECT COUNT(DISTINCT order_id) FROM iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Order_Items_Final) AS distinct_order_ids_order_items;
 ```
+    
+</details>
 
-**Table 3: Equal Distinct `order_id` Counts Between `Orders_Final` and `Order_Items_Final`**
+<details>
+<summary>📋<b><i>Table 3: Equal Distinct order_id Counts between Orders_Final and Order_Items_Final</i></b></summary>
 
 ![Table of distinct `order_id` counts for each table](https://github.com/user-attachments/assets/f52e6e7f-264d-406a-9323-aadfb31fd66e)
 
-- When the query confirmed equal counts for both tables, I knew the cleaning steps had been effective.
+- When the query confirmed equal counts for both tables, I knew the cleaning steps had been effective.    
+
+</details>
+
+
+
 
 *Note: One `order_id` was also missing in the `Payments_Final` table. The steps taken to identify and resolve this discrepancy are detailed in [Payments_Final steps.md](./Payments_Final/steps.md).*
+
 </details>
 
 ---
