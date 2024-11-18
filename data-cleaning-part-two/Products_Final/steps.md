@@ -4,6 +4,9 @@
 
 Realizing the numerous issues with category naming conventions in the `Products` table, I wrote a SQL query to extract all distinct `product_category` names for review:
 
+<details>
+<summary>📂<b><i>Query to Select all Distinct Product Category Names</i></b></summary>
+
 ```sql
 SELECT DISTINCT
   product_category
@@ -11,9 +14,11 @@ FROM
   iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Products
 ORDER BY
   product_category
-```
+```  
 
 - This gave me 74 different `product_category` names.
+
+</details>
 
 ### Step 2: Generate and Review Cleaned Names
 
@@ -28,6 +33,9 @@ ORDER BY
 ### Step 3: Create `Products_Final`
 
 With the `Product_Category_Mappings` table in place, I created the `Products_Final` table by joining `Products` with `Product_Category_Mappings` using a `LEFT JOIN` and handling any missing product_category values with `COALESCE`.
+
+<details>
+<summary>📂<b><i>Query to Create Products_Final</i></b></summary>
 
 ```sql
 /* This query was to clean the Products table. The category names had numerous issues such as 
@@ -48,7 +56,7 @@ LEFT JOIN
     `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Product_Category_Mappings` AS m
 ON 
     p.product_category = m.product_category
-```
+```  
 
 #### Importance of `LEFT JOIN` and `COALESCE`
 - **`LEFT JOIN`**:
@@ -57,6 +65,8 @@ ON
 - **`COALESCE`**:
   - Replaces any `NULL` values in product_category with `"Uncategorized"`.
   - Ensures that every `product_id` in `Products_Final` has an associated `product_category`.
+
+</details>
  
 ### Final Outcome
 The resulting `Products_Final` table:
