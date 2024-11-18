@@ -9,7 +9,7 @@ After diagnosing the issue, I created `Geolocation_Final` and `Customers_Final`,
  - This table was made based on an `INNER JOIN` between the original Customers table and my `Geolocation_Comparison` table. This ensured the only filters on this table were based on the `RIGHT JOIN` from the Geolocation_Comparison table.
 
 <details>
-<summary>📂 <b><i>Expand to view the query</b></i></summary>
+<summary>📂 <b><i>Query to Create Customers_Comparison</b></i></summary>
 
 ```sql
       CREATE OR REPLACE TABLE iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Customers_Comparison AS 
@@ -32,10 +32,10 @@ After diagnosing the issue, I created `Geolocation_Final` and `Customers_Final`,
  - *Note*: The purpose of the `"..._Final_Original"` in the geolocation and customers table is to display the logic that lead to the actual Final tables. The Original final table for customers contained 98,709 entries. After making the changes the new `Customers_Final` table will contain the intended 98,715 entries. 
 
 <details>
-<summary>📂 <b><i>Expand to view the query</b></i></summary>
+<summary>📂 <b><i>Query to create Customers_Final_Original</b></i></summary>
 
 ```sql
-CREATE OR REPLACE TABLE iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Customers_Final AS 
+CREATE OR REPLACE TABLE iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Customers_Final_Original AS 
 SELECT
   customer.customer_id AS customer_id,
   truth.City AS City,
@@ -52,7 +52,7 @@ ON
  ## 3. Comparison of Customer Tables 
   - Finally I wrote a Query to compare the 2 tables to identify the `customer_id`s appearing in `Customers_Comparison` but *not* in `Customers_Final_Original`.
 <details>
-<summary> 📂<b><i>Expand to view the query</i></b> </summary>
+<summary> 📂<b><i>Query to Find Missing customer_ids</i></b> </summary>
 
 ```sql
 -- Compares Customers_Comparison (98,715) to the final table (98,709)
@@ -107,7 +107,7 @@ WHERE
 With the `Geolocation_Final` table now including the cities for those six `customer_id`s, I could proceed with creating `Customers_Final`. 
 
 <details>
-<summary> 📂<b><i>Expand to view the query</i></b> </summary>
+<summary> 📂<b><i>Query to Create Customers_Final</i></b> </summary>
 
 ```sql
 
