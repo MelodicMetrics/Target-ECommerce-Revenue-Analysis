@@ -3,6 +3,10 @@
 ## Step 1: Initial `Orders_Final` Table Creation
 
 To accurately identify which orders were missing or discrepant, I needed tables that displayed `order_id`s based on the `Customers_Final` table created earlier.
+
+<details>
+<summary>📂<b><i>Query to Create Initial Orders_Final</b></i></summary>
+    
 ```sql
 CREATE OR REPLACE TABLE `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Orders_Final` AS 
 SELECT 
@@ -17,12 +21,17 @@ JOIN
 ON 
     orders.customer_id = cust.customer_id
 ```
+    
+</details>
 
-- I referenced this table in [Overview README.md](../README.md) for creating `Recalculated_Missing_Orders` and `Recalculated_Discrepant_Orders`along with another similar one for `Order_Items_Final`.
+- *This table just created is the one referenced in [Overview README.md](../README.md) for creating `Recalculated_Missing_Orders` and `Recalculated_Discrepant_Orders`. After creating those two tables, I referenced them in the following query in Step 2.*
 
 ## Step 2: Filtered Orders_Final Table with Missing and Discrepant Order IDs Removed
 
 After identifying the discrepant and missing order_ids, I applied the necessary filter logic to create a complete, consistent Orders_Final table:
+
+<details>
+<summary>📂<b><i>Query to Create Filtered Orders_Final</b></i></summary>
 
 ```sql
 /* 
@@ -62,5 +71,7 @@ WHERE
           iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Recalculated_Discrepant_Orders
   )
 ```
+    
+</details>
 
 This approach ensured that `Orders_Final` was clean and aligned with both `Order_Items_Final` and `Payments_Final`, eliminating any `order_id`s that were missing or had revenue discrepancies.
