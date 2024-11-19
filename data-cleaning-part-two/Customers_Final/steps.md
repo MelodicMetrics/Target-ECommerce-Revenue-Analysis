@@ -55,7 +55,7 @@ ON
 <summary> 📂<b><i>Query to Find Missing customer_ids</i></b> </summary>
 
 ```sql
--- Compares Customers_Comparison (98,715) to the final table (98,709)
+-- Compares Customers_Comparison to the final table.
 SELECT
   customer_id
 FROM
