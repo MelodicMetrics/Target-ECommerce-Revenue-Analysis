@@ -9,7 +9,7 @@ Upon further analysis, I identified additional issues:
 To resolve these, I:
 1. Removed `payment_type` and `payment_installments`, further reducing duplicates.
 2. Applied filter logic to remove invalid `order_id`s identified in `Recalculated_Missing_Orders` and `Recalculated_Discrepant_Orders`.
-3. Reinserted the missing `order_id`, bringing `Payments_Final` to the correct total of **98,715 entries**, fully aligning with `Orders_Final`.
+3. Reinserted the missing `order_id`, bringing `Payments_Final` to the correct total of **92,843 entries**, fully aligning with `Orders_Final`.
 
 The iterative cleaning process ensured `Payments_Final` is consistent with `Orders_Final` and free of duplicate or invalid entries.
 
