@@ -29,7 +29,7 @@ After diagnosing the issue, I created `Geolocation_Final` and `Customers_Final`,
 ## 2. `Customers_Final_Original` Table 
 
  - This table was based on `Geolocations_Final_Original` and `Customers`. To recap, `Geolocation_Final_Original` was created with an `INNER JOIN` rather than a `RIGHT JOIN`.
- - *Note*: The purpose of the `"..._Final_Original"` in the geolocation and customers table is to display the logic that lead to the actual Final tables. The Original final table for customers contained 98,709 entries. After making the changes the new `Customers_Final` table will contain the intended 98,715 entries. 
+ - *Note*: The purpose of the `"..._Final_Original"` in the geolocation and customers table is to display the logic that lead to the actual Final tables. The Original final table for customers contained 93,921 entries. After making the changes the new `Customers_Final` table will contain the intended 93,927 entries. 
 
 <details>
 <summary>📂 <b><i>Query to create Customers_Final_Original</b></i></summary>
