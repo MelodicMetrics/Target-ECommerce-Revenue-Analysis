@@ -7,14 +7,12 @@ In order to group `order_id`s and eliminate duplicates, I summed all `payment_va
 
 ### Step 2: Iterative Cleaning
 1. **Removed Duplicates from `payment_type`**:
-   - I noticed that the `payment_type` column caused **1,123 duplicate entries** because some `order_id`s were associated with multiple payment methods (e.g., `voucher` and `credit card`).
+   - I noticed that the `payment_type` column caused  duplicate entries because some `order_id`s were associated with multiple payment methods (e.g., `voucher` and `credit card`).
    - To resolve this, I removed the `payment_type` column, eliminating these duplicates.
    
 2. **Removed Duplicates from `payment_installments`**:
-   - I also identified that the `payment_installments` column created **866 duplicate entries** due to `order_id`s split across multiple installments.
+   - I also identified that the `payment_installments` column created duplicate entries due to `order_id`s split across multiple installments.
    - Removing this column further reduced the duplicates in the table.
-
-   After these changes, the `Payments_Cleaned` table was reduced to **99,847 entries**.
 
 ### Step 3: Filter Invalid `order_id`s
 
@@ -51,7 +49,7 @@ GROUP BY
 </details>
 
 
-- After applying these filters, the resulting `Payments_Final` table had **98,714 entries**, which was one fewer than expected.
+- After applying these filters, the resulting `Payments_Final` table had **92,842 entries**, which was one fewer than expected as it should have matched `Orders_Final`.
 
 ### Step 4: Discover the Missing `order_id`
 I discovered that a single `order_id` was missing from `Payments_Final` despite being present in `Orders_Final` and `Order_Items_Final` with valid `price` and `freight_value` data.
@@ -134,7 +132,7 @@ GROUP BY
    
 </details>
 
-- After reinserting this `order_id`, the table returned the expected total of **98,715 entries**, perfectly matching `Orders_Final`.
+- After reinserting this `order_id`, the table returned the expected total of **92,843 entries**, perfectly matching `Orders_Final`.
 
 ---
 
