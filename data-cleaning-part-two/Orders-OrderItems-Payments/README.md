@@ -79,7 +79,7 @@ CREATE OR REPlACE TABLE iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_20
         AND ABS(c.calculated_order_value - p.total_payment_value) >= 0.01 --Ensures discrepancies are at least a penny
 );
 ```
-This query yielded **363** `order_id`s. 
+This query yielded **351** `order_id`s. 
 
 </details>
 
@@ -143,9 +143,10 @@ First, I needed to find out how many missing `order_id`s there were along with a
     
 
     
-  ![Table of `order_status` and accompanying `total_missing_order_ids`](https://github.com/user-attachments/assets/0b60c65c-0087-45a2-85ef-ddd7babb03d4)
+  ![Table of `order_status` and accompanying `total_missing_order_ids`](https://github.com/user-attachments/assets/70f42426-fc5c-4d90-a01c-40bd00a68836)
 
-  - As you can see, there are 769 total missing `order_id`s now, the majority of which contain the status `unavailable`.
+
+  - As you can see, there are 733 total missing `order_id`s now, the majority of which contain the status `unavailable`.
     
 </details>
 
@@ -160,7 +161,7 @@ To confirm that this total was accurate, I compared the distinct order_id counts
 ```sql
 /* 
   This query finds the distinct number of order_ids from Orders_Final and Order_Items_Final to confirm the number of 
-  missing order_ids is indeed 769.
+  missing order_ids
 */
 
 SELECT 
@@ -175,9 +176,10 @@ SELECT
 <details>
 <summary>📋<b><i>Table 2: Distinct order_id Counts in Orders_Final and Order_Items_Final</i></b></summary>    
 
-![Table of distinct `order_id` counts for each table](https://github.com/user-attachments/assets/9ba44665-2e96-48b8-b58a-aac4d3cef882)
+![Table of distinct `order_id` counts for each table](https://github.com/user-attachments/assets/f04c8379-f90b-4fde-9b18-0b0570e3e39b)
 
-  - Subtracting the two totals confirms the 769 number that was calculated before.
+
+  - Subtracting the two totals confirms the 733 number that was calculated before.
  
 
 </details>
@@ -236,7 +238,8 @@ SELECT
 <details>
 <summary>📋<b><i>Table 3: Equal Distinct order_id Counts between Orders_Final and Order_Items_Final</i></b></summary>
 
-![Table of distinct `order_id` counts for each table](https://github.com/user-attachments/assets/f52e6e7f-264d-406a-9323-aadfb31fd66e)
+![Table of distinct `order_id` counts for each table](https://github.com/user-attachments/assets/04c9e3ae-2da2-4d38-bd3f-8121f5fc2453)
+
 
 - When the query confirmed equal counts for both tables, I knew the cleaning steps had been effective.    
 
