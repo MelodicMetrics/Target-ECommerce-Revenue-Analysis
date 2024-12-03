@@ -8,6 +8,7 @@ This file contains measures that enhance dashboard interactivity by allowing use
 <details> 
 
 <summary><b> 1. Toggle Table </b> </summary> 
+<br>
 
 - This table contains a number of columns with names of various percentage measures that can be found in `revenue-measures-md.` and `product-measures.md`
 - These columns are then referenced in `Selected Metric` to create dynamic switching of the displayed metric in the particular visualization.
@@ -58,4 +59,25 @@ RETURN
 - **Default Value (`0`)**: Returns `0` if no valid selection is made to prevent errors.
 - **Error Handling**: Uses `ISBLANK` to handle cases where the metric is blank.
 
+</details>
+
+<details> 
+
+<summary><b> 3. Scatter Metric Value </b> </summary> 
+<br>
+
+- **Purpose**: Dynamically selects the metric for the scatter chart based on the user’s slicer selection.
+- **Logic**:
+  - "Percentage of Revenue" maps to `[Total Product Revenue]`.
+  - "Percentage of Total Products" maps to `[Product Count]`.
+- **Application**: Ensures the scatter chart displays the correct metric, toggling between revenue and product count totals.
+
+``` dax
+Scatter Metric Value = 
+SWITCH(
+    SELECTEDVALUE('Toggle Table'[Metric]),
+    "Percentage of Revenue", [Total Product Revenue],
+    "Percentage of Total Products", [Product Count]
+)
+```
 </details>
