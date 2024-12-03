@@ -1,0 +1,43 @@
+
+Revenue Percentage = 
+DIVIDE(
+    [Total Revenue],
+    CALCULATE(
+        [Total Revenue],
+        ALL(Order_Items_Final)
+    ),
+    0
+)
+
+Revenue Percentage by Category = 
+DIVIDE(
+    [Total Revenue],
+    CALCULATE(
+        [Total Revenue],
+        REMOVEFILTERS('Order_Items_Final'),
+        VALUES('Order_Items_Final'[Product Category])
+    ),
+    0
+)
+
+Percentage of Revenue per Product Category = 
+DIVIDE(
+    [Total Revenue],
+    CALCULATE(
+        [Total Revenue],
+        REMOVEFILTERS('Order_Items_Final'),  -- Removes all filters on the table
+        VALUES('Category Rankings'[product_category])  -- Retains the filter for the current Product Category
+    ),
+    0
+)
+
+Percentage of Revenue per Bin Range = 
+DIVIDE(
+    [Total Revenue],
+    CALCULATE(
+        [Total Revenue],
+        REMOVEFILTERS('Order_Items_Final'),  -- Removes all filters on the table
+        VALUES('Order_Items_Final'[Product Value Bins])  -- Retains the filter for the current Bin Range
+    ),
+    0
+)
