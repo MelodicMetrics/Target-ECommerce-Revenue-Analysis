@@ -1,3 +1,8 @@
+---
+layout: default
+title: My GitHub Pages Site
+---
+
 # Steps for Creating `Customers_Final` Table
 ## Overview
 `Geolocation_Final_Original` was created using an `INNER JOIN` between `Geolocation` and `IBGE_City_State_Source_of_Truth`, which resulted in **6 fewer `customer_id`s** compared to `Geolocation_Comparison`, which was made using a `RIGHT JOIN` on the same tables. To identify which IDs were missing and understand why, I created `Customers_Comparison` and `Customers_Final_Original` tables, then pulled the `customer_id`s that were absent from `Customers_Final_Original`.
