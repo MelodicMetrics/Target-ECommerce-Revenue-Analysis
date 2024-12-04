@@ -74,9 +74,9 @@ DIVIDE(
 ``` dax
 Revenue Percentage = 
 DIVIDE(
-    [Total Revenue],
+    [Total Product Revenue],
     CALCULATE(
-        [Total Revenue],
+        [Total Product Revenue],
         ALL(Order_Items_Final)
     ),
     0
@@ -91,9 +91,9 @@ DIVIDE(
 ``` dax
 Revenue Percentage by Category = 
 DIVIDE(
-    [Total Revenue],
+    [Total Product Revenue],
     CALCULATE(
-        [Total Revenue],
+        [Total Product Revenue],
         REMOVEFILTERS('Order_Items_Final'),
         VALUES('Order_Items_Final'[Product Category])
     ),
@@ -110,9 +110,9 @@ DIVIDE(
 ``` dax
 Percentage of Revenue per Product Category = 
 DIVIDE(
-    [Total Revenue],
+    [Total Product Revenue],
     CALCULATE(
-        [Total Revenue],
+        [Total Product Revenue],
         REMOVEFILTERS('Order_Items_Final'),  -- Removes all filters on the table
         VALUES('Category Rankings'[product_category])  -- Retains the filter for the current Product Category
     ),
@@ -129,9 +129,9 @@ DIVIDE(
 ``` dax
 Percentage of Revenue per Bin Range = 
 DIVIDE(
-    [Total Revenue],
+    [Total Product Revenue],
     CALCULATE(
-        [Total Revenue],
+        [Total Product Revenue],
         REMOVEFILTERS('Order_Items_Final'),  -- Removes all filters on the table
         VALUES('Order_Items_Final'[Product Value Bins])  -- Retains the filter for the current Bin Range
     ),
