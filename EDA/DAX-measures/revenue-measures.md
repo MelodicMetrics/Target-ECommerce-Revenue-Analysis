@@ -22,6 +22,7 @@ IF(
 </details>
 
 <details id="average-product-revenue>
+    
 <summary><b> 2. Average Product Revenue </b></summary>
 
 ``` dax
