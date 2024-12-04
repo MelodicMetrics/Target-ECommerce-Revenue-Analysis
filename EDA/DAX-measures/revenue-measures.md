@@ -11,7 +11,7 @@ This document holds all the dax revenue measures used in the creation of the das
 <summary><b> 1. Total Product Revenue</b> </summary> 
 
 ``` dax
-Total ProductRevenue = 
+Total Product Revenue = 
 IF(
     ISBLANK(SUM(Order_Items_Final[product_value])),
     0,
