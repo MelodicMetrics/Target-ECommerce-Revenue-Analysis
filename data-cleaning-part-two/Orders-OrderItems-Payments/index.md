@@ -28,8 +28,6 @@ To generate an updated list of `order_id`s with discrepancies between expected t
 </summary>
 <br>
 
-
-
 <pre><code class="sql">
 /* 
     This query recalculates discrepant orders now that Payments_Final has removed payment types, eliminating duplicate order_ids in the table. 
@@ -78,7 +76,7 @@ CREATE OR REPlACE TABLE iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_20
         c.calculated_order_value != p.total_payment_value
         AND ABS(c.calculated_order_value - p.total_payment_value) >= 0.01 --Ensures discrepancies are at least a penny
 );
-</pre></code>
+</code></pre>
 This query yielded **351** `order_id`s. 
 
 </details>
