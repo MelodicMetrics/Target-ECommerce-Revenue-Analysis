@@ -1,34 +1,4 @@
-/* Inline code Styling */
-code {
-    background-color: #f5f5f5 !important; /* Light gray for inline code */
-    color: inherit; /* Use the text color of the surrounding content */
-    padding: 2px 4px;
-    border-radius: 4px;
-    font-size: 0.95em;
-    display: inline-block; /* Ensure inline code renders correctly */
-}
 
-code:not(.hljs) {
-    background-color: #f5f5f5 !important;
-    color: inherit;
-    padding: 2px 4px;
-    border-radius: 4px;
-}
-
-/* Hover Effect for inline code */
-body code:hover {
-    background-color: #e0e0e0 !important; /* Slightly darker gray on hover */
-    color: inherit;
-}
-
-/* Block code styling without overriding Highlight.js colors */
-pre code {
-    background-color: #f5f5f5 !important; /* Light gray for block code */
-    padding: 1rem;
-    border-radius: 8px;
-    overflow-x: auto;
-    color: unset; /* Allow Highlight.js to control syntax colors */
-}
 
 /* Default Light Mode Styles */
 body {
