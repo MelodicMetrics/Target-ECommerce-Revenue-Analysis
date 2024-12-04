@@ -6,7 +6,7 @@ This document holds all the dax revenue measures used in the creation of the das
 
 ## Revenue Measures
 
-<details> 
+<details id="total-product-revenue"> 
 
 <summary><b> 1. Total Product Revenue</b> </summary> 
 
@@ -21,7 +21,7 @@ IF(
 ```
 </details>
 
-<details>
+<details id="average-product-revenue>
 <summary><b> 2. Average Product Revenue </b></summary>
 
 ``` dax
@@ -35,7 +35,7 @@ DIVIDE(
 
 </details>
 
-<details>
+<details id="median-revenue">
 <summary><b> 3. Median Revenue </b></summary>
 
 ``` dax
@@ -48,7 +48,7 @@ MEDIANX(
 
 </details>
 
-<details>
+<details id="weighted-average-revenue">
 <summary><b> 4. Weighted Average Revenue </b></summary>
 
 ``` dax
@@ -68,7 +68,7 @@ DIVIDE(
 
 ## Revenue Percentages
 
-<details>
+<details id="revenue-percentage">
 <summary><b> 1. Revenue Percentage </b></summary>
 
 ``` dax
@@ -85,7 +85,7 @@ DIVIDE(
 
 </details>
 
-<details>
+<details id="revenue-percentage-by-category">
 <summary><b> 2. Revenue Percentage by Category </b></summary>
 
 ``` dax
