@@ -105,7 +105,7 @@ DIVIDE(
 </details>
 
 
-<details>
+<details id="percentage-of-revenue-per-product-category">
 <summary><b> 3. Percentage of Revenue per Product Category </b></summary>
 
 ``` dax
@@ -124,7 +124,7 @@ DIVIDE(
 </details>
 
 
-<details>
+<details id="percentage-of-revenue-per-bin-range">
 <summary><b> 4. Percentage of Revenue per Bin Range </b></summary>
 
 ``` dax
@@ -141,3 +141,17 @@ DIVIDE(
 ```
 
 </details>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const hash = window.location.hash;
+    if (hash) {
+      const details = document.querySelector(hash);
+      if (details && details.tagName === 'DETAILS') {
+        details.open = true; // Automatically expand the <details> tag
+      }
+    }
+  });
+</script>
+
