@@ -41,12 +41,12 @@ pre code {
     }
 
     code {
-        background-color: #1f2328; /* Dark gray for inline code */
+        background-color: #1f2328 !important; /* Dark gray for inline code */
         color: #58a6ff; /* Highlighted text for inline code in dark mode */
     }
 
     pre code {
-        background-color: #1f2328; /* Dark gray for block code */
+        background-color: #1f2328 !important; /* Dark gray for block code */
         color: inherit; /* Maintain Highlight.js syntax colors */
     }
 
