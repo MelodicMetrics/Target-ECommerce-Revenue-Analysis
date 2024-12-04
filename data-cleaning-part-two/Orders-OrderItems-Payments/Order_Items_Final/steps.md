@@ -1,3 +1,8 @@
+---
+layout: default
+title: Order_Item Steps
+---
+
 # Steps to Create `Order_Items_Final`
 
 To ensure that only `seller_ids` attached to verified customer orders appeared in `Order_Items_Final`, I used a `JOIN` with `Orders_Final` rather than `Sellers_Final`. 
