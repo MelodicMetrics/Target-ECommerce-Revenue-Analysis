@@ -26,6 +26,24 @@
     This project is for educational and portfolio purposes only.
 </footer>
 
+<script>
+    const toggleButton = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    // Check local storage for theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        body.classList.toggle('dark-mode', savedTheme === 'dark');
+        toggleButton.textContent = savedTheme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode';
+    }
+
+    // Toggle theme and save preference
+    toggleButton.addEventListener('click', () => {
+        const isDarkMode = body.classList.toggle('dark-mode');
+        localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+        toggleButton.textContent = isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode';
+    });
+</script>
 
 
 </body>
