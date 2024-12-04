@@ -14,8 +14,6 @@
 <body>
    <header class="bg-dark text-white text-center py-3">
     <h1>Target E-Commerce Revenue Analysis</h1>
-    <!-- Toggle Button for Light/Dark Mode -->
-    <button id="theme-toggle" class="btn btn-outline-light mt-2">Switch to Dark Mode</button>
 </header>  
     <main class="container my-4">
         {{ content }}
@@ -26,30 +24,6 @@
     This project is for educational and portfolio purposes only.
 </footer>
 
-<script>
-    const toggleButton = document.getElementById('theme-toggle');
-    const body = document.body;
-
-    // Function to detect system preference
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    // Check localStorage for user preference OR fallback to system preference
-    const savedTheme = localStorage.getItem('theme');
-    const isDarkMode = savedTheme
-        ? savedTheme === 'dark'
-        : systemPrefersDark;
-
-    // Apply the theme based on saved preference or system preference
-    body.classList.toggle('dark-mode', isDarkMode);
-    toggleButton.textContent = isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode';
-
-    // Toggle theme and save preference
-    toggleButton.addEventListener('click', () => {
-        const isNowDarkMode = body.classList.toggle('dark-mode');
-        localStorage.setItem('theme', isNowDarkMode ? 'dark' : 'light');
-        toggleButton.textContent = isNowDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode';
-    });
-</script>
 
 
 
