@@ -1,4 +1,13 @@
 /* Inline code Styling*/
+code {
+    background-color: #e0e0e0 !important; /* Ensure the color is applied */
+    color: inherit; /* Use the text color of the surrounding content */
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-size: 0.95em;
+    display: inline-block; /* Ensure inline code renders correctly */
+}
+
 code:not(.hljs) {
     background-color: #e0e0e0 !important;
     color: inherit;
