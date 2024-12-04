@@ -23,38 +23,26 @@ pre code {
     color: inherit !important; /* Maintain syntax colors */
 }
 
-/* Dark Mode Styles */
+/* Inline Code Styling (Dark Mode) */
 @media (prefers-color-scheme: dark) {
-    body {
-        background-color: #0d1117;
-        color: #c9d1d9;
-    }
-
-    header, footer {
-        background-color: #161b22;
-        color: #c9d1d9;
-    }
-
     code {
         background-color: #1f2328 !important; /* Dark gray for inline code */
         color: #adb5bd !important; /* Neutral light gray for inline code text */
     }
-    
-    pre code {
-        background-color: #1f2328 !important; /* Dark gray for block code */
-        color: #adb5bd !important; /* Ensure syntax colors align with neutral gray */
-    }
-
-    a {
-        color: #58a6ff; /* Blue for links */
-    }
 
     /* Hover Effect for Inline Code (Dark Mode) */
-    body.dark-mode code:hover {
-        background-color: #25292e !important; /* Slightly lighter dark gray on hover */
-        color: #dee2e6 !important; /* Slightly lighter text color on hover */
+    code:hover {
+        background-color: #25292e !important; /* Slightly lighter dark gray for hover */
+        color: #dee2e6 !important; /* Subtle light text color on hover */
+    }
+
+    /* Block Code Styling (Dark Mode) */
+    pre code {
+        background-color: #1f2328 !important; /* Dark gray for block code */
+        color: inherit !important; /* Ensure syntax colors are retained */
     }
 }
+
 
 /* Smooth Transitions */
 body, header, footer, code, pre code {
