@@ -36,13 +36,13 @@ pre code {
     }
 
     code {
-        background-color: #1f2328 !important; /* Dark gray for inline code in dark mode */
-        color: #adb5bd; /* Neutral light gray for inline code text */
+        background-color: #1f2328 !important; /* Dark gray for inline code */
+        color: #adb5bd !important; /* Neutral light gray for inline code text */
     }
-
+    
     pre code {
-        background-color: #1f2328 !important; /* Dark gray for block code in dark mode */
-        color: inherit; /* Maintain syntax highlighting */
+        background-color: #1f2328 !important; /* Dark gray for block code */
+        color: #adb5bd !important; /* Ensure syntax colors align with neutral gray */
     }
 
     a {
