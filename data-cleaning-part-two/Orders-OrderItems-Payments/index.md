@@ -4,9 +4,9 @@
 
 **To see an overview of changes made to each table, click the respective link below:** 
 
-- [Orders_Final](./Orders_Final)
-- [Order_Items_Final](./Order_Items_Final)
-- [Payments_Final](./Payments_Final)
+- [Orders_Final](./Orders_Final/index.md)
+- [Order_Items_Final](./Order_Items_Final/index.md)
+- [Payments_Final](./Payments_Final/index.md)
 
 ---
 
