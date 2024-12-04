@@ -100,9 +100,9 @@ I downloaded this list as a .CSV file and imported it into Google BigQuery to fi
 <details>
 <summary>🔍 <b><i>Expand to View Details on the Creation of Recalculated_Missing_Orders</i></b></summary>
     
-### Step 1: Calculate Missing `order_id`s by Status
+<h3>Step 1: Calculate Missing `order_id`s by Status</h3>
 
-First, I needed to find out how many missing `order_id`s there were along with a breakdown per status.
+<p>First, I needed to find out how many missing `order_id`s there were along with a breakdown per status.</p>
 
 <details>
 <summary>📂<b><i>Query to Find Missing order_ids by their status</i></b></summary>
@@ -156,9 +156,9 @@ First, I needed to find out how many missing `order_id`s there were along with a
 </details>
 
 
-### Step 2: Verify Total Missing `order_id`s
+<h3>Step 2: Verify Total Missing `order_id`s</h3>
 
-To confirm that this total was accurate, I compared the distinct order_id counts between `Orders_Final` and `Order_Items_Final`:
+<p>To confirm that this total was accurate, I compared the distinct order_id counts between `Orders_Final` and `Order_Items_Final`:</p>
 
 <details>
 <summary>📂<b><i>Query to Verify Number of Missing ids</i></b></summary>
@@ -193,9 +193,9 @@ SELECT
 
 
 
-### Step 3: Created `Recalculated_Missing_Orders` Table
+<h3>Step 3: Created `Recalculated_Missing_Orders` Table</h3>
 
-To isolate the actual missing order_ids, I created a table called `Recalculated_Missing_Orders`:
+<p>To isolate the actual missing order_ids, I created a table called `Recalculated_Missing_Orders`:</p>
 
 <details>
 <summary>📂<b><i>Query to create Recalculated_Missing_Orders</i></b></summary>
@@ -225,9 +225,9 @@ WHERE
 
 
 
-### Step 4: Verify Equal Distinct `order_id`s
+<h3>Step 4: Verify Equal Distinct `order_id`s
 
-After creating the final versions of `Orders_Final` and `Order_Items_Final`, I wanted to ensure that all missing or discrepant `order_id`s were properly excluded and that the number of distinct `order_id`s matched between the `Orders_Final` and `Order_Items_Final` tables.
+<p>After creating the final versions of `Orders_Final` and `Order_Items_Final`, I wanted to ensure that all missing or discrepant `order_id`s were properly excluded and that the number of distinct `order_id`s matched between the `Orders_Final` and `Order_Items_Final` tables.</p>
 
 <details>
 <summary>📂<b><i>Query to Verify Successful Removal of Missing ids</i></b></summary>
