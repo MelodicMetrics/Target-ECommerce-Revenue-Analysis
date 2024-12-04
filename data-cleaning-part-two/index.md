@@ -1,3 +1,8 @@
+---
+layout: default
+title: My GitHub Pages Site
+---
+
 # Data Cleaning Part Two
 
 Welcome to the Data Cleaning Part Two section. Here are the available files:
