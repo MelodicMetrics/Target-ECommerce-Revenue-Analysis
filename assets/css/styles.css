@@ -1,0 +1,15 @@
+code {
+    background-color: #f8f9fa;
+    color: #d63384;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-size: 0.95em;
+}
+
+pre code {
+    background-color: #f9f9f9;
+    color: inherit;
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+}
