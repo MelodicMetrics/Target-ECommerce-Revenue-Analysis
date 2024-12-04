@@ -13,7 +13,7 @@ As the original dataset used State Codes rather than the actual State (Federativ
 <details>
  <summary>📂<b><i>Function to find matching State Code for each Federative Unit</i></b></summary>
 
- ```
+ ```excel
  =XLOOKUP([@[Name of the Federative Unit]], StateCodes!A:A, StateCodes!B:B, "Not Found")
  ```    
 Where:
@@ -30,7 +30,7 @@ Next I needed to ensure that each city name was in lowercase to standardize with
 <details>
  <summary>📂<b><i>Function to Convert Every City Name to Lowecase</i></b></summary>
  
-```
+```excel
 =LOWER([@[Name of Municipality(City)]])
 ```
 Where:
