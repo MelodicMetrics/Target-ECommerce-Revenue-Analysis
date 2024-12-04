@@ -1,3 +1,8 @@
+---
+layout: default
+title: Order_Item Overview
+---
+
 # Overview of Order Item Changes
 
 In my initial analysis, I considered using a `JOIN` with the `Sellers_Final` table on `seller_id`. However, since I was no longer filtering `Sellers_Final` by the `IBGE_City_State_Source_of_Truth`, this approach would have introduced all `order_ids` linked to those unfiltered `seller_ids` — regardless of whether the orders were made by customers from valid city-state combinations.
