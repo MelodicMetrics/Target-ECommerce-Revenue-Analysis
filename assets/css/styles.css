@@ -20,7 +20,7 @@ pre code {
     padding: 1rem;
     border-radius: 8px;
     overflow-x: auto;
-    color: inherit; /* Maintain syntax colors */
+    color: inherit !important; /* Maintain syntax colors */
 }
 
 /* Dark Mode Styles */
