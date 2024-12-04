@@ -1,7 +1,7 @@
 /* Inline code Styling */
 code {
     background-color: #f5f5f5 !important; /* Light gray for inline code in light mode */
-    color: #6c757d; /* Neutral dark gray for inline code text */
+    color: #6c757d !important; /* Neutral dark gray for inline code text */
     padding: 2px 4px;
     border-radius: 4px;
     font-size: 0.95em;
@@ -11,7 +11,7 @@ code {
 /* Hover Effect for Inline Code (Light Mode) */
 body:not(.dark-mode) code:hover {
     background-color: #e0e0e0 !important; /* Slightly darker gray on hover */
-    color: #495057; /* Slightly darker text color on hover */
+    color: #495057 !important; /* Slightly darker text color on hover */
 }
 
 /* Block Code Styling */
