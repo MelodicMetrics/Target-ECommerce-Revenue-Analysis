@@ -1,3 +1,8 @@
+---
+layout: default
+title: Orders_Final, Order_Items_Final, and Payments_Final
+---
+
 # Orders_Final, Order_Items_Final, and Payments_Final Overview
 
 ## Overviews of Table Changes
