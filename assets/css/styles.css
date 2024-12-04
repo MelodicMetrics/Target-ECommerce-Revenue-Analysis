@@ -1,11 +1,11 @@
 /* Inline code Styling*/
-code {
-    background-color: #e0e0e0;
+code:not(.hljs) {
+    background-color: #e0e0e0 !important;
     color: inherit;
     padding: 2px 4px;
     border-radius: 4px;
-    font-size: 0.95em;
 }
+
 /* Hover Effect for inline code */
 code:hover {
     background-color: #e2e6ea;
