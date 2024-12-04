@@ -1,6 +1,6 @@
-/* Inline code Styling*/
+/* Inline code Styling */
 code {
-    background-color: #f5f5f5 !important; /* Ensure the color is applied */
+    background-color: #f5f5f5 !important; /* Light gray for inline code */
     color: inherit; /* Use the text color of the surrounding content */
     padding: 2px 4px;
     border-radius: 4px;
@@ -17,35 +17,33 @@ code:not(.hljs) {
 
 /* Hover Effect for inline code */
 body code:hover {
-    background-color: #e0e0e0 !important;
+    background-color: #e0e0e0 !important; /* Slightly darker gray on hover */
     color: inherit;
 }
 
-
 /* Block code styling without overriding Highlight.js colors */
 pre code {
-    background-color: #f5f5f5 !important; /* Ensure the background color is applied */
+    background-color: #f5f5f5 !important; /* Light gray for block code */
     padding: 1rem;
     border-radius: 8px;
     overflow-x: auto;
-    color: unset; /* Allow Highlight.js to control text colors */
+    color: unset; /* Allow Highlight.js to control syntax colors */
 }
-
 
 /* Default Light Mode Styles */
 body {
-    background-color: #ffffff;
-    color: #333333;
+    background-color: #ffffff; /* White background for light mode */
+    color: #333333; /* Dark text color */
 }
 
 header, footer {
-    background-color: #f8f9fa;
+    background-color: #f8f9fa; /* Light gray header/footer */
     color: #333333;
 }
 
 code {
-    background-color: #f5f5f5;
-    color: #d63384;
+    background-color: #f5f5f5; /* Light gray for inline code */
+    color: #d63384; /* Highlighted text for inline code */
     padding: 2px 4px;
     border-radius: 4px;
     font-size: 0.95em;
@@ -53,7 +51,7 @@ code {
 }
 
 pre code {
-    background-color: #f5f5f5;
+    background-color: #f5f5f5; /* Light gray for block code */
     color: inherit; /* Allow Highlight.js to manage syntax colors */
     padding: 1rem;
     border-radius: 8px;
@@ -63,27 +61,27 @@ pre code {
 /* Dark Mode Styles */
 @media (prefers-color-scheme: dark) {
     body {
-        background-color: #0d1117;
-        color: #c9d1d9;
+        background-color: #0d1117; /* Dark background for dark mode */
+        color: #c9d1d9; /* Light text color */
     }
 
     header, footer {
-        background-color: #161b22;
+        background-color: #161b22; /* Darker header/footer background */
         color: #c9d1d9;
     }
 
     code {
-        background-color: #1f2328;
-        color: #58a6ff; /* Highlighted syntax */
+        background-color: #1f2328; /* Dark gray for inline code */
+        color: #58a6ff; /* Highlighted text for inline code in dark mode */
     }
 
     pre code {
-        background-color: #1f2328;
+        background-color: #1f2328; /* Dark gray for block code */
         color: inherit; /* Maintain Highlight.js syntax colors */
     }
 
     a {
-        color: #58a6ff;
+        color: #58a6ff; /* Links in dark mode */
     }
 }
 
@@ -91,5 +89,3 @@ pre code {
 body, header, footer, code, pre code {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
-
-
