@@ -9,7 +9,7 @@ code {
 /* Hover Effect for inline code */
 code:hover {
     background-color: #e2e6ea;
-    color: #0056b3;
+    color: inherit;
 }
 
 /*Block Code Styling*/
