@@ -1,3 +1,8 @@
+---
+layout: default
+title: My GitHub Pages Site
+---
+
 ## Customer Changes Overview
 
 In the initial phase of data cleaning, `customer_id`s were filtered down to include only those appearing in the four most populated states in Brazil. With additional data from the IBGE, I was able to bring in many more valid entries. Previously, there were **20,958** `customer_id`s; after making various adjustments, this number increased to **93,927**—a gain of **72,969**. This is out of **99,441** total customers in the original dataset. The changes I implemented ensured that *94.45%* of the customers table was usable for analysis, compared to the initial *21.08%*.
