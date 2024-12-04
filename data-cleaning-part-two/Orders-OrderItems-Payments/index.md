@@ -99,15 +99,13 @@ I downloaded this list as a .CSV file and imported it into Google BigQuery to fi
 
 <details>
 <summary>🔍 <b><i>Expand to View Details on the Creation of Recalculated_Missing_Orders</i></b></summary>
-<br>
     
 ### Step 1: Calculate Missing `order_id`s by Status
-<br>
 
 First, I needed to find out how many missing `order_id`s there were along with a breakdown per status.
 
 <details>
-<summary>📂<b><i>Query to Find Missing order_ids by their status</b></i></summary>
+<summary>📂<b><i>Query to Find Missing order_ids by their status</i></b></summary>
 
 <pre><code class="language-sql">
   /*
@@ -232,7 +230,7 @@ WHERE
 After creating the final versions of `Orders_Final` and `Order_Items_Final`, I wanted to ensure that all missing or discrepant `order_id`s were properly excluded and that the number of distinct `order_id`s matched between the `Orders_Final` and `Order_Items_Final` tables.
 
 <details>
-<summary>📂<b><i>Query to Verify Successful Removal of Missing ids</b></i></summary>
+<summary>📂<b><i>Query to Verify Successful Removal of Missing ids</i></b></summary>
     
 <pre><code class="language-sql">
 SELECT 
