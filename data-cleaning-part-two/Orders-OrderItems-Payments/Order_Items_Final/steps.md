@@ -15,7 +15,7 @@ The following query outlines the creation process for `Order_Items_Final`:
 <details>
 <summary>📂<b><i>Query to Create Order_Items_Final</i></b></summary>
   
-```sql
+<pre><code class="language-sql">
 /*
   This query creates the Order_Items_Final table with the following considerations:
   
@@ -47,7 +47,7 @@ JOIN
     `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Orders_Final` AS orders
 ON 
     order_items.order_id = orders.order_id
-```
+</code></pre>
   
 </details>
 
