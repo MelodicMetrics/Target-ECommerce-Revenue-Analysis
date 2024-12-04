@@ -107,7 +107,7 @@ First, I needed to find out how many missing `order_id`s there were along with a
 <details>
 <summary>📂<b><i>Query to Find Missing order_ids by their status</b></i></summary>
 
-```sql
+<pre><code class="language-sql">
   /*
     This query creates a temporary table (MissingOrderIDs) to calculate the count of missing order_ids for each order_status.
     It then selects the order_status and total_missing_order_ids from the temp table and adds a "Total" row,
@@ -137,7 +137,7 @@ First, I needed to find out how many missing `order_id`s there were along with a
     'Total' AS order_status, SUM(total_missing_order_ids) AS total_missing_order_ids
   FROM 
     MissingOrderIDs;
-  ```
+</code></pre>
     
 </details>
 
@@ -163,7 +163,7 @@ To confirm that this total was accurate, I compared the distinct order_id counts
 <details>
 <summary>📂<b><i>Query to Verify Number of Missing ids</i></b></summary>
     
-```sql
+<pre><code class="language-sql">
 /* 
   This query finds the distinct number of order_ids from Orders_Final and Order_Items_Final to confirm the number of 
   missing order_ids
@@ -173,7 +173,7 @@ SELECT
     (SELECT COUNT(DISTINCT order_id) FROM iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Orders_Final) AS distinct_order_ids_orders,
     (SELECT COUNT(DISTINCT order_id) FROM iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Order_Items_Final) AS distinct_order_ids_order_items;
 
-```
+</code></pre>
     
 </details>
 
@@ -200,7 +200,7 @@ To isolate the actual missing order_ids, I created a table called `Recalculated_
 <details>
 <summary>📂<b><i>Query to create Recalculated_Missing_Orders</i></b></summary>
 
-```sql
+<pre><code class="language-sql">
 /*
   This query creates a new table, Recalculated_Missing_Orders, containing order_ids that appear in Orders_Final
   but are missing in Order_Items_Final. The LEFT JOIN includes all order_ids from Orders_Final, and the WHERE clause
@@ -219,7 +219,7 @@ ON
   o.order_id = oi.order_id
 WHERE 
   oi.order_id IS NULL;
-```
+</code></pre>
     
 </details>
 
@@ -232,11 +232,11 @@ After creating the final versions of `Orders_Final` and `Order_Items_Final`, I w
 <details>
 <summary>📂<b><i>Query to Verify Successful Removal of Missing ids</b></i></summary>
     
-```sql
+<pre><code class="language-sql">
 SELECT 
     (SELECT COUNT(DISTINCT order_id) FROM iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Orders_Final) AS distinct_order_ids_orders,
     (SELECT COUNT(DISTINCT order_id) FROM iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Order_Items_Final) AS distinct_order_ids_order_items;
-```
+</code></pre>
     
 </details>
 
