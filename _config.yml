@@ -1,5 +1,4 @@
 title: "Target E-Commerce Revenue Analysis"
 theme: minima # Optional, if you're using a Jekyll theme
 markdown: kramdown
-plugins:
-  - jekyll-seo-tag # Optional
+
