@@ -7,7 +7,7 @@ To accurately identify which orders were missing or discrepant, I needed tables 
 <details>
 <summary>📂<b><i>Query to Create Initial Orders_Final</b></i></summary>
     
-```sql
+<pre><code class="language-sql">
 CREATE OR REPLACE TABLE `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Orders_Final` AS 
 SELECT 
     orders.order_id,
@@ -20,7 +20,7 @@ JOIN
     `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Customers_Final` AS cust
 ON 
     orders.customer_id = cust.customer_id
-```
+</code></pre>
     
 </details>
 
@@ -33,7 +33,7 @@ After identifying the discrepant and missing order_ids, I applied the necessary 
 <details>
 <summary>📂<b><i>Query to Create Filtered Orders_Final</b></i></summary>
 
-```sql
+<pre><code class="language-sql">
 /* 
   This query was to create a new Orders_Final born of two issues found during initial cleaning and analysis.
     1. There are order_ids in the orders table that do not appear in the Order Items table. Those order_ids
@@ -70,7 +70,7 @@ WHERE
         FROM 
           iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Recalculated_Discrepant_Orders
   )
-```
+</code></pre>
     
 </details>
 
