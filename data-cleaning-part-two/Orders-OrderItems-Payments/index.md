@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Orders_Final, Order_Items_Final, and Payments_Final
+title: Orders_Final, Order_Items_Final, and Payments_Final Index
 ---
 
 # Orders_Final, Order_Items_Final, and Payments_Final Overview
