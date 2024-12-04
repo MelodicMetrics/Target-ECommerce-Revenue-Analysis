@@ -1,3 +1,4 @@
+/* Inline code Styling*/
 code {
     background-color: #f8f9fa;
     color: #d63384;
@@ -5,7 +6,13 @@ code {
     border-radius: 4px;
     font-size: 0.95em;
 }
+/* Hover Effect for inline code */
+code:hover {
+    background-color: #e2e6ea;
+    color: #0056b3;
+}
 
+/*Block Code Styling*/
 pre code {
     background-color: #f9f9f9;
     color: inherit;
