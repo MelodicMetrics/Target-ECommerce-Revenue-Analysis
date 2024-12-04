@@ -16,10 +16,11 @@ code:not(.hljs) {
 }
 
 /* Hover Effect for inline code */
-code:hover {
-    background-color: #ebebeb;
+body code:hover {
+    background-color: #e0e0e0 !important;
     color: inherit;
 }
+
 
 /* Block code styling without overriding Highlight.js colors */
 pre code {
