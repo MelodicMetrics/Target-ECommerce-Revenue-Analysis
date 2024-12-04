@@ -137,8 +137,8 @@ First, I needed to find out how many missing `order_id`s there were along with a
     'Total' AS order_status, SUM(total_missing_order_ids) AS total_missing_order_ids
   FROM 
     MissingOrderIDs;
-</code></pre>
-    
+</code></pre>   
+
 </details>
 
 **Supporting Table:**
