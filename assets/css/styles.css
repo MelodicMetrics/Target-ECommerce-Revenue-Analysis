@@ -24,7 +24,7 @@
     /* General Page Background and Text */
     body {
         background-color: #0d1117 !important; /* Dark background for the entire page */
-        color: #c9d1d9 !important; /* Neutral light gray for text */
+        color: #d3dae2 !important; /* Neutral light gray for text */
     }
 
     /* Header and Footer */
@@ -44,11 +44,11 @@
     /* Inline Code Styling */
     code {
         background-color: #1f2328 !important; /* Dark gray for inline code */
-        color: #adb5bd !important; /* Neutral light gray for inline code text */
+        color: #bcc6d1 !important; /* Neutral light gray for inline code text */
     }
     code:hover {
         background-color: #25292e !important; /* Slightly lighter dark gray for hover */
-        color: #dee2e6 !important; /* Subtle light text color on hover */
+        color: #e3e7eb !important; /* Subtle light text color on hover */
     }
 
     /* Block Code Styling */
