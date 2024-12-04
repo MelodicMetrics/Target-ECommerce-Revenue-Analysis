@@ -30,20 +30,27 @@
     const toggleButton = document.getElementById('theme-toggle');
     const body = document.body;
 
-    // Check local storage for theme preference
+    // Function to detect system preference
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    // Check localStorage for user preference OR fallback to system preference
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        body.classList.toggle('dark-mode', savedTheme === 'dark');
-        toggleButton.textContent = savedTheme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode';
-    }
+    const isDarkMode = savedTheme
+        ? savedTheme === 'dark'
+        : systemPrefersDark;
+
+    // Apply the theme based on saved preference or system preference
+    body.classList.toggle('dark-mode', isDarkMode);
+    toggleButton.textContent = isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode';
 
     // Toggle theme and save preference
     toggleButton.addEventListener('click', () => {
-        const isDarkMode = body.classList.toggle('dark-mode');
-        localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-        toggleButton.textContent = isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode';
+        const isNowDarkMode = body.classList.toggle('dark-mode');
+        localStorage.setItem('theme', isNowDarkMode ? 'dark' : 'light');
+        toggleButton.textContent = isNowDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode';
     });
 </script>
+
 
 
 </body>
