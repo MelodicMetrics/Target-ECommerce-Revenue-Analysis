@@ -1,29 +1,23 @@
-/* Inline code Styling */
+/* Inline Code Styling (Light Mode) */
 @media (prefers-color-scheme: light) {
-code {
-    background-color: #f5f5f5 !important; /* Light gray for inline code in light mode */
-    color: #6c757d !important; /* Neutral dark gray for inline code text */
-    padding: 2px 4px;
-    border-radius: 4px;
-    font-size: 0.95em;
-    display: inline-block;
-}
+    code {
+        background-color: #f5f5f5 !important; /* Light gray for inline code */
+        color: #6c757d !important; /* Neutral gray for inline code text */
+    }
 
-/* Hover Effect for Inline Code (Light Mode) */
-body:not(.dark-mode) code:hover {
-    background-color: #e0e0e0 !important; /* Slightly darker gray on hover */
-    color: #495057 !important; /* Slightly darker text color on hover */
-}
+    /* Hover Effect for Inline Code (Light Mode) */
+    code:hover {
+        background-color: #e0e0e0 !important; /* Slightly darker gray on hover */
+        color: #495057 !important; /* Slightly darker text color on hover */
+    }
 
-/* Block Code Styling */
-pre code {
-    background-color: #f5f5f5 !important; /* Light gray for block code in light mode */
-    padding: 1rem;
-    border-radius: 8px;
-    overflow-x: auto;
-    color: inherit !important; /* Maintain syntax colors */
+    /* Block Code Styling (Light Mode) */
+    pre code {
+        background-color: #f5f5f5 !important; /* Light gray for block code */
+        color: inherit !important; /* Ensure syntax colors are retained */
     }
 }
+
 
 /* Inline Code Styling (Dark Mode) */
 @media (prefers-color-scheme: dark) {
