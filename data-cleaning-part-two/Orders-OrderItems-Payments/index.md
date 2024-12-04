@@ -22,6 +22,7 @@ With these recalculations, the newly created `Recalculated_Missing_Orders` and `
 ## `Recalculated_Discrepant_Orders` Table 
 To generate an updated list of `order_id`s with discrepancies between expected total payment values and calculated total order values, I created two temporary tables and joined them. Using `ROUND(SUM(...), 2)` alone would have helped to remove some small discrepancies, but others still would have appeared due to precision limitations. Including `AND ABS(c.calculated_order_value - p.total_payment_value) >= 0.01` ensured that only `order_id`s with discrepancies of at least a penny were flagged accounting for the precision limitations of the `ROUND` function.   
 
+
 <details>
 <summary>
 🔍 <b><i>Expand to View Details on the Creation of Recalculated_Discrepant_Orders</i></b>
