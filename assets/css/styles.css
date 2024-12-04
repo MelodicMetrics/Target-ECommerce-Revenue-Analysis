@@ -1,6 +1,6 @@
 /* Inline code Styling*/
 code {
-    background-color: #e0e0e0 !important; /* Ensure the color is applied */
+    background-color: #f5f5f5 !important; /* Ensure the color is applied */
     color: inherit; /* Use the text color of the surrounding content */
     padding: 2px 4px;
     border-radius: 4px;
@@ -9,7 +9,7 @@ code {
 }
 
 code:not(.hljs) {
-    background-color: #e0e0e0 !important;
+    background-color: #f5f5f5 !important;
     color: inherit;
     padding: 2px 4px;
     border-radius: 4px;
@@ -17,13 +17,13 @@ code:not(.hljs) {
 
 /* Hover Effect for inline code */
 code:hover {
-    background-color: #e2e6ea;
+    background-color: #ebebeb;
     color: inherit;
 }
 
 /* Block code styling without overriding Highlight.js colors */
 pre code {
-    background-color: #e0e0e0 !important; /* Ensure the background color is applied */
+    background-color: #f5f5f5 !important; /* Ensure the background color is applied */
     padding: 1rem;
     border-radius: 8px;
     overflow-x: auto;
