@@ -51,8 +51,8 @@ pre code {
 
     /* Hover Effect for Inline Code (Dark Mode) */
     body.dark-mode code:hover {
-        background-color: #2c313a; /* Slightly lighter dark gray on hover */
-        color: #dee2e6; /* Slightly lighter text color on hover */
+        background-color: #2c313a !important; /* Slightly lighter dark gray on hover */
+        color: #dee2e6 !important; /* Slightly lighter text color on hover */
     }
 }
 
