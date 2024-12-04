@@ -1,6 +1,6 @@
 ---
 layout: default
-title: My GitHub Pages Site
+title: Data Cleaning Part Two
 ---
 
 # Data Cleaning Part Two
