@@ -8,6 +8,27 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/solarized-light.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
+
+    <style>
+    /* Styling for inline code */
+    code {
+        background-color: #f8f9fa; /* Light gray background */
+        color: #d63384; /* Optional: Customize text color */
+        padding: 2px 4px;
+        border-radius: 4px;
+        font-size: 0.95em;
+    }
+
+    /* Ensure block code remains styled for syntax highlighting */
+    pre code {
+        background-color: #f9f9f9; /* Ensure block code has distinct background */
+        color: inherit; /* Syntax highlighting will take precedence */
+        padding: 1rem;
+        border-radius: 8px;
+        overflow-x: auto; /* Prevent horizontal overflow */
+    }
+</style>
+
 </head>
 <body>
     <header class="bg-dark text-white text-center py-3">
