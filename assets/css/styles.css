@@ -27,8 +27,14 @@
         color: #d3dae2 !important; /* Neutral light gray for text */
     }
 
-    /* Header and Footer */
-    header, footer {
+    body.dark-mode footer {
+    color: #d3dae2 !important;
+    background-color: #161b22 !important;
+    }
+
+    
+    /* Header */
+    header {
         background-color: #161b22 !important; /* Slightly darker background for header/footer */
         color: #c9d1d9 !important; /* Light gray text for header/footer */
     }
