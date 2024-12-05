@@ -28,10 +28,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/data-cleaning/index.md/">Data Cleaning Part One</a>
                     <li class="nav-item">
-                        <a class="nav-link" href="/data-cleaning-part-two/index.md/">Data Cleaning Part Two</a>
+                        <a class="nav-link" href="Target-ECommerce-Revenue-Analysis/data-cleaning-part-two/index.md/">Data Cleaning Part Two</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/EDA/index.md">Exploratory Data Analysis</a>
+                        <a class="nav-link" href="Target-ECommerce-Revenue-Analysis/EDA/index.md">Exploratory Data Analysis</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/revenue-analysis/">Revenue Analysis</a>
@@ -45,23 +45,31 @@
         </div>
     </nav>
        
-    <!-- Breadcrumbs -->
-    <nav aria-label="breadcrumb" style="margin-top: 4rem;">
-        <ol class="breadcrumb bg-light p-2">
-            <li class="breadcrumb-item"><a href="/">Home</a></li>
-            {% if page.breadcrumbs %}
-                {% for breadcrumb in page.breadcrumbs %}
-                    {% if forloop.last %}
-                        <li class="breadcrumb-item active" aria-current="page">{{ breadcrumb.title }}</li>
-                    {% else %}
-                        <li class="breadcrumb-item"><a href="{{ breadcrumb.url }}">{{ breadcrumb.title }}</a></li>
-                    {% endif %}
-                {% endfor %}
+   <!-- Breadcrumbs -->
+<nav aria-label="breadcrumb" style="margin-top: 4rem;">
+    <ol class="breadcrumb bg-light p-2">
+        <!-- Home link -->
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+
+        <!-- Dynamic Breadcrumb Logic -->
+        {% assign path_parts = page.path | split: '/' %}
+        {% assign accumulated_path = "" %}
+        
+        {% for part in path_parts %}
+            {% assign accumulated_path = accumulated_path | append: "/" | append: part %}
+            {% if forloop.last %}
+                <!-- Current page (active, no link) -->
+                <li class="breadcrumb-item active" aria-current="page">{{ part | replace: "-", " " | capitalize }}</li>
             {% else %}
-                <li class="breadcrumb-item active" aria-current="page">{{ page.title }}</li>
+                <!-- Intermediate folders (linked) -->
+                <li class="breadcrumb-item">
+                    <a href="{{ accumulated_path | relative_url }}">{{ part | replace: "-", " " | capitalize }}</a>
+                </li>
             {% endif %}
-        </ol>
-    </nav>
+        {% endfor %}
+    </ol>
+</nav>
+
 
     <!-- Header Section -->
     <header class="bg-dark text-white text-center py-3">
