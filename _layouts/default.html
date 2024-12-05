@@ -29,11 +29,15 @@
 <script>
     // Dynamically add a "Copy" button to each <pre><code> block
     document.querySelectorAll("pre").forEach((pre) => {
-        // Create the copy button
+        // Create the copy button container
         const button = document.createElement("button");
-        button.textContent = "Copy";
         button.className = "copy-button";
         button.onclick = () => copyCode(pre);
+
+        // Add the icon inside the button
+        const icon = document.createElement("i");
+        icon.className = "copy-icon";
+        button.appendChild(icon);
 
         // Position the button inside the code block
         pre.style.position = "relative"; // Ensure the button is positioned correctly
@@ -47,17 +51,16 @@
 
         // Copy the code content
         navigator.clipboard.writeText(codeBlock.textContent).then(() => {
-            // Feedback for the user
-            const originalText = "Copy";
-            button.textContent = "Copied!";
-            setTimeout(() => (button.textContent = originalText), 2000);
+            // Change the icon to indicate success temporarily
+            const icon = pre.querySelector(".copy-icon");
+            icon.classList.add("copied");
+            setTimeout(() => icon.classList.remove("copied"), 2000);
         }).catch((err) => {
-            console.error('Failed to copy: ', err);
-            button.textContent = "Error";
-            setTimeout(() => (button.textContent = "Copy"), 2000);
+            console.error("Failed to copy: ", err);
         });
     }
 </script>
+
 
 
 
