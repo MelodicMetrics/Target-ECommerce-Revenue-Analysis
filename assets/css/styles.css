@@ -39,57 +39,65 @@
 
 
 
-/* Dark Mode Styles */
+/* General Dark Mode Styles */
 @media (prefers-color-scheme: dark) {
     /* General Page Background and Text */
     body {
-        background-color: #0d1117 !important; /* Dark background for the entire page */
-        color: #cdd9e5 !important; /* Neutral light gray for text */
+        background-color: #0d1117 !important; /* Dark background for the page */
+        color: #d0d7de !important; /* Slightly brighter text color */
     }
 
     /* Footer Styling */
     footer {
-        background-color: #161b22 !important; /* Dark background for footer */
-        color: #d3dae2 !important; /* Neutral light gray for footer text */
+        background-color: #161b22 !important; /* Darker footer background */
+        color: #d0d7de !important; /* Match body text color */
     }
 
-    /* Override Bootstrap's .text-muted in Footer */
+    /* Bootstrap-specific Override for .text-muted in Footer */
     footer.text-muted {
-        color: #d3dae2 !important; /* Ensure footer text color is applied */
-    }
-  
-    /* Header */
-    header {
-        background-color: #161b22 !important; /* Slightly darker background for header/footer */
-        color: #c9d1d9 !important; /* Light gray text for header/footer */
+        color: #d0d7de !important; /* Ensure consistent footer text color */
     }
 
-    /* Links */
-    a {
-        color: #58a6ff !important; /* Blue for links */
-    }
-    a:hover {
-        color: #79c0ff !important; /* Lighter blue for links on hover */
+    /* Header Styling */
+    header {
+        background-color: #161b22 !important; /* Darker header background */
+        color: #d0d7de !important; /* Match body text color */
     }
 
     /* Inline Code Styling */
     code {
-        background-color: #2d333b !important; /* Dark gray for inline code */
-        color: #e3e7eb !important; /* Neutral light gray for inline code text */
-    }
-    code:hover {
-        background-color: #374151 !important; /* Slightly lighter dark gray for hover */
-        color: #f0f6fc !important; /* Subtle light text color on hover */
+        background-color: #2f363d !important; /* Slightly lighter dark gray background */
+        color: #e6ebf1 !important; /* Closer to Markdown text color */
+        padding: 2px 4px;
+        border-radius: 4px;
+        font-size: 0.95em;
+        display: inline-block;
     }
 
-   /* Block Code Styling */
+    /* Hover Effect for Inline Code */
+    code:hover {
+        background-color: #3a4149 !important; /* Slightly lighter on hover */
+        color: #f0f6fc !important; /* Brighter text color on hover */
+    }
+
+    /* Block Code Styling */
     pre code {
-        background-color: #2d333b !important; /* Match inline code background */
+        background-color: #2f363d !important; /* Match inline code background */
         color: inherit !important; /* Retain Highlight.js syntax colors */
         padding: 1rem;
         border-radius: 8px;
         overflow-x: auto;
     }
+
+    /* Links */
+    a {
+        color: #58a6ff !important; /* Soft blue for links */
+    }
+
+    a:hover {
+        color: #79c0ff !important; /* Brighter blue for links on hover */
+    }
+}
 
     /* Tables */
     table {
