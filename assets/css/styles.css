@@ -48,13 +48,16 @@
     }
 
     /* Footer Styling */
-    body footer {
-    background-color: #161b22 !important;
-    color: #d3dae2 !important;
+    footer {
+        background-color: #161b22 !important; /* Dark background for footer */
+        color: #d3dae2 !important; /* Neutral light gray for footer text */
     }
 
-
-    
+    /* Override Bootstrap's .text-muted in Footer */
+    footer.text-muted {
+        color: #d3dae2 !important; /* Ensure footer text color is applied */
+    }
+  
     /* Header */
     header {
         background-color: #161b22 !important; /* Slightly darker background for header/footer */
