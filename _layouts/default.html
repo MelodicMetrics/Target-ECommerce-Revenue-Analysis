@@ -25,39 +25,32 @@
     This project is for educational and portfolio purposes only.
 </footer>
 
-<!-- Add the following script right before the closing </body> -->
+
 <script>
     // Dynamically add a "Copy" button to each <pre><code> block
-    document.querySelectorAll("pre code").forEach((block) => {
-        // Create a wrapper div
-        const wrapper = document.createElement("div");
-        wrapper.className = "code-block-wrapper";
-
-        // Move the <pre> block into the wrapper
-        const pre = block.parentElement;
-        pre.parentElement.insertBefore(wrapper, pre);
-        wrapper.appendChild(pre);
-
+    document.querySelectorAll("pre").forEach((pre) => {
         // Create the copy button
         const button = document.createElement("button");
         button.textContent = "Copy";
         button.className = "copy-button";
-        button.onclick = () => copyCode(button);
+        button.onclick = () => copyCode(pre);
 
-        // Add the button to the wrapper
-        wrapper.appendChild(button);
+        // Position the button inside the code block
+        pre.style.position = "relative"; // Ensure the button is positioned correctly
+        pre.appendChild(button);
     });
 
     // Function to handle copying code
-    function copyCode(button) {
-        const codeBlock = button.previousElementSibling.querySelector("code");
+    function copyCode(pre) {
+        const codeBlock = pre.querySelector("code");
         if (!codeBlock) return;
 
         // Copy the code content
         navigator.clipboard.writeText(codeBlock.textContent).then(() => {
             // Feedback for the user
+            const originalText = "Copy";
             button.textContent = "Copied!";
-            setTimeout(() => (button.textContent = "Copy"), 2000);
+            setTimeout(() => (button.textContent = originalText), 2000);
         }).catch((err) => {
             console.error('Failed to copy: ', err);
             button.textContent = "Error";
@@ -65,6 +58,7 @@
         });
     }
 </script>
+
 
 
 </body>
