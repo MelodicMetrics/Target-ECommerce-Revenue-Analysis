@@ -149,22 +149,32 @@ body, header, footer, code, pre code {
     position: absolute;
     top: 10px; /* Adjust for spacing */
     right: 10px; /* Adjust for spacing */
-    background-color: #1f2328;
-    color: #eaeaea;
+    background: none; /* No background for the button itself */
     border: none;
-    padding: 5px 8px;
-    font-size: 0.8em;
-    border-radius: 4px; /* Rounded edges */
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    padding: 0;
     z-index: 10; /* Ensure it appears above the code block */
 }
 
-.copy-button:hover {
-    background-color: #3a4149;
-    color: #ffffff;
+/* Styling the copy icon */
+.copy-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: transparent; /* Transparent by default */
+    mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>') no-repeat center / contain;
+    mask-size: contain;
+    -webkit-mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>') no-repeat center / contain;
+    background-color: #adb5bd; /* Default icon color */
+    transition: background-color 0.3s ease;
 }
 
-.copy-button:active {
-    background-color: #25292e;
+/* Styling the icon on hover */
+.copy-button:hover .copy-icon {
+    background-color: #58a6ff; /* Light blue on hover */
+}
+
+/* Styling the icon when copied */
+.copied {
+    background-color: #28a745; /* Green for success */
 }
