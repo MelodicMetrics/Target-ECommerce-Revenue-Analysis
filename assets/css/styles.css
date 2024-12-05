@@ -64,6 +64,12 @@
         color: #d0d7de !important; /* Match body text color */
     }
 
+    /* Override Bootstrap Header Styles */
+    h1, h2, h3, h4, h5, h6 {
+        color: #d0d7de !important; /* Ensure headers match the desired color */
+        font-weight: bold !important; /* Optional: Ensure consistent font weight */
+    }
+
     /* Inline Code Styling */
     code {
         background-color: #2f363d !important; /* Slightly lighter dark gray background */
