@@ -1,22 +1,42 @@
-/* Inline Code Styling (Light Mode) */
+/* Light Mode Styles */
 @media (prefers-color-scheme: light) {
+    /* General Page Background and Text */
+    body {
+        background-color: #ffffff !important; /* White background for the entire page */
+        color: #333333 !important; /* Dark gray text for content */
+    }
+
+    /* Header Styling */
+    header {
+        background-color: #f8f9fa !important; /* Light gray for header background */
+        color: #333333 !important; /* Dark gray text for header */
+    }
+
+    /* Footer Styling */
+    footer {
+        background-color: #f8f9fa !important; /* Light gray for footer background */
+        color: #333333 !important; /* Dark gray text for footer */
+    }
+
+    /* Inline Code Styling */
     code {
         background-color: #f5f5f5 !important; /* Light gray for inline code */
         color: #6c757d !important; /* Neutral gray for inline code text */
     }
 
-    /* Hover Effect for Inline Code (Light Mode) */
+    /* Hover Effect for Inline Code */
     code:hover {
         background-color: #e0e0e0 !important; /* Slightly darker gray on hover */
         color: #495057 !important; /* Slightly darker text color on hover */
     }
 
-    /* Block Code Styling (Light Mode) */
+    /* Block Code Styling */
     pre code {
         background-color: #f5f5f5 !important; /* Light gray for block code */
         color: inherit !important; /* Ensure syntax colors are retained */
     }
 }
+
 
 
 /* Dark Mode Styles */
