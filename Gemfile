@@ -1,6 +1,7 @@
 source "https://rubygems.org"
-gem "jekyll", "~> 4.2.0" # Adjust the version if needed
+
+gem "jekyll", "~> 4.2.0" # Compatible with most modern Jekyll sites
 gem "webrick" # Required for local Jekyll servers with Ruby 3.0+
-gem "csv"
-gem "base64"
-gem "bigdecimal"
+gem "csv" # Addresses the csv warning
+gem "base64" # Addresses the base64 warning
+gem "bigdecimal" # Addresses the bigdecimal warning
