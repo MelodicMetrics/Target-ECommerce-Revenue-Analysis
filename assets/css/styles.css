@@ -44,36 +44,36 @@
     /* General Page Background and Text */
     body {
         background-color: #0d1117 !important; /* Dark background for the page */
-        color: #d0d7de !important; /* Slightly brighter text color */
-    }
-
-    /* Footer Styling */
-    footer {
-        background-color: #161b22 !important; /* Darker footer background */
-        color: #d0d7de !important; /* Match body text color */
-    }
-
-    /* Bootstrap-specific Override for .text-muted in Footer */
-    footer.text-muted {
-        color: #d0d7de !important; /* Ensure consistent footer text color */
+        color: #eaeaea !important; /* Nearly white text for body */
     }
 
     /* Header Styling */
     header {
         background-color: #161b22 !important; /* Darker header background */
-        color: #d0d7de !important; /* Match body text color */
+        color: #eaeaea !important; /* Nearly white for header text */
+    }
+
+    /* Footer Styling */
+    footer {
+        background-color: #161b22 !important; /* Darker footer background */
+        color: #eaeaea !important; /* Nearly white for footer text */
+    }
+
+    /* Override Bootstrap Footer `.text-muted` */
+    footer .text-muted {
+        color: #eaeaea !important; /* Match body/footer text color */
     }
 
     /* Override Bootstrap Header Styles */
     h1, h2, h3, h4, h5, h6 {
-        color: #d0d7de !important; /* Ensure headers match the desired color */
-        font-weight: bold !important; /* Optional: Ensure consistent font weight */
+        color: #eaeaea !important; /* Nearly white for headers */
+        font-weight: bold !important; /* Optional: Consistent font weight */
     }
 
     /* Inline Code Styling */
     code {
         background-color: #2f363d !important; /* Slightly lighter dark gray background */
-        color: #e6ebf1 !important; /* Closer to Markdown text color */
+        color: #f0f0f0 !important; /* Slightly brighter than body text for inline code */
         padding: 2px 4px;
         border-radius: 4px;
         font-size: 0.95em;
@@ -82,8 +82,8 @@
 
     /* Hover Effect for Inline Code */
     code:hover {
-        background-color: #3a4149 !important; /* Slightly lighter on hover */
-        color: #f0f6fc !important; /* Brighter text color on hover */
+        background-color: #3a4149 !important; /* Slightly lighter gray for hover */
+        color: #ffffff !important; /* Full white for hover text */
     }
 
     /* Block Code Styling */
