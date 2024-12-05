@@ -44,7 +44,7 @@
     /* General Page Background and Text */
     body {
         background-color: #0d1117 !important; /* Dark background for the entire page */
-        color: #d3dae2 !important; /* Neutral light gray for text */
+        color: #cdd9e5 !important; /* Neutral light gray for text */
     }
 
     /* Footer Styling */
@@ -74,18 +74,21 @@
 
     /* Inline Code Styling */
     code {
-        background-color: #1f2328 !important; /* Dark gray for inline code */
-        color: #bcc6d1 !important; /* Neutral light gray for inline code text */
+        background-color: #2d333b !important; /* Dark gray for inline code */
+        color: #e3e7eb !important; /* Neutral light gray for inline code text */
     }
     code:hover {
-        background-color: #25292e !important; /* Slightly lighter dark gray for hover */
-        color: #e3e7eb !important; /* Subtle light text color on hover */
+        background-color: #374151 !important; /* Slightly lighter dark gray for hover */
+        color: #f0f6fc !important; /* Subtle light text color on hover */
     }
 
-    /* Block Code Styling */
+   /* Block Code Styling */
     pre code {
-        background-color: #1f2328 !important; /* Dark gray for block code */
-        color: inherit !important; /* Ensure syntax colors are retained */
+        background-color: #2d333b !important; /* Match inline code background */
+        color: inherit !important; /* Retain Highlight.js syntax colors */
+        padding: 1rem;
+        border-radius: 8px;
+        overflow-x: auto;
     }
 
     /* Tables */
