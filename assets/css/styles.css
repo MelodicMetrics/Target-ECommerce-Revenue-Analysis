@@ -48,10 +48,11 @@
     }
 
     /* Footer Styling */
-    footer {
-        background-color: #161b22 !important; /* Slightly darker footer background */
-        color: #d3dae2 !important; /* Neutral light gray for footer text */
+    body footer {
+    background-color: #161b22 !important;
+    color: #d3dae2 !important;
     }
+
 
     
     /* Header */
