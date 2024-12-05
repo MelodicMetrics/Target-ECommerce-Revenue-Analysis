@@ -22,6 +22,7 @@ Please note that this project is a W.I.P. With that in mind, sections may not be
     - **order_item_id**: A Unique ID given to each item ordered in the order
     - **product_id**: A Unique ID given to each product available on the site
     - **seller_id**: Unique ID of the seller registered in Target
+
 ## Data Preparation and Cleaning
 To ensure accuracy and consistency, detailed cleaning processes were conducted for each dataset. These processes are documented in two separate folders to reflect the iterative nature of the cleaning efforts:
 1. [Data Cleaning (Part One)](./data-cleaning): This folder documents the initial cleaning steps taken to prepare the dataset for analysis. While this stage identified and addressed many key issues, it also revealed additional complexities in the dataset during subsequent analysis. The insights and challenges from this stage informed the next round of cleaning.
