@@ -25,7 +25,46 @@
     This project is for educational and portfolio purposes only.
 </footer>
 
+<!-- Add the following script right before the closing </body> -->
+<script>
+    // Dynamically add a "Copy" button to each <pre><code> block
+    document.querySelectorAll("pre code").forEach((block) => {
+        // Create a wrapper div
+        const wrapper = document.createElement("div");
+        wrapper.className = "code-block-wrapper";
 
+        // Move the <pre> block into the wrapper
+        const pre = block.parentElement;
+        pre.parentElement.insertBefore(wrapper, pre);
+        wrapper.appendChild(pre);
+
+        // Create the copy button
+        const button = document.createElement("button");
+        button.textContent = "Copy";
+        button.className = "copy-button";
+        button.onclick = () => copyCode(button);
+
+        // Add the button to the wrapper
+        wrapper.appendChild(button);
+    });
+
+    // Function to handle copying code
+    function copyCode(button) {
+        const codeBlock = button.previousElementSibling.querySelector("code");
+        if (!codeBlock) return;
+
+        // Copy the code content
+        navigator.clipboard.writeText(codeBlock.textContent).then(() => {
+            // Feedback for the user
+            button.textContent = "Copied!";
+            setTimeout(() => (button.textContent = "Copy"), 2000);
+        }).catch((err) => {
+            console.error('Failed to copy: ', err);
+            button.textContent = "Error";
+            setTimeout(() => (button.textContent = "Copy"), 2000);
+        });
+    }
+</script>
 
 
 </body>
