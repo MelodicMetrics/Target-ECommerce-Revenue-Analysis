@@ -1,0 +1,215 @@
+/* Light Mode Styles */
+@media (prefers-color-scheme: light) {
+    /* General Page Background and Text */
+    body {
+        background-color: #ffffff !important; /* White background for the entire page */
+        color: #333333 !important; /* Dark gray text for content */
+    }
+
+    /* Header Styling */
+    header {
+        background-color: #f8f9fa !important; /* Light gray for header background */
+        color: #333333 !important; /* Dark gray text for header */
+    }
+
+    /* Footer Styling */
+    footer {
+        background-color: #f8f9fa !important; /* Light gray for footer background */
+        color: #333333 !important; /* Dark gray text for footer */
+    }
+
+    /* Inline Code Styling */
+    code {
+        background-color: #f5f5f5 !important; /* Light gray for inline code */
+        color: #6c757d !important; /* Neutral gray for inline code text */
+    }
+
+    /* Hover Effect for Inline Code */
+    code:hover {
+        background-color: #e0e0e0 !important; /* Slightly darker gray on hover */
+        color: #495057 !important; /* Slightly darker text color on hover */
+    }
+
+    /* Block Code Styling */
+    pre code {
+        background-color: #f5f5f5 !important; /* Light gray for block code */
+        color: inherit !important; /* Ensure syntax colors are retained */
+    }
+}
+
+
+
+/* General Dark Mode Styles */
+@media (prefers-color-scheme: dark) {
+    /* General Page Background and Text */
+    body {
+        background-color: #0d1117 !important; /* Dark background for the page */
+        color: #eaeaea !important; /* Nearly white text for body */
+    }
+
+    /* Header Styling */
+    header {
+        background-color: #161b22 !important; /* Darker header background */
+        color: #eaeaea !important; /* Nearly white for header text */
+    }
+
+    /* Footer Styling */
+    footer {
+        background-color: #161b22 !important; /* Darker footer background */
+        color: #eaeaea !important; /* Nearly white for footer text */
+    }
+
+    /* Override Bootstrap Footer `.text-muted` */
+    footer .text-muted, footer.text-muted {
+        color: #eaeaea !important; /* Match body/footer text color */
+    }
+
+    /* Override Bootstrap Header Styles */
+    h1, h2, h3, h4, h5, h6 {
+        color: #eaeaea !important; /* Nearly white for headers */
+        font-weight: bold !important; /* Optional: Consistent font weight */
+    }
+
+    /* Inline Code Styling */
+    code {
+        background-color: #2f363d !important; /* Slightly lighter dark gray background */
+        color: #f0f0f0 !important; /* Slightly brighter than body text for inline code */
+        padding: 2px 4px;
+        border-radius: 4px;
+        font-size: 0.95em;
+        display: inline-block;
+    }
+
+    /* Hover Effect for Inline Code */
+    code:hover {
+        background-color: #3a4149 !important; /* Slightly lighter gray for hover */
+        color: #ffffff !important; /* Full white for hover text */
+    }
+
+    /* Block Code Styling */
+    pre code {
+        background-color: #2f363d !important; /* Match inline code background */
+        color: inherit !important; /* Retain Highlight.js syntax colors */
+        padding: 1rem;
+        border-radius: 8px;
+        overflow-x: auto;
+    }
+
+    /* Links */
+    a {
+        color: #58a6ff !important; /* Soft blue for links */
+    }
+
+    a:hover {
+        color: #79c0ff !important; /* Brighter blue for links on hover */
+    }
+}
+
+    /* Tables */
+    table {
+        background-color: #161b22 !important; /* Slightly darker background for tables */
+        border: 1px solid #30363d !important; /* Subtle border for tables */
+        color: #c9d1d9 !important; /* Light text for table content */
+    }
+    th, td {
+        border: 1px solid #30363d !important; /* Table cell borders */
+        padding: 8px;
+    }
+    th {
+        background-color: #21262d !important; /* Slightly darker header for tables */
+    }
+
+    /* Buttons */
+    button {
+        background-color: #21262d !important; /* Dark button background */
+        color: #c9d1d9 !important; /* Light text for buttons */
+        border: 1px solid #30363d !important; /* Button border */
+    }
+    button:hover {
+        background-color: #30363d !important; /* Lighter background on hover */
+        color: #ffffff !important; /* Bright text on hover */
+    }
+
+    /* Smooth Transitions for All Changes */
+    body, header, footer, code, pre code, a, table, th, td, button {
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+}
+
+
+
+/* Smooth Transitions */
+body, header, footer, code, pre code {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+/* Ensure the copy button matches the code block background */
+.copy-button {
+    background-color: #1f2328; /* Match the background of pre code */
+    color: #adb5bd; /* Match the text color */
+    border: none; /* Remove border to blend in */
+    border-radius: 4px; /* Optional: Make it rounded for consistency */
+    padding: 5px; /* Adjust padding for proper size */
+    cursor: pointer;
+    position: absolute;
+    top: 8px; /* Position inside the code block */
+    right: 8px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Styling the copy icon */
+.copy-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>') no-repeat center / contain;
+    mask-size: contain;
+    -webkit-mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>') no-repeat center / contain;
+    background-color: #adb5bd; /* Default icon color */
+    transition: background-color 0.3s ease;
+}
+
+/* Hover Effect for Copy Button */
+.copy-button:hover {
+    background-color: #25292e; /* Slightly lighter background for hover */
+    color: #dee2e6; /* Slightly lighter text color on hover */
+}
+
+/* Styling the icon on hover */
+.copy-button:hover .copy-icon {
+    background-color: #58a6ff; /* Light blue icon on hover */
+}
+
+/* Styling the icon when copied */
+.copied {
+    background-color: #28a745; /* Green for success */
+}
+
+/* Match the button's background to block code in light mode */
+@media (prefers-color-scheme: light) {
+    .copy-button {
+        background-color: #f5f5f5; /* Match the light code block background */
+        color: #495057; /* Neutral dark text */
+    }
+
+    .copy-button:hover {
+        background-color: #e0e0e0; /* Slightly darker gray on hover */
+        color: #212529; /* Slightly darker text */
+    }
+
+    .copy-icon {
+        background-color: #6c757d; /* Neutral icon color */
+    }
+
+    .copy-button:hover .copy-icon {
+        background-color: #007bff; /* Blue icon on hover */
+    }
+}
+
