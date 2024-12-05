@@ -60,7 +60,7 @@
     }
 
     /* Override Bootstrap Footer `.text-muted` */
-    footer .text-muted {
+    footer .text-muted, footer.text-muted {
         color: #eaeaea !important; /* Match body/footer text color */
     }
 
