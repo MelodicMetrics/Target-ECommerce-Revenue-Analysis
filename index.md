@@ -7,7 +7,10 @@ title: Home
 A repository that contains documentation of my various analysis steps for this portfolio project.
 
 ## Important Note
-Please note that this project is a W.I.P. With that in mind, sections may not be fully filled out or are subject to change. Currently I am in the EDA phase working within Power BI. I am analyzing frequency distributions and employing toggle tables for easy customization of metrics in my visuals. This cuts down on the amount of report pages that are necessary. Thank you for your patience and feel free to email me any questions!
+Please note that this project is a W.I.P. With that in mind, sections may not be fully filled out or are subject to change. 
+- ~Currently I am in the EDA phase working within Power BI. I am analyzing frequency distributions and employing toggle tables for easy customization of metrics in my visuals. This cuts down on the amount of report pages that are necessary.~
+- Currently I am converting my github repository into a webpage using html, css, and javascript. 
+- Thank you for your patience and feel free to email me any questions!
 
 ## Project Overview
 - **Objective**: The goal of this project is to explore Revenue trends in E-commerce sales data from Target in Brazil.
