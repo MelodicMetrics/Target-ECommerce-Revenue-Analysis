@@ -1,0 +1,57 @@
+I"9<h1 id="product-value-bins">Product Value Bins</h1>
+
+<h2 id="purpose">Purpose</h2>
+<p>The Product Value Bins were added as calculated columns in <code class="language-plaintext highlighter-rouge">Order_Items_Final</code> and served the following purpose:</p>
+<ul>
+  <li><strong>Segmentation</strong>: Categorizes products into predefined ranges (bins) based on their value.</li>
+  <li><strong>Sorting</strong>: Adds a numeric sort order to ensure that bins are displayed in the intended sequence.</li>
+</ul>
+
+<h2 id="dax-codes">DAX Codes</h2>
+<details> 
+
+<summary><b> 1. Product Value Bins </b> </summary> 
+
+<br />
+
+- **Purpose**: Categorizes products into value ranges (`$7.28–$100`, `$100–$250`, `$250–$500`, `$500–$700`, and `$700+`) for easier analysis and visualization.
+- **Application:** Supports trend analysis and comparisons across predefined value brackets.
+- **Logic:** Uses `SWITCH` to assign products to bins dynamically based on their `product_value`. 
+
+``` dax
+Product Value Bins = 
+SWITCH(
+    TRUE(),
+    'Order_Items_Final'[product_value] &lt;= 100, "$7.28–$100",
+    'Order_Items_Final'[product_value] &lt;= 250, "$100–$250",
+    'Order_Items_Final'[product_value] &lt;= 500, "$250–$500",
+    'Order_Items_Final'[product_value] &lt;= 700, "$500–$700",
+    "$700+"
+)
+```
+</details>
+
+<details> 
+
+<summary><b> 2. Bin Sort Order </b> </summary> 
+
+<br />
+
+- **Purpose**: Assigns a numeric sort order to product value bins for consistent ordering in visualizations. 
+- **Application**: `Product Value Bins` is intended to specifically be sorted by this column. This ensures bins appear sequentially (`$7.28–$100` as 1, `$100–$250` as 2, etc.) rather than alphabetically.
+- **Logic**: Uses `SWITCH` to assign integers (1 to 5) based on product value ranges.
+
+``` dax
+Bin Sort Order = 
+SWITCH(
+    TRUE(),
+    'Order_Items_Final'[product_value] &lt;= 100, 1,
+    'Order_Items_Final'[product_value] &lt;= 250, 2,
+    'Order_Items_Final'[product_value] &lt;= 500, 3,
+    'Order_Items_Final'[product_value] &lt;= 700, 4,
+    5 -- For values greater than 700
+)
+```
+</details>
+
+:ET

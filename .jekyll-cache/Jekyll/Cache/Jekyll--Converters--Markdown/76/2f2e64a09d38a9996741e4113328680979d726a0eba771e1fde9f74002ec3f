@@ -1,0 +1,277 @@
+I"�<<h1 id="orders_final-order_items_final-and-payments_final-overview">Orders_Final, Order_Items_Final, and Payments_Final Overview</h1>
+
+<h2 id="overviews-of-table-changes">Overviews of Table Changes</h2>
+
+<p><strong>To see an overview of changes made to each table, click the respective link below:</strong></p>
+
+<ul>
+  <li><a href="/data-cleaning-part-two/Orders-Order_Items-Payments/Orders_Final/">Orders_Final</a></li>
+  <li><a href="/data-cleaning-part-two/Orders-Order_Items-Payments/Order_Items_Final/">Order_Items_Final</a></li>
+  <li><a href="/data-cleaning-part-two/Orders-Order_Items-Payments/Payments_Final/">Payments_Final</a></li>
+</ul>
+
+<hr />
+
+<p>The <code class="language-plaintext highlighter-rouge">Orders_Final</code>, <code class="language-plaintext highlighter-rouge">Order_Items_Final</code>, and <code class="language-plaintext highlighter-rouge">Payments_Final</code> tables are connected through shared <code class="language-plaintext highlighter-rouge">order_id</code>s. The <code class="language-plaintext highlighter-rouge">Order_Items_Final</code> table contains <code class="language-plaintext highlighter-rouge">price</code> and <code class="language-plaintext highlighter-rouge">freight_value</code> columns, which together should equal the <code class="language-plaintext highlighter-rouge">total_payment_value</code> in <code class="language-plaintext highlighter-rouge">Payments_Final</code>. In the initial phase of analysis, I discovered discrepancies in these calculations and removed them to maintain data accuracy.</p>
+
+<p>Since then, the dataset has undergone significant improvements, with an increased number of validated <code class="language-plaintext highlighter-rouge">customer_id</code>s and verified location data. As a result, I recalculated the discrepancy function to ensure all identified issues were accurately addressed. Additionally, I removed the <code class="language-plaintext highlighter-rouge">payment_type</code> and <code class="language-plaintext highlighter-rouge">payment_installments</code> columns from <code class="language-plaintext highlighter-rouge">Payments_Final</code>, which had been causing duplicate <code class="language-plaintext highlighter-rouge">order_id</code>s and was likely a primary source of the original discrepancies. This iterative cleaning process not only resolved outstanding issues but also enabled a more precise reconciliation between <code class="language-plaintext highlighter-rouge">Orders_Final</code> and <code class="language-plaintext highlighter-rouge">Order_Items_Final</code>.</p>
+
+<p>With these recalculations, the newly created <code class="language-plaintext highlighter-rouge">Recalculated_Missing_Orders</code> and <code class="language-plaintext highlighter-rouge">Recalculated_Discrepant_Orders</code> tables now accurately reflect missing and discrepant <code class="language-plaintext highlighter-rouge">order_id</code>s, strengthening data integrity and providing a solid foundation for revenue analysis. These adjustments will ensure consistent calculations of total revenue and profitability across product categories, seller regions, and customer demographics.</p>
+
+<hr />
+<h2 id="recalculated_discrepant_orders-table"><code class="language-plaintext highlighter-rouge">Recalculated_Discrepant_Orders</code> Table</h2>
+<p>To generate an updated list of <code class="language-plaintext highlighter-rouge">order_id</code>s with discrepancies between expected total payment values and calculated total order values, I created two temporary tables and joined them. Using <code class="language-plaintext highlighter-rouge">ROUND(SUM(...), 2)</code> alone would have helped to remove some small discrepancies, but others still would have appeared due to precision limitations. Including <code class="language-plaintext highlighter-rouge">AND ABS(c.calculated_order_value - p.total_payment_value) &gt;= 0.01</code> ensured that only <code class="language-plaintext highlighter-rouge">order_id</code>s with discrepancies of at least a penny were flagged accounting for the precision limitations of the <code class="language-plaintext highlighter-rouge">ROUND</code> function.</p>
+
+<details>
+<summary>
+🔍 <b><i>Expand to View Details on the Creation of Recalculated_Discrepant_Orders</i></b>
+</summary>
+<br />
+
+<pre><code class="language-sql">
+/* 
+    This query recalculates discrepant orders now that Payments_Final has removed payment types, eliminating duplicate order_ids in the table. 
+    Two temporary tables are created and then joined to find discrepancies between total_payment_values in Payments_Final and 
+    calculated_order_values based on price and freight_value in Order_Items_Final. In the JOIN, these two values are subtracted, 
+    and only order_ids with calculated discrepancies of at least 0.01 (at least a penny) are displayed.
+*/
+
+CREATE OR REPlACE TABLE iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Recalculated_Discrepant_Orders AS(
+    -- Create a temporary table to calculate the total value per order_id from Order_Items_Final
+    WITH Calculated_Order_Values AS (
+    SELECT 
+        order_id,
+        ROUND(SUM(price + freight_value),2) AS calculated_order_value
+    FROM 
+        iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Order_Items_Final
+    GROUP BY 
+        order_id
+    ),
+
+    -- Create a temporary table to get the total payment value per order_id from Payments_Final
+    Payments_Total AS (
+        SELECT 
+            order_id,
+            ROUND(SUM(total_payment_value),3) AS total_payment_value
+        FROM 
+            iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Payments_Final
+        GROUP BY 
+            order_id
+    )
+
+    -- Join the calculated and actual payment values to identify discrepancies
+    SELECT 
+        c.order_id,
+        c.calculated_order_value,
+        p.total_payment_value,
+        -- Calculate the difference for easy identification of discrepancies
+        c.calculated_order_value - p.total_payment_value AS discrepancy
+    FROM 
+        Calculated_Order_Values AS c
+    INNER JOIN 
+        Payments_Total AS p
+    ON 
+        c.order_id = p.order_id
+    WHERE 
+        c.calculated_order_value != p.total_payment_value
+        AND ABS(c.calculated_order_value - p.total_payment_value) &gt;= 0.01 --Ensures discrepancies are at least a penny
+);
+</code></pre>
+
+This query yielded **351** `order_id`s. 
+
+</details>
+
+<hr />
+
+<h2 id="recalculated_missing_orders-table"><code class="language-plaintext highlighter-rouge">Recalculated_Missing_Orders</code> Table</h2>
+
+<p>In addition to these discrepant <code class="language-plaintext highlighter-rouge">order_id</code>s, there are also several <code class="language-plaintext highlighter-rouge">order_id</code>s that appear in <code class="language-plaintext highlighter-rouge">Orders</code> but do not appear in <code class="language-plaintext highlighter-rouge">Order Items</code>. If left unaddressed, this would create discrepancies in analysis between <code class="language-plaintext highlighter-rouge">Orders_Final</code> and <code class="language-plaintext highlighter-rouge">Order_Items_Final</code>. During my initial data cleaning and analysis, I identified a list of these missing <code class="language-plaintext highlighter-rouge">order_id</code>s, primarily due to certain <code class="language-plaintext highlighter-rouge">order_id</code>s having a status of “unavailable” or “canceled,” with a few others under different statuses.</p>
+
+<p>I downloaded this list as a .CSV file and imported it into Google BigQuery to filter <code class="language-plaintext highlighter-rouge">Orders_Final</code> and <code class="language-plaintext highlighter-rouge">Order_Items_Final</code> and ensure no missing <code class="language-plaintext highlighter-rouge">order_id</code>s remained. However, after an increase in verified <code class="language-plaintext highlighter-rouge">customer_id</code>s, I realized I needed to recalculate the missing orders to maintain data consistency.</p>
+
+<details>
+<summary>🔍 <b><i>Expand to View Details on the Creation of Recalculated_Missing_Orders</i></b></summary>
+<br />
+
+<h3>Step 1: Calculate Missing `order_id`s by Status</h3>
+
+<p>First, I needed to find out how many missing `order_id`s there were along with a breakdown per status.</p>
+
+<details>
+<summary>📂<b><i>Query to Find Missing order_ids by their status</i></b></summary>
+
+<pre><code class="language-sql">
+  /*
+    This query creates a temporary table (MissingOrderIDs) to calculate the count of missing order_ids for each order_status.
+    It then selects the order_status and total_missing_order_ids from the temp table and adds a "Total" row,
+    which sums up total_missing_order_ids across all statuses using a UNION ALL statement.
+  */
+  
+  
+  WITH MissingOrderIDs AS (
+      SELECT 
+          o.order_status,
+          COUNT(o.order_id) AS total_missing_order_ids
+      FROM iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Orders_Final o
+      LEFT JOIN iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Order_Items_Final oi ON o.order_id = oi.order_id
+      WHERE oi.order_id IS NULL
+      GROUP BY o.order_status
+  )
+  
+  SELECT 
+    order_status, 
+    total_missing_order_ids
+  FROM 
+    MissingOrderIDs
+  
+  UNION ALL
+  
+  SELECT 
+    'Total' AS order_status, SUM(total_missing_order_ids) AS total_missing_order_ids
+  FROM 
+    MissingOrderIDs;
+</code></pre>   
+
+</details>
+<br />
+
+<h4>Supporting Table:</h4>
+
+<details>
+<summary>📋 <b>Table 1: Missing `order_id`s by Status</b></summary>
+    
+
+    
+  ![Table of `order_status` and accompanying `total_missing_order_ids`](./assets/images/Table%201%20-%20Missing%20order%20id%20by%20status.png)
+
+
+- As you can see, there are 733 total missing `order_id`s now, the majority of which contain the status `unavailable`.
+    
+</details>
+
+
+<h3>Step 2: Verify Total Missing `order_id`s</h3>
+
+<p>To confirm that this total was accurate, I compared the distinct order_id counts between `Orders_Final` and `Order_Items_Final`:</p>
+
+<details>
+<summary>📂<b><i>Query to Verify Number of Missing ids</i></b></summary>
+    
+<pre><code class="language-sql">
+/* 
+  This query finds the distinct number of order_ids from Orders_Final and Order_Items_Final to confirm the number of 
+  missing order_ids
+*/
+
+SELECT 
+    (SELECT COUNT(DISTINCT order_id) FROM iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Orders_Final) AS distinct_order_ids_orders,
+    (SELECT COUNT(DISTINCT order_id) FROM iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Order_Items_Final) AS distinct_order_ids_order_items;
+
+</code></pre>
+    
+</details>
+
+
+<details>
+<summary>📋<b><i>Table 2: Distinct order_id Counts in Orders_Final and Order_Items_Final</i></b></summary>    
+
+[Table of distinct `order_id` counts for each table](/assets/images/Table%202%20-%20Distinct%20order%20id%20counts%20in%20order%20tables.png)
+
+
+  - Subtracting the two totals confirms the 733 number that was calculated before.
+ 
+
+</details>
+
+- *Note: The [`Orders_Final`](Orders_Final/steps.md) and [`Order_Items_Final`](Order_Items_Final/steps.md) creation steps can be found in their respective steps.md files.*
+
+
+
+<h3>Step 3: Created `Recalculated_Missing_Orders` Table</h3>
+
+<p>To isolate the actual missing order_ids, I created a table called `Recalculated_Missing_Orders`:</p>
+
+<details>
+<summary>📂<b><i>Query to create Recalculated_Missing_Orders</i></b></summary>
+
+<pre><code class="language-sql">
+/*
+  This query creates a new table, Recalculated_Missing_Orders, containing order_ids that appear in Orders_Final
+  but are missing in Order_Items_Final. The LEFT JOIN includes all order_ids from Orders_Final, and the WHERE clause
+  filters specifically for those missing in Order_Items_Final (where oi.order_id is NULL).
+*/
+
+CREATE TABLE 
+  iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Recalculated_Missing_Orders AS
+SELECT 
+  o.order_id, o.order_status
+FROM 
+  iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Orders_Final o
+LEFT JOIN 
+  iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Order_Items_Final oi 
+ON 
+  o.order_id = oi.order_id
+WHERE 
+  oi.order_id IS NULL;
+</code></pre>
+    
+</details>
+
+
+
+<h3>Step 4: Verify Equal Distinct `order_id`s
+
+<p>After creating the final versions of `Orders_Final` and `Order_Items_Final`, I wanted to ensure that all missing or discrepant `order_id`s were properly excluded and that the number of distinct `order_id`s matched between the `Orders_Final` and `Order_Items_Final` tables.</p>
+
+<details>
+<summary>📂<b><i>Query to Verify Successful Removal of Missing ids</i></b></summary>
+    
+<pre><code class="language-sql">
+SELECT 
+    (SELECT COUNT(DISTINCT order_id) FROM iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Orders_Final) AS distinct_order_ids_orders,
+    (SELECT COUNT(DISTINCT order_id) FROM iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Order_Items_Final) AS distinct_order_ids_order_items;
+</code></pre>
+    
+</details>
+
+<details>
+<summary>📋<b><i>Table 3: Equal Distinct order_id Counts between Orders_Final and Order_Items_Final</i></b></summary>
+
+![Table of distinct `order_id` counts for each table](https://github.com/user-attachments/assets/04c9e3ae-2da2-4d38-bd3f-8121f5fc2453)
+
+
+- When the query confirmed equal counts for both tables, I knew the cleaning steps had been effective.    
+
+</details>
+
+
+
+
+*Note: One `order_id` was also missing in the `Payments_Final` table. The steps taken to identify and resolve this discrepancy are detailed in [Payments_Final steps.md](./Payments_Final/steps.md).*
+
+&lt;/details&gt;
+
+---
+
+## Conclusion
+
+By recalculating missing and discrepant `order_id`s, I refined the consistency between `Orders_Final`, `Order_Items_Final`, and `Payments_Final`, ensuring that all relevant `order_id`s were accounted for. Initially, missing `order_id`s posed a risk of revenue discrepancies, particularly for orders with "unavailable" or "canceled" statuses. After identifying and excluding these, I verified the updated total of **769 missing `order_id`s**.
+
+In addition to addressing missing `order_id`s, I resolved discrepancies in payment values between `Order_Items_Final` and `Payments_Final`. These discrepancies arose from mismatches between calculated payment values (`price` + `freight_value`) in `Order_Items_Final` and the entered values in `Payments_Final`. 
+
+To ensure accurate revenue analysis:
+1. I excluded `order_id`s with discrepancies of at least a penny.
+2. I removed the `payment_type` and `payment_installments` columns from `Payments_Final`, eliminating unnecessary duplicates caused by these fields.
+3. I reinserted a missing `order_id`, as detailed in the steps documented in [Payments_Final steps.md](./Payments_Final/steps.md).
+
+These changes resulted in a cleaner and more consistent `Payments_Final` table that aligns with `Order_Items_Final` and `Orders_Final`.
+
+This recalculation process—addressing both missing and discrepant `order_id`s—strengthened data integrity and minimized revenue discrepancies. The removal of these `order_id`s, as documented in the `Recalculated_Missing_Orders` and `Recalculated_Discrepant_Orders` tables, provides a solid foundation for downstream analysis. Key metrics, such as total revenue and profitability across product categories and customer regions, are now more reliable, ensuring meaningful and accurate insights.
+
+
+
+
+---
+</h3></details>
+:ET

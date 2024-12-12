@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard 2</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Highlight.js Theme -->
+    <link rel="stylesheet" href="/assets/css/solarized-light.min.css">
+
+    <!-- Font Awesome Icon Library-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    
+    <!-- Highlight.js Core and Language Support -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/sql.min.js"></script>
+    
+    <!-- Custom DAX Language Registration -->
+    <script src="/assets/js/dax.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            hljs.registerLanguage("dax", dax); // Register the custom DAX grammar
+            hljs.highlightAll(); // Initialize Highlight.js
+        });
+    </script>
+    
+    <!-- Scroll Detection -->
+    <script src="/assets/js/scroll-detection.js"></script>
+    
+    <!-- Expand Selected Section-->
+    <script src="/assets/js/expand-section.js"></script>
+
+
+
+
+
+
+
+
+</head>
+<body>
+    <!-- Sticky Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="/data-cleaning/index.md/">Data Cleaning Part One</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/data-cleaning-part-two/">Data Cleaning Part Two</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/EDA/">Exploratory Data Analysis</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/revenue-analysis/">Revenue Analysis</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+       
+    <header class="breadcrumbs-wrapper">
+        <nav class="breadcrumbs-trail" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            
+            
+            
+            
+            
+            <li class="breadcrumb-item">
+              <a href="/EDA">EDA</a>
+            </li>
+            
+            
+            
+            
+            <li class="breadcrumb-item">
+              <a href="/EDA/Dashboard-2-State-Performance-by-Category">Dashboard 2 State Performance by Category</a>
+            </li>
+            
+            
+            
+            
+            <li class="breadcrumb-item active" aria-current="page">index.html</li>
+            
+            
+          </ol>
+        </nav>
+      </header>
+      
+      
+    
+
+
+
+
+    <!-- Header Section -->
+    <header class="custom-header">
+        <h1>Target E-Commerce Revenue Analysis</h1>
+    </header>
+      
+    <!-- Main Content -->
+    <main class="container my-4">
+        <div style="text-align: center;">
+<h1>Dashboard 2: State and Product Performance Analysis</h1>
+</div>
+
+<div style="text-align: center">
+  <img
+    src="./Screenshots/Full_Dashboard.png"
+    alt="Dashboard 2 Full View"
+    width="800"
+  />
+</div>
+
+<h2>Purpose</h2>
+<p>
+  This dashboard provides a comprehensive analysis of state and product performance
+  across selected metrics and filters. It enables users to uncover key trends
+  by dynamically filtering data and visualizing insights for revenue and product counts.
+</p>
+
+<div class="hr-wrapper">
+  <hr class="title"/>
+</div>
+
+<h2>Key Insights</h2>
+
+<h3>General Observations</h3>
+<ul>
+  <li>
+    <strong>Observation 1:</strong> São Paulo consistently leads in both revenue (37.33%) and product count (41.98%).
+  </li>
+  <li>
+    <strong>Observation 2:</strong>  Rio de Janeiro consistently generates the second-highest revenue across most categories, 
+    with the exception of <code>Health & Beauty</code>, where Minas Gerais ranks second. 
+  </li>
+</ul>
+
+<h3>Drillthrough Details</h3>
+<ul>
+  <li>
+    <strong>Category-specific insights:</strong> Filtering by state allows users to explore product category performance for specific regions.
+  </li>
+</ul>
+
+<div class="hr-wrapper">
+  <hr />
+</div>
+
+<h2>Dashboard Features and Sections</h2>
+
+<h3>Filters and Selections</h3>
+<p>
+  <strong>Purpose:</strong> Enables users to dynamically filter the data by year, product categories, and selected metrics.<br />
+  <strong>Features:</strong>
+  <ul>
+    <li>
+      <strong>Time Slicer:</strong> Allows filtering by year, quarter, and month.
+    </li>
+    <li>
+      <strong>Product Category Slicer:</strong> Enables users to select specific categories. Titles of the visualizations and data dynamically update based on the selection.
+    </li>
+    <li>
+      <strong>Selected Metric Slicer:</strong>
+      <ul>
+        <li>
+          This slicer allows users to toggle between metrics (Percentage of Revenue or Percentage of Products). It updates all three visualizations dynamically to reflect the selected metric.
+        </li>
+        <li>
+          To learn more about the <code>Selected Metric</code> measure, <a href="../DAX-measures/dynamic-measures#selected-metric">click here</a>.
+        </li>
+      </ul>
+    </li>
+  </ul>
+</p>
+
+<details class="image-details">
+  <summary>Screenshots</summary>
+  <div style="text-align: center;">
+    <div style="display: inline-block; margin: 0 10px;">
+      <img src="./Screenshots/Time_Slicer.png" alt="Time Slicer Screenshot" width="200" />
+      <p><strong>Time Slicer</strong></p>
+    </div>
+    <div style="display: inline-block; margin: 0 10px;">
+      <img src="./Screenshots/Product_Category_Slicer.png" alt="Category Slicer Screenshot" width="300" />
+      <p><strong>Product Category Slicer</strong></p>
+    </div>
+    <div style="display: inline-block; margin: 0 10px;">
+      <img src="./Screenshots/Selected_Metric_Toggle.png" alt="Selected Metric Slicer Screenshot" width="400" />
+      <p><strong>Selected Metric Slicer</strong></p>
+    </div>
+  </div>
+</details>
+
+<div class="hr-wrapper">
+  <hr />
+</div>
+
+<h3>Key Performance Indicators</h3>
+<p>
+  <strong>Purpose:</strong> Provides insights into the percentage metrics for revenue and product count based on applied filters.<br />
+  <strong>Functionality:</strong>
+  <ul>
+    <li>
+      <strong>Revenue %:</strong> Displays the percentage contribution of the selected dataset to the total revenue.
+    </li>
+    <li>
+      <strong>Product %:</strong> Displays the percentage of products within the selected dataset relative to the entire dataset.
+    </li>
+  </ul>
+  <strong>Key Insights:</strong>
+  <ul>
+    <li>
+      In its unfiltered state, the KPI cards provide overall metrics for the dataset.
+    </li>
+    <li>
+      Filters enable granular analysis, highlighting relative contributions of specific selections.
+    </li>
+  </ul>
+</p>
+
+<details class="image-details">
+  <summary>Screenshots</summary>
+  <div style="text-align: center">
+    <div style="display: inline-block; margin: 0 10px;">
+      <img
+        src="./Screenshots/Revenue_Percentage_KPI_Card.png" width="300"
+      />
+      <p><strong>Revenue Percentage KPI Card</strong></p>
+    </div>
+    <div style="display: inline-block; margin: 0 10px;">
+      <img src="./Screenshots/Product_Count_Percentage_KPI_Card.png" width="300">
+      <p><strong>Product Count Percentage KPI Card</strong></p>
+    </div>
+  </div>
+</details>
+
+<div class="hr-wrapper">
+  <hr />
+</div>
+
+<h3>Visualizations</h3>
+
+<h4>1. State Performance Bar Chart</h4>
+<p>
+  <strong>Purpose:</strong> Displays the performance of each state based on the selected metric and product category.<br />
+  <strong>Key Insight:</strong> São Paulo leads in both revenue (37.33%) and product count (41.98%).<br />
+  <strong>Features:</strong>
+  <ul>
+    <li>Dynamically updates based on metric toggles and product category selections.</li>
+    <li>Includes a callout highlighting the top-performing state.</li>
+  </ul>
+</p>
+
+<details class="image-details">
+  <summary>Screenshots</summary>
+  <div style="text-align: center">
+    <img
+      src="./Screenshots/State_Performance_Bar_Chart.png" width="600"
+    />
+    <p><strong>State Performance Bar Chart</strong></p>
+  </div>
+</details>
+
+<h4>2. Product Category Performance Heatmap</h4>
+<p>
+  <strong>Purpose:</strong> Provides a tabular view of product category performance across the selected metric and state filters.<br />
+  <strong>Features:</strong>
+  <ul>
+    <li>Updates dynamically based on selected metrics, categories, and state filters.</li>
+    <li>Highlights top-performing product categories for selected states.</li>
+  </ul>
+</p>
+
+<details class="image-details">
+  <summary>Screenshots</summary>
+  <div style="text-align: center">
+    <img
+      src="./Screenshots/Category_Performance.png" width="600"
+    />
+    <p><strong>Product Category Performance Heatmap</strong></p>
+  </div>
+</details>
+
+<h4>3. State Performance Heatmap</h4>
+<p>
+  <strong>Purpose:</strong> Displays state performance in a tabular format, offering an alternative view to the bar chart.<br />
+  <strong>Features:</strong>
+  <ul>
+    <li>Dynamically updates based on selected metrics.</li>
+    <li>State columns are clickable, enabling interactive filtering.</li>
+  </ul>
+</p>
+
+<details class="image-details">
+  <summary>Screenshots</summary>
+  <div style="text-align: center">
+    <img
+      src="./Screenshots/State_Performance_Heatmap.png" width="600"
+    />
+    <p><strong>State Performance Heatmap</strong></p>
+  </div>
+</details>
+
+<div class="hr-wrapper">
+  <hr />
+</div>
+
+<h2>Insights in Action</h2>
+<ul>
+  <li>
+    <strong>State Performance Optimization:</strong> Focus resources on high-performing states like São Paulo to maximize revenue potential.
+  </li>
+  <li>
+    <strong>Product Strategy:</strong> Leverage category insights to refine inventory and marketing strategies for top-performing states.
+  </li>
+  <li>
+    <strong>Metric Comparisons:</strong> Use metric toggles to identify discrepancies between revenue and product contributions.
+  </li>
+</ul>
+
+<div class="hr-wrapper">
+    <hr />
+  </div>
+
+<h3>Measures Used</h3>
+<p>
+  This section provides an overview of the key measures used in this dashboard. For a look at all measures used across my analysis, refer to the <a href="../DAX-measures">DAX Measures Document</a>. Otherwise, use the links below to navigate to the respective measure.
+</p>
+<ul>
+  <li>
+    <strong>Percentage of Revenue:</strong> The percentage of total revenue generated by the current selection.
+    <a href="../DAX-measures/revenue-measures#product-revenue-percent">Learn more</a>.
+  </li>
+  <li>
+    <strong>Percentage of Total Products:</strong> The percentage of total products within the current selection.
+    <a href="../DAX-measures/product-measures#product-count-percent">Learn more</a>.
+  </li>
+</ul>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center text-muted py-3">
+        &copy; 2024 Miles Davidson. All rights reserved.<br>
+        Dataset used in this project is provided by <a href="https://www.kaggle.com/devarajv88" target="_blank">Devaraj V</a> on <a href="https://www.kaggle.com/" target="_blank">Kaggle</a>.<br>
+        This project is for educational and portfolio purposes only.
+    </footer>
+
+
+<script>
+    // Dynamically add a "Copy" button to each <pre><code> block
+    document.querySelectorAll("pre").forEach((pre) => {
+        // Create the copy button container
+        const button = document.createElement("button");
+        button.className = "copy-button";
+        button.onclick = () => copyCode(pre);
+
+        // Add the icon inside the button
+        const icon = document.createElement("i");
+        icon.className = "copy-icon";
+        button.appendChild(icon);
+
+        // Position the button inside the code block
+        pre.style.position = "relative"; // Ensure the button is positioned correctly
+        pre.appendChild(button);
+    });
+
+    // Function to handle copying code
+    function copyCode(pre) {
+        const codeBlock = pre.querySelector("code");
+        if (!codeBlock) return;
+
+        // Copy the code content
+        navigator.clipboard.writeText(codeBlock.textContent).then(() => {
+            // Change the icon to indicate success temporarily
+            const icon = pre.querySelector(".copy-icon");
+            icon.classList.add("copied");
+            setTimeout(() => icon.classList.remove("copied"), 2000);
+        }).catch((err) => {
+            console.error("Failed to copy: ", err);
+        });
+    }
+</script>
+
+
+
+
+</body>
+</html>

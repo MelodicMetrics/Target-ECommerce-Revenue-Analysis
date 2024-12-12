@@ -1,75 +1,103 @@
-# Steps to Create Products_Final
+---
+layout: default
+title: Products Final Steps
+---
 
-### Step 1: Identify Issues with `product_category`
+<h1>Steps to Create Products_Final</h1>
 
-Realizing the numerous issues with category naming conventions in the `Products` table, I wrote a SQL query to extract all distinct `product_category` names for review:
+<h3>Step 1: Identify Issues with <code>product_category</code></h3>
 
-<details>
-<summary>📂<b><i>Query to Select all Distinct Product Category Names</i></b></summary>
+<p>
+  Realizing the numerous issues with category naming conventions in the <code>Products</code> table, I wrote a SQL query to extract all distinct <code>product_category</code> names for review:
+</p>
 
-```sql
+<details class="code-details">
+  <summary>📂<b><i>Query to Select all Distinct Product Category Names</i></b></summary>
+
+  <!-- prettier-ignore -->
+  <pre><code class="language-sql">
 SELECT DISTINCT
   product_category
 FROM
   iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Products
 ORDER BY
   product_category
-```  
-
-- This gave me 74 different `product_category` names.
-
+  </code></pre>
 </details>
 
-### Step 2: Generate and Review Cleaned Names
+<p>- This gave me 74 different <code>product_category</code> names.</p>
 
-- I imported the extracted list into Excel and used ChatGPT to generate an initial list of cleaned category names based on the original values.
-- The cleaned names were reviewed and adjusted manually to ensure accuracy and relevance to the dataset.
-  - **Example Adjustments**:
-      - `"CITTE AND UPHACK FURNITURE"` → `"Miscellaneous Furniture"`
-      - `"Electrices 2"` →  `"Electrical Products"`
-- The finalized list of original and standardized names were saved as a `.csv` file and uploaded to Google BigQuery as `Product_Category_Mappings`. The `.csv` file can be [downloaded here](https://github.com/user-attachments/files/17782746/Product_Category_mappings.csv)
+<h3>Step 2: Generate and Review Cleaned Names</h3>
 
+<ul>
+  <li>I imported the extracted list into Excel and used ChatGPT to generate an initial list of cleaned category names based on the original values.</li>
+  <li>The cleaned names were reviewed and adjusted manually to ensure accuracy and relevance to the dataset.</li>
+  <ul>
+    <li><strong>Example Adjustments</strong>:
+      <ul>
+        <li><code>"CITTE AND UPHACK FURNITURE"</code> → <code>"Miscellaneous Furniture"</code></li>
+        <li><code>"Electrices 2"</code> → <code>"Electrical Products"</code></li>
+      </ul>
+    </li>
+  </ul>
+  <li>The finalized list of original and standardized names was saved as a <code>.csv</code> file and uploaded to Google BigQuery as <code>Product_Category_Mappings</code>. The <code>.csv</code> file can be <a href="https://github.com/user-attachments/files/17782746/Product_Category_mappings.csv">downloaded here</a>.</li>
+</ul>
 
-### Step 3: Create `Products_Final`
+<h3>Step 3: Create Products_Final</h3>
 
-With the `Product_Category_Mappings` table in place, I created the `Products_Final` table by joining `Products` with `Product_Category_Mappings` using a `LEFT JOIN` and handling any missing product_category values with `COALESCE`.
+<p>
+  With the <code>Product_Category_Mappings</code> table in place, I created the <code>Products_Final</code> table by joining <code>Products</code> with <code>Product_Category_Mappings</code> using a <code>LEFT JOIN</code> and handling any missing <code>product_category</code> values with <code>COALESCE</code>.
+</p>
 
-<details>
-<summary>📂<b><i>Query to Create Products_Final</i></b></summary>
+<details class="code-details">
+  <summary>📂<b><i>Query to Create Products_Final</i></b></summary>
 
-```sql
-/* This query was to clean the Products table. The category names had numerous issues such as 
-    inconsistent case, translation inconsistency, as well as confusing category naming. I did the following steps
-        1. I created a .csv file with standardized category names. NOTE: In the case of "Miscellaneous Furniture"
-        and "Electrical Products" the original names were unusual and are corrected as best guesses. Their original names were "Citte and Uphack Furniture"
-        and "Electrices 2" respectively. 
-        2. I uploaded the table to BigQuery and joined it with the Products table. The COALESCE function is there to handle any "null" values in product_category
-        Where there are any nulls, they are referred to as "Uncategorizd".
+  <!-- prettier-ignore -->
+  <pre><code class="language-sql">
+/* 
+  This query was to clean the Products table. The category names had numerous issues such as 
+  inconsistent case, translation inconsistency, as well as confusing category naming. I did the following steps:
+  1. I created a .csv file with standardized category names. NOTE: In the case of "Miscellaneous Furniture"
+     and "Electrical Products" the original names were unusual and are corrected as best guesses. Their original names were "Citte and Uphack Furniture"
+     and "Electrices 2" respectively. 
+  2. I uploaded the table to BigQuery and joined it with the Products table. The COALESCE function is there to handle any "null" values in product_category.
+     Where there are any nulls, they are referred to as "Uncategorized".
 */
 CREATE OR REPLACE TABLE `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Products_Final` AS
 SELECT 
     p.product_id,
-    COALESCE(m.product_category_cleaned, 'Uncategorized') AS product_category,   
+    COALESCE(m.product_category_cleaned, 'Uncategorized') AS product_category
 FROM 
     `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Products` AS p
 LEFT JOIN 
     `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Product_Category_Mappings` AS m
 ON 
     p.product_category = m.product_category
-```  
-
-#### Importance of `LEFT JOIN` and `COALESCE`
-- **`LEFT JOIN`**:
-  - Ensures that all `product_ids` from `Products` appear in `Products_Final`, even if no matching `product_category` exists in the mapping table.
-  - This accounts for `product_ids` in the `Products` table with `NULL` values for `product_category`.
-- **`COALESCE`**:
-  - Replaces any `NULL` values in product_category with `"Uncategorized"`.
-  - Ensures that every `product_id` in `Products_Final` has an associated `product_category`.
-
+  </code></pre>
 </details>
- 
-### Final Outcome
-The resulting `Products_Final` table:
-- Standardizes all product_category names based on the `Product_Category_Mappings` table.
-- Accounts for missing categories by assigning them the default value `"Uncategorized"`.
-- Maintains all product_ids from the original `Products` table, ensuring data completeness.
+
+<h4>Importance of <code>LEFT JOIN</code> and <code>COALESCE</code></h4>
+<ul>
+  <li><strong><code>LEFT JOIN</code>:</strong>
+    <ul>
+      <li>Ensures that all <code>product_ids</code> from <code>Products</code> appear in <code>Products_Final</code>, even if no matching <code>product_category</code> exists in the mapping table.</li>
+      <li>This accounts for <code>product_ids</code> in the <code>Products</code> table with <code>NULL</code> values for <code>product_category</code>.</li>
+    </ul>
+  </li>
+  <li><strong><code>COALESCE</code>:</strong>
+    <ul>
+      <li>Replaces any <code>NULL</code> values in <code>product_category</code> with <code>"Uncategorized"</code>.</li>
+      <li>Ensures that every <code>product_id</code> in <code>Products_Final</code> has an associated <code>product_category</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3>Final Outcome</h3>
+<p>
+  The resulting <code>Products_Final</code> table:
+</p>
+<ul>
+  <li>Standardizes all <code>product_category</code> names based on the <code>Product_Category_Mappings</code> table.</li>
+  <li>Accounts for missing categories by assigning them the default value <code>"Uncategorized"</code>.</li>
+  <li>Maintains all <code>product_ids</code> from the original <code>Products</code> table, ensuring data completeness.</li>
+</ul>

@@ -1,0 +1,242 @@
+---
+layout: default
+title: Dashboard 2
+---
+
+<div style="text-align: center;">
+<h1>Dashboard 2: State and Product Performance Analysis</h1>
+</div>
+
+<div style="text-align: center">
+  <img
+    src="./Screenshots/Full_Dashboard.png"
+    alt="Dashboard 2 Full View"
+    width="800"
+  />
+</div>
+
+<h2>Purpose</h2>
+<p>
+  This dashboard provides a comprehensive analysis of state and product performance
+  across selected metrics and filters. It enables users to uncover key trends
+  by dynamically filtering data and visualizing insights for revenue and product counts.
+</p>
+
+<div class="hr-wrapper">
+  <hr class="title"/>
+</div>
+
+<h2>Key Insights</h2>
+
+<h3>General Observations</h3>
+<ul>
+  <li>
+    <strong>Observation 1:</strong> São Paulo consistently leads in both revenue (37.33%) and product count (41.98%).
+  </li>
+  <li>
+    <strong>Observation 2:</strong>  Rio de Janeiro consistently generates the second-highest revenue across most categories, 
+    with the exception of <code>Health & Beauty</code>, where Minas Gerais ranks second. 
+  </li>
+</ul>
+
+<h3>Drillthrough Details</h3>
+<ul>
+  <li>
+    <strong>Category-specific insights:</strong> Filtering by state allows users to explore product category performance for specific regions.
+  </li>
+</ul>
+
+<div class="hr-wrapper">
+  <hr />
+</div>
+
+<h2>Dashboard Features and Sections</h2>
+
+<h3>Filters and Selections</h3>
+<p>
+  <strong>Purpose:</strong> Enables users to dynamically filter the data by year, product categories, and selected metrics.<br />
+  <strong>Features:</strong>
+  <ul>
+    <li>
+      <strong>Time Slicer:</strong> Allows filtering by year, quarter, and month.
+    </li>
+    <li>
+      <strong>Product Category Slicer:</strong> Enables users to select specific categories. Titles of the visualizations and data dynamically update based on the selection.
+    </li>
+    <li>
+      <strong>Selected Metric Slicer:</strong>
+      <ul>
+        <li>
+          This slicer allows users to toggle between metrics (Percentage of Revenue or Percentage of Products). It updates all three visualizations dynamically to reflect the selected metric.
+        </li>
+        <li>
+          To learn more about the <code>Selected Metric</code> measure, <a href="../DAX-measures/dynamic-measures#selected-metric">click here</a>.
+        </li>
+      </ul>
+    </li>
+  </ul>
+</p>
+
+<details class="image-details">
+  <summary>Screenshots</summary>
+  <div style="text-align: center;">
+    <div style="display: inline-block; margin: 0 10px;">
+      <img src="./Screenshots/Time_Slicer.png" alt="Time Slicer Screenshot" width="200" />
+      <p><strong>Time Slicer</strong></p>
+    </div>
+    <div style="display: inline-block; margin: 0 10px;">
+      <img src="./Screenshots/Product_Category_Slicer.png" alt="Category Slicer Screenshot" width="300" />
+      <p><strong>Product Category Slicer</strong></p>
+    </div>
+    <div style="display: inline-block; margin: 0 10px;">
+      <img src="./Screenshots/Selected_Metric_Toggle.png" alt="Selected Metric Slicer Screenshot" width="400" />
+      <p><strong>Selected Metric Slicer</strong></p>
+    </div>
+  </div>
+</details>
+
+<div class="hr-wrapper">
+  <hr />
+</div>
+
+<h3>Key Performance Indicators</h3>
+<p>
+  <strong>Purpose:</strong> Provides insights into the percentage metrics for revenue and product count based on applied filters.<br />
+  <strong>Functionality:</strong>
+  <ul>
+    <li>
+      <strong>Revenue %:</strong> Displays the percentage contribution of the selected dataset to the total revenue.
+    </li>
+    <li>
+      <strong>Product %:</strong> Displays the percentage of products within the selected dataset relative to the entire dataset.
+    </li>
+  </ul>
+  <strong>Key Insights:</strong>
+  <ul>
+    <li>
+      In its unfiltered state, the KPI cards provide overall metrics for the dataset.
+    </li>
+    <li>
+      Filters enable granular analysis, highlighting relative contributions of specific selections.
+    </li>
+  </ul>
+</p>
+
+<details class="image-details">
+  <summary>Screenshots</summary>
+  <div style="text-align: center">
+    <div style="display: inline-block; margin: 0 10px;">
+      <img
+        src="./Screenshots/Revenue_Percentage_KPI_Card.png" width="300"
+      />
+      <p><strong>Revenue Percentage KPI Card</strong></p>
+    </div>
+    <div style="display: inline-block; margin: 0 10px;">
+      <img src="./Screenshots/Product_Count_Percentage_KPI_Card.png" width="300">
+      <p><strong>Product Count Percentage KPI Card</strong></p>
+    </div>
+  </div>
+</details>
+
+<div class="hr-wrapper">
+  <hr />
+</div>
+
+<h3>Visualizations</h3>
+
+<h4>1. State Performance Bar Chart</h4>
+<p>
+  <strong>Purpose:</strong> Displays the performance of each state based on the selected metric and product category.<br />
+  <strong>Key Insight:</strong> São Paulo leads in both revenue (37.33%) and product count (41.98%).<br />
+  <strong>Features:</strong>
+  <ul>
+    <li>Dynamically updates based on metric toggles and product category selections.</li>
+    <li>Includes a callout highlighting the top-performing state.</li>
+  </ul>
+</p>
+
+<details class="image-details">
+  <summary>Screenshots</summary>
+  <div style="text-align: center">
+    <img
+      src="./Screenshots/State_Performance_Bar_Chart.png" width="600"
+    />
+    <p><strong>State Performance Bar Chart</strong></p>
+  </div>
+</details>
+
+<h4>2. Product Category Performance Heatmap</h4>
+<p>
+  <strong>Purpose:</strong> Provides a tabular view of product category performance across the selected metric and state filters.<br />
+  <strong>Features:</strong>
+  <ul>
+    <li>Updates dynamically based on selected metrics, categories, and state filters.</li>
+    <li>Highlights top-performing product categories for selected states.</li>
+  </ul>
+</p>
+
+<details class="image-details">
+  <summary>Screenshots</summary>
+  <div style="text-align: center">
+    <img
+      src="./Screenshots/Category_Performance.png" width="600"
+    />
+    <p><strong>Product Category Performance Heatmap</strong></p>
+  </div>
+</details>
+
+<h4>3. State Performance Heatmap</h4>
+<p>
+  <strong>Purpose:</strong> Displays state performance in a tabular format, offering an alternative view to the bar chart.<br />
+  <strong>Features:</strong>
+  <ul>
+    <li>Dynamically updates based on selected metrics.</li>
+    <li>State columns are clickable, enabling interactive filtering.</li>
+  </ul>
+</p>
+
+<details class="image-details">
+  <summary>Screenshots</summary>
+  <div style="text-align: center">
+    <img
+      src="./Screenshots/State_Performance_Heatmap.png" width="600"
+    />
+    <p><strong>State Performance Heatmap</strong></p>
+  </div>
+</details>
+
+<div class="hr-wrapper">
+  <hr />
+</div>
+
+<h2>Insights in Action</h2>
+<ul>
+  <li>
+    <strong>State Performance Optimization:</strong> Focus resources on high-performing states like São Paulo to maximize revenue potential.
+  </li>
+  <li>
+    <strong>Product Strategy:</strong> Leverage category insights to refine inventory and marketing strategies for top-performing states.
+  </li>
+  <li>
+    <strong>Metric Comparisons:</strong> Use metric toggles to identify discrepancies between revenue and product contributions.
+  </li>
+</ul>
+
+<div class="hr-wrapper">
+    <hr />
+  </div>
+
+<h3>Measures Used</h3>
+<p>
+  This section provides an overview of the key measures used in this dashboard. For a look at all measures used across my analysis, refer to the <a href="../DAX-measures">DAX Measures Document</a>. Otherwise, use the links below to navigate to the respective measure.
+</p>
+<ul>
+  <li>
+    <strong>Percentage of Revenue:</strong> The percentage of total revenue generated by the current selection.
+    <a href="../DAX-measures/revenue-measures#product-revenue-percent">Learn more</a>.
+  </li>
+  <li>
+    <strong>Percentage of Total Products:</strong> The percentage of total products within the current selection.
+    <a href="../DAX-measures/product-measures#product-count-percent">Learn more</a>.
+  </li>
+</ul>

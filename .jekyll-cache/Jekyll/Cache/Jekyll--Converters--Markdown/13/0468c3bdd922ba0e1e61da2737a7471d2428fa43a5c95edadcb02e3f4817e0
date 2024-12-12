@@ -1,0 +1,21 @@
+I"
+<h1 id="overview-of-order-item-changes">Overview of Order Item Changes</h1>
+
+<p>In my initial analysis, I considered using a <code class="language-plaintext highlighter-rouge">JOIN</code> with the <code class="language-plaintext highlighter-rouge">Sellers_Final</code> table on <code class="language-plaintext highlighter-rouge">seller_id</code>. However, since I was no longer filtering <code class="language-plaintext highlighter-rouge">Sellers_Final</code> by the <code class="language-plaintext highlighter-rouge">IBGE_City_State_Source_of_Truth</code>, this approach would have introduced all <code class="language-plaintext highlighter-rouge">order_ids</code> linked to those unfiltered <code class="language-plaintext highlighter-rouge">seller_ids</code> — regardless of whether the orders were made by customers from valid city-state combinations.</p>
+
+<p>Instead, I opted to use a <code class="language-plaintext highlighter-rouge">JOIN</code> with <code class="language-plaintext highlighter-rouge">Orders_Final</code>, which ensured that only <code class="language-plaintext highlighter-rouge">order_ids</code> and <code class="language-plaintext highlighter-rouge">seller_ids</code> associated with filtered <code class="language-plaintext highlighter-rouge">customer_ids</code> appeared in the <code class="language-plaintext highlighter-rouge">Order_Items_Final</code> table. An additional benefit of this approach was that I no longer needed to include filter logic for either missing or discrepant <code class="language-plaintext highlighter-rouge">order_ids</code>:</p>
+
+<ul>
+  <li>
+    <p><strong>Recalculated Missing Orders</strong>:<br />
+These <code class="language-plaintext highlighter-rouge">order_ids</code> were inherently excluded, as they were already absent from the <code class="language-plaintext highlighter-rouge">Order Items</code> table in the initial dataset.</p>
+  </li>
+  <li>
+    <p><strong>Recalculated Discrepant Orders</strong>:<br />
+These <code class="language-plaintext highlighter-rouge">order_ids</code> were automatically excluded, as <code class="language-plaintext highlighter-rouge">Order_Items_Final</code> was created by joining on <code class="language-plaintext highlighter-rouge">order_id</code> from <code class="language-plaintext highlighter-rouge">Orders_Final</code>, which had already filtered out discrepant orders.</p>
+
+    <p><a href="steps">Click here</a> to read the detailed steps on the creation of <code class="language-plaintext highlighter-rouge">Order_Items_Final</code>.</p>
+  </li>
+</ul>
+
+:ET

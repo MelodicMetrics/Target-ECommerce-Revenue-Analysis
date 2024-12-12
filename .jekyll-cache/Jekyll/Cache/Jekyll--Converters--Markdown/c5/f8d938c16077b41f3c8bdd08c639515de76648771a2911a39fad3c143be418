@@ -1,0 +1,91 @@
+I"_<h1>Dynamic Measures Overview</h1>
+<p>
+  This file contains measures that enhance dashboard interactivity by allowing users to dynamically switch metrics 
+  and update visualizations in real time. These measures leverage the <code>Toggle Table</code> to streamline 
+  calculations and improve the user experience.
+</p>
+
+<h2>Selected Metric</h2>
+
+<details>
+  <summary><b>1. Toggle Table</b></summary>
+
+<ul>
+    <li>
+        This table contains a number of columns with names of various percentage measures that can be found in 
+        <code>revenue-measures.md</code> and <code>product-measures.md</code>.
+    </li>
+    
+    <li>
+    These columns are then referenced in <code>Selected Metric</code> to create dynamic switching of the displayed 
+    metric in the particular visualization.
+    </li>
+</ul>
+
+  <p>The columns named in the toggle table are the following:</p>
+  <ul>
+    <li>Percentage of Revenue</li>
+    <li>Percentage of Revenue per Bin Range</li>
+    <li>Percentage of Revenue per Category</li>
+    <li>Percentage of Total Products</li>
+    <li>Percentage of Total Products by Category and State</li>
+    <li>Total Revenue</li>
+    <li>Product Count</li>
+  </ul>
+  <img src="https://github.com/user-attachments/assets/e2126a3b-1fb7-4bcb-bd5c-fb40ef2ac6e6" alt="Table Columns in Toggle Table" />
+</details>
+
+<details>
+  <summary><b>2. Selected Metric</b></summary>
+
+  <p><strong>Purpose</strong>: In certain dashboards there is a slicer used with this measure. The slicer will dynamically calculate a metric based on the user's selection from the <code>Toggle Table</code>.</p>
+    <details>
+    <summary> 📂<b>DAX Query</b> </summary>
+  <pre><code>
+Selected Metric = 
+VAR Metrics =
+    SWITCH(
+        SELECTEDVALUE('Toggle Table'[Metric]),
+        "Percentage of Revenue", [Revenue (%)],
+        "Percentage of Revenue per Bin Range", [Revenue (%) per Bin Range],
+        "Percentage of Revenue per Category",[Revenue (%) per Category],
+        "Percentage of Total Products",[Product Count (%)],
+        "Percentage of Total Products by Category and State",[Percentage of Total Products by Category and State],
+        "Total Revenue",[Total Product Revenue],
+        "Product Count",[Product Count],
+        0 -- This is the default value for if no selection is made
+    )
+RETURN
+    IF(ISBLANK(Metrics), 0, Metrics)
+  </code></pre>
+  </details>
+
+  <h4>Key Parts of the Measure</h4>
+  <ul>
+    <li><code>SELECTEDVALUE('Toggle Table'[Metric])</code>: Retrieves the selected metric from the 'Toggle Table' slicer.</li>
+    <li><code>SWITCH</code> Function: Maps the selected metric to the corresponding measure.</li>
+    <li>Default Value (<code>0</code>): Returns <code>0</code> if no valid selection is made to prevent errors.</li>
+    <li>Error Handling: Uses <code>ISBLANK</code> to handle cases where the metric is blank.</li>
+  </ul>
+</details>
+
+<details>
+  <summary><b>3. Scatter Metric Value</b></summary>
+  <br />
+  <p><strong>Purpose</strong>: Dynamically selects the metric for the scatter chart based on the user’s slicer selection.</p>
+  <p><strong>Logic</strong>:</p>
+  <ul>
+    <li><code>"Percentage of Revenue"</code> maps to <code>[Total Product Revenue]</code>.</li>
+    <li><code>"Percentage of Total Products"</code> maps to <code>[Product Count]</code>.</li>
+  </ul>
+  <p><strong>Application</strong>: Ensures the scatter chart displays the correct metric, toggling between revenue and product count totals.</p>
+  <pre><code>
+Scatter Metric Value = 
+SWITCH(
+    SELECTEDVALUE('Toggle Table'[Metric]),
+    "Percentage of Revenue", [Total Product Revenue],
+    "Percentage of Total Products", [Product Count]
+)
+  </code></pre>
+</details>
+:ET

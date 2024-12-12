@@ -9,4 +9,4 @@ In the initial phase of data cleaning, `customer_id`s were filtered down to incl
 
 During the creation of this table, I found that the number of `customer_id`s varied based on whether `Geolocation_Final` was created using an INNER or RIGHT JOIN with `IBGE_City_State_Source_of_Truth`. This led to a deeper investigation, where I discovered discrepancies between `Customers` and `Geolocation`: six `customer_city` entries did not appear in `Geolocation` (or in `Geolocation_Unaccented`). By creating `Geolocation_Final` with a `RIGHT JOIN` to include all entries from `IBGE_City_State_Source_of_Truth`, I was able to bring back those `customer_id`s, resulting in the aforementioned total of **93,927**.
 
-[Click here](./steps.md) to read the detailed steps on the creation of `Customer_Final`.
+[Click here](steps) to read the detailed steps on the creation of `Customer_Final`.

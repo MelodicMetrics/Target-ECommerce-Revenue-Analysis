@@ -1,23 +1,41 @@
-# Overview of Products Changes
+---
+layout: default
+title: Products Final Index
+---
 
-In my initial cleaning and analysis, I identified several issues with the `product_category` column, including:
-- **Inconsistent Case**: Categories were in a mix of lowercase, uppercase, and title case (e.g., `babies`, `HEALTH BEAUTY`, `Construction Tools Garden`).
-- **Translation Inconsistencies**: Some categories were in Spanish, while others were in English (e.g., `Agro Industria e Comercio`).
-- **Confusing Naming**: Certain categories had unclear or ambiguous names, requiring best-guess corrections (e.g., `CITTE AND UPHACK FURNITURE`).
-- **Missing Categories**: Some `product_id`s in the `Products` table had no associated `product_category`, resulting in `NULL` values.
+<h1>Overview of Products Changes</h1>
 
-To address these issues, I created a standardized mapping file (`Product_Category_Mappings.csv`) and uploaded it to Google BigQuery. Using this mapping table, I applied the following steps:
+<p>
+  In my initial cleaning and analysis, I identified several issues with the <code>product_category</code> column, including:
+</p>
+<ul>
+  <li><strong>Inconsistent Case</strong>: Categories were in a mix of lowercase, uppercase, and title case (e.g., <code>babies</code>, <code>HEALTH BEAUTY</code>, <code>Construction Tools Garden</code>).</li>
+  <li><strong>Translation Inconsistencies</strong>: Some categories were in Spanish, while others were in English (e.g., <code>Agro Industria e Comercio</code>).</li>
+  <li><strong>Confusing Naming</strong>: Certain categories had unclear or ambiguous names, requiring best-guess corrections (e.g., <code>CITTE AND UPHACK FURNITURE</code>).</li>
+  <li><strong>Missing Categories</strong>: Some <code>product_id</code>s in the <code>Products</code> table had no associated <code>product_category</code>, resulting in <code>NULL</code> values.</li>
+</ul>
 
-1. **LEFT JOIN**:  
-   - Joined the `Products` table with `Product_Category_Mappings` to standardize category names wherever possible.
-   - This ensured all rows from `Products` were included, even if no matching entry existed in the mapping table.  
+<p>To address these issues, I created a standardized mapping file (<code>Product_Category_Mappings.csv</code>) and uploaded it to Google BigQuery. Using this mapping table, I applied the following steps:</p>
 
-2. **COALESCE for Missing Categories**:  
-   - Replaced `NULL` values in `product_category` (from rows with no category entries) with a default value of `Uncategorized`.  
-   - This ensured every product in `Products_Final` had a valid category.
+<ol>
+  <li>
+    <strong>LEFT JOIN</strong>:  
+    <ul>
+      <li>Joined the <code>Products</code> table with <code>Product_Category_Mappings</code> to standardize category names wherever possible.</li>
+      <li>This ensured all rows from <code>Products</code> were included, even if no matching entry existed in the mapping table.</li>
+    </ul>
+  </li>
+  <li>
+    <strong>COALESCE for Missing Categories</strong>:  
+    <ul>
+      <li>Replaced <code>NULL</code> values in <code>product_category</code> (from rows with no category entries) with a default value of <code>Uncategorized</code>.</li>
+      <li>This ensured every product in <code>Products_Final</code> had a valid category.</li>
+    </ul>
+  </li>
+</ol>
 
-These changes resulted in a clean and consistent `Products_Final` table, with all `product_category` entries standardized or assigned a default value.
+<p>
+  These changes resulted in a clean and consistent <code>Products_Final</code> table, with all <code>product_category</code> entries standardized or assigned a default value.
+</p>
 
-
-[Click here](./steps.md) to read the detailed steps on the creation of `Products_Final`.
-
+<p><a href="steps">Click here</a> to read the detailed steps on the creation of <code>Products_Final</code>.</p>

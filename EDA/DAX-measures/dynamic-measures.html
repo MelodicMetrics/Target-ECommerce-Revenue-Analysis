@@ -1,0 +1,125 @@
+---
+layout: default
+title: Dynamic Measures
+---
+
+<h1>Dynamic Measures Overview</h1>
+<p>
+  This file contains measures that enhance dashboard interactivity by allowing
+  users to dynamically switch metrics and update visualizations in real time.
+  These measures leverage the <code>Toggle Table</code> to streamline
+  calculations and improve the user experience.
+</p>
+
+<div class="hr-wrapper">
+  <hr class="title" />
+</div>
+
+<details id="toggle-table" class="section-details">
+  <summary><b>1. Toggle Table</b></summary>
+  <p
+    ><b>Description:</b> This table contains a number of columns with names of
+    various percentage measures that can be found in
+    <code>revenue-measures.md</code> and <code>product-measures.md</code>. These
+    columns are then referenced in <code>Selected Metric</code> to create
+    dynamic switching of the displayed metric in the particular
+    visualization.</p
+  >
+  <p>The columns named in the toggle table are the following:</p>
+  <ul>
+    <li>Percentage of Revenue</li>
+    <li>Percentage of Revenue per Bin Range</li>
+    <li>Percentage of Revenue per Category</li>
+    <li>Percentage of Total Products</li>
+    <li>Percentage of Total Products by Category and State</li>
+    <li>Total Revenue</li>
+    <li>Product Count</li>
+  </ul>
+  <img
+    src="https://github.com/user-attachments/assets/e2126a3b-1fb7-4bcb-bd5c-fb40ef2ac6e6"
+    alt="Table Columns in Toggle Table"
+  />
+</details>
+
+<details id="selected-metric" class="section-details">
+  <summary><b>2. Selected Metric</b></summary>
+  <p
+    ><b>Description:</b> This measure dynamically calculates a metric based on
+    the user's selection from the <code>Toggle Table</code>. It is used with
+    slicers in dashboards for user-driven customization.</p
+  >
+  <details class="code-details">
+    <summary> 📂<b>DAX Measure</b> </summary>
+    <pre><code class="language-dax">
+Selected Metric = 
+VAR Metrics =
+    SWITCH(
+        SELECTEDVALUE('Toggle Table'[Metric]),
+        "Percentage of Revenue", [Revenue (%)],
+        "Percentage of Revenue per Bin Range", [Revenue (%) per Bin Range],
+        "Percentage of Revenue per Category", [Revenue (%) per Category],
+        "Percentage of Total Products", [Product Count (%)],
+        "Percentage of Total Products by Category and State", [Percentage of Total Products by Category and State],
+        "Total Revenue", [Total Product Revenue],
+        "Product Count", [Product Count],
+        0 -- This is the default value for if no selection is made
+    )
+RETURN
+    IF(ISBLANK(Metrics), 0, Metrics)
+    </code></pre>
+  </details>
+  <h5>Key Parts of the Measure:</h5>
+  <ul>
+    <li
+      ><code>SELECTEDVALUE('Toggle Table'[Metric])</code>: Retrieves the
+      selected metric from the 'Toggle Table' slicer.</li
+    >
+    <li
+      ><code>SWITCH</code> Function: Maps the selected metric to the
+      corresponding measure.</li
+    >
+    <li
+      >Default Value (<code>0</code>): Returns <code>0</code> if no valid
+      selection is made to prevent errors.</li
+    >
+    <li
+      >Error Handling: Uses <code>ISBLANK</code> to handle cases where the
+      metric is blank.</li
+    >
+  </ul>
+</details>
+
+<details id="scatter-metric" class="section-details">
+  <summary><b>3. Scatter Metric Value</b></summary>
+  <p
+    ><b>Description:</b> This measure dynamically selects the metric for the
+    scatter chart based on the user’s slicer selection. It toggles between
+    revenue and product count totals depending on the selected metric.</p
+  >
+  <details class="code-details">
+    <summary> 📂<b>DAX Measure</b> </summary>
+    <pre><code class="language-dax">
+Scatter Metric Value = 
+SWITCH(
+    SELECTEDVALUE('Toggle Table'[Metric]),
+    "Percentage of Revenue", [Total Product Revenue],
+    "Percentage of Total Products", [Product Count]
+)
+    </code></pre>
+  </details>
+  <h5>Key Logic:</h5>
+  <ul>
+    <li
+      ><code>"Percentage of Revenue"</code> maps to
+      <code>[Total Product Revenue]</code>.</li
+    >
+    <li
+      ><code>"Percentage of Total Products"</code> maps to
+      <code>[Product Count]</code>.</li
+    >
+  </ul>
+</details>
+
+<div class="hr-wrapper">
+  <hr />
+</div>

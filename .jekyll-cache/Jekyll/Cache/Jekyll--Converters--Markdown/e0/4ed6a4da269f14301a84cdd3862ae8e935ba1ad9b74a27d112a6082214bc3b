@@ -1,0 +1,61 @@
+I"b<h1>DAX Files Overview</h1>
+
+<p>
+  This page serves as a central repository for all the DAX measures and calculated columns used in both 
+  my <strong>Exploratory Data Analysis (EDA)</strong> and <strong>Revenue Analysis</strong>. 
+  Each file contains DAX measures and calculated columns grouped by their specific purpose.
+</p>
+
+<div class="hr-wrapper">
+  <hr class="title" />
+</div>
+
+<h2>Grouped DAX Measures</h2>
+
+<ul>
+  <li>
+    <a href="revenue-measures"><b>1. Revenue Measures</b></a>
+    <p>Includes measures for calculating revenue totals, averages, and percentages, as well as weighted averages.</p>
+  </li>
+
+  <div class="hr-wrapper">
+    <hr />
+  </div>
+
+  <li>
+    <a href="product-measures"><b>2. Product Measures</b></a>
+    <p>Focuses on product-related measures such as counts, percentages, and calculated columns for deeper insights.</p>
+  </li>
+
+  <div class="hr-wrapper">
+    <hr />
+  </div>
+
+  <li>
+    <a href="product-value-bins"><b>3. Product Value Bins</b></a>
+    <p>Provides binning logic to segment products by value ranges for trend analysis and comparisons.</p>
+  </li>
+
+  <div class="hr-wrapper">
+    <hr />
+  </div>
+
+  <li>
+    <a href="dynamic-titles"><b>4. Dynamic Titles</b></a>
+    <p>Contains measures for creating dynamic titles that update based on user interaction and slicer selections.</p>
+  </li>
+
+  <div class="hr-wrapper">
+    <hr />
+  </div>
+
+  <li>
+    <a href="dynamic-measures"><b>5. Dynamic Measures</b></a>
+    <p>Includes measures that enable interactivity, such as dynamic metric switching, for enhanced dashboards.</p>
+  </li>
+
+  <div class="hr-wrapper">
+    <hr />
+  </div>
+</ul>
+:ET

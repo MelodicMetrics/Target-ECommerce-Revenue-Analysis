@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products Final Steps</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Highlight.js Theme -->
+    <link rel="stylesheet" href="/assets/css/solarized-light.min.css">
+
+    <!-- Font Awesome Icon Library-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    
+    <!-- Highlight.js Core and Language Support -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/sql.min.js"></script>
+    
+    <!-- Custom DAX Language Registration -->
+    <script src="/assets/js/dax.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            hljs.registerLanguage("dax", dax); // Register the custom DAX grammar
+            hljs.highlightAll(); // Initialize Highlight.js
+        });
+    </script>
+    
+    <!-- Scroll Detection -->
+    <script src="/assets/js/scroll-detection.js"></script>
+    
+    <!-- Expand Selected Section-->
+    <script src="/assets/js/expand-section.js"></script>
+
+
+
+
+
+
+
+
+</head>
+<body>
+    <!-- Sticky Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="/data-cleaning/index.md/">Data Cleaning Part One</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/data-cleaning-part-two/">Data Cleaning Part Two</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/EDA/">Exploratory Data Analysis</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/revenue-analysis/">Revenue Analysis</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+       
+    <header class="breadcrumbs-wrapper">
+        <nav class="breadcrumbs-trail" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            
+            
+            
+            
+            
+            <li class="breadcrumb-item">
+              <a href="/Data-Cleaning-Part-Two">Data Cleaning Part Two</a>
+            </li>
+            
+            
+            
+            
+            <li class="breadcrumb-item">
+              <a href="/Data-Cleaning-Part-Two/Products_Final">Products_Final</a>
+            </li>
+            
+            
+            
+            
+            <li class="breadcrumb-item active" aria-current="page">steps.md</li>
+            
+            
+          </ol>
+        </nav>
+      </header>
+      
+      
+    
+
+
+
+
+    <!-- Header Section -->
+    <header class="custom-header">
+        <h1>Target E-Commerce Revenue Analysis</h1>
+    </header>
+      
+    <!-- Main Content -->
+    <main class="container my-4">
+        <h1>Steps to Create Products_Final</h1>
+
+<h3>Step 1: Identify Issues with <code>product_category</code></h3>
+
+<p>
+  Realizing the numerous issues with category naming conventions in the <code>Products</code> table, I wrote a SQL query to extract all distinct <code>product_category</code> names for review:
+</p>
+
+<details class="code-details">
+  <summary>📂<b><i>Query to Select all Distinct Product Category Names</i></b></summary>
+
+  <!-- prettier-ignore -->
+  <pre><code class="language-sql">
+SELECT DISTINCT
+  product_category
+FROM
+  iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Products
+ORDER BY
+  product_category
+  </code></pre>
+</details>
+
+<p>- This gave me 74 different <code>product_category</code> names.</p>
+
+<h3>Step 2: Generate and Review Cleaned Names</h3>
+
+<ul>
+  <li>I imported the extracted list into Excel and used ChatGPT to generate an initial list of cleaned category names based on the original values.</li>
+  <li>The cleaned names were reviewed and adjusted manually to ensure accuracy and relevance to the dataset.</li>
+  <ul>
+    <li><strong>Example Adjustments</strong>:
+      <ul>
+        <li><code>"CITTE AND UPHACK FURNITURE"</code> → <code>"Miscellaneous Furniture"</code></li>
+        <li><code>"Electrices 2"</code> → <code>"Electrical Products"</code></li>
+      </ul>
+    </li>
+  </ul>
+  <li>The finalized list of original and standardized names was saved as a <code>.csv</code> file and uploaded to Google BigQuery as <code>Product_Category_Mappings</code>. The <code>.csv</code> file can be <a href="https://github.com/user-attachments/files/17782746/Product_Category_mappings.csv">downloaded here</a>.</li>
+</ul>
+
+<h3>Step 3: Create Products_Final</h3>
+
+<p>
+  With the <code>Product_Category_Mappings</code> table in place, I created the <code>Products_Final</code> table by joining <code>Products</code> with <code>Product_Category_Mappings</code> using a <code>LEFT JOIN</code> and handling any missing <code>product_category</code> values with <code>COALESCE</code>.
+</p>
+
+<details class="code-details">
+  <summary>📂<b><i>Query to Create Products_Final</i></b></summary>
+
+  <!-- prettier-ignore -->
+  <pre><code class="language-sql">
+/* 
+  This query was to clean the Products table. The category names had numerous issues such as 
+  inconsistent case, translation inconsistency, as well as confusing category naming. I did the following steps:
+  1. I created a .csv file with standardized category names. NOTE: In the case of "Miscellaneous Furniture"
+     and "Electrical Products" the original names were unusual and are corrected as best guesses. Their original names were "Citte and Uphack Furniture"
+     and "Electrices 2" respectively. 
+  2. I uploaded the table to BigQuery and joined it with the Products table. The COALESCE function is there to handle any "null" values in product_category.
+     Where there are any nulls, they are referred to as "Uncategorized".
+*/
+CREATE OR REPLACE TABLE `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Products_Final` AS
+SELECT 
+    p.product_id,
+    COALESCE(m.product_category_cleaned, 'Uncategorized') AS product_category
+FROM 
+    `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Products` AS p
+LEFT JOIN 
+    `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Product_Category_Mappings` AS m
+ON 
+    p.product_category = m.product_category
+  </code></pre>
+</details>
+
+<h4>Importance of <code>LEFT JOIN</code> and <code>COALESCE</code></h4>
+<ul>
+  <li><strong><code>LEFT JOIN</code>:</strong>
+    <ul>
+      <li>Ensures that all <code>product_ids</code> from <code>Products</code> appear in <code>Products_Final</code>, even if no matching <code>product_category</code> exists in the mapping table.</li>
+      <li>This accounts for <code>product_ids</code> in the <code>Products</code> table with <code>NULL</code> values for <code>product_category</code>.</li>
+    </ul>
+  </li>
+  <li><strong><code>COALESCE</code>:</strong>
+    <ul>
+      <li>Replaces any <code>NULL</code> values in <code>product_category</code> with <code>"Uncategorized"</code>.</li>
+      <li>Ensures that every <code>product_id</code> in <code>Products_Final</code> has an associated <code>product_category</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3>Final Outcome</h3>
+<p>
+  The resulting <code>Products_Final</code> table:
+</p>
+<ul>
+  <li>Standardizes all <code>product_category</code> names based on the <code>Product_Category_Mappings</code> table.</li>
+  <li>Accounts for missing categories by assigning them the default value <code>"Uncategorized"</code>.</li>
+  <li>Maintains all <code>product_ids</code> from the original <code>Products</code> table, ensuring data completeness.</li>
+</ul>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center text-muted py-3">
+        &copy; 2024 Miles Davidson. All rights reserved.<br>
+        Dataset used in this project is provided by <a href="https://www.kaggle.com/devarajv88" target="_blank">Devaraj V</a> on <a href="https://www.kaggle.com/" target="_blank">Kaggle</a>.<br>
+        This project is for educational and portfolio purposes only.
+    </footer>
+
+
+<script>
+    // Dynamically add a "Copy" button to each <pre><code> block
+    document.querySelectorAll("pre").forEach((pre) => {
+        // Create the copy button container
+        const button = document.createElement("button");
+        button.className = "copy-button";
+        button.onclick = () => copyCode(pre);
+
+        // Add the icon inside the button
+        const icon = document.createElement("i");
+        icon.className = "copy-icon";
+        button.appendChild(icon);
+
+        // Position the button inside the code block
+        pre.style.position = "relative"; // Ensure the button is positioned correctly
+        pre.appendChild(button);
+    });
+
+    // Function to handle copying code
+    function copyCode(pre) {
+        const codeBlock = pre.querySelector("code");
+        if (!codeBlock) return;
+
+        // Copy the code content
+        navigator.clipboard.writeText(codeBlock.textContent).then(() => {
+            // Change the icon to indicate success temporarily
+            const icon = pre.querySelector(".copy-icon");
+            icon.classList.add("copied");
+            setTimeout(() => icon.classList.remove("copied"), 2000);
+        }).catch((err) => {
+            console.error("Failed to copy: ", err);
+        });
+    }
+</script>
+
+
+
+
+</body>
+</html>

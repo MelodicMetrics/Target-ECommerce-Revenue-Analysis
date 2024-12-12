@@ -1,45 +1,59 @@
 ---
 layout: default
-title: My GitHub Pages Site
+title: Customers Final Steps
 ---
 
-# Steps for Creating `Customers_Final` Table
-## Overview
-`Geolocation_Final_Original` was created using an `INNER JOIN` between `Geolocation` and `IBGE_City_State_Source_of_Truth`, which resulted in **6 fewer `customer_id`s** compared to `Geolocation_Comparison`, which was made using a `RIGHT JOIN` on the same tables. To identify which IDs were missing and understand why, I created `Customers_Comparison` and `Customers_Final_Original` tables, then pulled the `customer_id`s that were absent from `Customers_Final_Original`.
+<h1>Steps for Creating <code>Customers_Final</code> Table</h1>
 
-After diagnosing the issue, I created `Geolocation_Final` and `Customers_Final`, which successfully included the six missing IDs.
+<h2>Overview</h2>
+<p>
+  <code>Geolocation_Final_Original</code> was created using an <code>INNER JOIN</code> between <code>Geolocation</code> and <code>IBGE_City_State_Source_of_Truth</code>, which resulted in <strong>6 fewer <code>customer_id</code>s</strong> compared to <code>Geolocation_Comparison</code>, which was made using a <code>RIGHT JOIN</code> on the same tables. To identify which IDs were missing and understand why, I created <code>Customers_Comparison</code> and <code>Customers_Final_Original</code> tables, then pulled the <code>customer_id</code>s that were absent from <code>Customers_Final_Original</code>.
+</p>
+<p>
+  After diagnosing the issue, I created <code>Geolocation_Final</code> and <code>Customers_Final</code>, which successfully included the six missing IDs.
+</p>
 
-
-## 1. `Customers_Comparison` Table
- - This table was made based on an `INNER JOIN` between the original Customers table and my `Geolocation_Comparison` table. This ensured the only filters on this table were based on the `RIGHT JOIN` from the Geolocation_Comparison table.
+<h2>1. <code>Customers_Comparison</code> Table</h2>
+<ul>
+  <li>
+    This table was made based on an <code>INNER JOIN</code> between the original Customers table and my
+    <code>Geolocation_Comparison</code> table. This ensured the only filters on this table were based on the
+    <code>RIGHT JOIN</code> from the Geolocation_Comparison table.
+  </li>
+</ul>
 
 <details>
-<summary>📂 <b><i>Query to Create Customers_Comparison</b></i></summary>
-
-```sql
-      CREATE OR REPLACE TABLE iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Customers_Comparison AS 
-      SELECT
-         customer.customer_id AS customer_id,
-         truth.City AS City,
-         truth.StateCode AS Statecode
-      FROM 
-         `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Customers AS customer
-      INNER JOIN 
-         `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Geolocation_Comparison` AS truth
-      ON
-         customer.customer_city = truth.City AND customer.customer_state = truth.StateCode
-```
+  <summary>📂 <b><i>Query to Create Customers_Comparison</i></b></summary>
+  <pre><code class="language-sql">
+CREATE OR REPLACE TABLE iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Customers_Comparison AS 
+SELECT
+  customer.customer_id AS customer_id,
+  truth.City AS City,
+  truth.StateCode AS Statecode
+FROM 
+  `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Customers` AS customer
+INNER JOIN 
+  `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Geolocation_Comparison` AS truth
+ON
+  customer.customer_city = truth.City AND customer.customer_state = truth.StateCode
+  </code></pre>
 </details>
 
-## 2. `Customers_Final_Original` Table 
-
- - This table was based on `Geolocations_Final_Original` and `Customers`. To recap, `Geolocation_Final_Original` was created with an `INNER JOIN` rather than a `RIGHT JOIN`.
- - *Note*: The purpose of the `"..._Final_Original"` in the geolocation and customers table is to display the logic that lead to the actual Final tables. The Original final table for customers contained 93,921 entries. After making the changes the new `Customers_Final` table will contain the intended 93,927 entries. 
+<h2>2. <code>Customers_Final_Original</code> Table</h2>
+<ul>
+  <li>
+    This table was based on <code>Geolocations_Final_Original</code> and <code>Customers</code>. To recap,
+    <code>Geolocation_Final_Original</code> was created with an <code>INNER JOIN</code> rather than a
+    <code>RIGHT JOIN</code>.
+  </li>
+  <li>
+    <em>Note</em>: The purpose of the <code>"..._Final_Original"</code> in the geolocation and customers table is to display the logic that led to the actual Final tables. The Original final table for customers contained 93,921 entries. After making the changes, the new <code>Customers_Final</code> table will contain the intended 93,927 entries.
+  </li>
+</ul>
 
 <details>
-<summary>📂 <b><i>Query to create Customers_Final_Original</b></i></summary>
-
-```sql
+  <summary>📂 <b><i>Query to create Customers_Final_Original</i></b></summary>
+  <pre><code class="language-sql">
 CREATE OR REPLACE TABLE iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Customers_Final_Original AS 
 SELECT
   customer.customer_id AS customer_id,
@@ -51,15 +65,20 @@ INNER JOIN
   `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Geolocation_Final_Original` AS truth
 ON
   customer.customer_city = truth.City AND customer.customer_state = truth.StateCode
-```
+  </code></pre>
 </details>
-    
- ## 3. Comparison of Customer Tables 
-  - Finally I wrote a Query to compare the 2 tables to identify the `customer_id`s appearing in `Customers_Comparison` but *not* in `Customers_Final_Original`.
-<details>
-<summary> 📂<b><i>Query to Find Missing customer_ids</i></b> </summary>
 
-```sql
+<h2 id = "3-comparison-of-customer-tables"> 3. Comparison of Customer Tables </h2>
+<ul>
+  <li>
+    Finally, I wrote a query to compare the two tables to identify the <code>customer_id</code>s appearing in
+    <code>Customers_Comparison</code> but <em>not</em> in <code>Customers_Final_Original</code>.
+  </li>
+</ul>
+
+<details>
+  <summary>📂 <b><i>Query to Find Missing customer_ids</i></b> </summary>
+  <pre><code class="language-sql">
 -- Compares Customers_Comparison to the final table.
 SELECT
   customer_id
@@ -70,52 +89,59 @@ SELECT
   customer_id
 FROM
   iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Customers_Final_Original
-```
-  
-  - This query identified the 6 `customer_id`s missing due to the `INNER JOIN` between `Geolocation` and `IBGE_City_State_Source_of_Truth`.
----
+  </code></pre>
+  <p>
+    This query identified the 6 <code>customer_id</code>s missing due to the <code>INNER JOIN</code> between
+    <code>Geolocation</code> and <code>IBGE_City_State_Source_of_Truth</code>.
+  </p>
 </details>
 
- 
- - Next, I investigated one of these IDs (`"e6add8f4805cb6a382c26548daaed9d7"`) and found that the customer was based in `Sambaiba, MA`. Checking this city in both `Geolocation` and `IBGE_City_State_Source_of_Truth` revealed that it was missing in the former, explaining why these customers were dropped in the `INNER JOIN` but retained in the `RIGHT JOIN`.
+<p>
+  Next, I investigated one of these IDs (<code>"e6add8f4805cb6a382c26548daaed9d7"</code>) and found that the
+  customer was based in <code>Sambaiba, MA</code>. Checking this city in both <code>Geolocation</code> and
+  <code>IBGE_City_State_Source_of_Truth</code> revealed that it was missing in the former, explaining why these
+  customers were dropped in the <code>INNER JOIN</code> but retained in the <code>RIGHT JOIN</code>.
+</p>
 
 <details>
-<summary>📂 <b><i>Here's the query's used to find the customers location, as well as if the city was in the Geolocation and IBGE tables</i></b></summary>
-
-```sql
+  <summary>📂 <b><i>Here's the queries used to find the customer's location, as well as if the city was in the Geolocation and IBGE tables</i></b></summary>
+  <pre><code class="language-sql">
 SELECT *
 FROM
   iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Customers
 WHERE
-  customer_id = "e6add8f4805cb6a382c26548daaed9d7"
+  customer_id = "e6add8f4805cb6a382c26548daaed9d7";
 
-SELECT *
+SELECT \*
 FROM
- iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.IBGE_City_State_Source_of_Truth
+iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.IBGE_City_State_Source_of_Truth
 WHERE
- city = "sambaiba";
+city = "sambaiba";
 
-SELECT *
+SELECT \*
 FROM
- iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Geolocation
+iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Geolocation
 WHERE
- geolocation_city = "sambaiba"
-```
- 
- - IBGE returned a result while `Geolocation` did not, indicating that the original `Geolocation` table was missing certain cities, leading to the decision to use a `RIGHT JOIN` to include all entries from `IBGE_City_State_Source_of_Truth`.
+geolocation_city = "sambaiba";
+</code></pre>
+
+  <p>
+    IBGE returned a result while <code>Geolocation</code> did not, indicating that the original
+    <code>Geolocation</code> table was missing certain cities, leading to the decision to use a
+    <code>RIGHT JOIN</code> to include all entries from <code>IBGE_City_State_Source_of_Truth</code>.
+  </p>
 </details>
 
-## 4. `Customers_Final` Table
+<h2>4. <code>Creation of Customers_Final</code> Table</h2>
 
-### Overview
-
-With the `Geolocation_Final` table now including the cities for those six `customer_id`s, I could proceed with creating `Customers_Final`. 
+<p>
+  With the <code>Geolocation_Final</code> table now including the cities for those six <code>customer_id</code>s, I
+  could proceed with creating <code>Customers_Final</code>.
+</p>
 
 <details>
-<summary> 📂<b><i>Query to Create Customers_Final</i></b> </summary>
-
-```sql
-
+  <summary>📂 <b><i>Query to Create Customers_Final</i></b> </summary>
+  <pre><code class="language-sql">
 /*
   This query filters the Customers_Unaccented table to include only IDs with valid city-state combinations 
   based on entries in the Geolocations_Final table.
@@ -123,17 +149,17 @@ With the `Geolocation_Final` table now including the cities for those six `custo
   city names without accents, facilitating accurate matches.
 */
 
-
-CREATE OR REPLACE TABLE iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Customers_Final AS 
+CREATE OR REPLACE TABLE iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Customers_Final AS
 SELECT
-  customer.customer_id AS customer_id,
-  truth.City AS City,
-  truth.state AS Statecode
-FROM 
-  iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Customers_Unaccented AS customer
-INNER JOIN 
-  `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Geolocation_Final` AS truth
+customer.customer_id AS customer_id,
+truth.City AS City,
+truth.state AS Statecode
+FROM
+iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Customers_Unaccented AS customer
+INNER JOIN
+`iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Geolocation_Final` AS truth
 ON
-  customer.customer_city_unaccented = truth.City AND customer.customer_state = truth.state
-```
+customer.customer_city_unaccented = truth.City AND customer.customer_state = truth.state
+</code></pre>
+
 </details>

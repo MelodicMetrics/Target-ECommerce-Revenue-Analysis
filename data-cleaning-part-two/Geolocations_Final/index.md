@@ -1,3 +1,8 @@
+---
+layout: default
+title: Geolocations Final Index
+---
+
 ## Geolocation Changes Overview
 
 Initially, in the first phase of my data cleaning, I used the GeoNames API to create a list of valid city-state combinations to filter the dataset. However due to constraints of using a free account, I had to limit my analysis to just **4 states** and their respective cities. This yielded me **274** rows. 
@@ -13,5 +18,5 @@ Using the IBGE dataset allowed me to increase the number of valid city-state com
 
 
 
-[Click here](./steps.md) to read the detailed steps on the creation of `Geolocation_Final`.
+[Click here](steps) to read the detailed steps on the creation of `Geolocation_Final`.
 

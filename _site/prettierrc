@@ -1,0 +1,7 @@
+{
+  "tabWidth": 2,
+  "useTabs": false,
+  "htmlWhitespaceSensitivity": "strict",
+  "semi": true,
+  "singleQuote": true
+}
