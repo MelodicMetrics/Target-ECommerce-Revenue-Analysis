@@ -1,0 +1,196 @@
+---
+layout: default
+title: Payments Final Steps
+---
+
+<h1>Steps to Create <code>Payments_Final</code></h1>
+
+<hr class="title" />
+
+<h2>Step 1: Initial Cleaning</h2>
+<p>
+  When I first started cleaning, I began by removing the
+  <code>payment_sequential</code> column, which indicated instances where
+  customers paid for their orders in multiple payments. In order to group
+  <code>order_id</code>s and eliminate duplicates, I summed all
+  <code>payment_value</code> entries into a new column called
+  <code>total_payment_value</code>.
+</p>
+<ul>
+  <li
+    >This initial cleaning resulted in the <code>Payments_Cleaned</code> table,
+    which contained <strong>101,836 entries</strong>.</li
+  >
+</ul>
+
+<hr />
+
+<h2>Step 2: Iterative Cleaning</h2>
+<ol>
+  <li>
+    <strong>Removed Duplicates from <code>payment_type</code>:</strong>
+    <ul>
+      <li
+        >I noticed that the <code>payment_type</code> column caused duplicate
+        entries because some <code>order_id</code>s were associated with
+        multiple payment methods (e.g., <code>voucher</code> and
+        <code>credit card</code>).</li
+      >
+      <li
+        >To resolve this, I removed the <code>payment_type</code> column,
+        eliminating these duplicates.</li
+      >
+    </ul>
+  </li>
+  <li>
+    <strong>Removed Duplicates from <code>payment_installments</code>:</strong>
+    <ul>
+      <li
+        >I also identified that the <code>payment_installments</code> column
+        created duplicate entries due to <code>order_id</code>s split across
+        multiple installments.</li
+      >
+      <li>Removing this column further reduced the duplicates in the table.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2>Step 3: Filter Invalid <code>order_id</code>s</h2>
+<ul>
+  <li>
+    To ensure only valid <code>order_id</code>s remained, I created
+    <code>Payments_Final</code> by applying a <code>JOIN</code> between
+    <code>Payments_Cleaned</code> and <code>Orders_Final</code>. This ensured
+    that only <code>order_id</code>s present in
+    <code>Orders_Final</code> appeared in <code>Payments_Final</code>.
+  </li>
+  <li>
+    Additionally, I added the <code>GROUP BY</code> function to account for the
+    removed columns <code>payment_installments</code> and
+    <code>payment_type</code>, preventing duplicate <code>order_id</code>s that
+    could impact future analysis.
+  </li>
+</ul>
+
+<details class="code-details">
+  <summary
+    >📂<b><i>Query to Create Payments_Final</i></b></summary
+  >
+  <!-- prettier-ignore -->
+  <pre><code class="language-sql">
+CREATE OR REPLACE TABLE `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Payments_Final` AS 
+SELECT
+    payments.order_id,
+    SUM(payments.total_payment_value) AS total_payment_value
+FROM 
+    `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Payments_Cleaned` AS payments
+JOIN 
+    `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Orders_Final` AS orders
+ON 
+    payments.order_id = orders.order_id
+GROUP BY
+    payments.order_id
+  </code></pre>
+</details>
+
+<p>
+  After applying these filters, the resulting <code>Payments_Final</code> table
+  had <strong>92,842 entries</strong>, which was one fewer than expected as it
+  should have matched <code>Orders_Final</code>.
+</p>
+
+<hr />
+
+<h2>Step 4: Discover the Missing <code>order_id</code></h2>
+<p>
+  I discovered that a single <code>order_id</code> was missing from
+  <code>Payments_Final</code> despite being present in
+  <code>Orders_Final</code> and <code>Order_Items_Final</code> with valid
+  <code>price</code> and <code>freight_value</code> data.
+</p>
+
+<h4>Queries to Identify and Verify the Missing <code>order_id</code>:</h4>
+
+<details class="code-details">
+  <summary
+    >📂<b><i>Query 1: Find missing order_id</i></b></summary
+  >
+  <!-- prettier-ignore -->
+  <pre><code class="language-sql">
+SELECT 
+    o.order_id 
+FROM 
+    iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Orders_Final AS o
+LEFT JOIN 
+    iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Payments_Final AS p
+ON 
+    o.order_id = p.order_id
+WHERE 
+    p.order_id IS NULL;
+  </code></pre>
+</details>
+
+<details class="code-details">
+  <summary
+    >📂<b
+      ><i
+        >Query 2: Find price and freight of missing id in Order_Items_Final</i
+      ></b
+    ></summary
+  >
+  <!-- prettier-ignore -->
+  <pre><code class="language-sql">
+SELECT
+  order_id,
+  price,
+  freight_value
+FROM
+  iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Order_Items_Final
+WHERE
+  order_id = "bfbd0f9bdef84302105ad712db648a6c"
+  </code></pre>
+</details>
+
+<hr />
+
+<h2>Step 5: Resolving the Missing <code>order_id</code></h2>
+<p>
+  With the missing <code>order_id</code> and its accompanying
+  <code>price</code> and <code>freight_values</code> I could now resolve the
+  issue in <code>Payments_Final</code>.
+</p>
+<ul>
+  <li>
+    In order to do so, I calculated the <code>total_payment_value</code>(column
+    in <code>Payments_Final</code>) by summing the <code>price</code> and
+    <code>freight_value</code> of the products associated with the missing
+    <code>order_id</code> and inserted it into <code>Payments_Final</code>.
+  </li>
+</ul>
+
+<details class="code-details">
+  <summary
+    >📂<b><i>Query to Insert Missing id into Payments_Final</i></b></summary
+  >
+  <!-- prettier-ignore -->
+  <pre><code class="language-sql">
+INSERT INTO iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Payments_Final (order_id, total_payment_value)
+SELECT 
+    order_id,
+    ROUND(SUM(price + freight_value), 3) AS total_payment_value
+FROM 
+    iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Order_Items_Final
+WHERE 
+    order_id = 'bfbd0f9bdef84302105ad712db648a6c'
+GROUP BY 
+    order_id;
+  </code></pre>
+</details>
+
+<p>
+  After reinserting this <code>order_id</code>, the table returned the expected
+  total of <strong>92,843 entries</strong>, perfectly matching
+  <code>Orders_Final</code>.
+</p>

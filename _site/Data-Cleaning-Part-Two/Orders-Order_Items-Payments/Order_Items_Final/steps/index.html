@@ -105,7 +105,7 @@
             
             
             
-            <li class="breadcrumb-item active" aria-current="page">steps.md</li>
+            <li class="breadcrumb-item active" aria-current="page">steps.html</li>
             
             
           </ol>
@@ -125,71 +125,73 @@
       
     <!-- Main Content -->
     <main class="container my-4">
-        <h1 id="steps-to-create-order_items_final">Steps to Create <code class="language-plaintext highlighter-rouge">Order_Items_Final</code></h1>
+        <h1>Steps to Create <code>Order_Items_Final</code></h1>
 
-<p>To ensure that only <code class="language-plaintext highlighter-rouge">seller_ids</code> attached to verified customer orders appeared in <code class="language-plaintext highlighter-rouge">Order_Items_Final</code>, I used a <code class="language-plaintext highlighter-rouge">JOIN</code> with <code class="language-plaintext highlighter-rouge">Orders_Final</code> rather than <code class="language-plaintext highlighter-rouge">Sellers_Final</code>.</p>
+<hr />
 
-<p>Beyond this, there weren’t many additional steps required. All filter logic applied to <code class="language-plaintext highlighter-rouge">Orders_Final</code> was automatically inherited by <code class="language-plaintext highlighter-rouge">Order_Items_Final</code>, since it was created using a <code class="language-plaintext highlighter-rouge">JOIN</code> with <code class="language-plaintext highlighter-rouge">Orders_Final</code>.</p>
+<p>
+  To ensure that only <code>seller_ids</code> attached to verified customer
+  orders appeared in <code>Order_Items_Final</code>, I used a
+  <code>JOIN</code> with <code>Orders_Final</code> rather than
+  <code>Sellers_Final</code>.
+</p>
 
-<h3 id="sql-query">SQL Query</h3>
-<p>The following query outlines the creation process for <code class="language-plaintext highlighter-rouge">Order_Items_Final</code>:</p>
+<p>
+  Beyond this, there weren’t many additional steps required. All filter logic
+  applied to <code>Orders_Final</code> was automatically inherited by
+  <code>Order_Items_Final</code>, since it was created using a
+  <code>JOIN</code> with <code>Orders_Final</code>.
+</p>
 
-<details>
-<summary>📂<b><i>Query to Create Order_Items_Final</i></b></summary>
-  
-<pre><code class="language-sql">
-/*
-  This query creates the Order_Items_Final table with the following considerations:
-  
-  1. There was no need to include additional filter logic for either missing or discrepant `order_ids`:
-     - Missing `order_ids` were inherently excluded, as they were already absent from the Order_Items table.
-     - Discrepant `order_ids` were also excluded automatically, since this table is created by joining on `order_id` 
-       from Orders_Final, which has already filtered out discrepant orders.
-  
-  2. Initially, I considered joining this table with the Sellers_Final table. However, doing so 
-     would have introduced `order_ids` linked to sellers, regardless of whether the orders were made 
-     by customers from valid city-state combinations. 
+<hr />
 
-     By joining on `order_id` instead, I ensured that only orders made by filtered customers were included. 
-     While this approach may still include `seller_ids` from unverified city-state combinations, this is 
-     acceptable as the analysis does not focus on seller locations.
-*/
+<h2>SQL Query</h2>
 
-CREATE OR REPLACE TABLE `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Order_Items_Final` AS 
-SELECT 
-    order_items.order_id,
-    order_items.order_item_id,
-    order_items.product_id,
-    order_items.seller_id,
-    order_items.price,
-    order_items.freight_value
-FROM 
-    `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Order Items` AS order_items
-JOIN 
-    `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Orders_Final` AS orders
-ON 
-    order_items.order_id = orders.order_id
+<p
+  >The following query outlines the creation process for
+  <code>Order_Items_Final</code>:</p
+>
+
+<details class="code-details">
+  <summary
+    >📂<b><i>Query to Create Order_Items_Final</i></b></summary
+  >
+
+  <pre><code class="language-sql">
+  /*
+    This query creates the Order_Items_Final table with the following considerations:
+    
+    1. There was no need to include additional filter logic for either missing or discrepant `order_ids`:
+       - Missing `order_ids` were inherently excluded, as they were already absent from the Order_Items table.
+       - Discrepant `order_ids` were also excluded automatically, since this table is created by joining on `order_id` 
+         from Orders_Final, which has already filtered out discrepant orders.
+    
+    2. Initially, I considered joining this table with the Sellers_Final table. However, doing so 
+       would have introduced `order_ids` linked to sellers, regardless of whether the orders were made 
+       by customers from valid city-state combinations.
+
+       By joining on `order_id` instead, I ensured that only orders made by filtered customers were included.
+       While this approach may still include `seller_ids` from unverified city-state combinations, this is
+       acceptable as the analysis does not focus on seller locations.
+
+\*/
+
+CREATE OR REPLACE TABLE `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Order_Items_Final` AS
+SELECT
+order_items.order_id,
+order_items.order_item_id,
+order_items.product_id,
+order_items.seller_id,
+order_items.price,
+order_items.freight_value
+FROM
+`iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Order Items` AS order_items
+JOIN
+`iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Orders_Final` AS orders
+ON
+order_items.order_id = orders.order_id
 </code></pre>
-  
 </details>
-
-<h2 id="removed-columns-from-original-table">Removed Columns from Original Table</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>Column Name</th>
-      <th>Reason for Removal</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">shipping_limit_date</code></td>
-      <td>Not relevant to the analysis goals; delivery timestamps were sufficient.</td>
-    </tr>
-  </tbody>
-</table>
-
 
     </main>
 

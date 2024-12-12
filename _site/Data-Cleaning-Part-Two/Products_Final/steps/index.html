@@ -98,7 +98,7 @@
             
             
             
-            <li class="breadcrumb-item active" aria-current="page">steps.md</li>
+            <li class="breadcrumb-item active" aria-current="page">steps.html</li>
             
             
           </ol>
@@ -120,14 +120,20 @@
     <main class="container my-4">
         <h1>Steps to Create Products_Final</h1>
 
+<hr class="title" />
+
 <h3>Step 1: Identify Issues with <code>product_category</code></h3>
 
 <p>
-  Realizing the numerous issues with category naming conventions in the <code>Products</code> table, I wrote a SQL query to extract all distinct <code>product_category</code> names for review:
+  Realizing the numerous issues with category naming conventions in the
+  <code>Products</code> table, I wrote a SQL query to extract all distinct
+  <code>product_category</code> names for review:
 </p>
 
 <details class="code-details">
-  <summary>📂<b><i>Query to Select all Distinct Product Category Names</i></b></summary>
+  <summary>
+    📂 <b><i>Query to Select all Distinct Product Category Names</i></b>
+  </summary>
 
   <!-- prettier-ignore -->
   <pre><code class="language-sql">
@@ -136,36 +142,70 @@ SELECT DISTINCT
 FROM
   iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Products
 ORDER BY
-  product_category
+  product_category;
   </code></pre>
 </details>
 
-<p>- This gave me 74 different <code>product_category</code> names.</p>
+<ul>
+  <li> This gave me 74 different <code>product_category</code> names. </li>
+</ul>
+
+<hr />
 
 <h3>Step 2: Generate and Review Cleaned Names</h3>
 
 <ul>
-  <li>I imported the extracted list into Excel and used ChatGPT to generate an initial list of cleaned category names based on the original values.</li>
-  <li>The cleaned names were reviewed and adjusted manually to ensure accuracy and relevance to the dataset.</li>
+  <li>
+    I imported the extracted list into Excel and used ChatGPT to generate an
+    initial list of cleaned category names based on the original values.
+  </li>
+  <li>
+    The cleaned names were reviewed and adjusted manually to ensure accuracy and
+    relevance to the dataset.
+  </li>
   <ul>
-    <li><strong>Example Adjustments</strong>:
+    <li>
+      <strong>Example Adjustments:</strong>
       <ul>
-        <li><code>"CITTE AND UPHACK FURNITURE"</code> → <code>"Miscellaneous Furniture"</code></li>
-        <li><code>"Electrices 2"</code> → <code>"Electrical Products"</code></li>
+        <li>
+          <code>"CITTE AND UPHACK FURNITURE"</code> →
+          <code>"Miscellaneous Furniture"</code>
+        </li>
+        <li>
+          <code>"Electrices 2"</code> →
+          <code>"Electrical Products"</code>
+        </li>
       </ul>
     </li>
   </ul>
-  <li>The finalized list of original and standardized names was saved as a <code>.csv</code> file and uploaded to Google BigQuery as <code>Product_Category_Mappings</code>. The <code>.csv</code> file can be <a href="https://github.com/user-attachments/files/17782746/Product_Category_mappings.csv">downloaded here</a>.</li>
+  <li>
+    The finalized list of original and standardized names was saved as a
+    <code>.csv</code> file and uploaded to Google BigQuery as
+    <code>Product_Category_Mappings</code>. The <code>.csv</code> file can be
+    <a
+      href="https://github.com/user-attachments/files/17782746/Product_Category_mappings.csv"
+    >
+      downloaded here </a
+    >.
+  </li>
 </ul>
+
+<hr />
 
 <h3>Step 3: Create Products_Final</h3>
 
 <p>
-  With the <code>Product_Category_Mappings</code> table in place, I created the <code>Products_Final</code> table by joining <code>Products</code> with <code>Product_Category_Mappings</code> using a <code>LEFT JOIN</code> and handling any missing <code>product_category</code> values with <code>COALESCE</code>.
+  With the <code>Product_Category_Mappings</code> table in place, I created the
+  <code>Products_Final</code> table by joining <code>Products</code> with
+  <code>Product_Category_Mappings</code> using a <code>LEFT JOIN</code> and
+  handling any missing <code>product_category</code> values with
+  <code>COALESCE</code>.
 </p>
 
 <details class="code-details">
-  <summary>📂<b><i>Query to Create Products_Final</i></b></summary>
+  <summary>
+    📂 <b><i>Query to Create Products_Final</i></b>
+  </summary>
 
   <!-- prettier-ignore -->
   <pre><code class="language-sql">
@@ -187,34 +227,62 @@ FROM
 LEFT JOIN 
     `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Product_Category_Mappings` AS m
 ON 
-    p.product_category = m.product_category
+    p.product_category = m.product_category;
   </code></pre>
 </details>
 
+<hr />
+
 <h4>Importance of <code>LEFT JOIN</code> and <code>COALESCE</code></h4>
 <ul>
-  <li><strong><code>LEFT JOIN</code>:</strong>
+  <li>
+    <strong><code>LEFT JOIN:</code></strong>
     <ul>
-      <li>Ensures that all <code>product_ids</code> from <code>Products</code> appear in <code>Products_Final</code>, even if no matching <code>product_category</code> exists in the mapping table.</li>
-      <li>This accounts for <code>product_ids</code> in the <code>Products</code> table with <code>NULL</code> values for <code>product_category</code>.</li>
+      <li>
+        Ensures that all <code>product_ids</code> from
+        <code>Products</code> appear in <code>Products_Final</code>, even if no
+        matching <code>product_category</code> exists in the mapping table.
+      </li>
+      <li>
+        This accounts for <code>product_ids</code> in the
+        <code>Products</code> table with <code>NULL</code> values for
+        <code>product_category</code>.
+      </li>
     </ul>
   </li>
-  <li><strong><code>COALESCE</code>:</strong>
+  <li>
+    <strong><code>COALESCE:</code></strong>
     <ul>
-      <li>Replaces any <code>NULL</code> values in <code>product_category</code> with <code>"Uncategorized"</code>.</li>
-      <li>Ensures that every <code>product_id</code> in <code>Products_Final</code> has an associated <code>product_category</code>.</li>
+      <li>
+        Replaces any <code>NULL</code> values in
+        <code>product_category</code> with <code>"Uncategorized"</code>.
+      </li>
+      <li>
+        Ensures that every <code>product_id</code> in
+        <code>Products_Final</code> has an associated
+        <code>product_category</code>.
+      </li>
     </ul>
   </li>
 </ul>
 
+<hr />
+
 <h3>Final Outcome</h3>
-<p>
-  The resulting <code>Products_Final</code> table:
-</p>
+<p> The resulting <code>Products_Final</code> table: </p>
 <ul>
-  <li>Standardizes all <code>product_category</code> names based on the <code>Product_Category_Mappings</code> table.</li>
-  <li>Accounts for missing categories by assigning them the default value <code>"Uncategorized"</code>.</li>
-  <li>Maintains all <code>product_ids</code> from the original <code>Products</code> table, ensuring data completeness.</li>
+  <li>
+    Standardizes all <code>product_category</code> names based on the
+    <code>Product_Category_Mappings</code> table.
+  </li>
+  <li>
+    Accounts for missing categories by assigning them the default value
+    <code>"Uncategorized"</code>.
+  </li>
+  <li>
+    Maintains all <code>product_ids</code> from the original
+    <code>Products</code> table, ensuring data completeness.
+  </li>
 </ul>
 
     </main>
