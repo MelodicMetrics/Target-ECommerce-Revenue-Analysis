@@ -1,10 +1,14 @@
 title: "Target E-Commerce Revenue Analysis"
 description: "A project analyzing e-commerce revenue."
-theme: "minima" # Optional, if you're using a Jekyll theme
-baseurl: ""  # No subdirectory for local testing
-url: "http://localhost:4000"
+theme: "minima" # Optional, only if you're using a theme like minima
 markdown: "kramdown"
 permalink: "pretty" # Optional: pretty URLs for pages
+
+# Baseurl and URL configuration
+url: "https://melodicmetrics.github.io" # Replace 'username' with your GitHub username
+baseurl: "/Target-ECommerce-Revenue-Analysis" # Replace 'Target-Revenue-Analysis' with your repository name
+
+# Plugins
 plugins:
   - "jekyll-feed" # Optional: Adds RSS feed functionality (useful if hosting)
   - "jekyll-sitemap" # Optional: Automatically generates a sitemap
