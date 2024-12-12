@@ -8,9 +8,9 @@ title: Orders_Final, Order_Items_Final, and Payments_Final Index
 <h2>Overviews of Table Changes</h2>
 <p><strong>To see an overview of changes made to each table, click the respective link below:</strong></p>
 <ul>
-  <li><a href="/data-cleaning-part-two/Orders-Order_Items-Payments/Orders_Final/"><b>Orders_Final</b></a></li>
-  <li><a href="/data-cleaning-part-two/Orders-Order_Items-Payments/Order_Items_Final/"><b>Order_Items_Final</b></a></li>
-  <li><a href="/data-cleaning-part-two/Orders-Order_Items-Payments/Payments_Final/"><b>Payments_Final</b></a></li>
+  <li><a href="{{ site.baseurl }}/data-cleaning-part-two/Orders-Order_Items-Payments/Orders_Final/"><b>Orders_Final</b></a></li>
+  <li><a href="{{ site.baseurl }}/data-cleaning-part-two/Orders-Order_Items-Payments/Order_Items_Final/"><b>Order_Items_Final</b></a></li>
+  <li><a href="{{ site.baseurl }}/data-cleaning-part-two/Orders-Order_Items-Payments/Payments_Final/"><b>Payments_Final</b></a></li>
 </ul>
 
 <hr class="title" />
@@ -146,7 +146,7 @@ MissingOrderIDs;
 
   <details class="code-details">
     <summary>📋 <b>Table 1: Missing <code>order_id</code>s by Status</b></summary>
-    <img src="/assets/images/Table_1-missing_order_ids.png" alt="Table of order statuses and missing order_id counts" />
+    <img src="{{ site.baseurl }}/assets/images/Table_1-missing_order_ids.png" alt="Table of order statuses and missing order_id counts" />
     <br />
     <p>- As you can see, there are <strong>733 total missing <code>order_id</code>s</strong> now, the majority of which contain the status <code>unavailable</code>.</p>
   </details>
@@ -166,7 +166,7 @@ SELECT
 
   <details class="code-details">
     <summary>📋<b>Table 2: Distinct <code>order_id</code> Counts in <code>Orders_Final</code> and <code>Order_Items_Final</code></b></summary>
-    <img src="/assets/images/Table_2-Distinct_order_id_counts_in_order_tables.png" alt="Table of distinct order_id counts in final tables" />
+    <img src="{{ site.baseurl }}/assets/images/Table_2-Distinct_order_id_counts_in_order_tables.png" alt="Table of distinct order_id counts in final tables" />
     <p>
       - Subtracting the two totals confirms the <strong>733</strong> number that was calculated before.
     </p>
@@ -222,6 +222,6 @@ SELECT
   <p>
     <b>Note:</b> One <code>order_id</code> was also missing in the <code>Payments_Final</code> table. The steps taken to identify
     and resolve this discrepancy are detailed in
-    <a href="./Payments_Final/steps.md">Payments_Final steps.md</a>.
+    <a href="{{ site.baseurl }}/Payments_Final/steps.md">Payments_Final steps.md</a>.
   </p>
 </details>
