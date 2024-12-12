@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payments Final Steps</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Highlight.js Theme -->
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/solarized-light.min.css">
+
+    <!-- Font Awesome Icon Library-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/styles.css">
+    
+    <!-- Highlight.js Core and Language Support -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/sql.min.js"></script>
+    
+    <!-- Custom DAX Language Registration -->
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/dax.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            hljs.registerLanguage("dax", dax); // Register the custom DAX grammar
+            hljs.highlightAll(); // Initialize Highlight.js
+        });
+    </script>
+    
+    <!-- Scroll Detection -->
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/scroll-detection.js"></script>
+    
+    <!-- Expand Selected Section-->
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/expand-section.js"></script>
+
+
+
+
+
+
+
+
+</head>
+<body>
+    <!-- Sticky Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/Target-ECommerce-Revenue-Analysis/">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/data-cleaning-part-one/">Data Cleaning Part One</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/data-cleaning-part-two/">Data Cleaning Part Two</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/EDA/">Exploratory Data Analysis</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/revenue-analysis/">Revenue Analysis</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+       
+    <header class="breadcrumbs-wrapper">
+        <nav class="breadcrumbs-trail" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Target-ECommerce-Revenue-Analysis/">Home</a></li>
+            
+            
+            
+            
+            
+            <li class="breadcrumb-item">
+              <a href="/Target-ECommerce-Revenue-Analysis/Data-Cleaning-Part-Two">Data Cleaning Part Two</a>
+            </li>
+            
+            
+            
+            
+            <li class="breadcrumb-item">
+              <a href="/Target-ECommerce-Revenue-Analysis/Data-Cleaning-Part-Two/Orders-Order_Items-Payments">Orders Order_Items Payments</a>
+            </li>
+            
+            
+            
+            
+            <li class="breadcrumb-item">
+              <a href="/Target-ECommerce-Revenue-Analysis/Data-Cleaning-Part-Two/Orders-Order_Items-Payments/Payments_Final">Payments_Final</a>
+            </li>
+            
+            
+            
+            
+            <li class="breadcrumb-item active" aria-current="page">steps.md</li>
+            
+            
+          </ol>
+        </nav>
+      </header>
+      
+      
+    
+
+
+
+
+    <!-- Header Section -->
+    <header class="custom-header">
+        <h1>Target E-Commerce Revenue Analysis</h1>
+    </header>
+      
+    <!-- Main Content -->
+    <main class="container my-4">
+        <h1>Steps to Create <code>Payments_Final</code></h1>
+
+<h2>Step 1: Initial Cleaning</h2>
+<p>
+  When I first started cleaning, I began by removing the <code>payment_sequential</code> column, which indicated instances where customers paid for their orders in multiple payments.
+  In order to group <code>order_id</code>s and eliminate duplicates, I summed all <code>payment_value</code> entries into a new column called <code>total_payment_value</code>.
+</p>
+<ul>
+  <li>This initial cleaning resulted in the <code>Payments_Cleaned</code> table, which contained <strong>101,836 entries</strong>.</li>
+</ul>
+
+<h2>Step 2: Iterative Cleaning</h2>
+<ol>
+  <li>
+    <strong>Removed Duplicates from <code>payment_type</code>:</strong>
+    <ul>
+      <li>I noticed that the <code>payment_type</code> column caused duplicate entries because some <code>order_id</code>s were associated with multiple payment methods (e.g., <code>voucher</code> and <code>credit card</code>).</li>
+      <li>To resolve this, I removed the <code>payment_type</code> column, eliminating these duplicates.</li>
+    </ul>
+  </li>
+  <li>
+    <strong>Removed Duplicates from <code>payment_installments</code>:</strong>
+    <ul>
+      <li>I also identified that the <code>payment_installments</code> column created duplicate entries due to <code>order_id</code>s split across multiple installments.</li>
+      <li>Removing this column further reduced the duplicates in the table.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2>Step 3: Filter Invalid <code>order_id</code>s</h2>
+<ul>
+  <li>
+    To ensure only valid <code>order_id</code>s remained, I created <code>Payments_Final</code> by applying a <code>JOIN</code> between <code>Payments_Cleaned</code> and <code>Orders_Final</code>. This ensured that only <code>order_id</code>s present in <code>Orders_Final</code> appeared in <code>Payments_Final</code>.
+  </li>
+  <li>
+    Additionally, I added the <code>GROUP BY</code> function to account for the removed columns <code>payment_installments</code> and <code>payment_type</code>, preventing duplicate <code>order_id</code>s that could impact future analysis.
+  </li>
+</ul>
+
+<details class="code-details">
+  <summary>📂<b><i>Query to Create Payments_Final</i></b></summary>
+  <!-- prettier-ignore -->
+  <pre><code class="language-sql">
+CREATE OR REPLACE TABLE `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Payments_Final` AS 
+SELECT
+    payments.order_id,
+    SUM(payments.total_payment_value) AS total_payment_value
+FROM 
+    `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Payments_Cleaned` AS payments
+JOIN 
+    `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Orders_Final` AS orders
+ON 
+    payments.order_id = orders.order_id
+GROUP BY
+    payments.order_id
+  </code></pre>
+</details>
+
+<p>
+  After applying these filters, the resulting <code>Payments_Final</code> table had <strong>92,842 entries</strong>, which was one fewer than expected as it should have matched <code>Orders_Final</code>.
+</p>
+
+<h2>Step 4: Discover the Missing <code>order_id</code></h2>
+<p>
+  I discovered that a single <code>order_id</code> was missing from <code>Payments_Final</code> despite being present in <code>Orders_Final</code> and <code>Order_Items_Final</code> with valid <code>price</code> and <code>freight_value</code> data.
+</p>
+
+<h4>Queries to Identify and Verify the Missing <code>order_id</code>:</h4>
+
+<details class="code-details">
+  <summary>📂<b><i>Query 1: Find missing order_id</i></b></summary>
+  <!-- prettier-ignore -->
+  <pre><code class="language-sql">
+SELECT 
+    o.order_id 
+FROM 
+    iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Orders_Final AS o
+LEFT JOIN 
+    iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Payments_Final AS p
+ON 
+    o.order_id = p.order_id
+WHERE 
+    p.order_id IS NULL;
+  </code></pre>
+</details>
+
+<details class="code-details">
+  <summary>📂<b><i>Query 2: Find price and freight of missing id in Order_Items_Final</i></b></summary>
+  <!-- prettier-ignore -->
+  <pre><code class="language-sql">
+SELECT
+  order_id,
+  price,
+  freight_value
+FROM
+  iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Order_Items_Final
+WHERE
+  order_id = "bfbd0f9bdef84302105ad712db648a6c"
+  </code></pre>
+</details>
+
+<h2>Step 5: Resolving the Missing <code>order_id</code></h2>
+<p>
+  With the missing <code>order_id</code> and its accompanying <code>price</code> and <code>freight_values</code> I could now resolve the issue in <code>Payments_Final</code>.
+</p>
+<ul>
+  <li>
+    In order to do so, I calculated the <code>total_payment_value</code>(column in <code>Payments_Final</code>) by summing the <code>price</code> and <code>freight_value</code> of the products associated with the missing <code>order_id</code> and inserted it into <code>Payments_Final</code>.
+  </li>
+</ul>
+
+<details class="code-details">
+  <summary>📂<b><i>Query to Insert Missing id into Payments_Final</i></b></summary>
+  <!-- prettier-ignore -->
+  <pre><code class="language-sql">
+INSERT INTO iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Payments_Final (order_id, total_payment_value)
+SELECT 
+    order_id,
+    ROUND(SUM(price + freight_value), 3) AS total_payment_value
+FROM 
+    iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Order_Items_Final
+WHERE 
+    order_id = 'bfbd0f9bdef84302105ad712db648a6c'
+GROUP BY 
+    order_id;
+  </code></pre>
+</details>
+
+<p>
+  After reinserting this <code>order_id</code>, the table returned the expected total of <strong>92,843 entries</strong>, perfectly matching <code>Orders_Final</code>.
+</p>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center text-muted py-3">
+        &copy; 2024 Miles Davidson. All rights reserved.<br>
+        Dataset used in this project is provided by <a href="https://www.kaggle.com/devarajv88" target="_blank">Devaraj V</a> on <a href="https://www.kaggle.com/" target="_blank">Kaggle</a>.<br>
+        This project is for educational and portfolio purposes only.
+    </footer>
+
+
+<script>
+    // Dynamically add a "Copy" button to each <pre><code> block
+    document.querySelectorAll("pre").forEach((pre) => {
+        // Create the copy button container
+        const button = document.createElement("button");
+        button.className = "copy-button";
+        button.onclick = () => copyCode(pre);
+
+        // Add the icon inside the button
+        const icon = document.createElement("i");
+        icon.className = "copy-icon";
+        button.appendChild(icon);
+
+        // Position the button inside the code block
+        pre.style.position = "relative"; // Ensure the button is positioned correctly
+        pre.appendChild(button);
+    });
+
+    // Function to handle copying code
+    function copyCode(pre) {
+        const codeBlock = pre.querySelector("code");
+        if (!codeBlock) return;
+
+        // Copy the code content
+        navigator.clipboard.writeText(codeBlock.textContent).then(() => {
+            // Change the icon to indicate success temporarily
+            const icon = pre.querySelector(".copy-icon");
+            icon.classList.add("copied");
+            setTimeout(() => icon.classList.remove("copied"), 2000);
+        }).catch((err) => {
+            console.error("Failed to copy: ", err);
+        });
+    }
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+I"<h1 id="orders-changes-overview">Orders Changes Overview</h1>
+
+<p>As noted in the <a href="../index">Overview File</a>, I needed to recalculate the discrepant and missing <code class="language-plaintext highlighter-rouge">order_id</code>s.</p>
+
+<p>There were more unique <code class="language-plaintext highlighter-rouge">order_id</code>s present in <code class="language-plaintext highlighter-rouge">Order_Items_Final</code> than in <code class="language-plaintext highlighter-rouge">Orders_Final</code>; therefore, the filter to remove missing IDs needed to be applied to the <code class="language-plaintext highlighter-rouge">Orders_Final</code> table. After doing so, I was able to ensure that both <code class="language-plaintext highlighter-rouge">Orders_Final</code> and <code class="language-plaintext highlighter-rouge">Order_Items_Final</code> were clean and usable for consistent analysis.</p>
+
+<p>Additionally, by removing the <code class="language-plaintext highlighter-rouge">order_id</code>s found to be discrepant in order value from <code class="language-plaintext highlighter-rouge">Orders_Final</code>, I ensured consistency between <code class="language-plaintext highlighter-rouge">Orders_Final</code> and <code class="language-plaintext highlighter-rouge">Payments_Final</code>.</p>
+
+<ul>
+  <li><em>Note: There was one <code class="language-plaintext highlighter-rouge">order_id</code> that appeared in <code class="language-plaintext highlighter-rouge">Orders_Final</code> but not in <code class="language-plaintext highlighter-rouge">Payments_Final</code>; this is described in detail in the Payments_final_steps.md.</em></li>
+</ul>
+
+<p><a href="steps">Click here</a> to read the detailed steps on the creation of <code class="language-plaintext highlighter-rouge">Orders_Final</code>.</p>
+:ET

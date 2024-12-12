@@ -3,26 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }}</title>
+    <title>Geolocations Final Index</title>
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <!-- Highlight.js Theme -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/solarized-light.min.css">
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/solarized-light.min.css">
 
     <!-- Font Awesome Icon Library-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
     <!-- Custom Styles -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/styles.css">
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/styles.css">
     
     <!-- Highlight.js Core and Language Support -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/sql.min.js"></script>
     
     <!-- Custom DAX Language Registration -->
-    <script src="{{ site.baseurl }}/assets/js/dax.js"></script>
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/dax.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             hljs.registerLanguage("dax", dax); // Register the custom DAX grammar
@@ -31,10 +31,10 @@
     </script>
     
     <!-- Scroll Detection -->
-    <script src="{{ site.baseurl }}/assets/js/scroll-detection.js"></script>
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/scroll-detection.js"></script>
     
     <!-- Expand Selected Section-->
-    <script src="{{ site.baseurl }}/assets/js/expand-section.js"></script>
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/expand-section.js"></script>
 
 
 
@@ -48,7 +48,7 @@
     <!-- Sticky Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{ site.baseurl }}/">Home</a>
+            <a class="navbar-brand" href="/Target-ECommerce-Revenue-Analysis/">Home</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -56,15 +56,15 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     
                     <li class="nav-item">
-                        <a class="nav-link" href="{{"/data-cleaning-part-one/" | relative_url }}">Data Cleaning Part One</a>
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/data-cleaning-part-one/">Data Cleaning Part One</a>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{"/data-cleaning-part-two/" | relative_url }}">Data Cleaning Part Two</a>
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/data-cleaning-part-two/">Data Cleaning Part Two</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{"/EDA/"| relative_url }}">Exploratory Data Analysis</a>
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/EDA/">Exploratory Data Analysis</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ site.baseurl }}/revenue-analysis/">Revenue Analysis</a>
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/revenue-analysis/">Revenue Analysis</a>
                     </li>
                 </ul>
                 <form class="d-flex" role="search">
@@ -78,19 +78,29 @@
     <header class="breadcrumbs-wrapper">
         <nav class="breadcrumbs-trail" aria-label="breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ site.baseurl }}/">Home</a></li>
-            {% assign path_parts = page.path | split: '/' %}
-            {% assign accumulated_path = "" %}
-            {% for part in path_parts %}
-            {% assign accumulated_path = accumulated_path | append: "/" | append: part %}
-            {% if forloop.last %}
-            <li class="breadcrumb-item active" aria-current="page">{{ part | replace: "-", " " }}</li>
-            {% else %}
+            <li class="breadcrumb-item"><a href="/Target-ECommerce-Revenue-Analysis/">Home</a></li>
+            
+            
+            
+            
+            
             <li class="breadcrumb-item">
-              <a href="{{ accumulated_path | relative_url }}">{{ part | replace: "-", " " }}</a>
+              <a href="/Target-ECommerce-Revenue-Analysis/Data-Cleaning-Part-Two">Data Cleaning Part Two</a>
             </li>
-            {% endif %}
-            {% endfor %}
+            
+            
+            
+            
+            <li class="breadcrumb-item">
+              <a href="/Target-ECommerce-Revenue-Analysis/Data-Cleaning-Part-Two/Geolocations_Final">Geolocations_Final</a>
+            </li>
+            
+            
+            
+            
+            <li class="breadcrumb-item active" aria-current="page">index.md</li>
+            
+            
           </ol>
         </nav>
       </header>
@@ -108,7 +118,27 @@
       
     <!-- Main Content -->
     <main class="container my-4">
-        {{ content }}
+        <h2 id="geolocation-changes-overview">Geolocation Changes Overview</h2>
+
+<p>Initially, in the first phase of my data cleaning, I used the GeoNames API to create a list of valid city-state combinations to filter the dataset. However due to constraints of using a free account, I had to limit my analysis to just <strong>4 states</strong> and their respective cities. This yielded me <strong>274</strong> rows.</p>
+
+<p>Before creating my <code class="language-plaintext highlighter-rouge">Geolocation_Final</code> table, I decided to change the source of my city-state combinations to a publication by the <strong>IBGE</strong> <em>(Brazilian Institute of Geography and Statistics)</em>. This dataset, from 2022, contains a complete list of all municipalities and federative units in Brazil, providing a more comprehensive and current basis for filtering.</p>
+
+<p>Using the IBGE dataset allowed me to increase the number of valid city-state combinations in my dataset from <strong>274</strong> to <strong>5,289</strong> entries—an increase of <strong>5,015 entries</strong>.</p>
+
+<h3 id="impact">Impact</h3>
+<ul>
+  <li>
+    <p>By filtering the city-state list in Google BigQuery, I was able to apply this filter directly across all related tables. This eliminated the need for the filter logic in my Power BI DAX queries, such as the line <code class="language-plaintext highlighter-rouge">LOOKUPVALUE(Customers[customer_state], Customers[customer_id], RELATED(Orders[customer_id])) IN {"SP", "RJ", "MG", "BA"}</code>. Previously, I had to include this line in every measure and calculated column dealing with customer IDs.</p>
+  </li>
+  <li>
+    <p>By incorporating this filter in Google BigQuery, my Power BI measures and DAX queries are now cleaner and more readable, allowing for easier maintenance and improved performance.</p>
+  </li>
+</ul>
+
+<p><a href="steps">Click here</a> to read the detailed steps on the creation of <code class="language-plaintext highlighter-rouge">Geolocation_Final</code>.</p>
+
+
     </main>
 
     <!-- Footer -->

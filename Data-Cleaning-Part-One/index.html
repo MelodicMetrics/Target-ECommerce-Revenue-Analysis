@@ -1,0 +1,49 @@
+---
+layout: default
+title: Data Cleaning Part One
+---
+
+<h1>Data Cleaning Part One</h1>
+<p
+  >Welcome to the Data Cleaning Part One section. Here are the available
+  files:</p
+>
+<ul>
+  <li
+    ><a href="{{ site.baseurl }}/data-cleaning-part-one/geolocation_cleaning"
+      >Geolocation Challenges</a
+    ></li
+  >
+  <li
+    ><a
+      href="{{ site.baseurl }}/data-cleaning-part-one/order_item_cleaning/index"
+      >Order and Order Item Challenges</a
+    ></li
+  >
+</ul>
+
+<h3>Purpose:</h3>
+<p>The data cleaning for this project was done in two main stages:</p>
+<ol>
+  <li
+    >The first stage focused on removing columns and attempting to use an API to
+    validate city-state locations in the dataset.</li
+  >
+  <li
+    >The second stage involved identifying missing
+    <code>order_ids</code> between <code>Orders</code> and
+    <code>Order_Items</code>, as well as resolving discrepancies between
+    <code>total_payment_value</code> and the calculated revenue (<code
+      >price</code
+    >
+    + <code>freight</code> from <code>Order_Items</code>).</li
+  >
+</ol>
+
+<p>
+  These findings served as the foundation for my second round of cleaning in
+  <a href="{{ site.baseurl }}/Data-Cleaning-Part-Two/index"
+    >Data Cleaning Part Two</a
+  >. However, the steps detailed here are superseded by later stages of
+  cleaning, and they are not necessary for reproducing the final analysis.
+</p>

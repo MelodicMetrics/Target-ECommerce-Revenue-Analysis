@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resolving Missing order_ids and Ensuring Revenue Consistency in Orders and Order Items Tables</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Highlight.js Theme -->
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/solarized-light.min.css">
+
+    <!-- Font Awesome Icon Library-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/styles.css">
+    
+    <!-- Highlight.js Core and Language Support -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/sql.min.js"></script>
+    
+    <!-- Custom DAX Language Registration -->
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/dax.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            hljs.registerLanguage("dax", dax); // Register the custom DAX grammar
+            hljs.highlightAll(); // Initialize Highlight.js
+        });
+    </script>
+    
+    <!-- Scroll Detection -->
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/scroll-detection.js"></script>
+    
+    <!-- Expand Selected Section-->
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/expand-section.js"></script>
+
+
+
+
+
+
+
+
+</head>
+<body>
+    <!-- Sticky Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/Target-ECommerce-Revenue-Analysis/">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/data-cleaning-part-one/">Data Cleaning Part One</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/data-cleaning-part-two/">Data Cleaning Part Two</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/EDA/">Exploratory Data Analysis</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/revenue-analysis/">Revenue Analysis</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+       
+    <header class="breadcrumbs-wrapper">
+        <nav class="breadcrumbs-trail" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Target-ECommerce-Revenue-Analysis/">Home</a></li>
+            
+            
+            
+            
+            
+            <li class="breadcrumb-item">
+              <a href="/Target-ECommerce-Revenue-Analysis/Data-Cleaning-Part-One">Data Cleaning Part One</a>
+            </li>
+            
+            
+            
+            
+            <li class="breadcrumb-item">
+              <a href="/Target-ECommerce-Revenue-Analysis/Data-Cleaning-Part-One/order_item_cleaning">order_item_cleaning</a>
+            </li>
+            
+            
+            
+            
+            <li class="breadcrumb-item active" aria-current="page">discrepant_order_values.html</li>
+            
+            
+          </ol>
+        </nav>
+      </header>
+      
+      
+    
+
+
+
+
+    <!-- Header Section -->
+    <header class="custom-header">
+        <h1>Target E-Commerce Revenue Analysis</h1>
+    </header>
+      
+    <!-- Main Content -->
+    <main class="container my-4">
+        <h2>Summary of Steps Taken: Resolving Missing order_ids and Ensuring Revenue Consistency in Orders and Order Items Tables</h2>
+
+<h3>Objective:</h3>
+<p>To identify and resolve discrepancies in the total revenue calculations between the Orders and Order Items tables due to missing order_ids, ensuring data integrity for accurate reporting.</p>
+
+<h3>Overview:</h3>
+<p>During the data cleaning process, I identified <strong>577</strong> <code>order_ids</code> <em>where the calculated order value</em> (<code>price</code> + <code>freight_value</code> in <code>Order Items</code>) did not align with the expected <code>total_payment_value</code> in the <code>Payments</code> table. These discrepancies were minor, with a net difference of <strong>$2,726.93</strong>. Additionally, only <strong>276 of these</strong> <code>order_ids</code> were present in the <code>Order Items</code> table. Earlier, I identified the discrepant <code>order_ids</code> between the <code>Orders</code> and <code>Order Items</code> tables, which was potentially responsible for the difference in counts, as the remaining <code>order_ids</code> had discrepancies recorded only in <code>Orders</code> or <code>Payments</code>. However, given the complexities of the dataset and the limitations of my tools as an independent analyst, I did not have sufficient context or capacity to uncover the source of these discrepancies with any certainty. Therefore, I ultimately decided to remove the <code>order_ids</code> from my analysis.</p>
+
+<hr>
+
+<h3>Recap of Steps Taken in Identifying Missing order_ids:</h3>
+<ul>
+    <li>Discovered that there were <strong>775 missing order_ids</strong> in the <code>Order Items</code> table.</li>
+    <li>Adjusted the total revenue function to <strong>ignore these missing order_ids</strong> in revenue calculations.</li>
+</ul>
+
+<hr>
+
+<h3>Analysis of Revenue Discrepancies:</h3>
+<ul>
+    <li>Noted discrepancies in total revenue calculations: fewer <code>order_ids</code> resulted in a <strong>higher revenue calculation</strong> than expected.</li>
+    <li>Created a comparison table, <strong>Order Revenue Comparison</strong>, to evaluate total revenue per <code>order_id</code> by summing the <code>price</code> and <code>freight_value</code> for each entry.</li>
+    <li>Compared the calculated revenue against the actual <code>expected_payment_value</code> to identify discrepancies.</li>
+</ul>
+
+<hr>
+
+<h3>Identification of Discrepant order_ids:</h3>
+<ul>
+    <li>Implemented a calculated column named <strong>'difference_flag'</strong> to capture discrepancy amounts for each <code>order_id</code>.</li>
+    <li>Filtered the dataset to display only <strong>non-zero values</strong>, identifying <strong>577 entries</strong> with discrepancies.</li>
+</ul>
+
+<hr>
+
+<h3>Calculation of Total Discrepancy:</h3>
+<ul>
+    <li>Developed functions, <strong><code>Total_Discrepant_Revenue_Order_Items</code></strong> and <strong><code>Total_Discrepant_Revenue_Payments</code></strong>, to quantify the total discrepancy across all identified <code>order_ids</code>.</li>
+    <li>Noted that the total discrepancy was <strong>$2,726.93</strong>, which was relatively minor, justifying the decision to exclude these problematic <code>order_ids</code> from analysis.</li>
+</ul>
+
+<hr>
+
+<h3>Final Adjustments:</h3>
+<ul>
+    <li>Created three new functions for revenue analysis focused on:
+        <ul>
+            <li><strong>Customer_ids</strong></li>
+            <li><strong>Product Categories</strong></li>
+            <li><strong>Sellers</strong></li>
+        </ul>
+    </li>
+    <li>Enhanced existing measures to include filter logic that excludes the identified problematic <code>order_ids</code> to ensure accurate revenue calculations moving forward.</li>
+</ul>
+
+<hr>
+
+<h3>Impact of Findings:</h3>
+<p>The identification of these discrepancies underscores the importance of rigorous data cleaning and validation processes, directly influencing the reliability of the revenue analysis. Ultimately, the final revenue calculation that matched across all tables was <strong>$2,750,971.13</strong>.</p>
+
+<hr>
+
+<h3>Future Recommendations:</h3>
+<p>Considerations for future analyses may include implementing more robust methodologies for data entry verification and continuous monitoring of data integrity to prevent similar discrepancies.</p>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center text-muted py-3">
+        &copy; 2024 Miles Davidson. All rights reserved.<br>
+        Dataset used in this project is provided by <a href="https://www.kaggle.com/devarajv88" target="_blank">Devaraj V</a> on <a href="https://www.kaggle.com/" target="_blank">Kaggle</a>.<br>
+        This project is for educational and portfolio purposes only.
+    </footer>
+
+
+<script>
+    // Dynamically add a "Copy" button to each <pre><code> block
+    document.querySelectorAll("pre").forEach((pre) => {
+        // Create the copy button container
+        const button = document.createElement("button");
+        button.className = "copy-button";
+        button.onclick = () => copyCode(pre);
+
+        // Add the icon inside the button
+        const icon = document.createElement("i");
+        icon.className = "copy-icon";
+        button.appendChild(icon);
+
+        // Position the button inside the code block
+        pre.style.position = "relative"; // Ensure the button is positioned correctly
+        pre.appendChild(button);
+    });
+
+    // Function to handle copying code
+    function copyCode(pre) {
+        const codeBlock = pre.querySelector("code");
+        if (!codeBlock) return;
+
+        // Copy the code content
+        navigator.clipboard.writeText(codeBlock.textContent).then(() => {
+            // Change the icon to indicate success temporarily
+            const icon = pre.querySelector(".copy-icon");
+            icon.classList.add("copied");
+            setTimeout(() => icon.classList.remove("copied"), 2000);
+        }).catch((err) => {
+            console.error("Failed to copy: ", err);
+        });
+    }
+</script>
+
+
+
+
+</body>
+</html>

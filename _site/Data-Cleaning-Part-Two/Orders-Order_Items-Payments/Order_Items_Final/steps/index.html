@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Items Final Steps</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Highlight.js Theme -->
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/solarized-light.min.css">
+
+    <!-- Font Awesome Icon Library-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/styles.css">
+    
+    <!-- Highlight.js Core and Language Support -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/sql.min.js"></script>
+    
+    <!-- Custom DAX Language Registration -->
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/dax.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            hljs.registerLanguage("dax", dax); // Register the custom DAX grammar
+            hljs.highlightAll(); // Initialize Highlight.js
+        });
+    </script>
+    
+    <!-- Scroll Detection -->
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/scroll-detection.js"></script>
+    
+    <!-- Expand Selected Section-->
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/expand-section.js"></script>
+
+
+
+
+
+
+
+
+</head>
+<body>
+    <!-- Sticky Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/Target-ECommerce-Revenue-Analysis/">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/data-cleaning-part-one/">Data Cleaning Part One</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/data-cleaning-part-two/">Data Cleaning Part Two</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/EDA/">Exploratory Data Analysis</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/revenue-analysis/">Revenue Analysis</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+       
+    <header class="breadcrumbs-wrapper">
+        <nav class="breadcrumbs-trail" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Target-ECommerce-Revenue-Analysis/">Home</a></li>
+            
+            
+            
+            
+            
+            <li class="breadcrumb-item">
+              <a href="/Target-ECommerce-Revenue-Analysis/Data-Cleaning-Part-Two">Data Cleaning Part Two</a>
+            </li>
+            
+            
+            
+            
+            <li class="breadcrumb-item">
+              <a href="/Target-ECommerce-Revenue-Analysis/Data-Cleaning-Part-Two/Orders-Order_Items-Payments">Orders Order_Items Payments</a>
+            </li>
+            
+            
+            
+            
+            <li class="breadcrumb-item">
+              <a href="/Target-ECommerce-Revenue-Analysis/Data-Cleaning-Part-Two/Orders-Order_Items-Payments/Order_Items_Final">Order_Items_Final</a>
+            </li>
+            
+            
+            
+            
+            <li class="breadcrumb-item active" aria-current="page">steps.md</li>
+            
+            
+          </ol>
+        </nav>
+      </header>
+      
+      
+    
+
+
+
+
+    <!-- Header Section -->
+    <header class="custom-header">
+        <h1>Target E-Commerce Revenue Analysis</h1>
+    </header>
+      
+    <!-- Main Content -->
+    <main class="container my-4">
+        <h1 id="steps-to-create-order_items_final">Steps to Create <code class="language-plaintext highlighter-rouge">Order_Items_Final</code></h1>
+
+<p>To ensure that only <code class="language-plaintext highlighter-rouge">seller_ids</code> attached to verified customer orders appeared in <code class="language-plaintext highlighter-rouge">Order_Items_Final</code>, I used a <code class="language-plaintext highlighter-rouge">JOIN</code> with <code class="language-plaintext highlighter-rouge">Orders_Final</code> rather than <code class="language-plaintext highlighter-rouge">Sellers_Final</code>.</p>
+
+<p>Beyond this, there weren’t many additional steps required. All filter logic applied to <code class="language-plaintext highlighter-rouge">Orders_Final</code> was automatically inherited by <code class="language-plaintext highlighter-rouge">Order_Items_Final</code>, since it was created using a <code class="language-plaintext highlighter-rouge">JOIN</code> with <code class="language-plaintext highlighter-rouge">Orders_Final</code>.</p>
+
+<h3 id="sql-query">SQL Query</h3>
+<p>The following query outlines the creation process for <code class="language-plaintext highlighter-rouge">Order_Items_Final</code>:</p>
+
+<details>
+<summary>📂<b><i>Query to Create Order_Items_Final</i></b></summary>
+  
+<pre><code class="language-sql">
+/*
+  This query creates the Order_Items_Final table with the following considerations:
+  
+  1. There was no need to include additional filter logic for either missing or discrepant `order_ids`:
+     - Missing `order_ids` were inherently excluded, as they were already absent from the Order_Items table.
+     - Discrepant `order_ids` were also excluded automatically, since this table is created by joining on `order_id` 
+       from Orders_Final, which has already filtered out discrepant orders.
+  
+  2. Initially, I considered joining this table with the Sellers_Final table. However, doing so 
+     would have introduced `order_ids` linked to sellers, regardless of whether the orders were made 
+     by customers from valid city-state combinations. 
+
+     By joining on `order_id` instead, I ensured that only orders made by filtered customers were included. 
+     While this approach may still include `seller_ids` from unverified city-state combinations, this is 
+     acceptable as the analysis does not focus on seller locations.
+*/
+
+CREATE OR REPLACE TABLE `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Order_Items_Final` AS 
+SELECT 
+    order_items.order_id,
+    order_items.order_item_id,
+    order_items.product_id,
+    order_items.seller_id,
+    order_items.price,
+    order_items.freight_value
+FROM 
+    `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Order Items` AS order_items
+JOIN 
+    `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Orders_Final` AS orders
+ON 
+    order_items.order_id = orders.order_id
+</code></pre>
+  
+</details>
+
+<h2 id="removed-columns-from-original-table">Removed Columns from Original Table</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Column Name</th>
+      <th>Reason for Removal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">shipping_limit_date</code></td>
+      <td>Not relevant to the analysis goals; delivery timestamps were sufficient.</td>
+    </tr>
+  </tbody>
+</table>
+
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center text-muted py-3">
+        &copy; 2024 Miles Davidson. All rights reserved.<br>
+        Dataset used in this project is provided by <a href="https://www.kaggle.com/devarajv88" target="_blank">Devaraj V</a> on <a href="https://www.kaggle.com/" target="_blank">Kaggle</a>.<br>
+        This project is for educational and portfolio purposes only.
+    </footer>
+
+
+<script>
+    // Dynamically add a "Copy" button to each <pre><code> block
+    document.querySelectorAll("pre").forEach((pre) => {
+        // Create the copy button container
+        const button = document.createElement("button");
+        button.className = "copy-button";
+        button.onclick = () => copyCode(pre);
+
+        // Add the icon inside the button
+        const icon = document.createElement("i");
+        icon.className = "copy-icon";
+        button.appendChild(icon);
+
+        // Position the button inside the code block
+        pre.style.position = "relative"; // Ensure the button is positioned correctly
+        pre.appendChild(button);
+    });
+
+    // Function to handle copying code
+    function copyCode(pre) {
+        const codeBlock = pre.querySelector("code");
+        if (!codeBlock) return;
+
+        // Copy the code content
+        navigator.clipboard.writeText(codeBlock.textContent).then(() => {
+            // Change the icon to indicate success temporarily
+            const icon = pre.querySelector(".copy-icon");
+            icon.classList.add("copied");
+            setTimeout(() => icon.classList.remove("copied"), 2000);
+        }).catch((err) => {
+            console.error("Failed to copy: ", err);
+        });
+    }
+</script>
+
+
+
+
+</body>
+</html>

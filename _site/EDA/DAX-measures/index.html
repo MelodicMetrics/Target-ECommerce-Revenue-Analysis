@@ -3,26 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }}</title>
+    <title>DAX Files Overview</title>
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <!-- Highlight.js Theme -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/solarized-light.min.css">
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/solarized-light.min.css">
 
     <!-- Font Awesome Icon Library-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
     <!-- Custom Styles -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/styles.css">
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/styles.css">
     
     <!-- Highlight.js Core and Language Support -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/sql.min.js"></script>
     
     <!-- Custom DAX Language Registration -->
-    <script src="{{ site.baseurl }}/assets/js/dax.js"></script>
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/dax.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             hljs.registerLanguage("dax", dax); // Register the custom DAX grammar
@@ -31,10 +31,10 @@
     </script>
     
     <!-- Scroll Detection -->
-    <script src="{{ site.baseurl }}/assets/js/scroll-detection.js"></script>
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/scroll-detection.js"></script>
     
     <!-- Expand Selected Section-->
-    <script src="{{ site.baseurl }}/assets/js/expand-section.js"></script>
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/expand-section.js"></script>
 
 
 
@@ -48,7 +48,7 @@
     <!-- Sticky Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{ site.baseurl }}/">Home</a>
+            <a class="navbar-brand" href="/Target-ECommerce-Revenue-Analysis/">Home</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -56,15 +56,15 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     
                     <li class="nav-item">
-                        <a class="nav-link" href="{{"/data-cleaning-part-one/" | relative_url }}">Data Cleaning Part One</a>
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/data-cleaning-part-one/">Data Cleaning Part One</a>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{"/data-cleaning-part-two/" | relative_url }}">Data Cleaning Part Two</a>
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/data-cleaning-part-two/">Data Cleaning Part Two</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{"/EDA/"| relative_url }}">Exploratory Data Analysis</a>
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/EDA/">Exploratory Data Analysis</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ site.baseurl }}/revenue-analysis/">Revenue Analysis</a>
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/revenue-analysis/">Revenue Analysis</a>
                     </li>
                 </ul>
                 <form class="d-flex" role="search">
@@ -78,19 +78,29 @@
     <header class="breadcrumbs-wrapper">
         <nav class="breadcrumbs-trail" aria-label="breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ site.baseurl }}/">Home</a></li>
-            {% assign path_parts = page.path | split: '/' %}
-            {% assign accumulated_path = "" %}
-            {% for part in path_parts %}
-            {% assign accumulated_path = accumulated_path | append: "/" | append: part %}
-            {% if forloop.last %}
-            <li class="breadcrumb-item active" aria-current="page">{{ part | replace: "-", " " }}</li>
-            {% else %}
+            <li class="breadcrumb-item"><a href="/Target-ECommerce-Revenue-Analysis/">Home</a></li>
+            
+            
+            
+            
+            
             <li class="breadcrumb-item">
-              <a href="{{ accumulated_path | relative_url }}">{{ part | replace: "-", " " }}</a>
+              <a href="/Target-ECommerce-Revenue-Analysis/EDA">EDA</a>
             </li>
-            {% endif %}
-            {% endfor %}
+            
+            
+            
+            
+            <li class="breadcrumb-item">
+              <a href="/Target-ECommerce-Revenue-Analysis/EDA/DAX-measures">DAX measures</a>
+            </li>
+            
+            
+            
+            
+            <li class="breadcrumb-item active" aria-current="page">index.html</li>
+            
+            
           </ol>
         </nav>
       </header>
@@ -108,7 +118,86 @@
       
     <!-- Main Content -->
     <main class="container my-4">
-        {{ content }}
+        <h1>DAX Files Overview</h1>
+
+<p>
+  This page serves as a central repository for all the DAX measures and
+  calculated columns used in both my
+  <strong>Exploratory Data Analysis (EDA)</strong> and
+  <strong>Revenue Analysis</strong>. Each file contains DAX measures and
+  calculated columns grouped by their specific purpose.
+</p>
+
+<div class="hr-wrapper">
+  <hr class="title" />
+</div>
+
+<h2>Grouped DAX Measures</h2>
+
+<ul>
+  <li>
+    <a href="/Target-ECommerce-Revenue-Analysis/EDA/DAX-measures/revenue-measures"><b>1. Revenue Measures</b></a>
+    <p>
+      Includes measures for calculating revenue totals, averages, and
+      percentages, as well as weighted averages.
+    </p>
+  </li>
+
+  <div class="hr-wrapper">
+    <hr />
+  </div>
+
+  <li>
+    <a href="/Target-ECommerce-Revenue-Analysis/EDA/DAX-measures/product-measures"><b>2. Product Measures</b></a>
+    <p>
+      Focuses on product-related measures such as counts, percentages, and
+      calculated columns for deeper insights.
+    </p>
+  </li>
+
+  <div class="hr-wrapper">
+    <hr />
+  </div>
+
+  <li>
+    <a href="/Target-ECommerce-Revenue-Analysis/EDA/DAX-measures/product-value-bins"
+      ><b>3. Product Value Bins</b></a
+    >
+    <p>
+      Provides binning logic to segment products by value ranges for trend
+      analysis and comparisons.
+    </p>
+  </li>
+
+  <div class="hr-wrapper">
+    <hr />
+  </div>
+
+  <li>
+    <a href="/Target-ECommerce-Revenue-Analysis/EDA/DAX-measures/dynamic-titles"><b>4. Dynamic Titles</b></a>
+    <p>
+      Contains measures for creating dynamic titles that update based on user
+      interaction and slicer selections.
+    </p>
+  </li>
+
+  <div class="hr-wrapper">
+    <hr />
+  </div>
+
+  <li>
+    <a href="/Target-ECommerce-Revenue-Analysis/EDA/DAX-measures/dynamic-measures"><b>5. Dynamic Measures</b></a>
+    <p>
+      Includes measures that enable interactivity, such as dynamic metric
+      switching, for enhanced dashboards.
+    </p>
+  </li>
+
+  <div class="hr-wrapper">
+    <hr />
+  </div>
+</ul>
+
     </main>
 
     <!-- Footer -->

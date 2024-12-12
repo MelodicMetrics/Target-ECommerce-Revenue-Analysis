@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resolving Missing order_ids and Discrepancies in Orders and Order Items Tables</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Highlight.js Theme -->
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/solarized-light.min.css">
+
+    <!-- Font Awesome Icon Library-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/styles.css">
+    
+    <!-- Highlight.js Core and Language Support -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/sql.min.js"></script>
+    
+    <!-- Custom DAX Language Registration -->
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/dax.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            hljs.registerLanguage("dax", dax); // Register the custom DAX grammar
+            hljs.highlightAll(); // Initialize Highlight.js
+        });
+    </script>
+    
+    <!-- Scroll Detection -->
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/scroll-detection.js"></script>
+    
+    <!-- Expand Selected Section-->
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/expand-section.js"></script>
+
+
+
+
+
+
+
+
+</head>
+<body>
+    <!-- Sticky Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/Target-ECommerce-Revenue-Analysis/">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/data-cleaning-part-one/">Data Cleaning Part One</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/data-cleaning-part-two/">Data Cleaning Part Two</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/EDA/">Exploratory Data Analysis</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/revenue-analysis/">Revenue Analysis</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+       
+    <header class="breadcrumbs-wrapper">
+        <nav class="breadcrumbs-trail" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Target-ECommerce-Revenue-Analysis/">Home</a></li>
+            
+            
+            
+            
+            
+            <li class="breadcrumb-item">
+              <a href="/Target-ECommerce-Revenue-Analysis/Data-Cleaning-Part-One">Data Cleaning Part One</a>
+            </li>
+            
+            
+            
+            
+            <li class="breadcrumb-item">
+              <a href="/Target-ECommerce-Revenue-Analysis/Data-Cleaning-Part-One/order_item_cleaning">order_item_cleaning</a>
+            </li>
+            
+            
+            
+            
+            <li class="breadcrumb-item active" aria-current="page">missing_order_ids.html</li>
+            
+            
+          </ol>
+        </nav>
+      </header>
+      
+      
+    
+
+
+
+
+    <!-- Header Section -->
+    <header class="custom-header">
+        <h1>Target E-Commerce Revenue Analysis</h1>
+    </header>
+      
+    <!-- Main Content -->
+    <main class="container my-4">
+        <h2>Steps to Clean Discrepancies Between Orders and Order Items Tables</h2>
+
+<h3>Objective:</h3>
+<p
+  >To resolve discrepancies between the <code>Orders</code> and
+  <code>Order Items</code> tables, particularly focusing on missing
+  <code>order_ids</code> and ensuring accurate revenue calculations.</p
+>
+
+<h3>Overview:</h3>
+<p
+  >This document summarizes the steps taken to identify and resolve
+  discrepancies in the <code>Orders</code> and <code>Order Items</code> tables,
+  where missing <code>order_ids</code> impacted revenue measures. After noticing
+  inconsistencies in revenue calculations, I identified 775 missing
+  <code>order_ids</code> in the <code>Order Items</code> table. Some of these
+  were due to orders with <strong>"canceled"</strong> or
+  <strong>"unavailable"</strong> statuses, which were handled by creating
+  separate tables and merging them into a final summary table. After excluding
+  these missing <code>order_ids</code> from the revenue calculations, the
+  measures for total revenue and revenue by category matched accurately.</p
+>
+
+<hr />
+
+<h3>Geolocation Table Cleaning Review:</h3>
+<ul>
+  <li
+    >Focused on the four most populated states, resulting in
+    <strong>150 cities</strong>.</li
+  >
+  <li
+    >Acknowledged that this yield may not fully represent the overall geography
+    due to constraints of a free GeoNames membership and data entry errors.</li
+  >
+</ul>
+
+<hr />
+
+<h3>Total Revenue Calculation:</h3>
+<ul>
+  <li>Created a measure for <strong>Total Revenue of All Orders</strong>.</li>
+</ul>
+
+<hr />
+
+<h3>Revenue by Product Categories:</h3>
+<ul>
+  <li
+    >Developed a measure to calculate total revenue while applying filter logic
+    specifically for product categories.</li
+  >
+  <li
+    >Discovered that the total revenue by category was lower than the overall
+    total revenue of all orders.</li
+  >
+</ul>
+
+<hr />
+
+<h3>Identifying Order ID Discrepancies:</h3>
+<ul>
+  <li
+    >Investigated discrepancies between the unique and distinct
+    <code>order_ids</code> in the <code>Orders</code> and
+    <code>Order Items</code> tables.</li
+  >
+  <li
+    >Found that the <code>Orders</code> table had more unique and distinct
+    entries than the <code>Order Items</code> table.</li
+  >
+</ul>
+
+<hr />
+
+<h3>Missing Order IDs Analysis:</h3>
+<ul>
+  <li
+    >Created a table to identify all <code>order_ids</code> not present in the
+    <code>Order Items</code> table, resulting in
+    <strong>775 missing IDs</strong>.</li
+  >
+  <li
+    >Identified certain <code>order_ids</code> with statuses
+    <strong>"canceled"</strong> and <strong>"unavailable"</strong> that were not
+    present in the <code>Order Items</code> table.</li
+  >
+  <li
+    >Analyzed missing IDs and found that <strong>767 rows</strong> were missing
+    entries with <strong>"canceled"</strong> or
+    <strong>"unavailable"</strong> statuses, leaving
+    <strong>8 <code>order_ids</code></strong> unaccounted for.</li
+  >
+</ul>
+
+<hr />
+
+<h3>Finalizing the Missing Order IDs:</h3>
+<ul>
+  <li
+    >Created a function to display all <code>order_ids</code> with statuses that
+    were neither <strong>"Canceled"</strong> nor
+    <strong>"Unavailable"</strong>.</li
+  >
+  <li
+    >Related the <strong><code>Orders with Unknown Status</code></strong> table
+    to the <code>Orders</code> table on <code>order_id</code>, resulting in a
+    new table that included the <code>order_ids</code> and their statuses.</li
+  >
+  <li
+    >Merged the <strong><code>Canceled Orders</code></strong
+    >, <strong><code>Unavailable Orders</code></strong
+    >, and <strong><code>Orders with Unknown Status</code></strong> into one
+    comprehensive table containing all
+    <strong>755 missing <code>order_ids</code></strong
+    >.</li
+  >
+</ul>
+
+<hr />
+
+<h3>Adjusting the Total Revenue Measure:</h3>
+<ul>
+  <li
+    >Edited the <strong>Total Revenue for All Orders</strong> measure to exclude
+    the <code>order_ids</code> from the
+    <strong><code>Compiled Order Status Summary</code></strong> table.</li
+  >
+  <li
+    >This adjustment resulted in a total revenue figure that now matched across
+    both the "by category" and "overall orders" measures.</li
+  >
+</ul>
+
+<hr />
+
+<h3>Additional Considerations:</h3>
+<ul>
+  <li
+    >Emphasized the importance of maintaining data quality by ensuring all
+    relevant <code>order_ids</code> were accounted for and accurately reflected
+    in the analyses.</li
+  >
+  <li
+    >Suggested future improvements to develop a more robust methodology for
+    addressing data entry errors and enhancing data validation processes.</li
+  >
+</ul>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center text-muted py-3">
+        &copy; 2024 Miles Davidson. All rights reserved.<br>
+        Dataset used in this project is provided by <a href="https://www.kaggle.com/devarajv88" target="_blank">Devaraj V</a> on <a href="https://www.kaggle.com/" target="_blank">Kaggle</a>.<br>
+        This project is for educational and portfolio purposes only.
+    </footer>
+
+
+<script>
+    // Dynamically add a "Copy" button to each <pre><code> block
+    document.querySelectorAll("pre").forEach((pre) => {
+        // Create the copy button container
+        const button = document.createElement("button");
+        button.className = "copy-button";
+        button.onclick = () => copyCode(pre);
+
+        // Add the icon inside the button
+        const icon = document.createElement("i");
+        icon.className = "copy-icon";
+        button.appendChild(icon);
+
+        // Position the button inside the code block
+        pre.style.position = "relative"; // Ensure the button is positioned correctly
+        pre.appendChild(button);
+    });
+
+    // Function to handle copying code
+    function copyCode(pre) {
+        const codeBlock = pre.querySelector("code");
+        if (!codeBlock) return;
+
+        // Copy the code content
+        navigator.clipboard.writeText(codeBlock.textContent).then(() => {
+            // Change the icon to indicate success temporarily
+            const icon = pre.querySelector(".copy-icon");
+            icon.classList.add("copied");
+            setTimeout(() => icon.classList.remove("copied"), 2000);
+        }).catch((err) => {
+            console.error("Failed to copy: ", err);
+        });
+    }
+</script>
+
+
+
+
+</body>
+</html>

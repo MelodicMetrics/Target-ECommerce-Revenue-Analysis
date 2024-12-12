@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard 3</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Highlight.js Theme -->
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/solarized-light.min.css">
+
+    <!-- Font Awesome Icon Library-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/styles.css">
+    
+    <!-- Highlight.js Core and Language Support -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/sql.min.js"></script>
+    
+    <!-- Custom DAX Language Registration -->
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/dax.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            hljs.registerLanguage("dax", dax); // Register the custom DAX grammar
+            hljs.highlightAll(); // Initialize Highlight.js
+        });
+    </script>
+    
+    <!-- Scroll Detection -->
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/scroll-detection.js"></script>
+    
+    <!-- Expand Selected Section-->
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/expand-section.js"></script>
+
+
+
+
+
+
+
+
+</head>
+<body>
+    <!-- Sticky Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/Target-ECommerce-Revenue-Analysis/">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/data-cleaning-part-one/">Data Cleaning Part One</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/data-cleaning-part-two/">Data Cleaning Part Two</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/EDA/">Exploratory Data Analysis</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/revenue-analysis/">Revenue Analysis</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+       
+    <header class="breadcrumbs-wrapper">
+        <nav class="breadcrumbs-trail" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Target-ECommerce-Revenue-Analysis/">Home</a></li>
+            
+            
+            
+            
+            
+            <li class="breadcrumb-item">
+              <a href="/Target-ECommerce-Revenue-Analysis/EDA">EDA</a>
+            </li>
+            
+            
+            
+            
+            <li class="breadcrumb-item">
+              <a href="/Target-ECommerce-Revenue-Analysis/EDA/Dashboard-3-Seller-Performance">Dashboard 3 Seller Performance</a>
+            </li>
+            
+            
+            
+            
+            <li class="breadcrumb-item active" aria-current="page">index.html</li>
+            
+            
+          </ol>
+        </nav>
+      </header>
+      
+      
+    
+
+
+
+
+    <!-- Header Section -->
+    <header class="custom-header">
+        <h1>Target E-Commerce Revenue Analysis</h1>
+    </header>
+      
+    <!-- Main Content -->
+    <main class="container my-4">
+        <h1>Dashboard 3: Seller Performance Analysis</h1>
+
+<div style="text-align: center">
+  <img
+    src="Screenshots/Full_Dashboard.png"
+    alt="Dashboard 3: Seller Performance Analysis"
+    width="800"
+  />
+</div>
+
+<h2>Purpose</h2>
+<p>
+  This dashboard focuses on analyzing seller performance based on revenue and product count across selected timeframes and product categories. It aims to provide insights into top-performing sellers and their contributions to overall revenue and product sales.
+</p>
+
+<div class="hr-wrapper">
+  <hr class="title"/>
+</div>
+
+<h2>Key Insights</h2>
+
+<ul>
+  <li>
+    <strong>Observation 1:</strong> The top-performing category, <code>Health & Beauty</code>, accounts for <strong>8.59% of all products sold</strong> and <strong>9.08% of total revenue</strong>. In comparison, <code>Gift Watches</code> contributes <strong>5.34% of all products sold</strong> but <strong>8.33% of total revenue</strong>, reflecting its higher-value, lower-volume order nature.
+  </li>
+  <li>
+    <strong>Observation 2:</strong> Within the <strong>top 5 categories</strong>, which together comprise <strong>38% of all products sold</strong> and <strong>39.25% of total revenue</strong>, the top 5 sellers collectively contribute <strong>15.84% of total revenue</strong>, highlighting their critical role in driving performance in key product segments.
+  </li>
+  <li>
+    <strong>Observation 3:</strong> For <code>Gift Watches</code>, the top 5 sellers dominate the category, contributing <strong>62.11% of its total revenue</strong> and <strong>67.13% of its total products sold</strong>, despite there being only <strong>51 sellers</strong> in the category. In contrast, <code>Health & Beauty</code>, with <strong>384 sellers</strong>, has its top 5 sellers contributing only <strong>18.03% of total products sold</strong> and <strong>9.08% of its total revenue</strong>, emphasizing the disparity in seller concentration and distribution between these categories.
+  </li>
+  <li>
+    <strong>Observation 4:</strong> The top seller for <code>Gift Watches</code> generated <strong>$202k</strong> in revenue, compared to the top seller for <code>Health & Beauty</code>, who achieved only <strong>$78k</strong>, showcasing the difference in average order value and seller performance between these two categories.
+  </li>
+</ul>
+
+
+<div class="hr-wrapper">
+  <hr />
+</div>
+
+<h2>Dashboard Features and Sections</h2>
+
+<h3>Filters and Slicers</h3>
+<p>
+  <strong>Purpose:</strong> Enables users to dynamically filter the data by time (year, quarter, and month), product categories, and selected metrics.<br />
+  <strong>Features:</strong> 
+  <ul>
+    <li>
+      <strong>Time Slicer:</strong> Allows users to filter data by year, quarter, and month.
+    </li>
+    <li>
+      <strong>Product Category Slicer:</strong> Lets users select specific product categories to view, dynamically updating titles and visualizations.
+    </li>
+    <li>
+      <strong>Selected Metric Slicer:</strong>
+      <ul>
+        <li>
+          Allows users to toggle between <code>Percentage of Revenue</code> and <code>Percentage of Total Products</code> metrics.
+        </li>
+        <li>
+          Dynamically updates all relevant visualizations to reflect the selected metric.
+        </li>
+        <li>
+          To learn more about the <code>Selected Metric</code> measure, <a href="../DAX-measures/dynamic-measures#selected-metric">click here</a>.
+        </li>
+      </ul>
+    </li>
+  </ul>
+</p>
+
+<details class="image-details">
+  <summary>Screenshots</summary>
+  <div style="text-align: center;">
+    <div style="display: inline-block; margin: 0 10px;">
+      <img src="Screenshots/Time_Slicer.png" alt="Category Slicer Screenshot" width="200" />
+      <p><strong>Category Slicer</strong></p>
+    </div>
+    <div style="display: inline-block; margin: 0 10px;">
+      <img src="Screenshots/Product_Category_Slicer.png" alt="Time Slicer Screenshot" width="300" />
+      <p><strong>Time Slicer</strong></p>
+    </div>
+    <div style="display: inline-block; margin: 0 10px;">
+        <img src="Screenshots/Metric_Toggle.png" alt="Metric Toggle Screenshot" width="250" />
+        <p><strong>Selected Metric Toggle</strong></p>
+      </div>
+  </div>
+</details>
+
+<div class="hr-wrapper">
+  <hr />
+</div>
+
+<h3>KPI Cards</h3>
+<p>
+  <strong>Purpose:</strong> Provides a snapshot of key performance indicators based on the applied filters.<br />
+  <strong>Features:</strong>
+  <ul>
+    <li>
+      <strong>Revenue %:</strong> Displays the percentage contribution of the selected dataset to the total revenue.
+    </li>
+    <li>
+      <strong>Product %:</strong> Displays the percentage contribution of the selected dataset to the total product count.
+    </li>
+    <li>
+      <strong>Shortened Top Seller ID:</strong> Displays the first eight characters of the top seller ID based on total revenue. This card does not change based on the selected metric.
+    </li>
+  </ul>
+  <strong>Insights:</strong>
+  <ul>
+    <li>
+      In <code>Health & Beauty</code>, 8.59% of all products and 9.08% of total revenue were attributed to this category.
+    </li>
+    <li>
+      The top seller ID by revenue in <code>Health & Beauty</code> was <code>edb1ef5e...</code>.
+    </li>
+  </ul>
+</p>
+
+<details class="image-details">
+    <summary>Screenshots</summary>
+    <div style="text-align: center;">
+      <div style="display: inline-block; margin: 0 10px;">
+        <img src="Screenshots/Revenue_Percentage_KPI_Card.png" alt="Revenue Percent Screenshot" width="300" />
+        <p><strong>Revenue Percentage</strong></p>
+      </div>
+      <div style="display: inline-block; margin: 0 10px;">
+        <img src="Screenshots/Product_Count_Percentage_KPI_Card.png" alt="Product Count Percentage Screenshot" width="300" />
+        <p><strong>Product Count Percentage</strong></p>
+      </div>
+      <div style="display: inline-block; margin: 0 10px;">
+          <img src="Screenshots/Top_Seller_ID_KPI_Card.png" alt="Top Seller ID Screenshot" width="600" />
+          <p><strong>Shortened Top Seller ID</strong></p>
+        </div>
+    </div>
+  </details>
+
+<div class="hr-wrapper">
+  <hr />
+</div>
+
+<h3>Visualizations</h3>
+
+<h4>1. Top 5 Sellers by Metric and Category</h4>
+<p>
+  <strong>Purpose:</strong> Displays the performance of the top 5 sellers based on the selected metric and product category.<br />
+  <strong>Features:</strong>
+  <ul>
+    <li>
+      A scatter chart showing 5 seller IDs, with bubble size mapped to the selected metric and color mapped to product categories.
+    </li>
+    <li>
+      Dynamically updates based on selected categories and metrics.
+    </li>
+    <li>
+      Displays a dynamic callout such as, "The Top 5 Sellers contribute 25.71% of total revenue in Health & Beauty."
+    </li>
+    <li>
+      When multiple categories are selected, the visual still displays the top 5 sellers based on cumulative totals across selected categories.
+    </li>
+  </ul>
+</p>
+
+<details class="image-details">
+  <summary>Screenshots</summary>
+  <div style="text-align: center">
+    <img src="Screenshots/Top_5_Sellers_by_Metric_and_Category.png" alt="Top 5 Sellers Scatter Chart" width="600" />
+  </div>
+</details>
+
+
+
+<h4>2. Seller Rankings by Metric and Category</h4>
+<p>
+  <strong>Purpose:</strong> Provides a detailed table of seller rankings based on revenue and product count, allowing for direct comparison of metrics.<br />
+  <strong>Features:</strong>
+  <ul>
+    <li>
+      Columns include:
+      <ol>
+        <li>Seller Rank</li>
+        <li>seller_id</li>
+        <li>Total Product Revenue</li>
+        <li>Product Count</li>
+        <li>Selected Metric</li>
+        <li>Weighted Average Revenue</li>
+      </ol>
+    </li>
+    <li>
+      Conditional highlighting for the top 5 sellers by revenue, with ranks and rows highlighted in orange.
+    </li>
+    <li>
+      Dynamically updates based on selected metric and category filters.
+    </li>
+  </ul>
+  <strong>Insights:</strong>
+  <ul>
+    <li>
+      The seller with the highest revenue may not always have the highest product count, leading to reordered rankings when toggling metrics.
+    </li>
+    <li>
+      For example, the seller with the highest revenue in <code>Health & Beauty</code> only ranked 9th by product count.
+    </li>
+  </ul>
+</p>
+
+<details class="image-details">
+  <summary>Screenshots</summary>
+  <div style="text-align: center">
+    <img src="Screenshots/Seller_Rankings_by_Metric_and_Category.png" alt="Seller Rankings Table" width="600" />
+  </div>
+</details>
+
+<div class="hr-wrapper">
+  <hr />
+</div>
+
+<h3>Insights in Action</h3>
+<ul>
+  <li>
+    <strong>Revenue Maximization:</strong> Focus efforts on categories like <code>Gift Watches</code>, where the top 5 sellers generate a significant share of both revenue and product sales, despite having fewer sellers overall. This indicates a strong opportunity to leverage high-value orders.
+  </li>
+  <li>
+    <strong>Seller Strategy:</strong> Analyze the strategies employed by top sellers in <code>Gift Watches</code> to replicate success in other categories. Encourage underperforming sellers in <code>Health & Beauty</code> to target higher-value orders to improve revenue contributions.
+  </li>
+  <li>
+    <strong>Category Growth:</strong> Consider expanding seller participation in categories like <code>Gift Watches</code> to diversify revenue sources while supporting high-performing sellers in <code>Health & Beauty</code> to further optimize their sales.
+  </li>
+  <li>
+    <strong>Resource Allocation:</strong> Allocate marketing and promotional resources toward the top 5 product categories, which account for a substantial share of revenue (39.25%), ensuring high-impact efforts across these critical areas.
+  </li>
+</ul>
+
+<div class="hr-wrapper">
+  <hr />
+</div>
+
+
+<h3>Measures Used</h3>
+<p>
+  This section provides an overview of the key measures used in this dashboard. For a look at all measures used across my analysis, refer to the <a href="../DAX-measures">DAX Measures Document</a>. 
+  Otherwise, use the links below to navigate to the respective measure.
+</p>
+<ul>
+  <li>
+    <strong>Percentage of Revenue:</strong> Displays the revenue percentage contribution of the selected dataset. 
+    <a href="/Target-ECommerce-Revenue-Analysis../DAX-measures/revenue-measures#product-revenue-percent">Learn more</a>.
+  </li>
+  <li>
+    <strong>Percentage of Total Products:</strong> Displays the product count percentage contribution of the selected dataset. 
+    <a href="/Target-ECommerce-Revenue-Analysis../DAX-measures/product-measures#product-count-percent">Learn more</a>.
+  </li>
+</ul>
+
+<div class="hr-wrapper">
+  <hr />
+</div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center text-muted py-3">
+        &copy; 2024 Miles Davidson. All rights reserved.<br>
+        Dataset used in this project is provided by <a href="https://www.kaggle.com/devarajv88" target="_blank">Devaraj V</a> on <a href="https://www.kaggle.com/" target="_blank">Kaggle</a>.<br>
+        This project is for educational and portfolio purposes only.
+    </footer>
+
+
+<script>
+    // Dynamically add a "Copy" button to each <pre><code> block
+    document.querySelectorAll("pre").forEach((pre) => {
+        // Create the copy button container
+        const button = document.createElement("button");
+        button.className = "copy-button";
+        button.onclick = () => copyCode(pre);
+
+        // Add the icon inside the button
+        const icon = document.createElement("i");
+        icon.className = "copy-icon";
+        button.appendChild(icon);
+
+        // Position the button inside the code block
+        pre.style.position = "relative"; // Ensure the button is positioned correctly
+        pre.appendChild(button);
+    });
+
+    // Function to handle copying code
+    function copyCode(pre) {
+        const codeBlock = pre.querySelector("code");
+        if (!codeBlock) return;
+
+        // Copy the code content
+        navigator.clipboard.writeText(codeBlock.textContent).then(() => {
+            // Change the icon to indicate success temporarily
+            const icon = pre.querySelector(".copy-icon");
+            icon.classList.add("copied");
+            setTimeout(() => icon.classList.remove("copied"), 2000);
+        }).catch((err) => {
+            console.error("Failed to copy: ", err);
+        });
+    }
+</script>
+
+
+
+
+</body>
+</html>

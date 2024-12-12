@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders Final Steps</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Highlight.js Theme -->
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/solarized-light.min.css">
+
+    <!-- Font Awesome Icon Library-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/styles.css">
+    
+    <!-- Highlight.js Core and Language Support -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/sql.min.js"></script>
+    
+    <!-- Custom DAX Language Registration -->
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/dax.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            hljs.registerLanguage("dax", dax); // Register the custom DAX grammar
+            hljs.highlightAll(); // Initialize Highlight.js
+        });
+    </script>
+    
+    <!-- Scroll Detection -->
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/scroll-detection.js"></script>
+    
+    <!-- Expand Selected Section-->
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/expand-section.js"></script>
+
+
+
+
+
+
+
+
+</head>
+<body>
+    <!-- Sticky Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/Target-ECommerce-Revenue-Analysis/">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/data-cleaning-part-one/">Data Cleaning Part One</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/data-cleaning-part-two/">Data Cleaning Part Two</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/EDA/">Exploratory Data Analysis</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/revenue-analysis/">Revenue Analysis</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+       
+    <header class="breadcrumbs-wrapper">
+        <nav class="breadcrumbs-trail" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Target-ECommerce-Revenue-Analysis/">Home</a></li>
+            
+            
+            
+            
+            
+            <li class="breadcrumb-item">
+              <a href="/Target-ECommerce-Revenue-Analysis/Data-Cleaning-Part-Two">Data Cleaning Part Two</a>
+            </li>
+            
+            
+            
+            
+            <li class="breadcrumb-item">
+              <a href="/Target-ECommerce-Revenue-Analysis/Data-Cleaning-Part-Two/Orders-Order_Items-Payments">Orders Order_Items Payments</a>
+            </li>
+            
+            
+            
+            
+            <li class="breadcrumb-item">
+              <a href="/Target-ECommerce-Revenue-Analysis/Data-Cleaning-Part-Two/Orders-Order_Items-Payments/Orders_Final">Orders_Final</a>
+            </li>
+            
+            
+            
+            
+            <li class="breadcrumb-item active" aria-current="page">steps.md</li>
+            
+            
+          </ol>
+        </nav>
+      </header>
+      
+      
+    
+
+
+
+
+    <!-- Header Section -->
+    <header class="custom-header">
+        <h1>Target E-Commerce Revenue Analysis</h1>
+    </header>
+      
+    <!-- Main Content -->
+    <main class="container my-4">
+        <h1>Steps to Create <code>Orders_Final</code></h1>
+
+<h2>Step 1: Initial <code>Orders_Final</code> Table Creation</h2>
+<p>
+  To accurately identify which orders were missing or discrepant, I needed tables that displayed <code>order_id</code>s based on the <code>Customers_Final</code> table created earlier.
+</p>
+
+<details class="code-details">
+  <summary>📂<b><i>Query to Create Initial Orders_Final</i></b></summary>
+  <!-- prettier-ignore -->
+  <pre><code class="language-sql">
+CREATE OR REPLACE TABLE `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Orders_Final` AS 
+SELECT 
+    orders.order_id,
+    orders.customer_id,
+    orders.order_status,
+    orders.order_purchase_timestamp,
+FROM 
+    `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Orders` AS orders
+JOIN 
+    `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Customers_Final` AS cust
+ON 
+    orders.customer_id = cust.customer_id
+  </code></pre>
+</details>
+
+<p>
+  - <em>This table just created is the one referenced in 
+  <a href="../README.md">Overview README.md</a> for creating <code>Recalculated_Missing_Orders</code> and <code>Recalculated_Discrepant_Orders</code>. After creating those two tables, I referenced them in the following query in Step 2.</em>
+</p>
+
+<div class="hr-wrapper">
+  <hr class="title" />
+</div>
+
+<h2>Step 2: Filtered <code>Orders_Final</code> Table with Missing and Discrepant Order IDs Removed</h2>
+<p>
+  After identifying the discrepant and missing <code>order_id</code>s, I applied the necessary filter logic to create a complete, consistent <code>Orders_Final</code> table:
+</p>
+
+<details class="code-details">
+  <summary>📂<b><i>Query to Create Filtered Orders_Final</i></b></summary>
+  <!-- prettier-ignore -->
+  <pre><code class="language-sql">
+/* 
+  This query was to create a new Orders_Final born of two issues found during initial cleaning and analysis.
+    1. There are order_ids in the orders table that do not appear in the Order Items table. Those order_ids
+       are marked in the Missing_Orders table.
+    2. There are order_ids where the calculated revenue from price and freight do not match the total payment value
+       These ids are marked in the Discrepant_Orders and Recalculated_Discrepant_orders tables. The first holds the order_ids 
+       based on the initial analysis of 4 states rather than the current. The recalculated considers these new ids. 
+*/
+<!-- prettier-ignore -->
+CREATE OR REPLACE TABLE `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Orders_Final` AS 
+SELECT 
+    orders.order_id,
+    orders.customer_id,
+    orders.order_status,
+    orders.order_purchase_timestamp,
+FROM 
+    `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Orders` AS orders
+JOIN 
+    `iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Customers_Final` AS cust
+ON 
+    orders.customer_id = cust.customer_id
+WHERE 
+    orders.order_id NOT IN (
+        SELECT 
+          order_id 
+        FROM 
+          iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Recalculated_Missing_Orders
+    )
+    AND
+    orders.order_id NOT IN (
+        SELECT 
+          order_id 
+        FROM 
+          iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Recalculated_Discrepant_Orders
+    )
+  </code></pre>
+</details>
+
+<p>
+  This approach ensured that <code>Orders_Final</code> was clean and aligned with both <code>Order_Items_Final</code> and <code>Payments_Final</code>, eliminating any <code>order_id</code>s that were missing or had revenue discrepancies.
+</p>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center text-muted py-3">
+        &copy; 2024 Miles Davidson. All rights reserved.<br>
+        Dataset used in this project is provided by <a href="https://www.kaggle.com/devarajv88" target="_blank">Devaraj V</a> on <a href="https://www.kaggle.com/" target="_blank">Kaggle</a>.<br>
+        This project is for educational and portfolio purposes only.
+    </footer>
+
+
+<script>
+    // Dynamically add a "Copy" button to each <pre><code> block
+    document.querySelectorAll("pre").forEach((pre) => {
+        // Create the copy button container
+        const button = document.createElement("button");
+        button.className = "copy-button";
+        button.onclick = () => copyCode(pre);
+
+        // Add the icon inside the button
+        const icon = document.createElement("i");
+        icon.className = "copy-icon";
+        button.appendChild(icon);
+
+        // Position the button inside the code block
+        pre.style.position = "relative"; // Ensure the button is positioned correctly
+        pre.appendChild(button);
+    });
+
+    // Function to handle copying code
+    function copyCode(pre) {
+        const codeBlock = pre.querySelector("code");
+        if (!codeBlock) return;
+
+        // Copy the code content
+        navigator.clipboard.writeText(codeBlock.textContent).then(() => {
+            // Change the icon to indicate success temporarily
+            const icon = pre.querySelector(".copy-icon");
+            icon.classList.add("copied");
+            setTimeout(() => icon.classList.remove("copied"), 2000);
+        }).catch((err) => {
+            console.error("Failed to copy: ", err);
+        });
+    }
+</script>
+
+
+
+
+</body>
+</html>

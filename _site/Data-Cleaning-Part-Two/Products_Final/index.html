@@ -3,26 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }}</title>
+    <title>Products Final Index</title>
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <!-- Highlight.js Theme -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/solarized-light.min.css">
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/solarized-light.min.css">
 
     <!-- Font Awesome Icon Library-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
     <!-- Custom Styles -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/styles.css">
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/styles.css">
     
     <!-- Highlight.js Core and Language Support -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/sql.min.js"></script>
     
     <!-- Custom DAX Language Registration -->
-    <script src="{{ site.baseurl }}/assets/js/dax.js"></script>
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/dax.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             hljs.registerLanguage("dax", dax); // Register the custom DAX grammar
@@ -31,10 +31,10 @@
     </script>
     
     <!-- Scroll Detection -->
-    <script src="{{ site.baseurl }}/assets/js/scroll-detection.js"></script>
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/scroll-detection.js"></script>
     
     <!-- Expand Selected Section-->
-    <script src="{{ site.baseurl }}/assets/js/expand-section.js"></script>
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/expand-section.js"></script>
 
 
 
@@ -48,7 +48,7 @@
     <!-- Sticky Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{ site.baseurl }}/">Home</a>
+            <a class="navbar-brand" href="/Target-ECommerce-Revenue-Analysis/">Home</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -56,15 +56,15 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     
                     <li class="nav-item">
-                        <a class="nav-link" href="{{"/data-cleaning-part-one/" | relative_url }}">Data Cleaning Part One</a>
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/data-cleaning-part-one/">Data Cleaning Part One</a>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{"/data-cleaning-part-two/" | relative_url }}">Data Cleaning Part Two</a>
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/data-cleaning-part-two/">Data Cleaning Part Two</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{"/EDA/"| relative_url }}">Exploratory Data Analysis</a>
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/EDA/">Exploratory Data Analysis</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ site.baseurl }}/revenue-analysis/">Revenue Analysis</a>
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/revenue-analysis/">Revenue Analysis</a>
                     </li>
                 </ul>
                 <form class="d-flex" role="search">
@@ -78,19 +78,29 @@
     <header class="breadcrumbs-wrapper">
         <nav class="breadcrumbs-trail" aria-label="breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ site.baseurl }}/">Home</a></li>
-            {% assign path_parts = page.path | split: '/' %}
-            {% assign accumulated_path = "" %}
-            {% for part in path_parts %}
-            {% assign accumulated_path = accumulated_path | append: "/" | append: part %}
-            {% if forloop.last %}
-            <li class="breadcrumb-item active" aria-current="page">{{ part | replace: "-", " " }}</li>
-            {% else %}
+            <li class="breadcrumb-item"><a href="/Target-ECommerce-Revenue-Analysis/">Home</a></li>
+            
+            
+            
+            
+            
             <li class="breadcrumb-item">
-              <a href="{{ accumulated_path | relative_url }}">{{ part | replace: "-", " " }}</a>
+              <a href="/Target-ECommerce-Revenue-Analysis/Data-Cleaning-Part-Two">Data Cleaning Part Two</a>
             </li>
-            {% endif %}
-            {% endfor %}
+            
+            
+            
+            
+            <li class="breadcrumb-item">
+              <a href="/Target-ECommerce-Revenue-Analysis/Data-Cleaning-Part-Two/Products_Final">Products_Final</a>
+            </li>
+            
+            
+            
+            
+            <li class="breadcrumb-item active" aria-current="page">index.md</li>
+            
+            
           </ol>
         </nav>
       </header>
@@ -108,7 +118,43 @@
       
     <!-- Main Content -->
     <main class="container my-4">
-        {{ content }}
+        <h1>Overview of Products Changes</h1>
+
+<p>
+  In my initial cleaning and analysis, I identified several issues with the <code>product_category</code> column, including:
+</p>
+<ul>
+  <li><strong>Inconsistent Case</strong>: Categories were in a mix of lowercase, uppercase, and title case (e.g., <code>babies</code>, <code>HEALTH BEAUTY</code>, <code>Construction Tools Garden</code>).</li>
+  <li><strong>Translation Inconsistencies</strong>: Some categories were in Spanish, while others were in English (e.g., <code>Agro Industria e Comercio</code>).</li>
+  <li><strong>Confusing Naming</strong>: Certain categories had unclear or ambiguous names, requiring best-guess corrections (e.g., <code>CITTE AND UPHACK FURNITURE</code>).</li>
+  <li><strong>Missing Categories</strong>: Some <code>product_id</code>s in the <code>Products</code> table had no associated <code>product_category</code>, resulting in <code>NULL</code> values.</li>
+</ul>
+
+<p>To address these issues, I created a standardized mapping file (<code>Product_Category_Mappings.csv</code>) and uploaded it to Google BigQuery. Using this mapping table, I applied the following steps:</p>
+
+<ol>
+  <li>
+    <strong>LEFT JOIN</strong>:  
+    <ul>
+      <li>Joined the <code>Products</code> table with <code>Product_Category_Mappings</code> to standardize category names wherever possible.</li>
+      <li>This ensured all rows from <code>Products</code> were included, even if no matching entry existed in the mapping table.</li>
+    </ul>
+  </li>
+  <li>
+    <strong>COALESCE for Missing Categories</strong>:  
+    <ul>
+      <li>Replaced <code>NULL</code> values in <code>product_category</code> (from rows with no category entries) with a default value of <code>Uncategorized</code>.</li>
+      <li>This ensured every product in <code>Products_Final</code> had a valid category.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>
+  These changes resulted in a clean and consistent <code>Products_Final</code> table, with all <code>product_category</code> entries standardized or assigned a default value.
+</p>
+
+<p><a href="steps">Click here</a> to read the detailed steps on the creation of <code>Products_Final</code>.</p>
+
     </main>
 
     <!-- Footer -->

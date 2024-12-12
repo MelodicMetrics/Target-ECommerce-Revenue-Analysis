@@ -1,0 +1,70 @@
+I"Þ<h2>Steps to Clean Discrepancies Between Orders and Order Items Tables</h2>
+
+<h3>Overview:</h3>
+<p>This document summarizes the steps taken to identify and resolve discrepancies between the <code>Orders</code> and <code>Order Items</code> tables, focusing on missing <code>order_ids</code> and ensuring accurate revenue calculations. After cleaning the geolocation table to concentrate on the four most populated states, the next step was to create revenue calculations for the <code>Customers</code> and <code>Products</code> tables. Upon their creation, I noticed that the measures were not returning the same values, prompting an investigation into the <code>order_ids</code> in my <code>Orders</code> and <code>Order Items</code> tables. In doing so, I discovered that there were fewer <code>order_ids</code> in the <code>Order Items</code> table, indicating missing entries. I created a separate table to identify all <code>order_ids</code> that were not present in my <code>Order Items</code> table and found <strong>775 missing IDs</strong>. Further investigation revealed that orders with statuses like <strong>"canceled"</strong> or <strong>"unavailable"</strong> were occasionally absent from the <code>Order Items</code> table. I created tables named <strong><code>Canceled Orders Final</code></strong> and <strong><code>Unavailable Orders Final</code></strong> and summed the rows for each, resulting in <strong>767</strong> out of the <strong>775 rows</strong> accounted for. To discover the status of the remaining <strong>8 <code>order_ids</code></strong>, I created a table to display all <strong>missing <code>order_ids</code></strong> from the <code>Order Items</code> table with statuses that were neither <strong>"canceled"</strong> nor <strong>"unavailable"</strong>, naming it <strong><code>Orders with Unknown Status</code></strong>. I then related that table to my <code>Orders</code> table to pull the actual statuses of each <code>order_id</code> into a secondary table named <strong><code>Orders with Unknown Status Details</code></strong>. Finally, I merged the <strong><code>Canceled Orders Final</code></strong>, <strong><code>Unavailable Orders Final</code></strong>, and <strong><code>Unknown Status Details</code></strong> tables into one comprehensive table called <strong><code>Compiled Order Status Summary</code></strong>. This final table contained all <strong>755 missing <code>order_ids</code></strong>. After this, I edited the <strong>Total Revenue for ALL Orders</strong> and <strong>Total Revenue per Category</strong> measures to exclude the <code>order_ids</code> from the <strong><code>Compiled Order Status Summary</code></strong> table. This adjustment resulted in new revenue measures that matched across product categories and overall customer order filter logic.</p>
+
+<hr />
+
+<h3>Geolocation Table Cleaning:</h3>
+<ul>
+    <li>Focused on the four most populated states, resulting in <strong>150 cities</strong>.</li>
+    <li>Acknowledged that this yield may not fully represent the overall geography due to constraints of a free GeoNames membership and data entry errors.</li>
+</ul>
+
+<hr />
+
+<h3>Total Revenue Calculation:</h3>
+<ul>
+    <li>Created a measure for <strong>Total Revenue of All Orders</strong>.</li>
+</ul>
+
+<hr />
+
+<h3>Revenue by Product Categories:</h3>
+<ul>
+    <li>Developed a measure to calculate total revenue while applying filter logic specifically for product categories.</li>
+    <li>Discovered that the total revenue by category was lower than the overall total revenue of all orders.</li>
+</ul>
+
+<hr />
+
+<h3>Identifying Order ID Discrepancies:</h3>
+<ul>
+    <li>Investigated discrepancies between the unique and distinct <code>order_ids</code> in the <code>Orders</code> and <code>Order Items</code> tables.</li>
+    <li>Found that the <code>Orders</code> table had more unique and distinct entries than the <code>Order Items</code> table.</li>
+</ul>
+
+<hr />
+
+<h3>Missing Order IDs Analysis:</h3>
+<ul>
+    <li>Created a table to identify all <code>order_ids</code> not present in the <code>Order Items</code> table, resulting in <strong>775 missing IDs</strong>.</li>
+    <li>Identified certain <code>order_ids</code> with statuses <strong>"canceled"</strong> and <strong>"unavailable"</strong> that were not present in the <code>Order Items</code> table.</li>
+    <li>Analyzed missing IDs and found that <strong>767 rows</strong> were missing entries with <strong>"canceled"</strong> or <strong>"unavailable"</strong> statuses, leaving <strong>8 <code>order_ids</code></strong> unaccounted for.</li>
+</ul>
+
+<hr />
+
+<h3>Finalizing the Missing Order IDs:</h3>
+<ul>
+    <li>Created a function to display all <code>order_ids</code> with statuses that were neither <strong>"Canceled"</strong> nor <strong>"Unavailable"</strong>.</li>
+    <li>Related the <strong><code>Orders with Unknown Status</code></strong> table to the <code>Orders</code> table on <code>order_id</code>, resulting in a new table that included the <code>order_ids</code> and their statuses.</li>
+    <li>Merged the <strong><code>Canceled Orders</code></strong>, <strong><code>Unavailable Orders</code></strong>, and <strong><code>Orders with Unknown Status</code></strong> into one comprehensive table containing all <strong>755 missing <code>order_ids</code></strong>.</li>
+</ul>
+
+<hr />
+
+<h3>Adjusting the Total Revenue Measure:</h3>
+<ul>
+    <li>Edited the <strong>Total Revenue for All Orders</strong> measure to exclude the <code>order_ids</code> from the <strong><code>Compiled Order Status Summary</code></strong> table.</li>
+    <li>This adjustment resulted in a total revenue figure that now matched across both the "by category" and "overall orders" measures.</li>
+</ul>
+
+<hr />
+
+<h3>Additional Considerations:</h3>
+<ul>
+    <li>Emphasized the importance of maintaining data quality by ensuring all relevant <code>order_ids</code> were accounted for and accurately reflected in the analyses.</li>
+    <li>Suggested future improvements to develop a more robust methodology for addressing data entry errors and enhancing data validation processes.</li>
+</ul>
+:ET

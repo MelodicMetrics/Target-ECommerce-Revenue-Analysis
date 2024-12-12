@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geolocation Cleaning Challenges</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Highlight.js Theme -->
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/solarized-light.min.css">
+
+    <!-- Font Awesome Icon Library-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/styles.css">
+    
+    <!-- Highlight.js Core and Language Support -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/sql.min.js"></script>
+    
+    <!-- Custom DAX Language Registration -->
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/dax.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            hljs.registerLanguage("dax", dax); // Register the custom DAX grammar
+            hljs.highlightAll(); // Initialize Highlight.js
+        });
+    </script>
+    
+    <!-- Scroll Detection -->
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/scroll-detection.js"></script>
+    
+    <!-- Expand Selected Section-->
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/expand-section.js"></script>
+
+
+
+
+
+
+
+
+</head>
+<body>
+    <!-- Sticky Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/Target-ECommerce-Revenue-Analysis/">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/data-cleaning-part-one/">Data Cleaning Part One</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/data-cleaning-part-two/">Data Cleaning Part Two</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/EDA/">Exploratory Data Analysis</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/revenue-analysis/">Revenue Analysis</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+       
+    <header class="breadcrumbs-wrapper">
+        <nav class="breadcrumbs-trail" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Target-ECommerce-Revenue-Analysis/">Home</a></li>
+            
+            
+            
+            
+            
+            <li class="breadcrumb-item">
+              <a href="/Target-ECommerce-Revenue-Analysis/Data-Cleaning-Part-One">Data Cleaning Part One</a>
+            </li>
+            
+            
+            
+            
+            <li class="breadcrumb-item">
+              <a href="/Target-ECommerce-Revenue-Analysis/Data-Cleaning-Part-One/geolocation_cleaning">geolocation_cleaning</a>
+            </li>
+            
+            
+            
+            
+            <li class="breadcrumb-item active" aria-current="page">index.html</li>
+            
+            
+          </ol>
+        </nav>
+      </header>
+      
+      
+    
+
+
+
+
+    <!-- Header Section -->
+    <header class="custom-header">
+        <h1>Target E-Commerce Revenue Analysis</h1>
+    </header>
+      
+    <!-- Main Content -->
+    <main class="container my-4">
+        <h2>Geolocation Data Cleaning Process: Challenges and Limitations</h2>
+
+<h3>Project Context</h3>
+<p
+  >This project required preparing geolocation data for analysis at the state
+  and city levels, with an emphasis on clean and accurate geographic insights.
+  To achieve this, I implemented multiple steps to normalize, verify, and
+  enhance data quality, focusing especially on city-state pairings. Initially, I
+  attempted to validate the entire dataset through the GeoNames API, but
+  limitations in the API led me to adapt the analysis by focusing on Brazil’s
+  four largest states.</p
+>
+
+<hr />
+
+<h3>Initial Cleaning and Normalization Efforts</h3>
+
+<ul>
+  <li
+    ><strong>Identification and Correction of Inconsistencies</strong>:
+    Addressed duplicate zip codes and corrected cities incorrectly mapped to
+    state codes.</li
+  >
+  <li
+    ><strong>Normalization</strong>: Standardized state entries and city names
+    by trimming spaces and converting text to lowercase for consistent
+    formatting.</li
+  >
+  <li
+    ><strong>Accent Removal and Term Cleanup</strong>: Removed accents and
+    unnecessary terms (e.g., "municipality") from city names to create uniform
+    entries across the dataset.</li
+  >
+</ul>
+
+<hr />
+
+<h3>Initial Attempts with GeoNames API and Limitations Encountered</h3>
+
+<ul>
+  <li
+    ><strong>GeoNames API Integration</strong>: Integrated the GeoNames API to
+    build a reference list of valid city-state combinations in Brazil, intending
+    to use it as a benchmark for validating data quality.</li
+  >
+  <li
+    ><strong>Limitations Encountered</strong>:
+    <ul>
+      <li
+        >Due to record limits and incomplete city data, the API provided fewer
+        valid matches than anticipated.</li
+      >
+      <li
+        >Attempts to expand data retrieval through pagination were constrained
+        by the API’s limitations, resulting in only partial validation of
+        city-state combinations.</li
+      >
+      <li
+        >With these limitations, the API verification process could not cover
+        the entire dataset, leaving many city-state combinations
+        unverifiable.</li
+      >
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3>Adjusted Analysis to Focus on Four Largest States</h3>
+
+<p
+  >To improve data quality within API constraints, I adapted my analysis to
+  concentrate on Brazil’s four most populous states, making data validation more
+  manageable and enhancing overall data reliability.</p
+>
+
+<ol>
+  <li
+    ><strong>International Census Bureau Data</strong>: Acquired subpopulation
+    data from the International Census Bureau for Brazil’s states, focusing on
+    averages from 2016-2018 to determine the largest states:
+    <ul>
+      <li><strong>São Paulo</strong>: Average Population of 56,879,799</li>
+      <li><strong>Rio de Janeiro</strong>: Average Population of 24,175,260</li>
+      <li><strong>Minas Gerais</strong>: Average Population of 21,120,398</li>
+      <li><strong>Bahia</strong>: Average Population of 15,011,824</li>
+    </ul>
+  </li>
+  <li
+    ><strong>Targeted GeoNames API Calls</strong>: Limited the API call to
+    retrieve city-state combinations for only these four states, yielding a more
+    focused and accurate dataset.</li
+  >
+</ol>
+
+<hr />
+
+<h3>Final Verification and Cleaning Through GeoNames API</h3>
+
+<ul>
+  <li
+    ><strong>City Cleaning for Standardization</strong>: Transformed city names
+    to lowercase and removed accents to align with my dataset, creating a
+    standardized reference list.</li
+  >
+  <li
+    ><strong>Merge with Customer and Seller Data</strong>: Integrated this
+    cleaned city-state data with my Customer and Seller tables, resulting in a
+    significant increase in valid city-state combinations—from an initial 8 to
+    approximately 150.</li
+  >
+</ul>
+
+<hr />
+
+<h3>Final Decision and Adaptation</h3>
+
+<ul>
+  <li
+    ><strong>Acknowledging Limitations</strong>: Despite this focused approach,
+    some inconsistencies may remain due to the API’s inherent limitations and
+    the challenges of an individual project.</li
+  >
+  <li
+    ><strong>Summary of Limitations</strong>: Complete data accuracy was not
+    feasible with the available tools. All validation and cleaning steps are
+    documented to provide transparency regarding any remaining data
+    limitations.</li
+  >
+</ul>
+
+<hr />
+
+<h3>Outcome</h3>
+<p
+  >This iterative data cleaning process highlights the importance of
+  adaptability in achieving data quality. By adjusting the analysis to focus on
+  the largest states and merging validated city-state pairs, I improved the
+  dataset’s accuracy within resource constraints. The final analysis
+  transparently acknowledges these limitations, presenting insights with a clear
+  understanding of the data quality considerations.</p
+>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center text-muted py-3">
+        &copy; 2024 Miles Davidson. All rights reserved.<br>
+        Dataset used in this project is provided by <a href="https://www.kaggle.com/devarajv88" target="_blank">Devaraj V</a> on <a href="https://www.kaggle.com/" target="_blank">Kaggle</a>.<br>
+        This project is for educational and portfolio purposes only.
+    </footer>
+
+
+<script>
+    // Dynamically add a "Copy" button to each <pre><code> block
+    document.querySelectorAll("pre").forEach((pre) => {
+        // Create the copy button container
+        const button = document.createElement("button");
+        button.className = "copy-button";
+        button.onclick = () => copyCode(pre);
+
+        // Add the icon inside the button
+        const icon = document.createElement("i");
+        icon.className = "copy-icon";
+        button.appendChild(icon);
+
+        // Position the button inside the code block
+        pre.style.position = "relative"; // Ensure the button is positioned correctly
+        pre.appendChild(button);
+    });
+
+    // Function to handle copying code
+    function copyCode(pre) {
+        const codeBlock = pre.querySelector("code");
+        if (!codeBlock) return;
+
+        // Copy the code content
+        navigator.clipboard.writeText(codeBlock.textContent).then(() => {
+            // Change the icon to indicate success temporarily
+            const icon = pre.querySelector(".copy-icon");
+            icon.classList.add("copied");
+            setTimeout(() => icon.classList.remove("copied"), 2000);
+        }).catch((err) => {
+            console.error("Failed to copy: ", err);
+        });
+    }
+</script>
+
+
+
+
+</body>
+</html>

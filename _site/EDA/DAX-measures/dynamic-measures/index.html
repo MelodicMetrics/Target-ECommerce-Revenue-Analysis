@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Measures</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Highlight.js Theme -->
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/solarized-light.min.css">
+
+    <!-- Font Awesome Icon Library-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/styles.css">
+    
+    <!-- Highlight.js Core and Language Support -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/sql.min.js"></script>
+    
+    <!-- Custom DAX Language Registration -->
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/dax.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            hljs.registerLanguage("dax", dax); // Register the custom DAX grammar
+            hljs.highlightAll(); // Initialize Highlight.js
+        });
+    </script>
+    
+    <!-- Scroll Detection -->
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/scroll-detection.js"></script>
+    
+    <!-- Expand Selected Section-->
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/expand-section.js"></script>
+
+
+
+
+
+
+
+
+</head>
+<body>
+    <!-- Sticky Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/Target-ECommerce-Revenue-Analysis/">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/data-cleaning-part-one/">Data Cleaning Part One</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/data-cleaning-part-two/">Data Cleaning Part Two</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/EDA/">Exploratory Data Analysis</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/revenue-analysis/">Revenue Analysis</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+       
+    <header class="breadcrumbs-wrapper">
+        <nav class="breadcrumbs-trail" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Target-ECommerce-Revenue-Analysis/">Home</a></li>
+            
+            
+            
+            
+            
+            <li class="breadcrumb-item">
+              <a href="/Target-ECommerce-Revenue-Analysis/EDA">EDA</a>
+            </li>
+            
+            
+            
+            
+            <li class="breadcrumb-item">
+              <a href="/Target-ECommerce-Revenue-Analysis/EDA/DAX-measures">DAX measures</a>
+            </li>
+            
+            
+            
+            
+            <li class="breadcrumb-item active" aria-current="page">dynamic measures.html</li>
+            
+            
+          </ol>
+        </nav>
+      </header>
+      
+      
+    
+
+
+
+
+    <!-- Header Section -->
+    <header class="custom-header">
+        <h1>Target E-Commerce Revenue Analysis</h1>
+    </header>
+      
+    <!-- Main Content -->
+    <main class="container my-4">
+        <h1>Dynamic Measures Overview</h1>
+<p>
+  This file contains measures that enhance dashboard interactivity by allowing
+  users to dynamically switch metrics and update visualizations in real time.
+  These measures leverage the <code>Toggle Table</code> to streamline
+  calculations and improve the user experience.
+</p>
+
+<div class="hr-wrapper">
+  <hr class="title" />
+</div>
+
+<details id="toggle-table" class="section-details">
+  <summary><b>1. Toggle Table</b></summary>
+  <p
+    ><b>Description:</b> This table contains a number of columns with names of
+    various percentage measures that can be found in
+    <code>revenue-measures.md</code> and <code>product-measures.md</code>. These
+    columns are then referenced in <code>Selected Metric</code> to create
+    dynamic switching of the displayed metric in the particular
+    visualization.</p
+  >
+  <p>The columns named in the toggle table are the following:</p>
+  <ul>
+    <li>Percentage of Revenue</li>
+    <li>Percentage of Revenue per Bin Range</li>
+    <li>Percentage of Revenue per Category</li>
+    <li>Percentage of Total Products</li>
+    <li>Percentage of Total Products by Category and State</li>
+    <li>Total Revenue</li>
+    <li>Product Count</li>
+  </ul>
+  <img
+    src="https://github.com/user-attachments/assets/e2126a3b-1fb7-4bcb-bd5c-fb40ef2ac6e6"
+    alt="Table Columns in Toggle Table"
+  />
+</details>
+
+<details id="selected-metric" class="section-details">
+  <summary><b>2. Selected Metric</b></summary>
+  <p
+    ><b>Description:</b> This measure dynamically calculates a metric based on
+    the user's selection from the <code>Toggle Table</code>. It is used with
+    slicers in dashboards for user-driven customization.</p
+  >
+  <details class="code-details">
+    <summary> 📂<b>DAX Measure</b> </summary>
+    <pre><code class="language-dax">
+Selected Metric = 
+VAR Metrics =
+    SWITCH(
+        SELECTEDVALUE('Toggle Table'[Metric]),
+        "Percentage of Revenue", [Revenue (%)],
+        "Percentage of Revenue per Bin Range", [Revenue (%) per Bin Range],
+        "Percentage of Revenue per Category", [Revenue (%) per Category],
+        "Percentage of Total Products", [Product Count (%)],
+        "Percentage of Total Products by Category and State", [Percentage of Total Products by Category and State],
+        "Total Revenue", [Total Product Revenue],
+        "Product Count", [Product Count],
+        0 -- This is the default value for if no selection is made
+    )
+RETURN
+    IF(ISBLANK(Metrics), 0, Metrics)
+    </code></pre>
+  </details>
+  <h5>Key Parts of the Measure:</h5>
+  <ul>
+    <li
+      ><code>SELECTEDVALUE('Toggle Table'[Metric])</code>: Retrieves the
+      selected metric from the 'Toggle Table' slicer.</li
+    >
+    <li
+      ><code>SWITCH</code> Function: Maps the selected metric to the
+      corresponding measure.</li
+    >
+    <li
+      >Default Value (<code>0</code>): Returns <code>0</code> if no valid
+      selection is made to prevent errors.</li
+    >
+    <li
+      >Error Handling: Uses <code>ISBLANK</code> to handle cases where the
+      metric is blank.</li
+    >
+  </ul>
+</details>
+
+<details id="scatter-metric" class="section-details">
+  <summary><b>3. Scatter Metric Value</b></summary>
+  <p
+    ><b>Description:</b> This measure dynamically selects the metric for the
+    scatter chart based on the user’s slicer selection. It toggles between
+    revenue and product count totals depending on the selected metric.</p
+  >
+  <details class="code-details">
+    <summary> 📂<b>DAX Measure</b> </summary>
+    <pre><code class="language-dax">
+Scatter Metric Value = 
+SWITCH(
+    SELECTEDVALUE('Toggle Table'[Metric]),
+    "Percentage of Revenue", [Total Product Revenue],
+    "Percentage of Total Products", [Product Count]
+)
+    </code></pre>
+  </details>
+  <h5>Key Logic:</h5>
+  <ul>
+    <li
+      ><code>"Percentage of Revenue"</code> maps to
+      <code>[Total Product Revenue]</code>.</li
+    >
+    <li
+      ><code>"Percentage of Total Products"</code> maps to
+      <code>[Product Count]</code>.</li
+    >
+  </ul>
+</details>
+
+<div class="hr-wrapper">
+  <hr />
+</div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center text-muted py-3">
+        &copy; 2024 Miles Davidson. All rights reserved.<br>
+        Dataset used in this project is provided by <a href="https://www.kaggle.com/devarajv88" target="_blank">Devaraj V</a> on <a href="https://www.kaggle.com/" target="_blank">Kaggle</a>.<br>
+        This project is for educational and portfolio purposes only.
+    </footer>
+
+
+<script>
+    // Dynamically add a "Copy" button to each <pre><code> block
+    document.querySelectorAll("pre").forEach((pre) => {
+        // Create the copy button container
+        const button = document.createElement("button");
+        button.className = "copy-button";
+        button.onclick = () => copyCode(pre);
+
+        // Add the icon inside the button
+        const icon = document.createElement("i");
+        icon.className = "copy-icon";
+        button.appendChild(icon);
+
+        // Position the button inside the code block
+        pre.style.position = "relative"; // Ensure the button is positioned correctly
+        pre.appendChild(button);
+    });
+
+    // Function to handle copying code
+    function copyCode(pre) {
+        const codeBlock = pre.querySelector("code");
+        if (!codeBlock) return;
+
+        // Copy the code content
+        navigator.clipboard.writeText(codeBlock.textContent).then(() => {
+            // Change the icon to indicate success temporarily
+            const icon = pre.querySelector(".copy-icon");
+            icon.classList.add("copied");
+            setTimeout(() => icon.classList.remove("copied"), 2000);
+        }).catch((err) => {
+            console.error("Failed to copy: ", err);
+        });
+    }
+</script>
+
+
+
+
+</body>
+</html>

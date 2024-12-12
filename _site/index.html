@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Highlight.js Theme -->
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/solarized-light.min.css">
+
+    <!-- Font Awesome Icon Library-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/styles.css">
+    
+    <!-- Highlight.js Core and Language Support -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/sql.min.js"></script>
+    
+    <!-- Custom DAX Language Registration -->
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/dax.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            hljs.registerLanguage("dax", dax); // Register the custom DAX grammar
+            hljs.highlightAll(); // Initialize Highlight.js
+        });
+    </script>
+    
+    <!-- Scroll Detection -->
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/scroll-detection.js"></script>
+    
+    <!-- Expand Selected Section-->
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/expand-section.js"></script>
+
+
+
+
+
+
+
+
+</head>
+<body>
+    <!-- Sticky Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/Target-ECommerce-Revenue-Analysis/">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/data-cleaning-part-one/">Data Cleaning Part One</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/data-cleaning-part-two/">Data Cleaning Part Two</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/EDA/">Exploratory Data Analysis</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/revenue-analysis/">Revenue Analysis</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+       
+    <header class="breadcrumbs-wrapper">
+        <nav class="breadcrumbs-trail" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Target-ECommerce-Revenue-Analysis/">Home</a></li>
+            
+            
+            
+            
+            
+            <li class="breadcrumb-item active" aria-current="page">index.html</li>
+            
+            
+          </ol>
+        </nav>
+      </header>
+      
+      
+    
+
+
+
+
+    <!-- Header Section -->
+    <header class="custom-header">
+        <h1>Target E-Commerce Revenue Analysis</h1>
+    </header>
+      
+    <!-- Main Content -->
+    <main class="container my-4">
+        <h1>Welcome to My Data Analysis Portfolio</h1>
+
+<p>
+  Welcome to my portfolio! Here, you'll find detailed documentation of the
+  analysis steps I've taken throughout this project.
+</p>
+
+<div class="hr-wrapper">
+  <hr class="title" />
+</div>
+
+<h2>Important Note</h2>
+
+<p>
+  Please note that this project is a W.I.P. With that in mind, sections may not
+  be fully filled out or are subject to change.
+</p>
+
+<ul>
+  <li>
+    <del>
+      Currently I am in the EDA phase working within Power BI. I am analyzing
+      frequency distributions and employing toggle tables for easy customization
+      of metrics in my visuals. This cuts down on the amount of report pages
+      that are necessary.
+    </del>
+  </li>
+  <li>
+    Currently I am converting my GitHub repository into a webpage using HTML,
+    CSS, and JavaScript.
+  </li>
+  <li>
+    Thank you for your patience and feel free to email me any questions!
+  </li>
+</ul>
+
+<h2>Project Overview</h2>
+
+<div class="hr-wrapper">
+  <hr class="title" />
+</div>
+
+<h3>Objective </h3>
+<p>
+  The goal of this project is to explore revenue trends in e-commerce sales data
+  from Target in Brazil.
+</p>
+
+<h3>Guiding Questions </h3>
+<p> There are three questions guiding my analysis: </p>
+<ol>
+  <li>
+    <strong>
+      Which product categories contribute the most to overall revenue, and how
+      does profitability vary across standardized categories?
+    </strong>
+  </li>
+  <li>
+    <strong>
+      How does the average order value and profitability vary by standardized
+      product category and seller over time?
+    </strong>
+  </li>
+  <li>
+    <strong>
+      How does average sales revenue vary across states, and are there any
+      notable regional patterns or correlations?
+    </strong>
+  </li>
+</ol>
+
+<h3>Dataset Information </h3>
+<p>
+  The dataset was pulled from Kaggle and includes a time range from 2016-2018.
+  There are seven related tables in the dataset with key attributes, including
+  the following:
+</p>
+<ul>
+  <li>
+    <strong> customer_id </strong>: ID of the consumer who made the purchase
+  </li>
+  <li> <strong> customer_unique_id </strong>: Unique ID of the consumer </li>
+  <li>
+    <strong> order_id </strong>: A unique ID of an order made by the consumers
+  </li>
+  <li>
+    <strong> order_item_id </strong>: A unique ID given to each item ordered in
+    the order
+  </li>
+  <li>
+    <strong> product_id </strong>: A unique ID given to each product available
+    on the site
+  </li>
+  <li>
+    <strong> seller_id </strong>: Unique ID of the seller registered in Target
+  </li>
+</ul>
+
+<h2> Data Preparation and Analysis</h2>
+
+<div class="hr-wrapper">
+  <hr class="title" />
+</div>
+
+<h3> Data Cleaning </h3>
+
+<p>
+  To ensure accuracy and consistency, detailed cleaning processes were conducted
+  for each dataset. These processes are documented in two separate folders to
+  reflect the iterative nature of the cleaning efforts:
+</p>
+
+<ol>
+  <li>
+    <strong>
+      <a href="./data-cleaning-part-one">Data Cleaning (Part One)</a> </strong
+    >: This folder documents the initial cleaning steps taken to prepare the
+    dataset for analysis. While this stage identified and addressed many key
+    issues, it also revealed additional complexities in the dataset during
+    subsequent analysis. The insights and challenges from this stage informed
+    the next round of cleaning.
+  </li>
+  <li>
+    <strong>
+      <a href="./data-cleaning-part-two">Data Cleaning (Part Two)</a> </strong
+    >: This folder builds on the foundation of Part One and documents the
+    extensive iterative cleaning required to address the newly identified
+    issues. With the inclusion of more cities and states, all prior steps had to
+    be revisited and updated to reflect the expanded scope and refined accuracy
+    of the dataset.
+  </li>
+</ol>
+
+<p>
+  While the first folder provides valuable context for the iterative cleaning
+  process, the second folder contains the finalized, comprehensive cleaning
+  steps that formed the basis for the final analysis and, as such, is the only
+  folder useful in reproducing my analysis.
+</p>
+
+<h2>Standardization</h2>
+
+<ul>
+  <li>
+    <strong> Folder: </strong> <code> data-preparation/standardization </code>
+  </li>
+  <li>
+    <strong> Objective: </strong> Standardize column names and data formats for
+    consistent querying
+  </li>
+  <li>
+    <strong> Steps: </strong>
+    <ul>
+      <li>
+        Renamed columns to follow consistent naming conventions (e.g., changed
+        <code> product category </code> to <code> product_category </code>) for
+        easier querying and readability.
+      </li>
+      <li>
+        Removed filters for validated city-state combinations in the
+        <code> Sellers </code> table to include all sellers with orders from
+        customers in the target states, regardless of the seller’s own location.
+      </li>
+      <li>
+        Documented mappings and name changes for reference in
+        <a href="./data-preparation/standardization">standardization</a>.
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2> Exploratory Data Analysis (EDA) </h2>
+
+<p>
+  In my EDA, I examined product performance by analyzing distributions across
+  various value ranges, regional levels, and seller levels. These insights were
+  valuable for my Revenue analysis. Below is the landing page for my EDA:
+</p>
+<ul>
+  <li>
+    <strong> <a href="./EDA"> Visit EDA Overview </a> </strong>
+  </li>
+</ul>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center text-muted py-3">
+        &copy; 2024 Miles Davidson. All rights reserved.<br>
+        Dataset used in this project is provided by <a href="https://www.kaggle.com/devarajv88" target="_blank">Devaraj V</a> on <a href="https://www.kaggle.com/" target="_blank">Kaggle</a>.<br>
+        This project is for educational and portfolio purposes only.
+    </footer>
+
+
+<script>
+    // Dynamically add a "Copy" button to each <pre><code> block
+    document.querySelectorAll("pre").forEach((pre) => {
+        // Create the copy button container
+        const button = document.createElement("button");
+        button.className = "copy-button";
+        button.onclick = () => copyCode(pre);
+
+        // Add the icon inside the button
+        const icon = document.createElement("i");
+        icon.className = "copy-icon";
+        button.appendChild(icon);
+
+        // Position the button inside the code block
+        pre.style.position = "relative"; // Ensure the button is positioned correctly
+        pre.appendChild(button);
+    });
+
+    // Function to handle copying code
+    function copyCode(pre) {
+        const codeBlock = pre.querySelector("code");
+        if (!codeBlock) return;
+
+        // Copy the code content
+        navigator.clipboard.writeText(codeBlock.textContent).then(() => {
+            // Change the icon to indicate success temporarily
+            const icon = pre.querySelector(".copy-icon");
+            icon.classList.add("copied");
+            setTimeout(() => icon.classList.remove("copied"), 2000);
+        }).catch((err) => {
+            console.error("Failed to copy: ", err);
+        });
+    }
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+---
+layout: default
+title: Challenges in Round One Cleaning of Orders, Order Items, and Payments
+---
+
+<h1>Challenges in Round One Cleaning of Orders, Order Items, and Payments</h1>
+
+<h3>Overview:</h3>
+
+<p
+  >In the first round of cleaning, I discovered a few issues between the tables
+  <code>Orders</code> <code>Order_Items</code> and <code>Payments</code>. Namely
+  there were missing <code>order_ids</code> between <code>Orders</code> and
+  <code>Order_Items</code> as well as discrepancies in order value between
+  <code>Payments</code> and <code>Order_Items</code>. The following documents
+  display the steps taken to identify and remove these ids. However, I
+  eventually recalculated these <code>order_ids</code> in my second round of
+  cleaning. These steps are here to just display the importance of iterative
+  data cleaning.
+</p>
+
+<ul>
+  <li><a href="discrepant_order_values"> Discrepant order values </a></li>
+  <li><a href="missing_order_ids"> Missing order_ids</a></li>
+</ul>
