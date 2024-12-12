@@ -1,0 +1,71 @@
+I"�<h2>Geolocation Data Cleaning Process: Challenges and Limitations</h2>
+
+<h3>Project Context</h3>
+<p>This project required preparing geolocation data for analysis at the state and city levels, with an emphasis on clean and accurate geographic insights. To achieve this, I implemented multiple steps to normalize, verify, and enhance data quality, focusing especially on city-state pairings. Initially, I attempted to validate the entire dataset through the GeoNames API, but limitations in the API led me to adapt the analysis by focusing on Brazil’s four largest states.</p>
+
+<hr />
+
+<h3>Initial Cleaning and Normalization Efforts</h3>
+
+<ul>
+    <li><strong>Identification and Correction of Inconsistencies</strong>: Addressed duplicate zip codes and corrected cities incorrectly mapped to state codes.</li>
+    <li><strong>Normalization</strong>: Standardized state entries and city names by trimming spaces and converting text to lowercase for consistent formatting.</li>
+    <li><strong>Accent Removal and Term Cleanup</strong>: Removed accents and unnecessary terms (e.g., "municipality") from city names to create uniform entries across the dataset.</li>
+</ul>
+
+<hr />
+
+<h3>Initial Attempts with GeoNames API and Limitations Encountered</h3>
+
+<ul>
+    <li><strong>GeoNames API Integration</strong>: Integrated the GeoNames API to build a reference list of valid city-state combinations in Brazil, intending to use it as a benchmark for validating data quality.</li>
+    <li><strong>Limitations Encountered</strong>:
+        <ul>
+            <li>Due to record limits and incomplete city data, the API provided fewer valid matches than anticipated.</li>
+            <li>Attempts to expand data retrieval through pagination were constrained by the API’s limitations, resulting in only partial validation of city-state combinations.</li>
+            <li>With these limitations, the API verification process could not cover the entire dataset, leaving many city-state combinations unverifiable.</li>
+        </ul>
+    </li>
+</ul>
+
+<hr />
+
+<h3>Adjusted Analysis to Focus on Four Largest States</h3>
+
+<p>To improve data quality within API constraints, I adapted my analysis to concentrate on Brazil’s four most populous states, making data validation more manageable and enhancing overall data reliability.</p>
+
+<ol>
+    <li><strong>International Census Bureau Data</strong>: Acquired subpopulation data from the International Census Bureau for Brazil’s states, focusing on averages from 2016-2018 to determine the largest states:
+        <ul>
+            <li><strong>São Paulo</strong>: Average Population of 56,879,799</li>
+            <li><strong>Rio de Janeiro</strong>: Average Population of 24,175,260</li>
+            <li><strong>Minas Gerais</strong>: Average Population of 21,120,398</li>
+            <li><strong>Bahia</strong>: Average Population of 15,011,824</li>
+        </ul>
+    </li>
+    <li><strong>Targeted GeoNames API Calls</strong>: Limited the API call to retrieve city-state combinations for only these four states, yielding a more focused and accurate dataset.</li>
+</ol>
+
+<hr />
+
+<h3>Final Verification and Cleaning Through GeoNames API</h3>
+
+<ul>
+    <li><strong>City Cleaning for Standardization</strong>: Transformed city names to lowercase and removed accents to align with my dataset, creating a standardized reference list.</li>
+    <li><strong>Merge with Customer and Seller Data</strong>: Integrated this cleaned city-state data with my Customer and Seller tables, resulting in a significant increase in valid city-state combinations—from an initial 8 to approximately 150.</li>
+</ul>
+
+<hr />
+
+<h3>Final Decision and Adaptation</h3>
+
+<ul>
+    <li><strong>Acknowledging Limitations</strong>: Despite this focused approach, some inconsistencies may remain due to the API’s inherent limitations and the challenges of an individual project.</li>
+    <li><strong>Summary of Limitations</strong>: Complete data accuracy was not feasible with the available tools. All validation and cleaning steps are documented to provide transparency regarding any remaining data limitations.</li>
+</ul>
+
+<hr />
+
+<h3>Outcome</h3>
+<p>This iterative data cleaning process highlights the importance of adaptability in achieving data quality. By adjusting the analysis to focus on the largest states and merging validated city-state pairs, I improved the dataset’s accuracy within resource constraints. The final analysis transparently acknowledges these limitations, presenting insights with a clear understanding of the data quality considerations.</p>
+:ET
