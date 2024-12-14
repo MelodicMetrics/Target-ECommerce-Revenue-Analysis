@@ -56,59 +56,32 @@
   <body>
     <!-- Sticky Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="{{ site.baseurl }}/">Home</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a
-                class="nav-link"
-                href="{{ site.baseurl }}/Data-Cleaning-Part-One/"
-                >Data Cleaning Part One</a
-              > </li
-
-            ><li class="nav-item">
-              <a
-                class="nav-link"
-                href="{{ site.baseurl }}/Data-Cleaning-Part-Two/"
-                >Data Cleaning Part Two</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ site.baseurl }}/EDA/"
-                >Exploratory Data Analysis</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ site.baseurl }}/Revenue-Analysis/"
-                >Revenue Analysis</a
-              >
-            </li>
-          </ul>
-          <form class="d-flex" role="search">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-success" type="submit"
-              >Search</button
-            >
-          </form>
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ site.baseurl }}/">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{"/Data-Cleaning-Part-One/" | relative_url }}">Data Cleaning Part One</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{"/data-cleaning-part-two/" | relative_url }}">Data Cleaning Part Two</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{"/EDA/"| relative_url }}">Exploratory Data Analysis</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ site.baseurl }}/revenue-analysis/">Revenue Analysis</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
         </div>
-      </div>
     </nav>
 
     <header class="breadcrumbs-wrapper">
