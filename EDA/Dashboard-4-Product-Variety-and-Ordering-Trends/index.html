@@ -1,0 +1,120 @@
+---
+layout: default
+title: 'Dashboard 4: Multi-Item Orders Analysis'
+meta:
+  title: 'Dashboard 4: Multi-Item Orders Analysis'
+  description: 'Analysis of the relationships between product variety, seller count, product-order gaps, and total revenue.'
+---
+
+<h1>Dashboard 4: Multi-Item Orders Analysis</h1>
+
+<div style="text-align: center">
+  <img
+    src="Screenshots/Full_Dashboard.png"
+    alt="Dashboard 4: Multi-Item Orders Analysis"
+    width="800"
+  />
+</div>
+
+<h2>Purpose</h2>
+<p>
+  This dashboard explores the relationships between product variety, seller
+  count, multi-item orders (measured via product-order gaps), and total revenue
+  across categories. It provides actionable insights into how these factors
+  influence performance and highlights opportunities for strategic improvements.
+</p>
+
+<div class="hr-wrapper">
+  <hr class="title" />
+</div>
+
+<h2>Key Insights</h2>
+<ul>
+  <li>
+    <strong>Insight 1:</strong> There is a
+    <strong>positive correlation</strong> between
+    <code>Distinct Product Count</code> and <code>Product-Order Gap</code>,
+    suggesting that categories with greater product variety tend to drive more
+    multi-product orders.
+  </li>
+  <li>
+    <strong>Insight 2:</strong> A similar
+    <strong>positive correlation</strong> exists between
+    <code>Seller Count</code> and <code>Product-Order Gap</code>, indicating
+    that categories with more sellers experience higher multi-product orders.
+  </li>
+  <li>
+    <strong>Insight 3:</strong> <code>Product-Order Gap</code> is positively
+    correlated with <code>Total Revenue</code>. Categories with larger
+    product-order gaps contribute more significantly to overall revenue.
+  </li>
+  <li>
+    <strong>Insight 4:</strong> Categories below the trend line in the first two
+    charts may benefit from strategies such as increasing product variety,
+    adding sellers, or improving seller participation to enhance multi-product
+    orders.
+  </li>
+  <li>
+    <strong>Insight 5:</strong> Categories above the trend lines in all charts
+    demonstrate strong performance. Analyzing their strategies (e.g., effective
+    bundling, diverse offerings) can provide a blueprint for improving
+    underperforming categories.
+  </li>
+</ul>
+
+<div class="hr-wrapper">
+  <hr />
+</div>
+
+<h2>Dashboard Features</h2>
+
+<h3>Visualization Overview</h3>
+<p>
+  The dashboard consists of three key scatter plots, each providing unique
+  insights into the relationships between variables:
+</p>
+<ul>
+  <li>
+    <strong>Product Variety and Multi-Item Orders:</strong> Examines the
+    relationship between <code>Distinct Product Count</code> and
+    <code>Product-Order Gap</code>.
+  </li>
+  <li>
+    <strong>Seller Contribution to Multi-Item Orders:</strong> Explores the
+    impact of <code>Seller Count</code> on <code>Product-Order Gap</code>.
+  </li>
+  <li>
+    <strong>Multi-Item Orders Driving Revenue:</strong> Highlights how
+    <code>Product-Order Gap</code> correlates with <code>Total Revenue</code>.
+  </li>
+</ul>
+
+<details class="image-details">
+  <summary>Screenshots</summary>
+  <div style="text-align: center">
+    <div style="display: inline-block; margin: 0 10px">
+      <img
+        src="Screenshots/Product_Variety.png"
+        alt="Product Variety and Multi-Item Orders"
+        width="550"
+      />
+      <p><strong>Product Variety and Multi-Item Orders</strong></p>
+    </div>
+    <div style="display: inline-block; margin: 0 10px">
+      <img
+        src="Screenshots/Seller_Count.png"
+        alt="Seller Contribution to Multi-Item Orders"
+        width="570"
+      />
+      <p><strong>Seller Contribution to Multi-Item Orders</strong></p>
+    </div>
+    <div style="display: inline-block; margin: 0 10px">
+      <img
+        src="Screenshots/Multi_Item_Orders.png"
+        alt="Multi-Item Orders Driving Revenue"
+        width="1000"
+      />
+      <p><strong>Multi-Item Orders Driving Revenue</strong></p>
+    </div>
+  </div>
+</details>

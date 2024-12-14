@@ -1,0 +1,196 @@
+---
+layout: default
+title: 'Dashboard-1-Revenue-Efficiency-Analysis-by-Product-Category'
+meta_description: 'This dashboard provides insights into revenue efficiency by product category, showcasing trends and actionable strategies for optimization.'
+meta_keywords: 'Dashboard, Revenue Analysis, Data Analytics, Product Category, Optimization'
+og_image: '/Screenshots/Full_Dashboard.png'
+og_url: '{{ site.baseurl }}/Dashboard-1-Revenue-Efficiency-Analysis-by-Product-Category'
+---
+
+<div style="text-align: center">
+  <h1>Dashboard 1: Revenue Efficiency Analysis by Product Category</h1>
+</div>
+
+<div class="responsive-container">
+  <img
+    src="Screenshots/Full_Dashboard.png"
+    alt="Full Dashboard for Revenue Efficiency Analysis by Product Category"
+    width="800"
+  />
+</div>
+
+<h2>Purpose</h2>
+<p>
+  This dashboard provides a detailed analysis of revenue efficiency across
+  product categories, focusing on trends, profitability proxies, and actionable
+  insights to enhance performance.
+</p>
+
+<hr class="title" />
+
+<h2>Key Insights</h2>
+<ol>
+  <li>
+    Health & Beauty is the top-earning category with a revenue of $1.3 million,
+    but Personal Computers is the most efficient category with a Revenue
+    Efficiency (RE) value of $1,144.05. Three categories exceed triple the
+    average RE: Household Pastels, Oven & Café ($640.25), and Electrical
+    Products ($514.01).
+  </li>
+  <li>
+    Categories with smaller product lines and seller counts, like Personal
+    Computers (30 products, 9 sellers), demonstrate high RE. Prioritizing these
+    categories could lead to quicker revenue increases.
+  </li>
+  <li>
+    Gift Watches and Office Furniture, among the top 15 revenue categories, have
+    standout RE values ($219.42 and $202.30, respectively). Office Furniture, in
+    particular, has growth potential due to its relatively small product line
+    (301 products).
+  </li>
+</ol>
+
+<hr class="title" />
+
+<h2>Dashboard Features and Sections</h2>
+
+<h3>Filters and Selections</h3>
+<ul>
+  <li>
+    <strong>Time Slicer:</strong> Allows users to filter the data by specific
+    time periods, similar to the EDA dashboards.
+  </li>
+  <li>
+    <strong>Category Slicer:</strong> Filters for the top 15 categories,
+    excluding outliers like Personal Computers, which had disproportionately
+    high RE values.
+  </li>
+</ul>
+<details class="image-details">
+  <summary>Screenshots</summary>
+  <div class="responsive-container" style="text-align: center">
+    <img
+      src="Screenshots/Time_Slicer.png"
+      alt="Time Slicer"
+      style="max-width: 300px; height: auto"
+    />
+    <p><strong>Time Slicer</strong></p>
+  </div>
+  <div style="text-align: center">
+    <img
+      src="Screenshots/Product_Category_Slicer.png"
+      alt="Category Slicer"
+      style="max-width: 400px; height: auto"
+    />
+    <p><strong>Category Slicer</strong></p>
+  </div>
+</details>
+
+<hr />
+
+<h3>Visualizations</h3>
+
+<h4>Revenue and Efficiency Trends Across Product Categories</h4>
+<p>
+  A bar and line chart comparing total revenue (bar) and revenue efficiency
+  (line) for the top 15 categories. Colors for each category match those used in
+  the scatter chart, ensuring consistency.
+</p>
+<details class="image-details">
+  <summary>Screenshots</summary>
+  <div class="responsive-container">
+    <img
+      src="Screenshots/Revenue_Efficiency_Trends_Across_Categories_Bar.png"
+      alt="Revenue Efficiency Trends Chart"
+      width="600"
+    />
+    <p><strong>Revenue Efficiency Trends Chart</strong></p>
+  </div>
+</details>
+
+<hr />
+
+<h4>Product Revenue vs. Efficiency by Category</h4>
+<p>
+  A scatter chart displaying the relationship between total revenue (x-axis), RE
+  (y-axis), and product count (bubble size). Highlights the top 10 categories by
+  RE.
+</p>
+<details class="image-details">
+  <summary>Screenshots</summary>
+  <div class="responsive-container">
+    <img
+      src="Screenshots/Product_Revenue_vs_Efficiency_by_Category.png"
+      alt="Product Revenue vs. Efficiency Chart"
+      width="600"
+    />
+    <p><strong>Product Revenue vs. Efficiency Chart</strong></p>
+  </div>
+</details>
+
+<hr />
+
+<h4>Product Category Performance Summary</h4>
+<p>
+  A table listing product category, total revenue, order count, product count,
+  average order value, and RE. Features conditional formatting for categories
+  exceeding double or triple the average RE.
+</p>
+<details class="image-details">
+  <summary>Screenshots</summary>
+  <div class="responsive-container">
+    <img
+      src="Screenshots/Product_Category_Performance_Summary.png"
+      alt="Product Category Performance Summary Table"
+      width="600"
+    />
+    <p><strong>Product Category Performance Summary Table</strong></p>
+  </div>
+</details>
+
+<hr class="title" />
+
+<h2>Insights in Action</h2>
+
+<p>
+  These insights suggest strategies for boosting revenue efficiency and overall
+  sales:
+</p>
+<ul>
+  <li>
+    Focus on expanding offerings in high-efficiency categories like Personal
+    Computers and Office Furniture.
+  </li>
+  <li>
+    Implement bundling strategies or diversify product lines for smaller
+    categories to increase multi-item orders.
+  </li>
+  <li>
+    Optimize marketing efforts for categories with high RE values to achieve
+    quicker revenue gains.
+  </li>
+</ul>
+
+<hr class="title" />
+
+<h2>Measures Used</h2>
+
+<p>
+  This section provides an overview of the key measures used in this dashboard.
+  For a look at all measures used across my analysis, refer to the
+  <a href="../DAX-measures">DAX Measures Document</a>. Otherwise, use the links
+  below to navigate to the respective measure.
+</p>
+<ul>
+  <li>
+    <a href="../DAX-measures/Revenue_Efficiency">Revenue Efficiency</a> - Learn
+    more
+  </li>
+  <li>
+    <a href="../DAX-measures/Total_Revenue">Total Revenue</a> - Learn more
+  </li>
+  <li>
+    <a href="../DAX-measures/Average_Order_Value">Average Order Value</a> -
+    Learn more
+  </li>
+</ul>
