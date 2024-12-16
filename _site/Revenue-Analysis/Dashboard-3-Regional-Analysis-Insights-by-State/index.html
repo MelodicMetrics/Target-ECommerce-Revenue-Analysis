@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="This dashboard provides insights into regional trends by state, showcasing Total Revenue and Average Order Value (AOV) with dynamic interactivity." />
+    <meta name="keywords" content="Dashboard, Regional Analysis, Revenue, AOV, Data Analytics, State Trends" />
+    <meta property="og:title" content="Dashboard 3: Regional Analysis by State" />
+    <meta property="og:description" content="This dashboard provides insights into regional trends by state, showcasing Total Revenue and Average Order Value (AOV) with dynamic interactivity." />
+    <meta property="og:image" content="/Screenshots/Full_Dashboard_Regional.png" />
+    <meta property="og:url" content="{{ site.baseurl }}/Dashboard-3-Regional-Analysis-by-State" />
+    <meta property="og:type" content="website" />
+
+    <title>Dashboard 3: Regional Analysis by State</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Highlight.js Theme -->
+    <link
+      rel="stylesheet"
+      href="/Target-ECommerce-Revenue-Analysis/assets/css/solarized-light.min.css"
+    />
+
+    <!-- Font Awesome Icon Library-->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/styles.css" />
+
+    <!-- Highlight.js Core and Language Support -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/sql.min.js"></script>
+
+    <!-- Custom DAX Language Registration -->
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/dax.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        hljs.registerLanguage('dax', dax); // Register the custom DAX grammar
+        hljs.highlightAll(); // Initialize Highlight.js
+      });
+    </script>
+
+    <!-- Scroll Detection -->
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/scroll-detection.js"></script>
+
+    <!-- Expand Selected Section-->
+    <script src="/Target-ECommerce-Revenue-Analysis/assets/js/expand-section.js"></script>
+  </head>
+  <body>
+    <!-- Sticky Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/Target-ECommerce-Revenue-Analysis/">Home</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="/Target-ECommerce-Revenue-Analysis/Data-Cleaning-Part-One/"
+                >Data Cleaning Part One</a
+              > </li
+
+            ><li class="nav-item">
+              <a
+                class="nav-link"
+                href="/Target-ECommerce-Revenue-Analysis/Data-Cleaning-Part-Two/"
+                >Data Cleaning Part Two</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/EDA/"
+                >Exploratory Data Analysis</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/revenue-analysis/"
+                >Revenue Analysis</a
+              >
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success" type="submit"
+              >Search</button
+            >
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <header class="breadcrumbs-wrapper">
+      <nav class="breadcrumbs-trail" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"
+            ><a href="/Target-ECommerce-Revenue-Analysis/">Home</a></li
+          >
+              
+          <li class="breadcrumb-item">
+            <a href="/Target-ECommerce-Revenue-Analysis/Revenue-Analysis"
+              >Revenue Analysis</a
+            >
+          </li>
+             
+          <li class="breadcrumb-item">
+            <a href="/Target-ECommerce-Revenue-Analysis/Revenue-Analysis/Dashboard-3-Regional-Analysis-Insights-by-State"
+              >Dashboard 3 Regional Analysis Insights by State</a
+            >
+          </li>
+             
+          <li class="breadcrumb-item active" aria-current="page"
+            >index.html</li
+          >
+           
+        </ol>
+      </nav>
+    </header>
+
+    <!-- Header Section -->
+    <header class="custom-header">
+      <h1>Target E-Commerce Revenue Analysis</h1>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container my-4"> <div style="text-align: center;">
+    <h1>Dashboard 3: Regional Analysis: Insights by State</h1>
+  </div>
+  
+  <div style="text-align: center">
+    <img
+      src="Screenshots/Full_Dashboard.png"
+      alt="Dashboard 3 Full View"
+      width="800"
+    />
+  </div>
+  
+  <h2>Purpose</h2>
+  <p>
+    This dashboard provides a detailed regional analysis by state, focusing on Total Revenue and Average Order Value (AOV) metrics. It empowers users to uncover geographical trends, identify top-performing states, and gain deeper insights into state-level and city-level performance.
+  </p>
+  
+  <div class="hr-wrapper">
+    <hr class="title" />
+  </div>
+  
+  <h2>Key Insights</h2>
+  
+  <h3>Regional Trends</h3>
+  <ul>
+    <li>
+      <strong>Total Revenue:</strong> The southeast region dominated revenue share across 2016–2018, contributing 73.67% of total revenue. São Paulo led with 37.33% of overall revenue.
+    </li>
+    <li>
+      <strong>Average Order Value (AOV):</strong> No strong regional clustering was observed. Top AOV states were scattered across the northeast and northwest regions, including Acre (AC).
+    </li>
+  </ul>
+  
+  <h3>Interactive Features</h3>
+  <ul>
+    <li>
+      Filters and toggles provide dynamic updates across all visuals.
+    </li>
+    <li>
+      Visual insights update titles and callouts based on the selected metric (Total Revenue or AOV) and time periods.
+    </li>
+  </ul>
+  
+  <div class="hr-wrapper">
+    <hr />
+  </div>
+  
+  <h2>Dashboard Features and Sections</h2>
+  
+  <h3>Filters and Selections</h3>
+  <p>
+    <strong>Time Slicer:</strong> Filters data by year, quarter, or month, ensuring all metrics and visuals dynamically update.<br />
+    <strong>Selected Metric Toggle:</strong> Allows toggling between Total Revenue and Average Order Value (AOV). Visualizations and callouts dynamically reflect the chosen metric.<br />
+    <strong>Revenue % KPI Card:</strong> Displays revenue contribution as a percentage of the overall dataset. Updates based on filters and selections.
+  </p>
+  
+  <details class="image-details">
+    <summary>Screenshots</summary>
+    <div style="text-align: center;">
+      <div style="display: inline-block; margin: 0 10px;">
+        <img src="Screenshots/Time_Slicer.png" alt="Time Slicer Screenshot" width="200" />
+        <p><strong>Time Slicer</strong></p>
+      </div>
+      <div style="display: inline-block; margin: 0 10px;">
+        <img src="Screenshots/Metric_Toggle.png" alt="Metric Toggle Screenshot" width="300" />
+        <p><strong>Selected Metric Toggle</strong></p>
+      </div>
+      <div style="display: inline-block; margin: 0 10px;">
+        <img src="Screenshots/Revenue_Percent_KPI_Card.png" alt="Revenue % KPI Card Screenshot" width="300" />
+        <p><strong>Revenue % KPI Card</strong></p>
+      </div>
+    </div>
+  </details>
+  
+  <div class="hr-wrapper">
+    <hr />
+  </div>
+  
+  <h3>Visualizations</h3>
+  
+  <h4>1. Top 5 Bar Chart</h4>
+  <p>
+    <strong>Purpose:</strong> Displays the top 5 states based on the selected metric (Total Revenue or AOV).<br />
+    <strong>Features:</strong>
+    <ul>
+      <li>Title dynamically updates based on the selected metric.</li>
+      <li>Includes a callout showing the top state by revenue share and the top state by AOV.</li>
+      <li>Filters by time slicer to display insights for specific years or quarters.</li>
+    </ul>
+  </p>
+  
+  <details class="image-details">
+    <summary>Screenshots</summary>
+    <div style="text-align: center;">
+      <div style="margin-bottom: 20px;">
+        <img
+          src="Screenshots/Top_5_Bar_Chart.png"
+          alt="Top 5 Bar Chart Screenshot"
+          width="600"
+        />
+        <p><strong>Top 5 Bar Chart</strong></p>
+      </div>
+      <div>
+        <img
+          src="Screenshots/Bar_Chart_Callout.png"
+          alt="Top 5 Bar Chart Callout Screenshot"
+          width="400"
+        />
+        <p><strong>Callout: Top State by Revenue and AOV</strong></p>
+      </div>
+    </div>
+  </details>
+  
+  
+  <h4>2. Top 5 Scatter Chart</h4>
+  <p>
+    <strong>Purpose:</strong> Provides the same insights as the bar chart but includes a size element for order count.<br />
+    <strong>Features:</strong>
+    <ul>
+      <li>Dynamically displays top states based on the selected metric.</li>
+      <li>Bubble sizes reflect order volumes for easy comparison.</li>
+    </ul>
+  </p>
+  
+  <details class="image-details">
+    <summary>Screenshots</summary>
+    <div style="text-align: center;">
+      <img
+        src="Screenshots/Top_5_Scatter_Chart.png"
+        alt="Top 5 Scatter Chart Screenshot"
+        width="600"
+      />
+      <p><strong>Top 5 Scatter Chart</strong></p>
+    </div>
+  </details>
+  
+  <h4>3. State-Level Revenue and Order Metrics (Matrix Table)</h4>
+  <p>
+    <strong>Purpose:</strong> Displays granular insights at the state and city levels.<br />
+    <strong>Features:</strong>
+    <ul>
+      <li>Columns include: State (drillable to city), Selected Metric, Revenue % per year, and Order Count.</li>
+      <li>Revenue % normalizes annually to show contributions within selected years.</li>
+      <li>Dynamic sorting by the selected metric ensures top-performing states appear first.</li>
+    </ul>
+  </p>
+  
+  <details class="image-details">
+    <summary>Screenshots</summary>
+    <div style="text-align: center;">
+      <img
+        src="Screenshots/State_Level_Metrics_Table.png"
+        alt="State-Level Metrics Table Screenshot"
+        width="600"
+      />
+      <p><strong>State-Level Revenue and Order Metrics</strong></p>
+    </div>
+  </details>
+  
+  <h4>4. Geographical Distribution Map</h4>
+  <p>
+    <strong>Purpose:</strong> Visualizes the distribution of the selected metric across all states.<br />
+    <strong>Features:</strong>
+    <ul>
+      <li>Bubble sizes dynamically update based on the selected metric.</li>
+      <li>Color-coded legend for quick insights.</li>
+      <li>Dynamic title reflects the selected metric.</li>
+    </ul>
+  </p>
+  
+  <details class="image-details">
+    <summary>Screenshots</summary>
+    <div style="text-align: center;">
+      <img
+        src="Screenshots/Geographical_Distribution_Map.png"
+        alt="Geographical Distribution Map Screenshot"
+        width="600"
+      />
+      <p><strong>Geographical Distribution Map</strong></p>
+    </div>
+  </details>
+  
+  <div class="hr-wrapper">
+    <hr />
+  </div>
+  
+  <h2>Insights in Action</h2>
+  <ul>
+    <li>
+      <strong>Focus on Regional Leaders:</strong> Prioritize investments in high-revenue regions like São Paulo.
+    </li>
+    <li>
+      <strong>Monitor AOV Trends:</strong> Use AOV insights to identify regions with potential for revenue growth through increased order sizes.
+    </li>
+    <li>
+      <strong>Analyze Geographical Trends:</strong> Leverage map visualizations to understand regional contributions and inform resource allocation.
+    </li>
+  </ul>
+  
+  <div class="hr-wrapper">
+    <hr />
+  </div>
+  
+  <h2>Measures Used</h2>
+  <p>
+    For a comprehensive list of measures across all dashboards, refer to the <a href="../DAX-measures">DAX Measures Document</a>. Specific measures used in this dashboard:
+  </p>
+  <ul>
+    <li>
+      <a href="../DAX-measures/Total_Revenue">Total Revenue</a> - Learn more
+    </li>
+    <li>
+      <a href="../DAX-measures/Average_Order_Value">Average Order Value</a> - Learn more
+    </li>
+    <li>
+      <a href="../DAX-measures/Revenue_Percentage">Revenue Percentage</a> - Learn more
+    </li>
+  </ul>
+   </main>
+
+    <!-- Footer -->
+    <footer class="text-center text-muted py-3">
+      &copy; 2024 Miles Davidson. All rights reserved.<br />
+      Dataset used in this project is provided by
+      <a href="https://www.kaggle.com/devarajv88" target="_blank">Devaraj V</a>
+      on <a href="https://www.kaggle.com/" target="_blank">Kaggle</a>.<br />
+      View the full project repository on
+      <a
+        href="https://github.com/MelodicMetrics/Target-ECommerce-Revenue-Analysis"
+        >Github
+      </a>
+      <br />
+      This project is for educational and portfolio purposes only.
+    </footer>
+
+    <script>
+      // Dynamically add a "Copy" button to each <pre><code> block
+      document.querySelectorAll('pre').forEach((pre) => {
+        // Create the copy button container
+        const button = document.createElement('button');
+        button.className = 'copy-button';
+        button.onclick = () => copyCode(pre);
+
+        // Add the icon inside the button
+        const icon = document.createElement('i');
+        icon.className = 'copy-icon';
+        button.appendChild(icon);
+
+        // Position the button inside the code block
+        pre.style.position = 'relative'; // Ensure the button is positioned correctly
+        pre.appendChild(button);
+      });
+
+      // Function to handle copying code
+      function copyCode(pre) {
+        const codeBlock = pre.querySelector('code');
+        if (!codeBlock) return;
+
+        // Copy the code content
+        navigator.clipboard
+          .writeText(codeBlock.textContent)
+          .then(() => {
+            // Change the icon to indicate success temporarily
+            const icon = pre.querySelector('.copy-icon');
+            icon.classList.add('copied');
+            setTimeout(() => icon.classList.remove('copied'), 2000);
+          })
+          .catch((err) => {
+            console.error('Failed to copy: ', err);
+          });
+      }
+    </script>
+  </body>
+</html>

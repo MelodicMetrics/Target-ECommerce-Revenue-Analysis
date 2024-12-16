@@ -3,15 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="This dashboard provides insights into revenue efficiency by product category, showcasing trends and actionable strategies for optimization." />
-    <meta name="keywords" content="Dashboard, Revenue Analysis, Data Analytics, Product Category, Optimization" />
-    <meta property="og:title" content="Dashboard-1-Revenue-Efficiency-Analysis-by-Product-Category" />
-    <meta property="og:description" content="This dashboard provides insights into revenue efficiency by product category, showcasing trends and actionable strategies for optimization." />
-    <meta property="og:image" content="/Screenshots/Full_Dashboard.png" />
-    <meta property="og:url" content="{{ site.baseurl }}/Dashboard-1-Revenue-Efficiency-Analysis-by-Product-Category" />
+    <meta name="description" content="This dashboard provides insights into seller performance and category efficiency, showcasing trends and actionable strategies for growth." />
+    <meta name="keywords" content="Dashboard, Seller Analysis, Revenue Analysis, Data Analytics, Seller Efficiency, Optimization" />
+    <meta property="og:title" content="Dashboard 2: Seller Performance Analysis: Trends in AOV and Seller Counts" />
+    <meta property="og:description" content="This dashboard provides insights into seller performance and category efficiency, showcasing trends and actionable strategies for growth." />
+    <meta property="og:image" content="/Screenshots/Full_Dashboard_2.png" />
+    <meta property="og:url" content="{{ site.baseurl }}/Dashboard-2-Seller-Performance-Analysis" />
     <meta property="og:type" content="website" />
 
-    <title>Dashboard-1-Revenue-Efficiency-Analysis-by-Product-Category</title>
+    <title>Dashboard 2: Seller Performance Analysis: Trends in AOV and Seller Counts</title>
 
     <!-- Bootstrap CSS -->
     <link
@@ -125,8 +125,8 @@
           </li>
              
           <li class="breadcrumb-item">
-            <a href="/Target-ECommerce-Revenue-Analysis/Revenue-Analysis/Dashboard-1-Revenue-Efficiency-Analysis-by-Product-Category"
-              >Dashboard 1 Revenue Efficiency Analysis by Product Category</a
+            <a href="/Target-ECommerce-Revenue-Analysis/Revenue-Analysis/Dashboard-2-Seller-Performance-Analysis-Trends-in-AOV-and-Seller-Counts"
+              >Dashboard 2 Seller Performance Analysis Trends in AOV and Seller Counts</a
             >
           </li>
              
@@ -145,22 +145,22 @@
 
     <!-- Main Content -->
     <main class="container my-4"> <div style="text-align: center">
-  <h1>Dashboard 1: Revenue Efficiency Analysis by Product Category</h1>
+  <h1>Dashboard 2: Seller Performance Analysis: Trends in AOV and Seller Counts</h1>
 </div>
 
 <div class="responsive-container">
   <img
     src="Screenshots/Full_Dashboard.png"
-    alt="Full Dashboard for Revenue Efficiency Analysis by Product Category"
+    alt="Full Dashboard for Seller Performance Analysis"
     width="800"
   />
 </div>
 
 <h2>Purpose</h2>
 <p>
-  This dashboard provides a detailed analysis of revenue efficiency across
-  product categories, focusing on trends, profitability proxies, and actionable
-  insights to enhance performance.
+  This dashboard provides a detailed analysis of seller performance, focusing on trends,
+  average order value (AOV), and revenue growth to uncover actionable insights for
+  seller and category optimization.
 </p>
 
 <hr class="title" />
@@ -168,22 +168,15 @@
 <h2>Key Insights</h2>
 <ol>
   <li>
-    Health & Beauty is the top-earning category with a revenue of $1.3 million,
-    but Personal Computers is the most efficient category with a Revenue
-    Efficiency (RE) value of $1,144.05. Three categories exceed triple the
-    average RE: Household Pastels, Oven & Café ($640.25), and Electrical
-    Products ($514.01).
+    Average order value (AOV) decreased slightly between 2017 and 2018 by $0.03, 
+    while seller count increased from 1,763 to 2,349. Revenue grew from
+    $6,708,142.77 to $8,104,120.79, marking a 25% increase in sellers
+    and 17.22% growth in revenue.
   </li>
   <li>
-    Categories with smaller product lines and seller counts, like Personal
-    Computers (30 products, 9 sellers), demonstrate high RE. Prioritizing these
-    categories could lead to quicker revenue increases.
-  </li>
-  <li>
-    Gift Watches and Office Furniture, among the top 15 revenue categories, have
-    standout RE values ($219.42 and $202.30, respectively). Office Furniture, in
-    particular, has growth potential due to its relatively small product line
-    (301 products).
+    Gift Watches and Office Furniture stand out with high AOVs compared to other
+    top categories. Office Furniture has the highest AOV ($269.11) among all categories
+    and the lowest seller count (33), indicating growth potential.
   </li>
 </ol>
 
@@ -194,13 +187,11 @@
 <h3>Filters and Selections</h3>
 <ul>
   <li>
-    <strong>Time Slicer:</strong> Allows users to filter the data by specific
-    time periods, similar to the EDA dashboards.
+    <strong>Time Slicer:</strong> Allows users to filter the data by year, quarter, and month.
+    Users can exclude 2016 for a more focused analysis of full-year trends.
   </li>
   <li>
-    <strong>Category Slicer:</strong> Filters for the top 15 categories,
-    excluding outliers like Personal Computers, which had disproportionately
-    high RE values.
+    <strong>Category Slicer:</strong> Enables filtering by specific product categories.
   </li>
 </ul>
 <details class="image-details">
@@ -227,108 +218,100 @@
 
 <h3>Visualizations</h3>
 
-<h4>Revenue and Efficiency Trends Across Product Categories</h4>
-<p>
-  A bar and line chart comparing total revenue (bar) and revenue efficiency
-  (line) for the top 15 categories by revenue. Colors for each category match
-  those used in the scatter chart, ensuring consistency.
-</p>
+<h4>1. Seller Participation and AOV Trends by Year</h4>
+<p><strong>Purpose:</strong> This visualization highlights trends in seller participation and changes in Average Order Value (AOV) across years.</p>
+<p><strong>Key Insight:</strong> Seller counts increased significantly between 2017 and 2018, while AOV decreased slightly by $0.03. The year 2016 includes only four months of data, which impacts the seller count.</p>
+<p><strong>Features:</strong>
+<ul>
+  <li>Dynamic filtering by year allows users to exclude 2016 for a clearer analysis of full-year trends.</li>
+  <li>Bar chart for seller count and line chart for AOV trends.</li>
+</ul></p>
 <details class="image-details">
   <summary>Screenshots</summary>
   <div class="responsive-container">
     <img
-      src="Screenshots/Revenue_Efficiency_Trends_Across_Categories_Bar.png"
-      alt="Revenue Efficiency Trends Chart"
+      src="Screenshots/Seller_Participation_and_AOV_Trends_by_Year.png"
+      alt="Seller Participation and AOV Trends"
       width="600"
     />
-    <p><strong>Revenue Efficiency Trends Chart</strong></p>
+    <p><strong>Seller Participation and AOV Trends</strong></p>
   </div>
 </details>
 
-<hr />
-
-<h4>Product Revenue vs. Efficiency by Category</h4>
-<p>
-  A scatter chart displaying the relationship between total revenue (x-axis), RE
-  (y-axis), and product count (bubble size). Highlights the top 10 categories by
-  RE.
-</p>
+<h4>2. Category Revenue, Efficiency, and Seller Metrics</h4>
+<p><strong>Purpose:</strong> This scatter chart provides a comparative view of total revenue, AOV, and seller count for the top 15 categories by revenue.</p>
+<p><strong>Key Insight:</strong> Categories with higher AOV and fewer sellers, such as Office Furniture, indicate potential areas for growth.</p>
+<p><strong>Features:</strong>
+<ul>
+  <li>Bubble size represents seller count, allowing for quick identification of categories with low seller participation.</li>
+  <li>Dynamic filtering by category and time enhances user insights.</li>
+</ul></p>
 <details class="image-details">
   <summary>Screenshots</summary>
   <div class="responsive-container">
     <img
-      src="Screenshots/Product_Revenue_vs_Efficiency_by_Category.png"
-      alt="Product Revenue vs. Efficiency Chart"
+      src="Screenshots/Category_Revenue_AOV_and_Seller_Metrics.png"
+      alt="Category Revenue, AOV, and Seller Metrics"
       width="600"
     />
-    <p><strong>Product Revenue vs. Efficiency Chart</strong></p>
+    <p><strong>Category Revenue, AOV, and Seller Metrics</strong></p>
   </div>
 </details>
 
-<hr />
-
-<h4>Product Category Performance Summary</h4>
-<p>
-  A table listing product category, total revenue, order count, product count,
-  distinct product count, average order value, and RE. Features conditional
-  formatting for categories exceeding double or triple the average RE.
-</p>
+<h4>3. Product Category Performance Summary</h4>
+<p><strong>Purpose:</strong> This table summarizes key metrics like total revenue, seller count, and AOV for each product category.</p>
+<p><strong>Key Insight:</strong> Categories like Office Furniture and Gift Watches have high AOV but low seller counts, indicating opportunities for market expansion.</p>
+<p><strong>Features:</strong>
+<ul>
+  <li>Sorted by AOV to highlight high-performing categories.</li>
+  <li>Highlights in orange and blue indicate categories exceeding average and triple the average AOV, respectively.</li>
+</ul></p>
 <details class="image-details">
   <summary>Screenshots</summary>
   <div class="responsive-container">
     <img
       src="Screenshots/Product_Category_Performance_Summary.png"
-      alt="Product Category Performance Summary Table"
+      alt="Product Category Performance Summary"
       width="600"
     />
-    <p><strong>Product Category Performance Summary Table</strong></p>
+    <p><strong>Product Category Performance Summary</strong></p>
   </div>
 </details>
 
 <hr class="title" />
 
 <h2>Insights in Action</h2>
-
 <p>
-  These insights suggest strategies for boosting revenue efficiency and overall
-  sales:
+  These insights can drive actionable strategies for seller and category optimization:
 </p>
 <ul>
   <li>
-    Focus on expanding offerings in high-efficiency categories like Personal
-    Computers and Office Furniture.
+    Prioritize marketing and support efforts for high-potential categories like Office Furniture.
   </li>
   <li>
-    Implement bundling strategies or diversify product lines for smaller
-    categories to increase multi-item orders.
+    Encourage seller participation in categories with high AOV but low seller counts to
+    unlock growth opportunities.
   </li>
   <li>
-    Optimize marketing efforts for categories with high RE values to achieve
-    quicker revenue gains.
+    Use time and category filters to identify seasonal trends and performance shifts over time.
   </li>
 </ul>
 
 <hr class="title" />
 
 <h2>Measures Used</h2>
-
 <p>
-  This section provides an overview of the key measures used in this dashboard.
-  For a look at all measures used across my analysis, refer to the
-  <a href="../DAX-measures">DAX Measures Document</a>. Otherwise, use the links
-  below to navigate to the respective measure.
+  This section provides an overview of the key measures used in this dashboard. For a look at all measures used across my analysis, refer to the <a href="../DAX-measures">DAX Measures Document</a>. Otherwise, use the links below to navigate to the respective measure.
 </p>
 <ul>
   <li>
-    <a href="../DAX-measures/Revenue_Efficiency">Revenue Efficiency</a> - Learn
-    more
+    <a href="../DAX-measures/Average_Order_Value">Average Order Value (AOV)</a> - Learn more
   </li>
   <li>
     <a href="../DAX-measures/Total_Revenue">Total Revenue</a> - Learn more
   </li>
   <li>
-    <a href="../DAX-measures/Average_Order_Value">Average Order Value</a> -
-    Learn more
+    <a href="../DAX-measures/Seller_Count">Seller Count</a> - Learn more
   </li>
 </ul>
  </main>
