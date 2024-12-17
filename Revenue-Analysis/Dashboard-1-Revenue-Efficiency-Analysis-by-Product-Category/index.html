@@ -15,7 +15,7 @@ og_url: '{{ site.baseurl }}/Dashboard-1-Revenue-Efficiency-Analysis-by-Product-C
   <img
     src="Screenshots/Full_Dashboard.png"
     alt="Full Dashboard for Revenue Efficiency Analysis by Product Category"
-    width="800"
+    width="900"
   />
 </div>
 
@@ -23,7 +23,7 @@ og_url: '{{ site.baseurl }}/Dashboard-1-Revenue-Efficiency-Analysis-by-Product-C
 <p>
   This dashboard provides a detailed analysis of revenue efficiency across
   product categories, focusing on trends, profitability proxies, and actionable
-  insights to enhance performance.
+  insights to enhance performance. Data now focuses on 2017 and 2018 only.
 </p>
 
 <hr class="title" />
@@ -31,22 +31,33 @@ og_url: '{{ site.baseurl }}/Dashboard-1-Revenue-Efficiency-Analysis-by-Product-C
 <h2>Key Insights</h2>
 <ol>
   <li>
-    Health & Beauty is the top-earning category with a revenue of $1.3 million,
-    but Personal Computers is the most efficient category with a Revenue
-    Efficiency (RE) value of $1,144.05. Three categories exceed triple the
-    average RE: Household Pastels, Oven & Café ($640.25), and Electrical
-    Products ($514.01).
+    Health & Beauty remains the top-earning category, but Personal Computers is
+    the most efficient category with a Revenue Efficiency (RE) value of
+    $1,144.05. Household Pastels, Oven & Café (RE: $630.25), and Electrical
+    Products ($514.01) exceed triple the average RE.
   </li>
   <li>
-    Categories with smaller product lines and seller counts, like Personal
-    Computers (30 products, 9 sellers), demonstrate high RE. Prioritizing these
-    categories could lead to quicker revenue increases.
+    Categories like Personal Computers (30 products, 9 sellers) and Office
+    Furniture demonstrate high efficiency despite smaller product lines,
+    highlighting growth potential.
   </li>
   <li>
-    Gift Watches and Office Furniture, among the top 15 revenue categories, have
-    standout RE values ($219.42 and $202.30, respectively). Office Furniture, in
-    particular, has growth potential due to its relatively small product line
-    (301 products).
+    Gift Watches (RE: $219.00) and Office Furniture (RE: $202.01) remain
+    standout categories in RE. Office Furniture, in particular, shows growth
+    potential with a relatively small product line (301 products).
+  </li>
+  <li>
+    A relative difference (%) column reveals multi-item order likelihood. On
+    average, the difference is <b>12.14%</b>, indicating limited multi-item
+    ordering. Notably, Telecommunications (<b>24.90%</b>) and Signaling & Safety
+    Products (<b>26.55%</b>) double the average, suggesting higher multi-item
+    purchases.
+  </li>
+  <li>
+    Year-over-year (YoY) growth analysis shows an overall revenue growth of
+    <b>20.81%</b> between 2017 and 2018. Categories like Household Pastels,
+    Oven, & Café had the highest growth (<b>4,723.90%</b>) due to product line
+    expansion.
   </li>
 </ol>
 
@@ -56,14 +67,14 @@ og_url: '{{ site.baseurl }}/Dashboard-1-Revenue-Efficiency-Analysis-by-Product-C
 
 <h3>Filters and Selections</h3>
 <ul>
+  <li> <strong>Time Slicer:</strong> Filters data for 2017 and 2018 only. </li>
   <li>
-    <strong>Time Slicer:</strong> Allows users to filter the data by specific
-    time periods, similar to the EDA dashboards.
+    <strong>Metric Toggle:</strong> Allows users to toggle between Total
+    Revenue, RE, or AOV, dynamically updating all visuals and the table.
   </li>
   <li>
     <strong>Category Slicer:</strong> Filters for the top 15 categories,
-    excluding outliers like Personal Computers, which had disproportionately
-    high RE values.
+    excluding Personal Computers due to disproportionately high RE values.
   </li>
 </ul>
 <details class="image-details">
@@ -76,6 +87,14 @@ og_url: '{{ site.baseurl }}/Dashboard-1-Revenue-Efficiency-Analysis-by-Product-C
     />
     <p><strong>Time Slicer</strong></p>
   </div>
+  <div class="responsive-container" style="text-align: center">
+    <img
+      src="Screenshots/Metric_Toggle.png"
+      alt="Selected Metric Toggle"
+      style="max-width: 300px; height: auto"
+    />
+    <p><strong>Metric Toggle</strong></p>
+  </div>
   <div style="text-align: center">
     <img
       src="Screenshots/Product_Category_Slicer.png"
@@ -86,16 +105,72 @@ og_url: '{{ site.baseurl }}/Dashboard-1-Revenue-Efficiency-Analysis-by-Product-C
   </div>
 </details>
 
+<h3>YoY Growth % KPI Card</h3>
+<p>
+  <strong>Purpose:</strong> To provide a quick view of the overall
+  Year-over-Year (YoY) growth percentage for revenue.
+</p>
+<p>
+  <strong>Key Insight:</strong> The KPI card highlights an overall growth of
+  **20.81%** between 2017 and 2018, with additional breakdowns available for
+  specific categories.
+</p>
+<p>
+  <strong>Features:</strong>
+</p>
+<ul>
+  <li
+    >Dynamic updates based on filters like year, product category, or selected
+    metric.</li
+  >
+  <li
+    >Conditional formatting with upward (green) and downward (red) arrows to
+    indicate growth or decline.</li
+  >
+  <li
+    >Interactive: Clicking on bars, bubbles, or table rows dynamically updates
+    the KPI to reflect the selected category's growth.
+  </li>
+</ul>
+<details class="image-details">
+  <summary>Screenshots</summary>
+  <div style="text-align: center">
+    <img
+      src="Screenshots/YoY_Growth_KPI_Card.png"
+      alt="YoY Growth KPI Card"
+      width="500"
+    />
+    <p><strong>YoY Growth KPI Card</strong></p>
+  </div>
+</details>
+
 <hr />
 
 <h3>Visualizations</h3>
 
-<h4>Revenue and Efficiency Trends Across Product Categories</h4>
+<h4>1. Revenue and Efficiency Trends Across Product Categories</h4>
 <p>
-  A bar and line chart comparing total revenue (bar) and revenue efficiency
-  (line) for the top 15 categories by revenue. Colors for each category match
-  those used in the scatter chart, ensuring consistency.
+  <strong>Purpose:</strong> To compare total revenue and revenue efficiency
+  across categories over 2017 and 2018.
 </p>
+<p>
+  <strong>Key Insight:</strong> The bar chart dynamically updates based on the
+  selected metric, while the line consistently shows RE trends, providing a
+  clear view of efficiency across the years.
+</p>
+<p>
+  <strong>Features:</strong>
+</p>
+<ul>
+  <li
+    >Dynamic bar chart displays metrics like Total Revenue, RE, or AOV by
+    category.</li
+  >
+  <li>Line chart overlays RE values to show trends across categories.</li>
+  <li
+    >Breakdown by year (2017, 2018) allows comparison within each category.</li
+  >
+</ul>
 <details class="image-details">
   <summary>Screenshots</summary>
   <div class="responsive-container">
@@ -110,32 +185,64 @@ og_url: '{{ site.baseurl }}/Dashboard-1-Revenue-Efficiency-Analysis-by-Product-C
 
 <hr />
 
-<h4>Product Revenue vs. Efficiency by Category</h4>
+<h4>2. Revenue Efficiency Trends Across Product Categories Scatter Chart</h4>
 <p>
-  A scatter chart displaying the relationship between total revenue (x-axis), RE
-  (y-axis), and product count (bubble size). Highlights the top 10 categories by
-  RE.
+  <strong>Purpose:</strong> To visualize relationships between total revenue,
+  RE, and product count for the top 15 categories.
 </p>
+<p>
+  <strong>Key Insight:</strong> The scatter chart reveals how efficiently
+  categories perform relative to revenue, product count, and chosen metric.
+</p>
+<p>
+  <strong>Features:</strong>
+</p>
+<ul>
+  <li>Dynamic updates based on selected metric (Total Revenue, RE, or AOV).</li>
+  <li
+    >Bubble size reflects product count, emphasizing smaller or larger product
+    lines.</li
+  >
+  <li>Highlights the top 15 categories for comparison.</li>
+</ul>
 <details class="image-details">
   <summary>Screenshots</summary>
   <div class="responsive-container">
     <img
-      src="Screenshots/Product_Revenue_vs_Efficiency_by_Category.png"
-      alt="Product Revenue vs. Efficiency Chart"
+      src="Screenshots/Revenue_Efficiency_Trends_Across_Categories_Scatter.png"
+      alt="Revenue Efficiency Trends Scatter Chart"
       width="600"
     />
-    <p><strong>Product Revenue vs. Efficiency Chart</strong></p>
+    <p><strong>Revenue Efficiency Trends Scatter Chart</strong></p>
   </div>
 </details>
 
 <hr />
 
-<h4>Product Category Performance Summary</h4>
+<h4>3. Product Category Performance Summary</h4>
 <p>
-  A table listing product category, total revenue, order count, product count,
-  distinct product count, average order value, and RE. Features conditional
-  formatting for categories exceeding double or triple the average RE.
+  <strong>Purpose:</strong> To provide a detailed summary of product categories
+  with key metrics for performance evaluation.
 </p>
+<p>
+  <strong>Key Insight:</strong> Highlights categories exceeding RE thresholds,
+  significant YoY growth, and relative differences (%), revealing multi-item
+  purchase likelihood.
+</p>
+<p>
+  <strong>Features:</strong>
+</p>
+<ul>
+  <li
+    >Metrics include Total Revenue, Order Count, Product Count, AOV, RE,
+    Relative Difference (%), and YoY Growth %.</li
+  >
+  <li
+    >Conditional formatting emphasizes RE thresholds and significant YoY
+    changes.</li
+  >
+  <li>Dynamic sorting based on selected metrics for deeper analysis.</li>
+</ul>
 <details class="image-details">
   <summary>Screenshots</summary>
   <div class="responsive-container">
@@ -151,46 +258,34 @@ og_url: '{{ site.baseurl }}/Dashboard-1-Revenue-Efficiency-Analysis-by-Product-C
 <hr class="title" />
 
 <h2>Insights in Action</h2>
-
-<p>
-  These insights suggest strategies for boosting revenue efficiency and overall
-  sales:
-</p>
+<p> Suggested strategies based on findings: </p>
 <ul>
   <li>
-    Focus on expanding offerings in high-efficiency categories like Personal
-    Computers and Office Furniture.
+    Focus on categories with high YoY growth (e.g., Household Pastels, Oven &
+    Café) to capitalize on rapid product expansion.
   </li>
   <li>
-    Implement bundling strategies or diversify product lines for smaller
-    categories to increase multi-item orders.
+    Investigate categories with high relative differences (%) like
+    Telecommunications and Signaling & Safety Products to optimize multi-item
+    orders.
   </li>
   <li>
-    Optimize marketing efforts for categories with high RE values to achieve
-    quicker revenue gains.
+    Prioritize marketing efforts for categories with strong RE and consistent
+    growth, such as Gift Watches and Office Furniture.
   </li>
 </ul>
 
 <hr class="title" />
 
 <h2>Measures Used</h2>
-
 <p>
-  This section provides an overview of the key measures used in this dashboard.
-  For a look at all measures used across my analysis, refer to the
-  <a href="../DAX-measures">DAX Measures Document</a>. Otherwise, use the links
-  below to navigate to the respective measure.
+  For a complete overview of measures used, visit the
+  <a href="../DAX-measures">DAX Measures Document</a>. Relevant measures:
 </p>
 <ul>
-  <li>
-    <a href="../DAX-measures/Revenue_Efficiency">Revenue Efficiency</a> - Learn
-    more
-  </li>
-  <li>
-    <a href="../DAX-measures/Total_Revenue">Total Revenue</a> - Learn more
-  </li>
-  <li>
-    <a href="../DAX-measures/Average_Order_Value">Average Order Value</a> -
-    Learn more
-  </li>
+  <li><a href="../DAX-measures/Revenue_Efficiency">Revenue Efficiency</a></li>
+  <li><a href="../DAX-measures/Total_Revenue">Total Revenue</a></li>
+  <li><a href="../DAX-measures/Average_Order_Value">Average Order Value</a></li>
+  <li>Relative Difference (%)</li>
+  <li>YoY Growth %</li>
 </ul>

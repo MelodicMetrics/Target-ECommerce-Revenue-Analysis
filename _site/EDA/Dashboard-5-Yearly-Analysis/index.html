@@ -3,15 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta property="og:title" content="Revenue Analysis" />
-    <meta property="og:description" content="" />
-    <meta property="og:image" content="" />
-    <meta property="og:url" content="" />
+    <meta name="description" content="An analysis of yearly revenue trends, highlighting significant growth periods, order count changes, and average order value insights." />
+    <meta name="keywords" content="Yearly Analysis, Revenue Trends, Average Order Value, Order Count, Data Analytics" />
+    <meta property="og:title" content="Yearly Revenue Trends Analysis" />
+    <meta property="og:description" content="An analysis of yearly revenue trends, highlighting significant growth periods, order count changes, and average order value insights." />
+    <meta property="og:image" content="/Screenshots/Yearly_Analysis.png" />
+    <meta property="og:url" content="{{ site.baseurl }}/Yearly-Revenue-Trends-Analysis" />
     <meta property="og:type" content="website" />
 
-    <title>Revenue Analysis</title>
+    <title>Yearly Revenue Trends Analysis</title>
 
     <!-- Bootstrap CSS -->
     <link
@@ -119,8 +119,14 @@
           >
               
           <li class="breadcrumb-item">
-            <a href="/Target-ECommerce-Revenue-Analysis/Revenue-Analysis"
-              >Revenue Analysis</a
+            <a href="/Target-ECommerce-Revenue-Analysis/EDA"
+              >EDA</a
+            >
+          </li>
+             
+          <li class="breadcrumb-item">
+            <a href="/Target-ECommerce-Revenue-Analysis/EDA/Dashboard-5-Yearly-Analysis"
+              >Dashboard 5 Yearly Analysis</a
             >
           </li>
              
@@ -138,54 +144,164 @@
     </header>
 
     <!-- Main Content -->
-    <main class="container my-4"> <h1>Welcome to the Revenue Analysis Section</h1>
+    <main class="container my-4"> <div style="text-align: center">
+  <h1>Yearly Revenue Trends Analysis</h1>
+</div>
+
+<div style="text-align: center">
+  <img
+    src="Screenshots/Full_Dashboard.png"
+    alt="Yearly Revenue Trends Chart"
+    width="900"
+  />
+</div>
+
+<h2>Purpose</h2>
 <p>
-  Explore the following sections to dive into key revenue insights, dashboards,
-  and measures:
+  This analysis evaluates yearly revenue trends, order counts, and average order value (AOV) to identify significant growth years and justify the exclusion of 2016 from further analysis.
+</p>
+
+<hr class="title" />
+
+<h2>Key Insights</h2>
+<ul>
+  <li>
+    <strong>2016 Contribution:</strong> 2016 accounted for only <strong>0.37%</strong> of the total revenue
+    (<strong>$54,335.83</strong>), making it insignificant for further analysis.
+  </li>
+  <li>
+    <strong>2017 and 2018:</strong> These two years contributed a combined <strong>99.63%</strong> of total revenue:
+    <ul>
+      <li><strong>2017:</strong> 45.12% (<strong>$6,708,142.77</strong>)</li>
+      <li><strong>2018:</strong> 54.51% (<strong>$8,104,120.79</strong>)</li>
+    </ul>
+  </li>
+  <li>
+    <strong>Average Order Value (AOV) Trend:</strong>
+    <ul>
+      <li>
+        AOV was highest in 2016 despite its low order count, reflecting fewer but larger orders.
+      </li>
+      <li>
+        Between 2017 and 2018, AOV <strong>decreased by 3 cents</strong> (from approximately $160.13),
+        despite order count growing from <strong>41,914</strong> to <strong>50,645</strong>.
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2>Dashboard Features and Sections</h2>
+<h3>KPI Cards</h3>
+<p>
+  Three KPI cards provide revenue percentages for each year at a glance:
+</p>
+<ul>
+  <li><strong>2016 Revenue %:</strong> 0.37%</li>
+  <li><strong>2017 Revenue %:</strong> 45.12%</li>
+  <li><strong>2018 Revenue %:</strong> 54.51%</li>
+</ul>
+<details class="image-details">
+  <summary>Screenshots</summary>
+  <div style="text-align: center">
+    <img src="Screenshots/KPI_Cards.png" alt="2016 Revenue KPI" width="800" />
+    <p><strong>Revenue Percentage KPI Cards</strong></p>
+  </div>
+</details>
+
+<h3>Callout</h3>
+<p>
+  A callout emphasizes that <strong>2017 and 2018 account for 99.63% of total revenue</strong>, focusing the analysis on these years.
+</p>
+<details class="image-details">
+    <summary>Screenshots</summary>
+    <div style="text-align: center">
+      <img src="Screenshots/Callout.png" alt="2016 Revenue KPI" width="800" />
+      <p><strong>Callout</strong></p>
+    </div>
+  </details>
+
+<h3>Visualizations</h3>
+<h4>1. Yearly Revenue Bar Chart</h4>
+<p>
+  Displays total revenue for 2016, 2017, and 2018. Highlights the minimal revenue contribution in 2016 compared to significant growth in 2017 and 2018.
+</p>
+<details class="image-details">
+  <summary>Screenshots</summary>
+  <div style="text-align: center">
+    <img src="Screenshots/Yearly_Revenue.png" alt="Yearly Revenue Bar Chart" width="900" />
+    <p><strong>Yearly Revenue Bar Chart</strong></p>
+  </div>
+</details>
+
+<h4>2. Yearly AOV and Order Count</h4>
+<p>
+  A dual-axis chart showing:
+  <ul>
+    <li><strong>Average Order Value (AOV):</strong> Trends across years, highlighting the peak in 2016 and slight decrease in 2018.</li>
+    <li><strong>Order Count:</strong> Steady growth from 2016 to 2018, with significant increases in 2017 and 2018.</li>
+  </ul>
+</p>
+<details class="image-details">
+  <summary>Screenshots</summary>
+  <div style="text-align: center">
+    <img src="Screenshots/Yearly_AOV_Count.png" alt="Yearly AOV and Order Count Chart" width="900" />
+    <p><strong>Yearly AOV and Order Count Chart</strong></p>
+  </div>
+</details>
+
+<hr />
+
+<h2>Visual Insights</h2>
+<h3>Yearly Revenue</h3>
+<p>
+  Revenue shows a significant jump from 2016 to 2017, with continued growth into 2018. This growth justifies focusing on these two years.
+</p>
+
+<h3>Yearly AOV and Order Count</h3>
+<ul>
+  <li>
+    <strong>2016:</strong> Highest AOV, but only <strong>284 orders</strong> were placed.
+  </li>
+  <li>
+    <strong>2017:</strong> A sharp increase to <strong>41,914 orders</strong>.
+  </li>
+  <li>
+    <strong>2018:</strong> Order count continued to rise to <strong>50,645</strong>, while AOV slightly declined.
+  </li>
+</ul>
+
+<hr />
+
+<h2>Insights in Action</h2>
+<p>
+  This analysis helps justify focusing on 2017 and 2018 for further revenue and profitability analysis. The trends in AOV and order count also highlight the need to:
 </p>
 <ul>
   <li>
-    <a href="/Target-ECommerce-Revenue-Analysis/Revenue/DAX-measures/index">
-      <strong>DAX Measures Repository</strong>
-    </a>
-    <br />
-    Explore a comprehensive collection of calculated measures used across all
-    revenue-focused dashboards, providing a foundation for insightful analysis.
+    Investigate factors driving the slight decrease in AOV despite increased order counts in 2018.
   </li>
   <li>
-    <a
-      href="/Target-ECommerce-Revenue-Analysis/Revenue-Analysis/Dashboard-1-Revenue-Efficiency-Analysis-by-Product-Category/index.html"
-    >
-      <strong
-        >Dashboard 1: Revenue Efficiency Analysis by Product Category</strong
-      >
-    </a>
-    <br />
-    Analyze trends and efficiency metrics across product categories to identify
-    opportunities for revenue growth and optimized performance.
-  </li>
-  <li>
-    <a
-      href="/Target-ECommerce-Revenue-Analysis/Revenue-Analysis/Dashboard-2-Seller-Performance-Analysis-Trends-in-AOV-and-Seller-Counts/index.html"
-    >
-      <strong>Dashboard 2: Average Order Value Analysis by Seller Count</strong>
-    </a>
-    <br />
-    Analyze Average Order Value (AOV) trends and seller count dynamics over
-    time, with insights into yearly patterns of seller performance and order
-    values.
-  </li>
-  <li>
-    <a
-      href="/Target-ECommerce-Revenue-Analysis/Revenue-Analysis/Dashboard-3-Regional-Analysis-Insights-by-State/index.html"
-    >
-      <strong>Dashboard 3: Regional Analysis Insights by State</strong>
-    </a>
-    <br />
-    Gain a detailed understanding of regional trends, highlighting
-    top-performing states and their contributions to overall revenue.
+    Identify opportunities to optimize order value while maintaining high order volumes.
   </li>
 </ul>
+
+<hr class="title" />
+
+<h2>Measures Used</h2>
+<ul>
+  <li>
+    <strong>Total Revenue:</strong> Sum of revenue for each year. <a href="./DAX-measures/revenue-measures#total_revenue">Learn more</a>
+  </li>
+  <li>
+    <strong>Order Count:</strong> Total number of orders placed per year. <a href="/Target-ECommerce-Revenue-Analysis/DAX-measures/order-count">Learn more</a>
+  </li>
+  <li>
+    <strong>Average Order Value (AOV):</strong> Revenue divided by the total number of orders. <a href="../DAX-measures/aov">Learn more</a>
+  </li>
+</ul>
+
  </main>
 
     <!-- Footer -->

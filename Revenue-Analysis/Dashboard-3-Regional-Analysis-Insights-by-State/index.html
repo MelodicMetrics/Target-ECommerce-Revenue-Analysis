@@ -1,229 +1,196 @@
 ---
 layout: default
 title: 'Dashboard 3: Regional Analysis by State'
-meta_description: 'This dashboard provides insights into regional trends by state, showcasing Total Revenue and Average Order Value (AOV) with dynamic interactivity.'
-meta_keywords: 'Dashboard, Regional Analysis, Revenue, AOV, Data Analytics, State Trends'
+meta_description: 'This dashboard provides insights into regional trends by state, showcasing Total Revenue, Average Order Value (AOV), and Year-over-Year (YoY) growth.'
+meta_keywords: 'Dashboard, Regional Analysis, Revenue, AOV, YoY Growth, State Trends, Data Analytics'
 og_image: '/Screenshots/Full_Dashboard_Regional.png'
 og_url: '{{ site.baseurl }}/Dashboard-3-Regional-Analysis-by-State'
 ---
 
-
 <div style="text-align: center;">
     <h1>Dashboard 3: Regional Analysis: Insights by State</h1>
-  </div>
-  
-  <div style="text-align: center">
+</div>
+
+<div style="text-align: center">
     <img
       src="Screenshots/Full_Dashboard.png"
       alt="Dashboard 3 Full View"
-      width="800"
+      width="1000"
     />
-  </div>
-  
-  <h2>Purpose</h2>
-  <p>
-    This dashboard provides a detailed regional analysis by state, focusing on Total Revenue and Average Order Value (AOV) metrics. It empowers users to uncover geographical trends, identify top-performing states, and gain deeper insights into state-level and city-level performance.
-  </p>
-  
-  <div class="hr-wrapper">
+</div>
+
+<h2>Purpose</h2>
+<p>
+  This dashboard provides a detailed regional analysis by state, focusing on Total Revenue, Average Order Value (AOV), and Year-over-Year (YoY) growth. It empowers users to uncover geographical trends, identify top-performing states, and gain deeper insights into emerging markets.
+</p>
+
+<div class="hr-wrapper">
     <hr class="title" />
-  </div>
-  
-  <h2>Key Insights</h2>
-  
-  <h3>Regional Trends</h3>
-  <ul>
-    <li>
-      <strong>Total Revenue:</strong> The southeast region dominated revenue share across 2016–2018, contributing 73.67% of total revenue. São Paulo led with 37.33% of overall revenue.
-    </li>
-    <li>
-      <strong>Average Order Value (AOV):</strong> No strong regional clustering was observed. Top AOV states were scattered across the northeast and northwest regions, including Acre (AC).
-    </li>
-  </ul>
-  
-  <h3>Interactive Features</h3>
-  <ul>
-    <li>
-      Filters and toggles provide dynamic updates across all visuals.
-    </li>
-    <li>
-      Visual insights update titles and callouts based on the selected metric (Total Revenue or AOV) and time periods.
-    </li>
-  </ul>
-  
-  <div class="hr-wrapper">
+</div>
+
+<h2>Key Insights</h2>
+
+<h3>Regional Trends</h3>
+<ul>
+  <li>
+    <strong>Total Revenue:</strong> The southeast region continues to dominate revenue share, contributing 73.67% of total revenue. São Paulo leads with 37.36% share in total revenue. 
+  </li>
+  <li>
+    <strong>YoY Growth:</strong> São Paulo showed the highest growth rate at <strong>35.29%</strong> between 2017 and 2018. Surprisingly, Piauí (PI) followed closely at <strong>35.24%</strong> 
+    with a revenue increase from $44,615.70 to $60,340.26 ($104,955.96 or 0.71% of total revenue across all years).
+  </li>
+  <li>
+    <strong>Emerging Markets:</strong> Piauí's growth suggests potential opportunities for expansion in previously underperforming states.
+  </li>
+  <li>
+    <strong>Southeast Region:</strong> The top 5 states (all from this region) most of the revenue share while growing by an average of <strong>23.18%</strong>.
+  </li>
+</ul>
+
+<h3>Chart Updates</h3>
+<ul>
+  <li>
+    <strong>Yearly Columns:</strong> Added columns for each year (2017 and 2018) to visualize revenue trends and growth rates within the top 5 states.
+  </li>
+  <li>
+    <strong>Sorting Challenge:</strong> Sorting by both the selected metric and the year axis remains unresolved but still provides a clear visual for performance trends.
+  </li>
+</ul>
+
+<div class="hr-wrapper">
     <hr />
-  </div>
-  
-  <h2>Dashboard Features and Sections</h2>
-  
-  <h3>Filters and Selections</h3>
-  <p>
-    <strong>Time Slicer:</strong> Filters data by year, quarter, or month, ensuring all metrics and visuals dynamically update.<br />
-    <strong>Selected Metric Toggle:</strong> Allows toggling between Total Revenue and Average Order Value (AOV). Visualizations and callouts dynamically reflect the chosen metric.<br />
-    <strong>Revenue % KPI Card:</strong> Displays revenue contribution as a percentage of the overall dataset. Updates based on filters and selections.
-  </p>
-  
-  <details class="image-details">
-    <summary>Screenshots</summary>
-    <div style="text-align: center;">
-      <div style="display: inline-block; margin: 0 10px;">
-        <img src="Screenshots/Time_Slicer.png" alt="Time Slicer Screenshot" width="200" />
-        <p><strong>Time Slicer</strong></p>
-      </div>
-      <div style="display: inline-block; margin: 0 10px;">
-        <img src="Screenshots/Metric_Toggle.png" alt="Metric Toggle Screenshot" width="300" />
-        <p><strong>Selected Metric Toggle</strong></p>
-      </div>
-      <div style="display: inline-block; margin: 0 10px;">
-        <img src="Screenshots/Revenue_Percent_KPI_Card.png" alt="Revenue % KPI Card Screenshot" width="300" />
-        <p><strong>Revenue % KPI Card</strong></p>
-      </div>
+</div>
+
+<h2>Dashboard Features and Sections</h2>
+
+<h3>Filters and Selections</h3>
+<p>
+  <strong>Time Slicer:</strong> Filters data by year, quarter, or month.<br />
+  <strong>Selected Metric Toggle:</strong> Allows toggling between Total Revenue, AOV, and YoY Growth.<br />
+  <strong>YoY Growth KPI Card:</strong> Highlights the top states' Year-over-Year growth percentages.
+</p>
+
+<details class="image-details">
+  <summary>Screenshots</summary>
+  <div style="text-align: center;">
+    <div style="display: inline-block; margin: 0 10px;">
+      <img src="Screenshots/Time_Slicer.png" alt="Time Slicer" width="300" />
+      <p><strong>Time Slicer</strong></p>
     </div>
-  </details>
-  
-  <div class="hr-wrapper">
+  <div style="text-align: center;">
+    <div style="display: inline-block; margin: 0 10px;">
+      <img src="Screenshots/Metric_Toggle.png" alt="Selected Metric Toggle" width="400" />
+      <p><strong>Metric Toggle</strong></p>
+    </div>
+  </div>
+  <div style="text-align: center;">
+    <div style="display: inline-block; margin: 0 10px;">
+      <img src="Screenshots/YoY_KPI_Card.png" alt="YoY Growth KPI Card" width="250" />
+      <p><strong>YoY Growth KPI Card</strong></p>
+    </div>
+  </div>
+</details>
+
+<div class="hr-wrapper">
     <hr />
-  </div>
-  
-  <h3>Visualizations</h3>
-  
-  <h4>1. Top 5 Bar Chart</h4>
-  <p>
-    <strong>Purpose:</strong> Displays the top 5 states based on the selected metric (Total Revenue or AOV).<br />
-    <strong>Features:</strong>
-    <ul>
-      <li>Title dynamically updates based on the selected metric.</li>
-      <li>Includes a callout showing the top state by revenue share and the top state by AOV.</li>
-      <li>Filters by time slicer to display insights for specific years or quarters.</li>
-    </ul>
-  </p>
-  
-  <details class="image-details">
-    <summary>Screenshots</summary>
-    <div style="text-align: center;">
-      <div style="margin-bottom: 20px;">
-        <img
-          src="Screenshots/Top_5_Bar_Chart.png"
-          alt="Top 5 Bar Chart Screenshot"
-          width="600"
-        />
-        <p><strong>Top 5 Bar Chart</strong></p>
-      </div>
-      <div>
-        <img
-          src="Screenshots/Bar_Chart_Callout.png"
-          alt="Top 5 Bar Chart Callout Screenshot"
-          width="400"
-        />
-        <p><strong>Callout: Top State by Revenue and AOV</strong></p>
-      </div>
-    </div>
-  </details>
-  
-  
-  <h4>2. Top 5 Scatter Chart</h4>
-  <p>
-    <strong>Purpose:</strong> Provides the same insights as the bar chart but includes a size element for order count.<br />
-    <strong>Features:</strong>
-    <ul>
-      <li>Dynamically displays top states based on the selected metric.</li>
-      <li>Bubble sizes reflect order volumes for easy comparison.</li>
-    </ul>
-  </p>
-  
-  <details class="image-details">
-    <summary>Screenshots</summary>
-    <div style="text-align: center;">
-      <img
-        src="Screenshots/Top_5_Scatter_Chart.png"
-        alt="Top 5 Scatter Chart Screenshot"
-        width="600"
-      />
-      <p><strong>Top 5 Scatter Chart</strong></p>
-    </div>
-  </details>
-  
-  <h4>3. State-Level Revenue and Order Metrics (Matrix Table)</h4>
-  <p>
-    <strong>Purpose:</strong> Displays granular insights at the state and city levels.<br />
-    <strong>Features:</strong>
-    <ul>
-      <li>Columns include: State (drillable to city), Selected Metric, Revenue % per year, and Order Count.</li>
-      <li>Revenue % normalizes annually to show contributions within selected years.</li>
-      <li>Dynamic sorting by the selected metric ensures top-performing states appear first.</li>
-    </ul>
-  </p>
-  
-  <details class="image-details">
-    <summary>Screenshots</summary>
-    <div style="text-align: center;">
-      <img
-        src="Screenshots/State_Level_Metrics_Table.png"
-        alt="State-Level Metrics Table Screenshot"
-        width="600"
-      />
-      <p><strong>State-Level Revenue and Order Metrics</strong></p>
-    </div>
-  </details>
-  
-  <h4>4. Geographical Distribution Map</h4>
-  <p>
-    <strong>Purpose:</strong> Visualizes the distribution of the selected metric across all states.<br />
-    <strong>Features:</strong>
-    <ul>
-      <li>Bubble sizes dynamically update based on the selected metric.</li>
-      <li>Color-coded legend for quick insights.</li>
-      <li>Dynamic title reflects the selected metric.</li>
-    </ul>
-  </p>
-  
-  <details class="image-details">
-    <summary>Screenshots</summary>
-    <div style="text-align: center;">
-      <img
-        src="Screenshots/Geographical_Distribution_Map.png"
-        alt="Geographical Distribution Map Screenshot"
-        width="600"
-      />
-      <p><strong>Geographical Distribution Map</strong></p>
-    </div>
-  </details>
-  
-  <div class="hr-wrapper">
-    <hr />
-  </div>
-  
-  <h2>Insights in Action</h2>
+</div>
+
+<h3>Visualizations</h3>
+
+<h4>1. Top 5 Bar Chart (Revenue Trends)</h4>
+<p>
+  <strong>Purpose:</strong> Displays revenue trends for the top 5 states across 2017 and 2018.<br />
+  <strong>Features:</strong>
   <ul>
-    <li>
-      <strong>Focus on Regional Leaders:</strong> Prioritize investments in high-revenue regions like São Paulo.
-    </li>
-    <li>
-      <strong>Monitor AOV Trends:</strong> Use AOV insights to identify regions with potential for revenue growth through increased order sizes.
-    </li>
-    <li>
-      <strong>Analyze Geographical Trends:</strong> Leverage map visualizations to understand regional contributions and inform resource allocation.
-    </li>
+    <li>Columns for each year to analyze trends.</li>
+    <li>Top growth states identified using YoY Growth metrics.</li>
+    <li>Clear callouts for São Paulo and Piauí.</li>
   </ul>
-  
-  <div class="hr-wrapper">
-    <hr />
+</p>
+
+<details class="image-details">
+  <summary>Screenshots</summary>
+  <div style="text-align: center;">
+    <img src="Screenshots/Top_5_Bar_Chart.png" alt="Top 5 Revenue Trends" width="600" />
+    <p><strong>Top 5 Revenue Trends (2017–2018)</strong></p>
   </div>
-  
-  <h2>Measures Used</h2>
-  <p>
-    For a comprehensive list of measures across all dashboards, refer to the <a href="../DAX-measures">DAX Measures Document</a>. Specific measures used in this dashboard:
-  </p>
+</details>
+
+<h4>2. State-Level Metrics Table</h4>
+<p>
+  <strong>Purpose:</strong> Includes Total Revenue, AOV, and YoY Growth metrics.<br />
+  <strong>Features:</strong>
   <ul>
-    <li>
-      <a href="../DAX-measures/Total_Revenue">Total Revenue</a> - Learn more
-    </li>
-    <li>
-      <a href="../DAX-measures/Average_Order_Value">Average Order Value</a> - Learn more
-    </li>
-    <li>
-      <a href="../DAX-measures/Revenue_Percentage">Revenue Percentage</a> - Learn more
-    </li>
+    <li>Highlights YoY growth percentages per state.</li>
+    <li>Dynamic sorting based on selected metrics.</li>
   </ul>
-  
+</p>
+
+<details class="image-details">
+  <summary>Screenshots</summary>
+  <div style="text-align: center;">
+    <img src="Screenshots/State_Level_Metrics_Table.png" alt="State-Level Metrics Table with YoY" width="600" />
+    <p><strong>State-Level Metrics Table</strong></p>
+  </div>
+</details>
+
+<h4>3. Geographical Distribution Map</h4>
+<p>
+  <strong>Purpose:</strong> Visualizes revenue contributions and growth across states.<br />
+  <strong>Features:</strong>
+  <ul>
+    <li>Bubble sizes reflect revenue contributions.</li>
+    <li>Added a dynamic title for selected metrics.</li>
+  </ul>
+</p>
+
+<details class="image-details">
+  <summary>Screenshots</summary>
+  <div style="text-align: center;">
+    <img src="Screenshots/Geographical_Distribution_Map.png" alt="Geographical Map with YoY" width="600" />
+    <p><strong>Geographical Distribution Map</strong></p>
+  </div>
+</details>
+
+<h4>4. Top 5 Scatter Chart</h4>
+<p>
+  <strong>Purpose:</strong> Provides an alternative view of the top states' performance with an added size element for order counts.<br />
+  <strong>Features:</strong>
+  <ul>
+    <li>Bubble sizes dynamically reflect order volumes.</li>
+    <li>Highlights trends using selected metrics.</li>
+  </ul>
+</p>
+
+<details class="image-details">
+  <summary>Screenshots</summary>
+  <div style="text-align: center;">
+    <img src="Screenshots/Top_5_Scatter_Chart.png" alt="Top 5 Scatter Chart" width="600" />
+    <p><strong>Top 5 Scatter Chart</strong></p>
+  </div>
+</details>
+
+<div class="hr-wrapper">
+    <hr />
+</div>
+
+<h2>Insights in Action</h2>
+<ul>
+  <li><strong>Prioritize Growth Markets:</strong> Focus on emerging markets like Piauí to capture growth opportunities.</li>
+  <li><strong>Strengthen Regional Leaders:</strong> Invest in São Paulo and other top-performing southeast states.</li>
+  <li><strong>Monitor Growth Trends:</strong> Use YoY Growth insights to forecast future opportunities in underrepresented regions.</li>
+</ul>
+
+<div class="hr-wrapper">
+    <hr />
+</div>
+
+<h2>Measures Used</h2>
+<p>
+  For a comprehensive list of measures across all dashboards, refer to the <a href="../DAX-measures">DAX Measures Document</a>. Specific measures used in this dashboard:
+</p>
+<ul>
+  <li><a href="../DAX-measures/Total_Revenue">Total Revenue</a> - Learn more</li>
+  <li><a href="../DAX-measures/Average_Order_Value">Average Order Value</a> - Learn more</li>
+  <li><a href="../DAX-measures/YoY_Growth">YoY Growth</a> - Learn more</li>
+</ul>
