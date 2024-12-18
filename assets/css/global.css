@@ -1,0 +1,135 @@
+/* Global Smooth Transitions */
+/* These styles apply smooth transitions to elements globally, including buttons. */
+body,
+header,
+footer,
+code,
+pre code,
+a,
+table,
+th,
+td,
+button {
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* Smooth Transitions for Specific Elements */
+/* Additional smooth transitions for key elements, including buttons. */
+body,
+header,
+footer,
+code,
+pre code {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Image Spacing */
+/* Applies consistent spacing below images globally. */
+img {
+  margin-bottom: 1em; /* Adjust the value to your preferred spacing */
+}
+
+/* Global Spacing for Headings and Paragraphs */
+/* Adds consistent spacing above and below headings and paragraphs. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Global Spacing for Lists */
+/* Applies consistent spacing and indentation for unordered and ordered lists. */
+ul,
+ol {
+  margin-top: 1rem; /* Space above lists */
+  margin-bottom: 1rem; /* Space below lists */
+  padding-left: 2rem; /* Indent list items */
+}
+
+li {
+  margin-bottom: 0.5rem; /* Space between list items */
+}
+
+/* Wrapper for Horizontal Rules */
+/* Applies consistent spacing around horizontal rules. */
+.hr-wrapper {
+  padding: 0 !important;
+  margin: 1em 0 !important;
+}
+
+/* Base Styling for Standard Horizontal Rules */
+/* Defines the height, layout, and gradient background for standard horizontal rules. */
+hr {
+  min-height: 2px; /* Thin line for standard horizontal rules */
+  padding: 0.1em 0 !important; /* Consistent spacing */
+  margin: 0 !important;
+  border: none !important; /* Removes borders */
+  background: linear-gradient(to right, #4575b4, #91cf60); /* Gradient */
+  display: block; /* Force block layout */
+  box-sizing: border-box; /* Include padding/border in dimensions */
+  overflow: visible !important;
+  border-radius: 8px; /* Adds rounded corners */
+}
+
+/* Base Styling for Title Horizontal Rules */
+/* Defines the height, layout, and gradient background for title-specific horizontal rules. */
+hr.title {
+  min-height: 2px; /* Thicker line for title horizontal rules */
+  padding: 0.2em 0 !important; /* Consistent spacing */
+  margin: 0 !important;
+  border: none !important; /* Removes borders */
+  background: linear-gradient(to right, #4575b4, #91cf60); /* Gradient */
+  display: block; /* Force block layout */
+  box-sizing: border-box; /* Include padding/border in dimensions */
+  overflow: visible !important;
+  border-radius: 8px; /* Adds rounded corners */
+}
+
+/* Global Spacing for Details and Summaries */
+/* Adds consistent spacing around details and summaries. */
+details {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+details summary {
+  margin-bottom: 0.5em; /* Consistent spacing */
+  cursor: pointer; /* Pointer cursor for interactivity */
+}
+
+details summary:hover {
+  text-decoration: underline; /* Optional: highlight hover effect */
+}
+
+/* Adjust Body Padding */
+/* Ensures body content is spaced correctly to accommodate fixed navbar and breadcrumbs. */
+body {
+  padding-top: 120px; /* Adjust this to include both the navigation bar and breadcrumbs */
+}
+
+/* Base Horizontal Rule Styling */
+/* Applies spacing and a light border to horizontal rules. */
+hr {
+  margin: 2rem 0; /* Add spacing above and below */
+  border: 0;
+  border-top: 1px solid #ccc; /* Light gray line for horizontal rules */
+}
+
+/* Global List Styling */
+/* Adds consistent spacing and indentation for unordered and ordered lists. */
+ul,
+ol {
+  margin-top: 0.75rem; /* Space above lists */
+  margin-bottom: 0.75rem; /* Space below lists */
+  padding-left: 2rem; /* Indent list items */
+}
+
+li {
+  margin-bottom: 0.25rem; /* Space between list items */
+}

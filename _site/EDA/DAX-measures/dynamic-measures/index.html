@@ -11,7 +11,7 @@
     <meta property="og:url" content="" />
     <meta property="og:type" content="website" />
 
-    <title>Dynamic Measures</title>
+    <title>Dynamic Measures | Miles Davidson Data Analysis Portfolio </title>
 
     <!-- Bootstrap CSS -->
     <link
@@ -32,7 +32,15 @@
     />
 
     <!-- Custom Styles -->
-    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/styles.css" />
+    <!-- prettier-ignore-start -->
+    
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/global.css" />
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/layout.css" />
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/components.css" />
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/responsive.css" />
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/themes.css" />
+    <!-- prettier-ignore-end -->
+
 
     <!-- Highlight.js Core and Language Support -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
@@ -57,7 +65,10 @@
     <!-- Sticky Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container-fluid">
+        <!-- Brand/Home Link -->
         <a class="navbar-brand" href="/Target-ECommerce-Revenue-Analysis/">Home</a>
+
+        <!-- Toggler for Responsive Navbar -->
         <button
           class="navbar-toggler"
           type="button"
@@ -69,44 +80,51 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
+
+        <!-- Navbar Links -->
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
               <a
                 class="nav-link"
                 href="/Target-ECommerce-Revenue-Analysis/Data-Cleaning-Part-One/"
-                >Data Cleaning Part One </a> 
-            </li
-
-            ><li class="nav-item">
+              >
+                Data Cleaning Part One
+              </a>
+            </li>
+            <li class="nav-item">
               <a
                 class="nav-link"
                 href="/Target-ECommerce-Revenue-Analysis/Data-Cleaning-Part-Two/"
-                >Data Cleaning Part Two</a
               >
+                Data Cleaning Part Two
+              </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/EDA/"
-                >Exploratory Data Analysis</a
-              >
+              <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/EDA/">
+                Exploratory Data Analysis
+              </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/Revenue-Analysis/"
-                >Revenue Analysis</a
-              >
+              <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/Revenue-Analysis/">
+                Revenue Analysis
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/Insights/">
+                Insights
+              </a>
             </li>
           </ul>
-          <form class="d-flex" role="search">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-success" type="submit"
-              >Search</button
-            >
-          </form>
+
+          <!-- Optional Additional Navigation Section -->
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/Contact/">
+                Contact
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>

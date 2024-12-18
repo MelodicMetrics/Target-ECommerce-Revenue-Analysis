@@ -1,0 +1,264 @@
+/* Tables */
+table {
+  background-color: #161b22 !important; /* Slightly darker background for tables */
+  border: 1px solid #30363d !important; /* Subtle border for tables */
+  color: #c9d1d9 !important; /* Light text for table content */
+}
+th,
+td {
+  border: 1px solid #30363d !important; /* Table cell borders */
+  padding: 8px;
+}
+th {
+  background-color: #21262d !important; /* Slightly darker header for tables */
+}
+
+/* Default Button Styles (Dark Mode) */
+/* Defines the base appearance for buttons in dark mode, including background, text color, and borders. */
+button {
+  background-color: #21262d !important; /* Dark button background */
+  color: #c9d1d9 !important; /* Light text for buttons */
+  border: 1px solid #30363d !important; /* Button border */
+}
+
+/* Hover Styles for Buttons (Dark Mode) */
+/* Specifies how buttons should appear when hovered over in dark mode. */
+button:hover {
+  background-color: #30363d !important; /* Lighter background on hover */
+  color: #ffffff !important; /* Bright text on hover */
+}
+
+/* Copy Icon Styles */
+/* Defines the appearance of the copy icon within code blocks, including size, masking, and default color. */
+details pre .copy-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>')
+    no-repeat center / contain;
+  mask-size: contain;
+  -webkit-mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>')
+    no-repeat center / contain;
+  background-color: #adb5bd; /* Default icon color */
+  transition: background-color 0.3s ease;
+}
+
+/* Copy Icon Hover Styles */
+/* Adjusts the color of the copy icon when the copy button is hovered. */
+.copy-button:hover .copy-icon {
+  background-color: #58a6ff; /* Light blue icon on hover */
+}
+
+/* Copied State Styles */
+/* Defines the appearance of the copy button or icon after a successful copy action. */
+.copied {
+  background-color: #28a745; /* Green for success */
+}
+
+/* Syntax Highlighting for Operators */
+/* Defines the appearance of operators (e.g., +, -, *, /) in syntax-highlighted code blocks. */
+.hljs-operator {
+  color: #7d87e6; /* Bright blue for better visibility */
+}
+
+/* Syntax Highlighting for Table References */
+/* Styles table names within syntax-highlighted code blocks, using a distinct color for clarity. */
+.hljs-table-reference {
+  color: #d2691e !important; /* Bright orange for distinct table references */
+  font-style: italic; /* Italicized for emphasis */
+}
+
+/* Syntax Highlighting for Column Names */
+/* Styles column names within syntax-highlighted code blocks, using bold text for emphasis. */
+.hljs-column {
+  color: #6ab56a; /* Bright green for visibility */
+  font-weight: bold; /* Bold text for importance */
+}
+
+/* Syntax Highlighting for Strings */
+/* Styles string values within syntax-highlighted code blocks with a distinct color and style. */
+.hljs-string {
+  color: #e6db74; /* Soft yellow to distinguish strings */
+  font-style: italic; /* Italicized for readability */
+}
+
+/* Section Summary Styles */
+/* Styles for summaries in large collapsible sections. */
+.section-details summary {
+  font-size: 1.4em; /* Larger font size for section summaries */
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  margin-top: 0.3em;
+}
+
+/* Code Section Summary Styles */
+/* Styles for summaries in collapsible code sections. */
+.code-details summary {
+  font-size: 1.1em; /* Slightly smaller font size for code sections */
+  font-weight: normal;
+  margin-bottom: 0.5em;
+  margin-left: 1em; /* Indent collapsible code header */
+  margin-top: 1em; /* Adds space above collapsible section */
+}
+
+/* Image Section Summary Styles */
+/* Styles for summaries in collapsible image sections. */
+.image-details summary {
+  font-size: 1.2em; /* Slightly smaller font size for image sections */
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  margin-top: 0.3em;
+  margin-left: 1em;
+  position: relative;
+  cursor: pointer;
+}
+
+/* Font Awesome Icon for Image Details */
+/* Adds an icon before the image details summary. */
+.image-details summary::before {
+  content: '\f03e'; /* Unicode for Font Awesome's 'fa-image' icon */
+  font-family: 'Font Awesome 5 Free'; /* Ensure Font Awesome is loaded */
+  font-weight: 900; /* Required for solid icons */
+  margin-right: 0.5em;
+  font-size: 1.2em;
+  vertical-align: middle;
+}
+
+/* General Details Summary Styles */
+/* Adds interactivity for collapsible details sections. */
+details summary {
+  cursor: pointer;
+}
+
+/* Hover Effect for Details Summary */
+/* Highlights details summaries when hovered. */
+details summary:hover {
+  text-decoration: underline; /* Optional: highlight hover effect */
+}
+
+/* Code Block Pre Formatting */
+/* Adjusts layout and spacing for code blocks within collapsible sections. */
+.code-details pre {
+  margin-left: 2em; /* Adjust this value for desired indentation */
+  padding-left: 1em; /* Optional: Adds some inner spacing */
+  margin-bottom: 1em; /* Adds space below code blocks */
+}
+
+/* Details and Summary Styling */
+/* Applies consistent spacing around details and summaries. */
+details {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+details summary {
+  margin-bottom: 0.5em; /* Consistent spacing */
+}
+
+/* Sticky Navigation Bar */
+/* Defines the fixed position and appearance of the navbar in dark mode. */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1050; /* Ensure it's above other elements */
+  background-color: #161b22 !important; /* Dark background */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for separation */
+}
+
+/* Breadcrumbs Wrapper */
+/* Styles the breadcrumbs container in dark mode, including transitions for minimized and expanded states. */
+.breadcrumbs-wrapper {
+  position: fixed;
+  top: 60px; /* Matches the height of the navbar */
+  left: 0;
+  width: 100%;
+  z-index: 1050; /* Ensure it appears above other elements */
+  background-color: #161b22;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: height 0.3s ease, padding 0.3s ease;
+}
+
+/* Breadcrumbs Trail */
+/* Displays the breadcrumbs trail as a horizontal, scrollable element. */
+.breadcrumbs-trail {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+/* Minimized Breadcrumbs Wrapper */
+/* Defines the appearance of the breadcrumbs wrapper when minimized. */
+.breadcrumbs-wrapper.minimized {
+  height: 28px; /* Small bar */
+  padding: 0 1rem;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* Hide Breadcrumb Trail when Minimized */
+.breadcrumbs-wrapper.minimized .breadcrumbs-trail {
+  display: none; /* Hides the breadcrumb trail */
+}
+
+/* Always Show Current Location */
+.breadcrumbs-wrapper.minimized .breadcrumb-item:last-child {
+  display: block; /* Displays only the current location */
+  color: #eaeaea !important; /* Ensures visibility in dark mode */
+  font-weight: bold; /* Emphasis for the current page */
+}
+
+/* Arrow Styling */
+.breadcrumbs-wrapper.minimized::before {
+  content: ''; /* Arrow shape */
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  border: solid #1e90ff; /* Blue arrow for dark mode */
+  border-width: 0 5px 5px 0; /* Diagonal borders */
+  transform: rotate(45deg); /* Downward arrow */
+  border-radius: 3px;
+  margin-right: 10px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+/* Hover State for Arrow */
+.breadcrumbs-wrapper.minimized:hover::before {
+  transform: rotate(-135deg); /* Rotate arrow upwards on hover */
+  border-color: #58a6ff; /* Change arrow color on hover */
+}
+
+/* Breadcrumb Item Separator */
+/* Fixes visibility of the `/` separator in dark mode. */
+.breadcrumb-item::before {
+  color: #adb5bd !important; /* Light grey for separators */
+}
+
+/* Breadcrumb Item Text */
+/* Ensures breadcrumb file reference is readable in dark mode. */
+.breadcrumb-item {
+  color: #eaeaea !important; /* Light text color for breadcrumb items */
+}
+
+/* Breadcrumb Item - Active State */
+/* Highlights the current page/location in the breadcrumbs. */
+.breadcrumb-item.active {
+  color: #f0f6fc !important; /* Brighter white for active breadcrumb */
+  font-weight: bold; /* Bold for emphasis */
+}
+
+/* Breadcrumb Link Styling */
+/* Styles breadcrumbs links in dark mode. */
+.breadcrumb a {
+  color: #58a6ff !important; /* Blue for links */
+  text-decoration: none !important; /* Remove underlines */
+}
+
+.breadcrumb a:hover {
+  color: #79c0ff !important; /* Lighter blue on hover */
+}

@@ -1,0 +1,20 @@
+/* Responsive Container */
+/* Defines a flexible container with a maximum width and centered alignment. */
+.responsive-container {
+  width: 100%;
+  max-width: 1200px; /* Ensures a max width for large screens */
+  margin: 0 auto; /* Centers the container */
+  padding: 0 15px; /* Adds padding for better spacing */
+  box-sizing: border-box; /* Includes padding in the total width/height */
+  text-align: center;
+}
+
+/* Responsive Images */
+/* Ensures images inside the responsive container scale properly. */
+.responsive-container img {
+  width: 100%;
+  height: auto; /* Maintains aspect ratio */
+  max-width: 100%; /* Prevents images from exceeding their container */
+  display: block; /* Removes inline gaps caused by images */
+  margin: 0 auto; /* Centers images within the container */
+}

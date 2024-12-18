@@ -3,15 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta property="og:title" content="Home" />
-    <meta property="og:description" content="" />
-    <meta property="og:image" content="" />
-    <meta property="og:url" content="" />
+    <meta name="description" content="Explore the data analysis portfolio of Miles Davidson, showcasing e-commerce sales trends, exploratory data analysis (EDA), revenue insights, and visual dashboards." />
+    <meta name="keywords" content="Data Analysis, Portfolio, EDA, Revenue Analysis, Power BI, Tableau, Target Brazil, SQL, Miles Davidson" />
+    <meta property="og:title" content="Miles Davidson | Data Analysis Portfolio" />
+    <meta property="og:description" content="Explore the data analysis portfolio of Miles Davidson, showcasing e-commerce sales trends, exploratory data analysis (EDA), revenue insights, and visual dashboards." />
+    <meta property="og:image" content="/assets/images/portfolio-thumbnail.png" />
+    <meta property="og:url" content="https://melodicmetrics.github.io/Target-ECommerce-Revenue-Analysis" />
     <meta property="og:type" content="website" />
 
-    <title>Home</title>
+    <title>Miles Davidson | Data Analysis Portfolio | Miles Davidson Data Analysis Portfolio </title>
 
     <!-- Bootstrap CSS -->
     <link
@@ -32,7 +32,15 @@
     />
 
     <!-- Custom Styles -->
-    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/styles.css" />
+    <!-- prettier-ignore-start -->
+    
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/global.css" />
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/layout.css" />
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/components.css" />
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/responsive.css" />
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/themes.css" />
+    <!-- prettier-ignore-end -->
+
 
     <!-- Highlight.js Core and Language Support -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
@@ -57,7 +65,10 @@
     <!-- Sticky Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container-fluid">
+        <!-- Brand/Home Link -->
         <a class="navbar-brand" href="/Target-ECommerce-Revenue-Analysis/">Home</a>
+
+        <!-- Toggler for Responsive Navbar -->
         <button
           class="navbar-toggler"
           type="button"
@@ -69,44 +80,51 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
+
+        <!-- Navbar Links -->
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
               <a
                 class="nav-link"
                 href="/Target-ECommerce-Revenue-Analysis/Data-Cleaning-Part-One/"
-                >Data Cleaning Part One </a> 
-            </li
-
-            ><li class="nav-item">
+              >
+                Data Cleaning Part One
+              </a>
+            </li>
+            <li class="nav-item">
               <a
                 class="nav-link"
                 href="/Target-ECommerce-Revenue-Analysis/Data-Cleaning-Part-Two/"
-                >Data Cleaning Part Two</a
               >
+                Data Cleaning Part Two
+              </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/EDA/"
-                >Exploratory Data Analysis</a
-              >
+              <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/EDA/">
+                Exploratory Data Analysis
+              </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/Revenue-Analysis/"
-                >Revenue Analysis</a
-              >
+              <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/Revenue-Analysis/">
+                Revenue Analysis
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/Insights/">
+                Insights
+              </a>
             </li>
           </ul>
-          <form class="d-flex" role="search">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-success" type="submit"
-              >Search</button
-            >
-          </form>
+
+          <!-- Optional Additional Navigation Section -->
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/Contact/">
+                Contact
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>
@@ -146,27 +164,34 @@
 <h2>Important Note</h2>
 
 <p>
-  Please note that this project is a W.I.P. With that in mind, sections may not
-  be fully filled out or are subject to change.
+  Please note that this project is a <strong>work in progress (W.I.P.)</strong>. 
+  As such, some sections may not be fully completed and are subject to change. 
+  Your feedback and patience are greatly appreciated!
 </p>
 
 <ul>
   <li>
-    <del>
-      Currently I am in the EDA phase working within Power BI. I am analyzing
-      frequency distributions and employing toggle tables for easy customization
-      of metrics in my visuals. This cuts down on the amount of report pages
-      that are necessary.
-    </del>
+    <strong>Current Status:</strong> The analysis is complete, and all pages are functional. However, there are a few lingering issues under review:
+    <ol>
+      <li>
+        <strong>Standardization Section:</strong> This section is currently broken. I am re-adding the initial steps from Google BigQuery, specifically where I detail the columns that were initially removed.
+      </li>
+      <li>
+        <strong>DAX Measures:</strong> DAX measures are present in both the EDA and RA sections of the webpage. I plan to consolidate them into one page with links from the EDA, RA, and Insights sections. Some links to the DAX Measures page are currently broken. While others do work, please expect occasional navigation errors.
+      </li>
+      <li>
+        <strong>Pbix Files:</strong> I am working on adding downloadable .pbix files for individual dashboards in the EDA and RA sections. These files will allow users to interact directly with the dashboards, enhancing their understanding of toggles, slicers, and filters beyond static text and images.
+      </li>
+    </ol>
   </li>
   <li>
-    Currently I am converting my GitHub repository into a webpage using HTML,
-    CSS, and JavaScript.
+    <strong>Next Steps:</strong> Once these issues are resolved, I will update this section to reflect the changes.
   </li>
   <li>
-    Thank you for your patience and feel free to email me any questions!
+    <strong>Questions or Feedback?</strong> Feel free to <a href="mailto:milesdavidson@msn.com">email me</a> with any questions or suggestions!
   </li>
 </ul>
+
 
 <h2>Project Overview</h2>
 
@@ -274,6 +299,10 @@
 
 <h2>Standardization</h2>
 
+<p>
+  <em>Note: This section is a work in progress and will be updated soon. Some steps and details are currently under review.</em>
+</p>
+
 <ul>
   <li>
     <strong> Folder: </strong> <code> data-preparation/standardization </code>
@@ -296,12 +325,12 @@
         customers in the target states, regardless of the seller’s own location.
       </li>
       <li>
-        Documented mappings and name changes for reference in
-        <a href="./data-preparation/standardization">standardization</a>.
+        Documented mappings and name changes for reference (to be added).
       </li>
     </ul>
   </li>
 </ul>
+
 
 <h2> Exploratory Data Analysis (EDA) </h2>
 
@@ -312,7 +341,7 @@
 </p>
 <ul>
   <li>
-    <strong> <a href="./EDA"> Visit EDA Overview </a> </strong>
+    <strong> <a href="./EDA" title="View insights on Exploratory Data Analysis"> Visit EDA Overview </a> </strong>
   </li>
 </ul>
 
@@ -323,10 +352,18 @@
   the revenue analysis:
   <ul>
     <li>
-      <strong> <a href="./Revenue-Analysis"> Visit Revenue Analysis Overview </a> </strong>
+      <strong> <a href="./Revenue-Analysis" title="View insights on revenue analysis"> Visit Revenue Analysis Overview </a> </strong>
     </li>
   </ul>
 </p>
+
+<p> This will bring you to a page containing all of my insights and recommendations framed within my three guiding questions: </p>
+<ul>
+  <li>
+    <strong> <a href="./Insights" title="View all my insights"> Visit Insights </a> </strong>
+  </li>
+</ul>
+
  </main>
 
     <!-- Footer -->

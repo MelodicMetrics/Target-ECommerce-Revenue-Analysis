@@ -1,0 +1,501 @@
+---
+title: Revenue Analysis and EDA Insights
+layout: default
+meta_description: 'Insights from Revenue Analysis and Exploratory Data Analysis'
+meta_keywords: 'Revenue Analysis, Exploratory Data Analysis, Insights, Product Categories, Sellers, States'
+---
+
+<div class="content">
+  <h1>Insights from Revenue Analysis and Exploratory Data Analysis</h1>
+  <p
+    >This page is separated into insights that serve to answer each of my three
+    guiding questions. Insights from my Exploratory Data Analysis (EDA) helped
+    inform insights from my Revenue Analysis (RA) for each question.</p
+  >
+
+  <hr class="title" />
+
+  <section id="yearly-analysis">
+    <h2>Yearly Analysis Overview</h2>
+    <h3>Purpose</h3>
+    <p>
+      The yearly analysis provided a foundational understanding of the dataset
+      and informed decisions across all guiding questions. While 2016 had
+      minimal data and was excluded from Revenue Analysis (RA), it was included
+      in the Exploratory Data Analysis (EDA) phase to offer a more holistic
+      perspective.
+    </p>
+    <h3>Key EDA Insights</h3>
+    <ul>
+      <li
+        ><strong>2016 Contribution:</strong>
+        <ul>
+          <li
+            >Represented less than 5% of the total orders and revenue,
+            significantly underperforming compared to 2017-2018.</li
+          >
+          <li
+            ><strong>Key takeaway:</strong> Excluding 2016 ensured focus on
+            trends that better represent customer behavior and revenue
+            generation.</li
+          >
+        </ul>
+      </li>
+      <li
+        ><strong>Yearly Trends (2017-2018):</strong>
+        <ul>
+          <li
+            >Total revenue increased by <strong>25%</strong> between 2017 and
+            2018, with order volumes growing in tandem.</li
+          >
+          <li
+            ><strong>Top-performing categories:</strong>
+            <strong>Health & Beauty</strong> and
+            <strong>Gift Watches</strong> led revenue growth during this
+            period.</li
+          >
+          <li
+            ><strong>State contributions:</strong> States like
+            <strong>São Paulo</strong> and
+            <strong>Rio de Janeiro</strong> dominated revenue generation,
+            contributing over <strong>50%</strong> of total revenue.</li
+          >
+        </ul>
+      </li>
+    </ul>
+  </section>
+
+  <hr />
+
+  <section id="guiding-question-1">
+    <h2
+      >Guiding Question 1: Which product categories contribute the most to
+      overall revenue, and which are the most revenue-efficient based on sales
+      volume or order count?</h2
+    >
+
+    <h3>EDA Approach</h3>
+    <ul>
+      <li
+        ><strong>Category Revenue Distribution:</strong>
+        <ul>
+          <li>Analyzed total revenue and order counts by product category.</li>
+          <li>
+            Drill-through views explored revenue contribution per
+            <strong>product value bin</strong>, defined by the combined
+            <strong>price + freight value</strong> of products.
+          </li>
+          <li>
+            <strong>Key Insight:</strong> Products in the
+            <strong>$700+</strong> bin contributed
+            <strong>15% of revenue</strong> despite making up just
+            <strong>1.8% of products</strong>.
+          </li>
+          <li
+            >Products in the <strong>$100–$250</strong> range dominated,
+            contributing <strong>39.02%</strong> of revenue with
+            <strong>35.76%</strong> of products.</li
+          >
+        </ul>
+      </li>
+      <li
+        ><strong>Revenue Efficiency (RE):</strong>
+        <ul>
+          <li
+            >Introduced as a measure of
+            <strong>average revenue per product</strong>, calculated as:</li
+          >
+          <pre><code>RE = Total Revenue / Product Count</code></pre>
+          <li
+            >Categories like <strong>Gift Watches</strong> and
+            <strong>Office Furniture</strong> exhibited exceptional RE values,
+            signaling high-value products.</li
+          >
+        </ul>
+      </li>
+      <li
+        ><strong>Relative Difference %:</strong>
+        <ul>
+          <li>
+            Measured the gap between <strong>RE</strong> and
+            <strong>AOV</strong> to highlight multi-item order potential.
+          </li>
+          <li
+            >Categories like <strong>Office Furniture</strong> (24.90%) and
+            <strong>Signaling & Safety Products</strong> (26.55%) stood out as
+            leaders in multi-item orders.</li
+          >
+        </ul>
+      </li>
+    </ul>
+
+    <h3>RA Findings</h3>
+    <ul>
+      <li
+        ><strong>Health & Beauty:</strong>
+        <ul>
+          <li
+            >Total revenue: <strong>$1,345,068.93</strong>, RE:
+            <strong>$148.92</strong>.</li
+          >
+          <li
+            >Product line count: <strong>2,333 products</strong>, with high
+            order volume (<strong>8,276 orders</strong>).</li
+          >
+          <li>Average Order Value (AOV): <strong>$162.23</strong>.</li>
+        </ul>
+      </li>
+      <li
+        ><strong>Gift Watches:</strong>
+        <ul>
+          <li
+            >Total revenue: <strong>$1,234,696.81</strong>, RE:
+            <strong>$219.00</strong>.</li
+          >
+          <li
+            >Product line count: <strong>1,276 products</strong>, strong RE
+            despite lower order volume (<strong>5,291 orders</strong>).</li
+          >
+          <li>Average Order Value (AOV): <strong>$233.36</strong>.</li>
+          <li
+            >Weighted Average Revenue per Seller (WAR):
+            <strong>$150.23</strong>.</li
+          >
+        </ul>
+      </li>
+    </ul>
+
+    <h3>Recommendations</h3>
+    <ul>
+      <li
+        ><strong>Health & Beauty:</strong> Explore bundling strategies for
+        high-volume but moderate RE categories.</li
+      >
+      <li
+        ><strong>Gift Watches:</strong> Focus on scaling top-performing sellers
+        to enhance RE and AOV.</li
+      >
+      <li
+        ><strong>Office Furniture:</strong> Prioritize seller acquisition to
+        capitalize on high RE and strong multi-item order potential.</li
+      >
+    </ul>
+  </section>
+
+  <hr />
+
+  <section id="guiding-question-2">
+    <h2
+      >Guiding Question 2: How does the average order value and profitability
+      vary by standardized product category and seller over time?</h2
+    >
+
+    <h3>EDA Approach</h3>
+    <ul>
+      <li
+        ><strong>Top Sellers by Revenue and Product Count:</strong>
+        <ul>
+          <li
+            >Analyzed contributions from top-performing sellers within
+            categories like <strong>Health & Beauty</strong> and
+            <strong>Gift Watches</strong>.</li
+          >
+          <li
+            >Identified revenue concentration disparities:
+            <ul>
+              <li
+                ><strong>Gift Watches:</strong> Top 5 Sellers contributed
+                <strong>62.11%</strong> of revenue with 51 sellers overall.</li
+              >
+              <li
+                ><strong>Health & Beauty:</strong> Top 5 Sellers contributed
+                <strong>25.71%</strong> of revenue from 384 sellers overall.</li
+              >
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li
+        ><strong>Seller Concentration Disparities:</strong>
+        <ul>
+          <li
+            >Highlighted performance gaps between highly concentrated categories
+            like <strong>Gift Watches</strong> and more distributed ones like
+            <strong>Health & Beauty</strong>.</li
+          >
+          <li
+            >Revealed potential for growth in concentrated categories through
+            strategic seller recruitment.</li
+          >
+        </ul>
+      </li>
+    </ul>
+
+    <h3>RA Findings</h3>
+    <ul>
+      <li
+        ><strong>Health & Beauty:</strong>
+        <ul>
+          <li>Seller Count: <strong>384 sellers</strong>.</li>
+          <li
+            >Top 5 Sellers contributed only <strong>18.03%</strong> of total
+            products sold and <strong>9.08%</strong> of total revenue.</li
+          >
+          <li>Average Order Value (AOV): <strong>$162.23</strong>.</li>
+          <li
+            >Weighted Average Revenue per Seller (WAR):
+            <strong>$123.44</strong>.</li
+          >
+        </ul>
+      </li>
+      <li
+        ><strong>Gift Watches:</strong>
+        <ul>
+          <li>Seller Count: <strong>51 sellers</strong>.</li>
+          <li
+            >Top 5 Sellers contributed <strong>62.11%</strong> of total revenue,
+            indicating high seller concentration.</li
+          >
+          <li>Average Order Value (AOV): <strong>$233.36</strong>.</li>
+          <li
+            >Weighted Average Revenue per Seller (WAR):
+            <strong>$150.23</strong>.</li
+          >
+        </ul>
+      </li>
+      <li
+        ><strong>Office Furniture:</strong>
+        <ul>
+          <li>Seller Count: <strong>33 sellers</strong>.</li>
+          <li
+            >Achieved the highest AOV at <strong>$269.11</strong>, driven by
+            premium product offerings.</li
+          >
+          <li
+            >Weighted Average Revenue per Seller (WAR):
+            <strong>$178.89</strong>.</li
+          >
+        </ul>
+      </li>
+      <li
+        ><strong>Year-over-Year Growth:</strong>
+        <ul>
+          <li
+            >Seller participation increased by <strong>33%</strong> from 2017 to
+            2018, growing from <strong>1,763 to 2,349 sellers</strong>.</li
+          >
+          <li
+            >Total revenue rose by <strong>17.22%</strong> during the same
+            period, despite a slight decline in AOV (<strong
+              >$160.05 to $160.02</strong
+            >).</li
+          >
+        </ul>
+      </li>
+    </ul>
+
+    <h3>Recommendations</h3>
+    <ul>
+      <li
+        ><strong>Health & Beauty:</strong> Encourage top-performing sellers to
+        expand product lines to improve revenue concentration and AOV.</li
+      >
+      <li
+        ><strong>Gift Watches:</strong> Leverage the strong seller concentration
+        to scale top-performing sellers further.</li
+      >
+      <li
+        ><strong>Office Furniture:</strong> Invest in seller acquisition to
+        capitalize on premium AOV and strong WAR performance.</li
+      >
+      <li
+        ><strong>General:</strong>
+        <ul>
+          <li
+            >Monitor categories with declining AOV to address pricing pressures
+            and increased competition.</li
+          >
+          <li
+            >Focus seller recruitment efforts on high-RE, low-seller-count
+            categories to unlock growth opportunities.</li
+          >
+        </ul>
+      </li>
+    </ul>
+  </section>
+
+  <hr />
+
+  <section id="guiding-question-3">
+    <h2
+      >Guiding Question 3: How does average sales revenue vary across states,
+      and are there any notable regional patterns or correlations?</h2
+    >
+
+    <h3>EDA Approach</h3>
+    <ul>
+      <li
+        ><strong>State Revenue Distribution:</strong>
+        <ul>
+          <li
+            >Analyzed state-level contributions to total revenue and product
+            counts.</li
+          >
+          <li
+            >Key findings:
+            <ul>
+              <li
+                ><strong>São Paulo:</strong> Contributed
+                <strong>37.36%</strong> of total revenue and
+                <strong>41.98%</strong> of orders.</li
+              >
+              <li
+                ><strong>Rio de Janeiro:</strong> Contributed
+                <strong>16.23%</strong> of revenue, ranking second overall.</li
+              >
+              <li
+                ><strong>Emerging Markets:</strong> States like
+                <strong>Piauí</strong> showed YoY revenue growth of
+                <strong>35.24%</strong>.</li
+              >
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li
+        ><strong>Average Order Value (AOV) by State:</strong>
+        <ul>
+          <li>Used AOV to assess the relative profitability of each state.</li>
+          <li
+            >High-AOV states like <strong>São Paulo</strong> and
+            <strong>Rio de Janeiro</strong> consistently outperformed
+            others.</li
+          >
+        </ul>
+      </li>
+    </ul>
+
+    <h3>RA Findings</h3>
+    <ul>
+      <li
+        ><strong>São Paulo:</strong>
+        <ul>
+          <li>Revenue share: <strong>37.36%</strong>.</li>
+          <li
+            >Strong multi-item order trends in categories like
+            <strong>Office Furniture</strong> (37.23% revenue) and
+            <strong>Signaling & Safety Products</strong> (34.58% revenue).</li
+          >
+          <li
+            >High AOV of <strong>$178.22</strong>, driven by diverse product
+            offerings and top-selling categories.</li
+          >
+        </ul>
+      </li>
+      <li
+        ><strong>Rio de Janeiro:</strong>
+        <ul>
+          <li>Revenue share: <strong>16.23%</strong>.</li>
+          <li
+            >Ranked second in total revenue and demonstrated consistent
+            performance across key categories.</li
+          >
+          <li>Moderate AOV of <strong>$162.11</strong>.</li>
+        </ul>
+      </li>
+      <li
+        ><strong>Piauí:</strong>
+        <ul>
+          <li
+            >YoY revenue growth: <strong>35.24%</strong>, highlighting its
+            potential as an emerging market.</li
+          >
+          <li
+            >Low total revenue share (<strong>3.12%</strong>) but improving
+            performance in categories like <strong>Health & Beauty</strong>.</li
+          >
+        </ul>
+      </li>
+    </ul>
+
+    <h3>Recommendations</h3>
+    <ul>
+      <li
+        ><strong>São Paulo:</strong> Expand product offerings and focus on high
+        Relative Difference % categories like
+        <strong>Office Furniture</strong> and
+        <strong>Signaling & Safety Products</strong> to leverage multi-item
+        order trends.</li
+      >
+      <li
+        ><strong>Rio de Janeiro:</strong> Optimize marketing efforts to maintain
+        strong revenue contributions and explore bundling opportunities in
+        underperforming categories.</li
+      >
+      <li
+        ><strong>Piauí:</strong> Invest in seller networks and inventory
+        expansion to capitalize on YoY growth and emerging market potential.</li
+      >
+      <li
+        ><strong>General:</strong> Leverage AOV insights to identify
+        underperforming states and apply targeted strategies for seller
+        acquisition and product diversification.</li
+      >
+    </ul>
+  </section>
+
+  <hr />
+
+  <section id="conclusion">
+    <h2>Conclusion</h2>
+    <p>
+      This insights page consolidates findings from both Exploratory Data
+      Analysis (EDA) and Revenue Analysis (RA) phases, providing a comprehensive
+      understanding of product categories, seller performance, and regional
+      trends. By integrating insights from the EDA, the RA findings were able to
+      build on data-driven foundations, ensuring a robust and actionable
+      analysis.
+    </p>
+    <p>
+      Key findings emphasize the importance of focusing on categories with high
+      Revenue Efficiency (RE), such as <strong>Gift Watches</strong> and
+      <strong>Office Furniture</strong>, which also exhibited high Average Order
+      Value (AOV) and strong multi-item order potential. Categories like
+      <strong>Health & Beauty</strong>, while leading in total revenue, present
+      opportunities to enhance efficiency through bundling strategies and
+      targeted seller recruitment.
+    </p>
+    <p>
+      Regional insights highlighted <strong>São Paulo</strong> as the dominant
+      revenue contributor, driving multi-item order trends in high Relative
+      Difference % categories like <strong>Office Furniture</strong> and
+      <strong>Signaling & Safety Products</strong>. Emerging markets such as
+      <strong>Piauí</strong> demonstrated strong YoY revenue growth, revealing
+      potential for targeted expansion strategies.
+    </p>
+    <p> These findings inform key actionable strategies: </p>
+    <ul>
+      <li>
+        Targeting high-performing categories for seller acquisition, product
+        expansion, and improved bundling opportunities.
+      </li>
+      <li>
+        Optimizing seller networks in key regions such as São Paulo and Rio de
+        Janeiro to leverage their strengths.
+      </li>
+      <li>
+        Investing in emerging markets like Piauí to capitalize on growth
+        potential and diversify revenue streams.
+      </li>
+      <li>
+        Leveraging insights from multi-item order trends to enhance
+        profitability across top-performing states and categories.
+      </li>
+    </ul>
+    <p>
+      By applying these strategies, the insights gained from this analysis can
+      support data-driven decision-making to optimize performance across product
+      categories, sellers, and regions.
+    </p>
+  </section>
+</div>

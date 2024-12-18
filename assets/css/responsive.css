@@ -1,0 +1,15 @@
+/* Adjustments for Medium Screens */
+/* Reduces padding for the responsive container on medium screens. */
+@media (max-width: 768px) {
+  .responsive-container {
+    padding: 0 10px;
+  }
+}
+
+/* Adjustments for Small Screens */
+/* Minimizes padding for the responsive container on small screens. */
+@media (max-width: 480px) {
+  .responsive-container {
+    padding: 0 5px;
+  }
+}

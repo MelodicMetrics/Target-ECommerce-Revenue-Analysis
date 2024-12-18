@@ -1,0 +1,516 @@
+/* themes.css */
+
+/* General Light Mode Styles */
+@media (prefers-color-scheme: light) {
+  .custom-header {
+    background-color: #f8f9fa !important; /* Light grey for contrast */
+    color: #212529; /* Darker grey for text */
+    text-align: center;
+    padding: 1rem; /* Adjust padding if necessary */
+  }
+
+  /* General Page Background and Text */
+  body {
+    background-color: #ffffff !important; /* Light background for the page */
+    color: #212529 !important; /* Dark grey text for body */
+  }
+
+  /* Header Styling */
+  header {
+    background-color: #e9ecef !important; /* Light grey header background */
+    color: #212529 !important; /* Dark grey for header text */
+  }
+
+  /* Footer Styling */
+  footer {
+    background-color: #f8f9fa !important; /* Light footer background */
+    color: #212529 !important; /* Dark grey for footer text */
+  }
+
+  /* Override Bootstrap Footer `.text-muted` */
+  footer .text-muted,
+  footer.text-muted {
+    color: #6c757d !important; /* Bootstrap-muted text color */
+  }
+
+  /* Override Bootstrap Header Styles */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #212529 !important; /* Dark grey for headers */
+    font-weight: bold !important; /* Optional: Consistent font weight */
+  }
+
+  /* Inline Code Styling (Light Mode) */
+  code {
+    background-color: #f8f9fa !important; /* Soft light grey */
+    color: #495057 !important; /* Dark grey for inline code */
+    padding: 2px 4px;
+    border-radius: 7px;
+    font-size: 0.85em;
+    display: inline-block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  code:hover {
+    background-color: #e9ecef !important; /* Slightly darker grey on hover */
+    color: #212529 !important; /* Full dark text for hover */
+  }
+
+  /* <pre> Container (Light Mode) */
+  details pre {
+    position: relative !important;
+    margin: 2em !important;
+    margin-top: 0.5em !important;
+    margin-bottom: 0.5em !important;
+    padding: 1em !important;
+    background-color: #f8f9fa !important; /* Light background */
+    border-radius: 8px !important;
+    overflow-x: auto !important;
+    border: 1px solid #dee2e6 !important; /* Subtle border */
+    box-sizing: border-box !important;
+    line-height: 1.3 !important;
+  }
+
+  /* Left Pseudo Border for <pre> */
+  details pre::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -1em;
+    width: 3px;
+    background-color: #adb5bd !important; /* Light grey border */
+    border-radius: 4px;
+    z-index: 1;
+  }
+
+  /* Hover Effect for <pre> */
+  details pre:hover {
+    background-color: #f1f3f5 !important; /* Light hover effect */
+    cursor: default !important;
+  }
+
+  /* Remove Customizations from Inner <code> */
+  details pre code {
+    position: relative;
+    z-index: 2;
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: none !important;
+    line-height: 1.3;
+    font-size: 1.1em;
+  }
+
+  details pre code:hover {
+    background-color: transparent !important;
+    cursor: text !important;
+  }
+
+  /* Copy Button (Light Mode) */
+  details pre .copy-button {
+    position: absolute !important;
+    top: 5px !important;
+    right: 5px !important;
+    background-color: #e9ecef !important; /* Matches light pre background */
+    color: #6c757d !important; /* Neutral grey text */
+    border: none !important;
+    border-radius: 4px !important;
+    padding: 5px !important;
+    width: 24px !important;
+    height: 24px !important;
+    z-index: 10 !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Hover Effect for Copy Button */
+  details pre .copy-button:hover {
+    background-color: #dee2e6 !important; /* Slightly darker grey on hover */
+    color: #495057 !important; /* Darker text for contrast */
+  }
+
+  /* Copied State */
+  details pre .copy-button.copied {
+    background-color: #28a745 !important; /* Success green */
+    color: #ffffff !important; /* White text */
+  }
+
+  /* Links */
+  a {
+    color: #0056b3 !important; /* Classic blue for links */
+  }
+
+  a:hover {
+    color: #004085 !important; /* Darker blue for links on hover */
+  }
+
+  @keyframes breathing {
+    0% {
+      background-color: #f8f9fa; /* Soft light grey */
+    }
+    50% {
+      background-color: #e9ecef; /* Slightly darker grey */
+    }
+    100% {
+      background-color: #f8f9fa; /* Soft light grey */
+    }
+  }
+
+  .highlight-section {
+    position: relative;
+    border-left: 5px solid #5dade2; /* Light blue for a clean contrast */
+    padding-left: 10px;
+    transition: border-left-color 1.5s ease; /* Smooth border fade-out */
+  }
+
+  .highlight-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #f8f9fa; /* Initial background */
+    animation: breathing 1.5s ease-in-out infinite;
+    z-index: -1; /* Behind the text */
+    transition: background-color 1.5s ease, opacity 3s ease; /* Longer fade-out for opacity */
+  }
+
+  .fade-out {
+    border-left-color: transparent; /* Fade out border */
+  }
+
+  .fade-out::before {
+    animation: none; /* Stop the animation after fade-out begins */
+    background-color: #f8f9fa !important; /* Lock the final breathing color */
+    opacity: 0; /* Fade out opacity */
+  }
+  /* Light Mode Copy Button Styles */
+  /* Adjusts the appearance of the copy button to match the light theme, including background and text colors. */
+  .copy-button {
+    background-color: #f5f5f5; /* Light button background to match light code blocks */
+    color: #495057; /* Neutral dark text for light mode */
+  }
+
+  /* Light Mode Copy Button Hover Styles */
+  /* Specifies the hover state for the copy button in light mode. */
+  .copy-button:hover {
+    background-color: #e0e0e0; /* Slightly darker gray background on hover */
+    color: #212529; /* Darker text color on hover */
+  }
+
+  /* Light Mode Copy Icon Styles */
+  /* Defines the default appearance of the copy icon in light mode. */
+  .copy-icon {
+    background-color: #6c757d; /* Neutral gray icon color for light mode */
+  }
+
+  /* Light Mode Copy Icon Hover Styles */
+  /* Adjusts the copy icon color when the copy button is hovered in light mode. */
+  .copy-button:hover .copy-icon {
+    background-color: #007bff; /* Bright blue icon on hover for better visibility */
+  }
+  /* Light Mode Icon Color */
+  /* Overrides the color for Font Awesome icons in light mode. */
+  .image-details summary::before {
+    color: #495057; /* Neutral dark color for light mode */
+  }
+  /* Light Mode Overrides for Horizontal Rules */
+  /* Soft gradient for horizontal rules in light mode */
+  hr {
+    background: linear-gradient(
+      to right,
+      #38a1d1,
+      /* Sky blue */ #44da71 /* Light aqua */
+    );
+  }
+
+  /* Light Mode Overrides for Title Horizontal Rules */
+  /* Soft gradient for title-specific horizontal rules in light mode */
+  hr.title {
+    background: linear-gradient(to right, #38a1d1, #44da71);
+  }
+
+  /* Light Mode Navbar */
+  /* Adjusts the navbar background and breadcrumb link colors for light mode. */
+  .navbar {
+    background-color: #f8f9fa !important; /* Light background */
+  }
+
+  .navbar a {
+    color: #212529 !important; /* Neutral dark text */
+  }
+
+  .navbar a:hover {
+    color: #0056b3 !important; /* Darker blue on hover */
+  }
+
+  /* Breadcrumbs Light Mode Overrides */
+
+  /* Breadcrumbs Wrapper - Light Mode */
+  .breadcrumbs-wrapper {
+    background-color: #f8f9fa !important; /* Light grey background */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Breadcrumbs Arrow for Minimized State - Light Mode */
+  .breadcrumbs-wrapper.minimized::before {
+    content: ''; /* Keep the arrow shape */
+    display: inline-block;
+    width: 0; /* Ensures only borders form the shape */
+    height: 0;
+    border-left: 8px solid transparent; /* Increase left border for size */
+    border-right: 8px solid transparent; /* Increase right border for size */
+    border-bottom: 8px solid #007bff !important; /* Larger blue downward arrow */
+    transform: rotate(180deg); /* No rotation needed */
+    margin-right: 10px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+
+  /* Breadcrumbs Arrow Hover Effect */
+  .breadcrumbs-wrapper.minimized:hover::before {
+    border-bottom-color: #0056b3 !important; /* Darker blue on hover */
+    transform: rotate(-180deg); /* Flip arrow upwards */
+  }
+
+  /* Breadcrumb Item Separator */
+  .breadcrumb-item::before {
+    color: #6c757d !important; /* Grey for separators in light mode */
+  }
+
+  /* Breadcrumb Item Text */
+  .breadcrumb-item {
+    color: #495057 !important; /* Dark grey for breadcrumb items */
+  }
+
+  /* Breadcrumb Item - Active State */
+  .breadcrumb-item.active {
+    color: #212529 !important; /* Black for active breadcrumb */
+    font-weight: bold;
+  }
+
+  /* Breadcrumb Links */
+  .breadcrumb a {
+    color: #007bff !important; /* Blue for links in light mode */
+  }
+
+  .breadcrumb a:hover {
+    color: #0056b3 !important; /* Darker blue on hover */
+  }
+
+  /* Current Location in Minimized State */
+  .breadcrumbs-wrapper.minimized .breadcrumb-item:last-child {
+    color: #495057 !important; /* Dark grey for current location */
+  }
+
+  /* Dark Mode Horizontal Rule */
+  /* Adjusts the horizontal rule border color for better contrast in dark mode. */
+  hr {
+    border-top: 1px solid #444; /* Dark gray line for horizontal rules in dark mode */
+  }
+}
+
+/* General Dark Mode Styles */
+@media (prefers-color-scheme: dark) {
+  .custom-header {
+    background-color: #24292f !important; /* Lighter grey for contrast */
+    color: #f0f6fc; /* Slightly brighter white */
+    text-align: center;
+    padding: 1rem; /* Adjust padding if necessary */
+  }
+
+  /* General Page Background and Text */
+  body {
+    background-color: #0d1117 !important; /* Dark background for the page */
+    color: #eaeaea !important; /* Nearly white text for body */
+  }
+
+  /* Header Styling */
+  header {
+    background-color: #161b22 !important; /* Darker header background */
+    color: #eaeaea !important; /* Nearly white for header text */
+  }
+
+  /* Footer Styling */
+  footer {
+    background-color: #24292f !important; /* Darker footer background */
+    color: #eaeaea !important; /* Nearly white for footer text */
+  }
+
+  /* Override Bootstrap Footer `.text-muted` */
+  footer .text-muted,
+  footer.text-muted {
+    color: #eaeaea !important; /* Match body/footer text color */
+  }
+
+  /* Override Bootstrap Header Styles */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #eaeaea !important; /* Nearly white for headers */
+    font-weight: bold !important; /* Optional: Consistent font weight */
+  }
+
+  /* Inline Code Styling */
+  code {
+    background-color: #2f363d72 !important; /* Slightly lighter dark gray background */
+    color: #f0f0f0 !important; /* Slightly brighter than body text for inline code */
+    padding: 2px 4px;
+    border-radius: 7px;
+    font-size: 0.85em;
+    display: inline-block;
+  }
+
+  /* Hover Effect for Inline Code */
+  code:hover {
+    background-color: #3a414982 !important; /* Slightly lighter gray for hover */
+    color: #ffffff !important; /* Full white for hover text */
+  }
+
+  /* Styling for the parent container (if necessary) */
+  details {
+    position: relative; /* Ensure the pseudo-element can render outside the pre block */
+    overflow: visible; /* Allow overflow to make pseudo-element visible */
+  }
+
+  /* Styling for the <pre> container */
+  details pre {
+    position: relative !important; /* Allow positioning for the pseudo-element */
+    margin: 2em !important; /* External margin */
+    margin-top: 0.1em !important;
+    margin-bottom: 0.01px !important;
+    margin-left: 2.5em !important;
+    padding: 0.1px 1em !important; /* Internal padding */
+    background-color: #2f363d72 !important; /* Set the background color */
+    border-radius: 8px !important; /* Rounded corners for the pre background */
+    overflow-x: auto !important; /* Enable horizontal scrolling */
+    overflow: visible !important;
+    box-sizing: border-box !important; /* Include padding/border in the size */
+    line-height: 0.5 !important; /* Consistent line spacing */
+  }
+
+  /* Add a pseudo-element for the border line */
+  details pre:before {
+    content: ''; /* Create an empty pseudo-element */
+    position: absolute; /* Position it relative to the <pre> element */
+    top: 0; /* Align with the top of the pre */
+    bottom: 0; /* Stretch to the bottom of the pre */
+    left: -1em; /* Move the border slightly to the left */
+    width: 3px; /* Set the width of the border line */
+    background-color: white !important; /* Set the color of the border line */
+    border-radius: 4px; /* Optional: Add rounded corners to the border */
+    z-index: 1; /* Ensure it appears above the background but below content */
+  }
+
+  /* Hover effect for <pre> only */
+  details pre:hover {
+    background-color: #3a414982 !important; /* Slightly darker on hover */
+    cursor: default !important; /* Ensure it doesn't look clickable */
+  }
+
+  /* Remove all customizations from <pre code> */
+  details pre code {
+    position: relative;
+    z-index: 2;
+    display: block !important; /* Ensure block-level layout */
+    margin: 0 !important; /* Remove unnecessary margin */
+    padding: 0 !important; /* No padding for inner <code> */
+    background: none !important; /* Remove background color from <code> */
+    line-height: 1.3;
+    font-size: 1.1em;
+  }
+
+  /* Disable hover effect on <pre code> */
+  details pre code:hover {
+    background-color: transparent !important; /* Inherit background from parent */
+    cursor: text !important; /* Ensure it shows a text cursor */
+  }
+
+  /* Styling for the copy button inside <pre> */
+  details pre .copy-button {
+    position: absolute !important; /* Position relative to <pre> */
+    top: 5px !important; /* Reduce space from the top */
+    right: 5px !important; /* Align to the right corner */
+    background-color: #1f2328 !important; /* Match the background of <pre> */
+    color: #adb5bd !important; /* Match text color */
+    border: none !important; /* Remove border */
+    border-radius: 4px !important; /* Rounded corners */
+    padding: 5px !important; /* Add padding */
+    width: 24px !important; /* Fixed width for button */
+    height: 24px !important; /* Fixed height for button */
+    z-index: 10 !important; /* Ensure button appears above content */
+    cursor: pointer !important; /* Pointer cursor for interactivity */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: background-color 0.3s ease !important, color 0.3s ease !important;
+  }
+
+  /* Hover effect for the copy button */
+  details pre .copy-button:hover {
+    background-color: #25292e !important; /* Slightly lighter background on hover */
+    color: #dee2e6 !important; /* Lighter text color on hover */
+  }
+
+  /* Links */
+  a {
+    color: #58a6ff !important; /* Soft blue for links */
+  }
+
+  a:hover {
+    color: #79c0ff !important; /* Brighter blue for links on hover */
+  }
+
+  @keyframes breathing {
+    0% {
+      background-color: #333a56; /* Soft dark gray-blue */
+    }
+    50% {
+      background-color: #404b6b; /* Slightly lighter gray-blue */
+    }
+    100% {
+      background-color: #333a56; /* Soft dark gray-blue */
+    }
+  }
+
+  .highlight-section {
+    position: relative;
+    border-left: 5px solid #5dade2; /* Light blue for a clean contrast */
+    padding-left: 10px;
+    transition: border-left-color 1.5s ease; /* Smooth border fade-out */
+  }
+
+  .highlight-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #333a56; /* Initial background */
+    animation: breathing 1.5s ease-in-out infinite;
+    z-index: -1; /* Behind the text */
+    transition: background-color 1.5s ease, opacity 3s ease; /* Longer fade-out for opacity */
+  }
+
+  .fade-out {
+    border-left-color: transparent; /* Fade out border */
+  }
+
+  .fade-out::before {
+    animation: none; /* Stop the animation after fade-out begins */
+    background-color: #333a56 !important; /* Lock the final breathing color */
+    opacity: 0; /* Fade out opacity */
+  }
+}

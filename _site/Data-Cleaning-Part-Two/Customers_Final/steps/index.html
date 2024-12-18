@@ -3,15 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
+    <meta name="description" content="Detailed steps documenting the final cleaning and standardization processes for the Customers table in the Target e-commerce dataset." />
+    <meta name="keywords" content="Customers Cleaning, Final Steps, Data Standardization, Data Cleaning, Power BI, SQL, Target Brazil, Miles Davidson" />
     <meta property="og:title" content="Customers Final Steps" />
-    <meta property="og:description" content="" />
-    <meta property="og:image" content="" />
-    <meta property="og:url" content="" />
+    <meta property="og:description" content="Detailed steps documenting the final cleaning and standardization processes for the Customers table in the Target e-commerce dataset." />
+    <meta property="og:image" content="/assets/images/customers-final-steps-thumbnail.png" />
+    <meta property="og:url" content="https://melodicmetrics.github.io/Target-ECommerce-Revenue-Analysis/Data-Cleaning-Part-Two/Customers_Final/steps.html" />
     <meta property="og:type" content="website" />
 
-    <title>Customers Final Steps</title>
+    <title>Customers Final Steps | Miles Davidson Data Analysis Portfolio </title>
 
     <!-- Bootstrap CSS -->
     <link
@@ -32,7 +32,15 @@
     />
 
     <!-- Custom Styles -->
-    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/styles.css" />
+    <!-- prettier-ignore-start -->
+    
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/global.css" />
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/layout.css" />
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/components.css" />
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/responsive.css" />
+    <link rel="stylesheet" href="/Target-ECommerce-Revenue-Analysis/assets/css/themes.css" />
+    <!-- prettier-ignore-end -->
+
 
     <!-- Highlight.js Core and Language Support -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
@@ -57,7 +65,10 @@
     <!-- Sticky Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container-fluid">
+        <!-- Brand/Home Link -->
         <a class="navbar-brand" href="/Target-ECommerce-Revenue-Analysis/">Home</a>
+
+        <!-- Toggler for Responsive Navbar -->
         <button
           class="navbar-toggler"
           type="button"
@@ -69,44 +80,51 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
+
+        <!-- Navbar Links -->
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
               <a
                 class="nav-link"
                 href="/Target-ECommerce-Revenue-Analysis/Data-Cleaning-Part-One/"
-                >Data Cleaning Part One </a> 
-            </li
-
-            ><li class="nav-item">
+              >
+                Data Cleaning Part One
+              </a>
+            </li>
+            <li class="nav-item">
               <a
                 class="nav-link"
                 href="/Target-ECommerce-Revenue-Analysis/Data-Cleaning-Part-Two/"
-                >Data Cleaning Part Two</a
               >
+                Data Cleaning Part Two
+              </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/EDA/"
-                >Exploratory Data Analysis</a
-              >
+              <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/EDA/">
+                Exploratory Data Analysis
+              </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/Revenue-Analysis/"
-                >Revenue Analysis</a
-              >
+              <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/Revenue-Analysis/">
+                Revenue Analysis
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/Insights/">
+                Insights
+              </a>
             </li>
           </ul>
-          <form class="d-flex" role="search">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-success" type="submit"
-              >Search</button
-            >
-          </form>
+
+          <!-- Optional Additional Navigation Section -->
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/Target-ECommerce-Revenue-Analysis/Contact/">
+                Contact
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>
@@ -148,23 +166,36 @@
 
 <h2>Overview</h2>
 <p>
-  <code>Geolocation_Final_Original</code> was created using an <code>INNER JOIN</code> between <code>Geolocation</code> and <code>IBGE_City_State_Source_of_Truth</code>, which resulted in <strong>6 fewer <code>customer_id</code>s</strong> compared to <code>Geolocation_Comparison</code>, which was made using a <code>RIGHT JOIN</code> on the same tables. To identify which IDs were missing and understand why, I created <code>Customers_Comparison</code> and <code>Customers_Final_Original</code> tables, then pulled the <code>customer_id</code>s that were absent from <code>Customers_Final_Original</code>.
+  <code>Geolocation_Final_Original</code> was created using an
+  <code>INNER JOIN</code> between <code>Geolocation</code> and
+  <code>IBGE_City_State_Source_of_Truth</code>, which resulted in
+  <strong>6 fewer <code>customer_id</code>s</strong> compared to
+  <code>Geolocation_Comparison</code>, which was made using a
+  <code>RIGHT JOIN</code> on the same tables. To identify which IDs were missing
+  and understand why, I created <code>Customers_Comparison</code> and
+  <code>Customers_Final_Original</code> tables, then pulled the
+  <code>customer_id</code>s that were absent from
+  <code>Customers_Final_Original</code>.
 </p>
 <p>
-  After diagnosing the issue, I created <code>Geolocation_Final</code> and <code>Customers_Final</code>, which successfully included the six missing IDs.
+  After diagnosing the issue, I created <code>Geolocation_Final</code> and
+  <code>Customers_Final</code>, which successfully included the six missing IDs.
 </p>
 
 <h2>1. <code>Customers_Comparison</code> Table</h2>
 <ul>
   <li>
-    This table was made based on an <code>INNER JOIN</code> between the original Customers table and my
-    <code>Geolocation_Comparison</code> table. This ensured the only filters on this table were based on the
+    This table was made based on an <code>INNER JOIN</code> between the original
+    Customers table and my <code>Geolocation_Comparison</code> table. This
+    ensured the only filters on this table were based on the
     <code>RIGHT JOIN</code> from the Geolocation_Comparison table.
   </li>
 </ul>
 
 <details>
-  <summary>📂 <b><i>Query to Create Customers_Comparison</i></b></summary>
+  <summary
+    >📂 <b><i>Query to Create Customers_Comparison</i></b></summary
+  >
   <pre><code class="language-sql">
 CREATE OR REPLACE TABLE iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Customers_Comparison AS 
 SELECT
@@ -183,17 +214,24 @@ ON
 <h2>2. <code>Customers_Final_Original</code> Table</h2>
 <ul>
   <li>
-    This table was based on <code>Geolocations_Final_Original</code> and <code>Customers</code>. To recap,
-    <code>Geolocation_Final_Original</code> was created with an <code>INNER JOIN</code> rather than a
-    <code>RIGHT JOIN</code>.
+    This table was based on <code>Geolocations_Final_Original</code> and
+    <code>Customers</code>. To recap,
+    <code>Geolocation_Final_Original</code> was created with an
+    <code>INNER JOIN</code> rather than a <code>RIGHT JOIN</code>.
   </li>
   <li>
-    <em>Note</em>: The purpose of the <code>"..._Final_Original"</code> in the geolocation and customers table is to display the logic that led to the actual Final tables. The Original final table for customers contained 93,921 entries. After making the changes, the new <code>Customers_Final</code> table will contain the intended 93,927 entries.
+    <em>Note</em>: The purpose of the <code>"..._Final_Original"</code> in the
+    geolocation and customers table is to display the logic that led to the
+    actual Final tables. The Original final table for customers contained 93,921
+    entries. After making the changes, the new
+    <code>Customers_Final</code> table will contain the intended 93,927 entries.
   </li>
 </ul>
 
 <details>
-  <summary>📂 <b><i>Query to create Customers_Final_Original</i></b></summary>
+  <summary
+    >📂 <b><i>Query to create Customers_Final_Original</i></b></summary
+  >
   <pre><code class="language-sql">
 CREATE OR REPLACE TABLE iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Customers_Final_Original AS 
 SELECT
@@ -209,16 +247,19 @@ ON
   </code></pre>
 </details>
 
-<h2 id = "3-comparison-of-customer-tables"> 3. Comparison of Customer Tables </h2>
+<h2 id="3-comparison-of-customer-tables"> 3. Comparison of Customer Tables </h2>
 <ul>
   <li>
-    Finally, I wrote a query to compare the two tables to identify the <code>customer_id</code>s appearing in
-    <code>Customers_Comparison</code> but <em>not</em> in <code>Customers_Final_Original</code>.
+    Finally, I wrote a query to compare the two tables to identify the
+    <code>customer_id</code>s appearing in <code>Customers_Comparison</code> but
+    <em>not</em> in <code>Customers_Final_Original</code>.
   </li>
 </ul>
 
 <details>
-  <summary>📂 <b><i>Query to Find Missing customer_ids</i></b> </summary>
+  <summary
+    >📂 <b><i>Query to Find Missing customer_ids</i></b>
+  </summary>
   <pre><code class="language-sql">
 -- Compares Customers_Comparison to the final table.
 SELECT
@@ -232,20 +273,32 @@ FROM
   iconic-fountain-435918-q3.Target_Ecommerce_Sales_2016_2018.Customers_Final_Original
   </code></pre>
   <p>
-    This query identified the 6 <code>customer_id</code>s missing due to the <code>INNER JOIN</code> between
-    <code>Geolocation</code> and <code>IBGE_City_State_Source_of_Truth</code>.
+    This query identified the 6 <code>customer_id</code>s missing due to the
+    <code>INNER JOIN</code> between <code>Geolocation</code> and
+    <code>IBGE_City_State_Source_of_Truth</code>.
   </p>
 </details>
 
 <p>
-  Next, I investigated one of these IDs (<code>"e6add8f4805cb6a382c26548daaed9d7"</code>) and found that the
-  customer was based in <code>Sambaiba, MA</code>. Checking this city in both <code>Geolocation</code> and
-  <code>IBGE_City_State_Source_of_Truth</code> revealed that it was missing in the former, explaining why these
-  customers were dropped in the <code>INNER JOIN</code> but retained in the <code>RIGHT JOIN</code>.
+  Next, I investigated one of these IDs
+  (<code>"e6add8f4805cb6a382c26548daaed9d7"</code>) and found that the customer
+  was based in <code>Sambaiba, MA</code>. Checking this city in both
+  <code>Geolocation</code> and
+  <code>IBGE_City_State_Source_of_Truth</code> revealed that it was missing in
+  the former, explaining why these customers were dropped in the
+  <code>INNER JOIN</code> but retained in the <code>RIGHT JOIN</code>.
 </p>
 
 <details>
-  <summary>📂 <b><i>Here's the queries used to find the customer's location, as well as if the city was in the Geolocation and IBGE tables</i></b></summary>
+  <summary
+    >📂
+    <b
+      ><i
+        >Here's the queries used to find the customer's location, as well as if
+        the city was in the Geolocation and IBGE tables</i
+      ></b
+    ></summary
+  >
   <pre><code class="language-sql">
 SELECT *
 FROM
@@ -267,21 +320,25 @@ geolocation_city = "sambaiba";
 </code></pre>
 
   <p>
-    IBGE returned a result while <code>Geolocation</code> did not, indicating that the original
-    <code>Geolocation</code> table was missing certain cities, leading to the decision to use a
-    <code>RIGHT JOIN</code> to include all entries from <code>IBGE_City_State_Source_of_Truth</code>.
+    IBGE returned a result while <code>Geolocation</code> did not, indicating
+    that the original <code>Geolocation</code> table was missing certain cities,
+    leading to the decision to use a <code>RIGHT JOIN</code> to include all
+    entries from <code>IBGE_City_State_Source_of_Truth</code>.
   </p>
 </details>
 
 <h2>4. <code>Creation of Customers_Final</code> Table</h2>
 
 <p>
-  With the <code>Geolocation_Final</code> table now including the cities for those six <code>customer_id</code>s, I
-  could proceed with creating <code>Customers_Final</code>.
+  With the <code>Geolocation_Final</code> table now including the cities for
+  those six <code>customer_id</code>s, I could proceed with creating
+  <code>Customers_Final</code>.
 </p>
 
 <details>
-  <summary>📂 <b><i>Query to Create Customers_Final</i></b> </summary>
+  <summary
+    >📂 <b><i>Query to Create Customers_Final</i></b>
+  </summary>
   <pre><code class="language-sql">
 /*
   This query filters the Customers_Unaccented table to include only IDs with valid city-state combinations 
@@ -302,7 +359,6 @@ INNER JOIN
 ON
 customer.customer_city_unaccented = truth.City AND customer.customer_state = truth.state
 </code></pre>
-
 </details>
  </main>
 
